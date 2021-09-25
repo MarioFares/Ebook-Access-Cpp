@@ -1,0 +1,131 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QFile>
+#include <QMainWindow>
+#include <QApplication>
+#include <summarywindow.h>
+#include <QListWidgetItem>
+#include <linkmanagerwindow.h>
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+    //SummaryWindow summaryWindow;
+
+    void showSummary(QString name)
+    {
+
+        SummaryWindow *summaryWindow = new SummaryWindow(this);
+        QFile file(":/summarystyle.qss");
+        file.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(file.readAll());
+        summaryWindow->setStyleSheet(styleSheet);
+        summaryWindow->ensurePolished();
+        summaryWindow->show();
+        summaryWindow->callSelectEbookSummary(name);
+    }
+
+    void showLinkManager()
+    {
+        LinkManagerWindow *linkManagerWindow = new LinkManagerWindow(this);
+        QFile file(":/summarystyle.qss");
+        file.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(file.readAll());
+        linkManagerWindow->setStyleSheet(styleSheet);
+        linkManagerWindow->ensurePolished();
+        linkManagerWindow->show();
+    }
+
+private slots:
+    void refreshFolders();
+
+    void refreshAuthors();
+
+    void refreshGenres();
+
+    void refreshSearches();
+
+    void openSummaryWindow();
+
+    double changeBookSizeUnit(double size, QString unit);
+
+    void showContextMenu(const QPoint&);
+
+    void deleteListItem();
+
+    void openFolder();
+
+    void on_buttonAddBooks_clicked();
+
+    void on_buttonSearchString_clicked();
+
+    void on_buttonClearCriteria_clicked();
+
+    void on_buttonDetailsClear_clicked();
+
+    void on_buttonSortSearch_clicked();
+
+    void on_actionResetEbooks_triggered();
+
+    void on_actionHideSearchBar_triggered();
+
+    void on_actionHideListWidget_triggered();
+
+    void on_actionHideDetailsSection_triggered();
+
+    void on_actionHideCriteriaSection_triggered();
+
+    void on_actionHideAddsSection_triggered();
+
+    void on_actionHideUtilitiesSection_triggered();
+
+    void on_buttonAddBook_clicked();
+
+    void on_buttonClearSearch_clicked();
+
+    void on_buttonSettings_clicked();
+
+    void on_buttonSearchCriteria_clicked();
+
+    void on_ebooksListWidget_itemClicked(QListWidgetItem *item);
+
+    void on_buttonDetailsRestore_clicked();
+
+    void on_buttonDetailsUpdate_clicked();
+
+    void on_buttonSaveCriteria_clicked();
+
+    void on_buttonSearchLoad_clicked();
+
+    void on_actionCleanEbooks_triggered();
+
+    void on_comboBoxSizeUnit_currentTextChanged();
+
+    void on_buttonSummaries_clicked();
+
+    void on_buttonLinkManager_clicked();
+
+    void on_actionChooseRandomBook_triggered();
+
+    void on_ebooksListWidget_itemSelectionChanged();
+
+    void on_actionFullscreen_triggered();
+
+    void on_ebooksListWidget_itemActivated(QListWidgetItem *item);
+
+private:
+    Ui::MainWindow *ui;
+    Qt::SortOrder SORT;
+
+};
+#endif // MAINWINDOW_H

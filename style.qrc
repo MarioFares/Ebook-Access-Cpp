@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>style.qss</file>
+        <file>summarystyle.qss</file>
+        <file>textEditorStyle.qss</file>
+    </qresource>
+</RCC>

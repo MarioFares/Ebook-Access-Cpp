@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1203</width>
+    <height>668</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Ebook Access</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QFrame" name="frameMain">
+      <property name="styleSheet">
+       <string notr="true">QFrame#frameMain
+{border:0px;}</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frameMainLeft">
+         <property name="styleSheet">
+          <string notr="true">QFrame#frameMainLeft
+{
+
+border: 0px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="vertLayMainLeft" stretch="6,0">
+          <property name="topMargin">
+           <number>29</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="frameSearchCriteria">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="bottomMargin">
+              <number>9</number>
+             </property>
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="gridLayCriteria" rowstretch="0,0,0,0,0,0,0,0" columnstretch="1,0,0,0,0,0">
+               <property name="leftMargin">
+                <number>20</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>20</number>
+               </property>
+               <property name="bottomMargin">
+                <number>5</number>
+               </property>
+               <property name="horizontalSpacing">
+                <number>39</number>
+               </property>
+               <property name="verticalSpacing">
+                <number>30</number>
+               </property>
+               <item row="5" column="5">
+                <widget class="QPushButton" name="buttonSearchCriteria">
+                 <property name="minimumSize">
+                  <size>
+                   <width>70</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Search Criteria</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Search</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelExtensionCriteria">
+                 <property name="text">
+                  <string>Extension</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="labelSearchCriteria">
+                 <property name="text">
+                  <string>Search</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelAuthorCriteria">
+                 <property name="text">
+                  <string>Author</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelGroupsCriteria">
+                 <property name="text">
+                  <string>Tags</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1" colspan="4">
+                <widget class="QComboBox" name="comboBoxAuthorCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QCheckBox" name="checkBoxCbr">
+                 <property name="text">
+                  <string>.cbr</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
+                 <property name="maximum">
+                  <number>1023</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1" colspan="3">
+                <widget class="QComboBox" name="comboBoxSearchLoad">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="0" column="1" colspan="4">
+                <widget class="QComboBox" name="comboBoxFolderCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="1" colspan="4">
+                <widget class="QComboBox" name="comboBoxGenreCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="5" column="4">
+                <widget class="QComboBox" name="comboBoxToggleSize">
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="currentText">
+                  <string>MB</string>
+                 </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>KB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GB</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QCheckBox" name="checkBoxMobi">
+                 <property name="text">
+                  <string>.mobi</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="5">
+                <widget class="QPushButton" name="buttonClearCriteria">
+                 <property name="minimumSize">
+                  <size>
+                   <width>70</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear Criteria&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Clear</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelSizeCriteria">
+                 <property name="text">
+                  <string>Size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <widget class="QSpinBox" name="spinBoxToSizeCriteria">
+                 <property name="maximum">
+                  <number>1024</number>
+                 </property>
+                 <property name="value">
+                  <number>1024</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="5">
+                <widget class="QPushButton" name="buttonSaveCriteria">
+                 <property name="minimumSize">
+                  <size>
+                   <width>70</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Save Criteria</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Save</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="4">
+                <widget class="QPushButton" name="buttonSearchLoad">
+                 <property name="minimumSize">
+                  <size>
+                   <width>51</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Load Criteria</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Load</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QCheckBox" name="checkBoxPdf">
+                 <property name="text">
+                  <string>.pdf</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QCheckBox" name="checkBoxEpub">
+                 <property name="text">
+                  <string>.epub</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="labelPagesCriteria">
+                 <property name="text">
+                  <string>Pages</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelFolderCriteria">
+                 <property name="text">
+                  <string>Folder</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3">
+                <widget class="QSpinBox" name="spinBoxToPagesCriteria">
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100000</number>
+                 </property>
+                 <property name="value">
+                  <number>100000</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelGenreCriteria">
+                 <property name="text">
+                  <string>Genre</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="labelSizeToCriteria">
+                 <property name="text">
+                  <string>to</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QSpinBox" name="spinBoxFromPagesCriteria">
+                 <property name="maximum">
+                  <number>100000</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QLabel" name="labelPagesToCriteria">
+                 <property name="text">
+                  <string>to</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1" colspan="4">
+                <widget class="QLineEdit" name="textTagsCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frameBottomButtons">
+            <property name="styleSheet">
+             <string notr="true">QFrame#frameBottomButtons{
+
+border: 0px;
+}</string>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <layout class="QHBoxLayout" name="horLayBottomButtons">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frameAddButtons">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horLayAddButtons">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="buttonAddBook">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Add Book</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/icons/add_book_icon.png</normaloff>:/icons/add_book_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>41</width>
+                    <height>44</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="buttonAddBooks">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Add Books</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/icons/add_books_icon.png</normaloff>:/icons/add_books_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>41</width>
+                    <height>44</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frameInfoButtons">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="0" column="0">
+                 <layout class="QHBoxLayout" name="horLayInfoButtons">
+                  <item>
+                   <widget class="QPushButton" name="buttonSummaries">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Summaries</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/icons/white_notebook_icon.png</normaloff>:/icons/white_notebook_icon.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>44</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="buttonLinkManager">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Link Manager</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>44</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="buttonSettings">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Settings</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>41</width>
+                      <height>44</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frameMainRight">
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QFrame#frameMainRight
+{
+
+border: 0px;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="vertLayMainRight" stretch="0,30,21">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="frameSearchToolBar">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame {
+border: 0px;
+}</string>
+            </property>
+            <layout class="QHBoxLayout" name="horLaySearchBar">
+             <property name="spacing">
+              <number>6</number>
+             </property>
+             <property name="sizeConstraint">
+              <enum>QLayout::SetMinimumSize</enum>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="labelSearchBar">
+               <property name="text">
+                <string>Search:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="textSearchBar">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="contextMenuPolicy">
+                <enum>Qt::DefaultContextMenu</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="buttonSearchString">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="toolTip">
+                <string>Search String</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: 0px;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="buttonClearSearch">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="toolTip">
+                <string>Clear Search</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: 0px;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="buttonSortSearch">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="toolTip">
+                <string>Sort Titles</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+border:0px;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="images.qrc">
+                 <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="ebooksListWidget">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>false</bool>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
+            <property name="modelColumn">
+             <number>0</number>
+            </property>
+            <property name="selectionRectVisible">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frameDetails">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0">
+              <layout class="QVBoxLayout" name="vertLayDetails" stretch="12,1">
+               <property name="spacing">
+                <number>30</number>
+               </property>
+               <property name="topMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>9</number>
+               </property>
+               <item>
+                <layout class="QGridLayout" name="gridLayDetailsFields">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetNoConstraint</enum>
+                 </property>
+                 <property name="verticalSpacing">
+                  <number>20</number>
+                 </property>
+                 <item row="2" column="2">
+                  <widget class="QLabel" name="labelDetailsSize">
+                   <property name="text">
+                    <string>Size:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLineEdit" name="textDetailsGenre">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QFrame" name="frameSizeDetails">
+                   <property name="minimumSize">
+                    <size>
+                     <width>32</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QFrame {
+border: 0px;
+}</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <property name="spacing">
+                     <number>7</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLineEdit" name="textDetailsSize">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBoxSizeUnit">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="sizeAdjustPolicy">
+                       <enum>QComboBox::AdjustToContents</enum>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>KB</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>MB</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GB</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QLineEdit" name="textDetailsTags">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLabel" name="labelDetailsGroups">
+                   <property name="text">
+                    <string>Tags:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelDetailsName">
+                   <property name="text">
+                    <string>Name:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="textDetailsAuthor">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="textDetailsFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QLineEdit" name="textDetailsExt">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLabel" name="labelDetailsExt">
+                   <property name="text">
+                    <string>Ext:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLabel" name="labelDetailsPages">
+                   <property name="text">
+                    <string>Pages:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="labelDetailsGenre">
+                   <property name="text">
+                    <string>Genre:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelDetailsFolder">
+                   <property name="text">
+                    <string>Folder:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="labelDetailsAuthor">
+                   <property name="text">
+                    <string>Author:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="textDetailsName">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="clearButtonEnabled">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLineEdit" name="textDetailsPages">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horLayDetailsButtons">
+                 <item>
+                  <spacer name="horSpacerLeft">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="buttonDetailsClear">
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="toolTip">
+                    <string>Clear Details</string>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Clear</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="buttonDetailsRestore">
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="toolTip">
+                    <string>Restore Original Details</string>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Restore</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="buttonDetailsUpdate">
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="toolTip">
+                    <string>Update Details</string>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Update</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horSpacerRight">
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1203</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuAdd">
+    <property name="title">
+     <string>Add</string>
+    </property>
+    <addaction name="actionAddBook"/>
+    <addaction name="actionAddBooks"/>
+   </widget>
+   <widget class="QMenu" name="menuReset">
+    <property name="title">
+     <string>Reset</string>
+    </property>
+    <addaction name="actionResetEbooks"/>
+    <addaction name="actionReset_Searches"/>
+    <addaction name="actionResetDatabase"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearEntries"/>
+   </widget>
+   <widget class="QMenu" name="menuClean">
+    <property name="title">
+     <string>Clean</string>
+    </property>
+    <addaction name="actionCleanEbooks"/>
+   </widget>
+   <widget class="QMenu" name="menuSearch">
+    <property name="title">
+     <string>Search</string>
+    </property>
+    <addaction name="actionSearchFiles"/>
+    <addaction name="actionSearchText"/>
+    <addaction name="separator"/>
+    <addaction name="actionSortSearch"/>
+    <addaction name="actionClearSearch"/>
+   </widget>
+   <widget class="QMenu" name="menuGenerate">
+    <property name="title">
+     <string>Generate</string>
+    </property>
+    <addaction name="actionEbooksReport"/>
+    <addaction name="actionUsageReport"/>
+    <addaction name="separator"/>
+    <addaction name="actionChooseRandomBook"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionApplicationSettings"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionFullscreen"/>
+    <addaction name="actionMax"/>
+    <addaction name="actionMin"/>
+    <addaction name="separator"/>
+    <addaction name="actionHideSearchBar"/>
+    <addaction name="actionHideListWidget"/>
+    <addaction name="actionHideDetailsSection"/>
+    <addaction name="separator"/>
+    <addaction name="actionHideCriteriaSection"/>
+    <addaction name="actionHideAddsSection"/>
+    <addaction name="actionHideUtilitiesSection"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuAdd"/>
+   <addaction name="menuReset"/>
+   <addaction name="menuClean"/>
+   <addaction name="menuSearch"/>
+   <addaction name="menuGenerate"/>
+   <addaction name="menuSettings"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/open_file_icon.png</normaloff>:/icons/open_file_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O, Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/close_icon.png</normaloff>:/icons/close_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAddBook">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_book_icon.png</normaloff>:/icons/add_book_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Book</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionAddFolder">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionAddAuthor">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Author</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionAddGenre">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Genre</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionAddGroup">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_collection_icon.png</normaloff>:/icons/add_collection_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Group</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionResetEbooks">
+   <property name="text">
+    <string>Reset Ebooks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionResetGroups">
+   <property name="text">
+    <string>Reset Groups</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionResetThemes">
+   <property name="text">
+    <string>Reset Themes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionResetDatabase">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/reset_database_icon.png</normaloff>:/icons/reset_database_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset Database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionClearEntries">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear Entries</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C, Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionCleanEbooks">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/clean_icon.png</normaloff>:/icons/clean_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clean Ebooks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C, Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionSearchFiles">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search Files</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S, Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionSearchText">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/searchbar_icon.png</normaloff>:/icons/searchbar_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search Text</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S, Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionClearSearch">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear Search</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionConvertEbooks">
+   <property name="text">
+    <string>Convert Ebooks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C, Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionEbooksReport">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/ebooks_report_icon.png</normaloff>:/icons/ebooks_report_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ebooks Report</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E, Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionUsageReport">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/metrics_icon.png</normaloff>:/icons/metrics_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Usage Report</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U, Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionApplicationSettings">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Application Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionUserManual">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/info_icon.png</normaloff>:/icons/info_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>User Manual</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U, Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionAboutProduct">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/about_product_icon.png</normaloff>:/icons/about_product_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>About Product</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionSubmitFeedback">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/feedback_icon.png</normaloff>:/icons/feedback_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Submit Feedback</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S, Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionMaximize">
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+  </action>
+  <action name="actionMax">
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M, Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionMin">
+   <property name="text">
+    <string>Minimize</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M, Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionSortSearch">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sort Search</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionAddBooks">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/add_books_icon.png</normaloff>:/icons/add_books_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Books</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionHideSearchBar">
+   <property name="text">
+    <string>Hide Search Bar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionHideListWidget">
+   <property name="text">
+    <string>Hide List Widget</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionHideDetailsSection">
+   <property name="text">
+    <string>Hide Details Section</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionHideCriteriaSection">
+   <property name="text">
+    <string>Hide Criteria Section</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionHideUtilitiesSection">
+   <property name="text">
+    <string>Hide Utilities Section</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionHideAddsSection">
+   <property name="text">
+    <string>Hide Add Section</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionReset_Searches">
+   <property name="text">
+    <string>Reset Searches</string>
+   </property>
+  </action>
+  <action name="actionChooseRandomBook">
+   <property name="text">
+    <string>Choose Random Book</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>comboBoxFolderCriteria</tabstop>
+  <tabstop>comboBoxAuthorCriteria</tabstop>
+  <tabstop>comboBoxGenreCriteria</tabstop>
+  <tabstop>checkBoxPdf</tabstop>
+  <tabstop>checkBoxEpub</tabstop>
+  <tabstop>checkBoxMobi</tabstop>
+  <tabstop>checkBoxCbr</tabstop>
+  <tabstop>textSearchBar</tabstop>
+  <tabstop>buttonSearchString</tabstop>
+  <tabstop>buttonSortSearch</tabstop>
+  <tabstop>buttonClearSearch</tabstop>
+  <tabstop>ebooksListWidget</tabstop>
+  <tabstop>textDetailsName</tabstop>
+  <tabstop>textDetailsAuthor</tabstop>
+  <tabstop>textDetailsGenre</tabstop>
+  <tabstop>textDetailsFolder</tabstop>
+  <tabstop>textDetailsExt</tabstop>
+  <tabstop>textDetailsPages</tabstop>
+  <tabstop>textDetailsTags</tabstop>
+  <tabstop>buttonDetailsUpdate</tabstop>
+  <tabstop>buttonDetailsRestore</tabstop>
+  <tabstop>buttonDetailsClear</tabstop>
+  <tabstop>buttonAddBook</tabstop>
+  <tabstop>buttonAddBooks</tabstop>
+  <tabstop>buttonSettings</tabstop>
+ </tabstops>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionMax</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showMaximized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>562</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMin</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>562</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textSearchBar</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>buttonSearchString</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>842</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1103</x>
+     <y>42</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textSearchBar</sender>
+   <signal>returnPressed()</signal>
+   <receiver>buttonSearchString</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>842</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1103</x>
+     <y>42</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClearSearch</sender>
+   <signal>triggered()</signal>
+   <receiver>buttonClearSearch</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1134</x>
+     <y>39</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textTagsCriteria</sender>
+   <signal>returnPressed()</signal>
+   <receiver>buttonSearchCriteria</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>268</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>524</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>601</x>
+     <y>333</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

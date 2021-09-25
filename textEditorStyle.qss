@@ -1,0 +1,55 @@
+QTextEdit{
+     border: 1px solid grey;
+     background-color: white;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     padding-left: 15px;
+}
+ QScrollBar:vertical {
+     border: none;
+     background: white;
+     width: 15px;
+     margin: 3px;
+}
+ QScrollBar::handle:vertical {
+     border: none;
+     background: lightgrey;
+     min-height: 30px;
+     border-radius: 0px;
+}
+ QScrollBar::add-line:vertical {
+     border: none;
+     background: none;
+     width: 0px;
+     height: 0px;
+}
+ QScrollBar::sub-line:vertical {
+     border: none;
+     background: none;
+     width: 0px;
+     height: 0px;
+}
+ QScrollBar:horizontal {
+     border: none;
+     background: white;
+     height: 15px;
+     margin: 3px;
+}
+ QScrollBar::handle:horizontal {
+     border: none;
+     background:lightgrey;
+     min-width: 30px;
+     border-radius: 0px;
+}
+ QScrollBar::add-line:horizontal {
+     border: none;
+     background: none;
+     width: 0px;
+     height: 0px;
+}
+ QScrollBar::sub-line:horizontal {
+     border: none;
+     background: none;
+     width: 0px;
+     height: 0px;
+}
