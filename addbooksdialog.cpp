@@ -54,16 +54,16 @@ void addBooksDialog::insertBooks(QString entry, QString tags, QString genre, QSt
 
 void addBooksDialog::iterateInsertEntries(QString dir, bool recursive)
 {
-    QList<QString> entriesList;
+    QVector<QString> entriesVector;
     QDirIterator iterator(dir, {"*.pdf", "*.cbr", "*.epub", "*.mobi"}, QDir::Files,
                           recursive ? QDirIterator::Subdirectories : QDirIterator::NoIteratorFlags);
 
     while (iterator.hasNext())
     {
-        entriesList.push_back(iterator.next());
+        entriesVector.push_back(iterator.next());
     }
 
-    long count = entriesList.size();
+    long count = entriesVector.size();
     long counter = 0;
 
     bulkDetailsDialog dialog;
@@ -74,7 +74,7 @@ void addBooksDialog::iterateInsertEntries(QString dir, bool recursive)
     QString author = dialog.author.isEmpty() ? "N/A" : dialog.author;
 
     queries::query.exec("BEGIN TRANSACTION");
-    for(QString &entry : entriesList)
+    for(QString &entry : entriesVector)
     {
         int progress = ((double)counter / count) * 100;
         ui->progressBar->setValue(progress);
