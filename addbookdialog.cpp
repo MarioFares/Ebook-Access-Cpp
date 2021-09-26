@@ -51,15 +51,6 @@ void addBookDialog::on_buttonBrowse_clicked()
 
     int pages = common::getPageCount(filePath);
     ui->textPages->setText(QString::number(pages));
-
-//    QDirIterator iterator("E:\\Personal\\Archives\\Ebook Archive", {"*.pdf", "*.cbr", "*.epub", "*.mobi"}, QDir::Files, QDirIterator::Subdirectories);
-//    int counter = 0;
-//    while (iterator.hasNext())
-//    {
-//        counter++;
-//        std::cout << iterator.next().toStdString() << std::endl;
-//        std::cout << counter << std::endl;
-//    }
 }
 
 void addBookDialog::on_buttonAdd_clicked()
