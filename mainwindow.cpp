@@ -1,14 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <common.h>
-#include <queries.h>
-#include <summarywindow.h>
-#include <addbookdialog.h>
-#include <addbooksdialog.h>
-#include <searchnamedialog.h>
-#include <cleanebooksdialog.h>
-#include <linkmanagerwindow.h>
+#include "common.h"
+#include "queries.h"
+#include "summarywindow.h"
+#include "addbookdialog.h"
+#include "addbooksdialog.h"
+#include "searchnamedialog.h"
+#include "cleanebooksdialog.h"
+#include "linkmanagerwindow.h"
 
 #include <QDir>
 #include <QFile>

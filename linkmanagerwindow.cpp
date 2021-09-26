@@ -4,8 +4,8 @@
 #include "queries.h"
 #include "common.h"
 
-#include <insertlinkdialog.h>
-#include <linkcollectiondialog.h>
+#include "insertlinkdialog.h"
+#include "linkcollectiondialog.h"
 
 #include <QUrl>
 #include <QMenu>

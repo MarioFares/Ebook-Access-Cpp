@@ -6,17 +6,17 @@
 #include "common.h"
 #include "queries.h"
 
-#include <insertlinkdialog.h>
-#include <inserttabledialog.h>
+#include "insertlinkdialog.h"
+#include "inserttabledialog.h"
 
 #include <QFile>
+#include <QHash>
 #include <QTextList>
 #include <QTextTable>
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QDesktopServices>
 #include <QtPrintSupport/QPrinter>
-#include <QHash>
 
 
 SummaryWindow::SummaryWindow(QWidget *parent) :
