@@ -71,7 +71,7 @@ inline void createEbooksTable()
                                                     "PRIMARY KEY (name)"
                                                     ")");
 
-    query.exec("CREATE INDEX IF NOT EXISTS ebooks_names_index ON ebooks(name)");
+    query.exec("CREATE UNIQUE INDEX IF NOT EXISTS ebooks_names_index ON ebooks(name)");
 }
 
 inline void createSettingsTable()
