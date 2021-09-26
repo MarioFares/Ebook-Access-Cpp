@@ -43,7 +43,7 @@ void addBookDialog::on_buttonBrowse_clicked()
 
     QFileInfo file(filePath);
 
-    ui->textName->setText(file.baseName());
+    ui->textName->setText(file.completeBaseName());
     ui->textExtension->setText("." + file.suffix());
     ui->textFolder->setText(file.dir().dirName());
     ui->textPath->setText(file.absoluteFilePath());

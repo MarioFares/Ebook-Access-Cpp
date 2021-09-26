@@ -43,7 +43,7 @@ void addBooksDialog::insertBooks(QString entry, QString tags, QString genre, QSt
 
     QFileInfo file(entry);
 
-    QString name = file.baseName();
+    QString name = file.completeBaseName();
     QString path = file.absoluteFilePath();
     QString folder = file.dir().dirName();
     QString ext = "." + file.suffix();
