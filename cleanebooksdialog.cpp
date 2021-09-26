@@ -3,9 +3,7 @@
 
 #include "queries.h"
 
-#include <filesystem>
-
-namespace fs = std::filesystem;
+#include <QFileInfo>
 
 cleanEbooksDialog::cleanEbooksDialog(QWidget *parent) :
     QDialog(parent),
@@ -25,7 +23,7 @@ void cleanEbooksDialog::on_buttonBegin_clicked()
     while(queries::query.next())
     {
         QString path = queries::query.value(0).toString();
-        if(!fs::exists(fs::path(path.toStdString())))
+        if(QFileInfo::exists(path))
         {
             ui->listWidget->addItem(path);
         }
