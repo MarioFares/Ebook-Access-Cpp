@@ -1,8 +1,9 @@
 #include "linkmanagerwindow.h"
 #include "ui_linkmanagerwindow.h"
 
-#include <queries.h>
-#include <common.h>
+#include "queries.h"
+#include "common.h"
+
 #include <insertlinkdialog.h>
 #include <linkcollectiondialog.h>
 
@@ -69,7 +70,6 @@ void LinkManagerWindow::showCollectionsContextMenu(const QPoint &pos)
     {menu.exec(globalPos);}
 }
 
-
 void LinkManagerWindow::deleteLink(QString name)
 {
     queries::deleteLink(name);
@@ -119,7 +119,6 @@ void LinkManagerWindow::deleteCollection(QString name)
     delete ui->listWidgetCollections->currentItem();
 }
 
-
 void LinkManagerWindow::refreshCollections(QString searchString)
 {
     ui->listWidgetCollections->clear();
@@ -152,7 +151,6 @@ void LinkManagerWindow::on_buttonInsertCollection_clicked()
     refreshCollections("");
 }
 
-
 void LinkManagerWindow::on_buttonInsertLink_clicked()
 {
     insertLinkDialog dialog(this);
@@ -170,12 +168,10 @@ void LinkManagerWindow::on_buttonInsertLink_clicked()
     }
 }
 
-
 void LinkManagerWindow::on_textCollections_textChanged(const QString &arg1)
 {
     refreshCollections(arg1);
 }
-
 
 void LinkManagerWindow::on_textLinks_textChanged(const QString &arg1)
 {
@@ -183,13 +179,10 @@ void LinkManagerWindow::on_textLinks_textChanged(const QString &arg1)
         refreshLinks(ui->listWidgetCollections->currentItem()->text(), arg1);
 }
 
-
 void LinkManagerWindow::on_listWidgetCollections_itemClicked(QListWidgetItem *item)
 {
     refreshLinks(item->text(), "");
 }
-
-
 
 void LinkManagerWindow::on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *item)
 {
@@ -198,7 +191,6 @@ void LinkManagerWindow::on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *it
 
     QDesktopServices::openUrl(QUrl(queries::query.value(1).toString()));
 }
-
 
 void LinkManagerWindow::on_listWidgetLinks_itemClicked(QListWidgetItem *item)
 {
