@@ -10,16 +10,12 @@
 #include <cleanebooksdialog.h>
 #include <linkmanagerwindow.h>
 
-#include <filesystem>
-
 #include <QDir>
 #include <QFile>
 #include <QProcess>
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>
-
-namespace fs = std::filesystem;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -168,7 +164,8 @@ void MainWindow::openFolder()
     QString fileName = ui->ebooksListWidget->currentItem()->text();
     queries::selectPathBasedonName(fileName);
     queries::query.next();
-    fs::path filePath = queries::query.value(0).toString().toStdString();
+    QString filePath = queries::query.value(0).toString();
+    QFileInfo file(filePath);
 
     if (QOperatingSystemVersion::current().type() == 1)
     {
@@ -179,7 +176,7 @@ void MainWindow::openFolder()
     }
     else
     {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(filePath.parent_path().string())));
+        QDesktopServices::openUrl(QUrl::fromLocalFile((file.dir().path())));
     }
 
 }

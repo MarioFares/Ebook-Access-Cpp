@@ -1,11 +1,11 @@
 #include "summarywindow.h"
 #include "ui_summarywindow.h"
 
-#include <iostream>
 #include <fstream>
 
-#include <common.h>
-#include <queries.h>
+#include "common.h"
+#include "queries.h"
+
 #include <insertlinkdialog.h>
 #include <inserttabledialog.h>
 
@@ -17,8 +17,6 @@
 #include <QDesktopServices>
 #include <QtPrintSupport/QPrinter>
 #include <QHash>
-
-namespace fs = std::filesystem;
 
 
 SummaryWindow::SummaryWindow(QWidget *parent) :
