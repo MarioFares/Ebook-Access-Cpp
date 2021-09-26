@@ -1,9 +1,7 @@
 #include "linkcollectiondialog.h"
 #include "ui_linkcollectiondialog.h"
 
-#include <common.h>
-
-#include <QMessageBox>
+#include "common.h"
 
 linkCollectionDialog::linkCollectionDialog(QWidget *parent) :
     QDialog(parent),
