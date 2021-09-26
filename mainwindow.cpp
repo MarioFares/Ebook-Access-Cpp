@@ -43,8 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ebooksListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->ebooksListWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
-    fs::create_directory("./print");
-
     refreshFolders();
     refreshAuthors();
     refreshGenres();
