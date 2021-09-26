@@ -16,6 +16,10 @@ public:
     ~addBooksDialog();
 
 private slots:
+    void insertBooks(QString entry, QString tags, QString genre, QString author);
+
+    void iterateInsertEntries(QString dir, bool recursive);
+
     void on_buttonClose_clicked();
 
     void on_buttonBrowseFolders_clicked();
