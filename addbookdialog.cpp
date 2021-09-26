@@ -1,15 +1,10 @@
 #include "addbookdialog.h"
 #include "ui_addbookdialog.h"
 
-#include <filesystem>
-#include <queries.h>
-#include <common.h>
-#include <iostream>
-#include <QFile>
-#include <QProcess>
-#include <QFileDialog>
+#include "queries.h"
+#include "common.h"
 
-namespace fs = std::filesystem;
+#include <QFileDialog>
 
 addBookDialog::addBookDialog(QWidget *parent) :
     QDialog(parent),
@@ -28,7 +23,6 @@ void addBookDialog::on_buttonCancel_clicked()
     close();
 }
 
-
 void addBookDialog::on_buttonClear_clicked()
 {
     ui->textName->clear();
@@ -42,24 +36,22 @@ void addBookDialog::on_buttonClear_clicked()
     ui->textPages->clear();
 }
 
-
 void addBookDialog::on_buttonBrowse_clicked()
 {
-    fs::path filePath = QFileDialog::getOpenFileName(this,
-                                                     tr("Open File"), "/", tr("Ebook Files (*.pdf *.epub *.mobi *.cbr)")).toStdString();
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                                     tr("Open File"), "/", tr("Ebook Files (*.pdf *.epub *.mobi *.cbr)"));
 
+    QFileInfo file(filePath);
 
-    fs::directory_entry dirEntry(filePath);
+    ui->textName->setText(file.baseName());
+    ui->textExtension->setText("." + file.suffix());
+    ui->textFolder->setText(file.dir().dirName());
+    ui->textPath->setText(file.absoluteFilePath());
+    ui->textSize->setText(QString::number(file.size()));
 
-    ui->textName->setText(QString::fromStdString(dirEntry.path().stem().string()));
-    ui->textExtension->setText(QString::fromStdString(dirEntry.path().extension().string()));
-    ui->textPath->setText(QString::fromStdString(dirEntry.path().string()));
-    ui->textFolder->setText(QString::fromStdString(filePath.parent_path().filename().string()));
-    ui->textSize->setText(QString::number(dirEntry.file_size()));
-
-    int pages = common::getPageCount(QString::fromStdString(dirEntry.path().string()));
-
+    int pages = common::getPageCount(filePath);
     ui->textPages->setText(QString::number(pages));
+
 //    QDirIterator iterator("E:\\Personal\\Archives\\Ebook Archive", {"*.pdf", "*.cbr", "*.epub", "*.mobi"}, QDir::Files, QDirIterator::Subdirectories);
 //    int counter = 0;
 //    while (iterator.hasNext())
@@ -69,7 +61,6 @@ void addBookDialog::on_buttonBrowse_clicked()
 //        std::cout << counter << std::endl;
 //    }
 }
-
 
 void addBookDialog::on_buttonAdd_clicked()
 {
@@ -83,7 +74,7 @@ void addBookDialog::on_buttonAdd_clicked()
     QString ext = ui->textExtension->text();
     QString tags = ui->textTags->text();
 
-    if(fs::exists(fs::path(path.toStdString())))
+    if(QFileInfo::exists(path))
     {
         queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author);
         common::showMsgBox("Success!", "Ebook successfully added.", ":/summarystyle.qss", QMessageBox::Information, ":/icons/books_icon.png");
