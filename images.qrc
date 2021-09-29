@@ -87,5 +87,8 @@
         <file>icons/hr_icon.png</file>
         <file>icons/image_icon.png</file>
         <file>icons/white_notebook_icon.png</file>
+        <file>icons/ext_icon.png</file>
+        <file>icons/upload_icon.png</file>
+        <file>icons/save_icon.png</file>
     </qresource>
 </RCC>

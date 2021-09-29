@@ -82,7 +82,7 @@ border: 0px;
               <number>9</number>
              </property>
              <item row="0" column="0">
-              <layout class="QGridLayout" name="gridLayCriteria" rowstretch="0,0,0,0,0,0,0,0" columnstretch="1,0,0,0,0,0">
+              <layout class="QGridLayout" name="gridLayCriteria" rowstretch="0,0,0,0,0,0,0,0" columnstretch="1,3,2,3,1,1">
                <property name="leftMargin">
                 <number>20</number>
                </property>
@@ -94,9 +94,6 @@ border: 0px;
                </property>
                <property name="bottomMargin">
                 <number>5</number>
-               </property>
-               <property name="horizontalSpacing">
-                <number>39</number>
                </property>
                <property name="verticalSpacing">
                 <number>30</number>
@@ -122,17 +119,28 @@ border: 0px;
                   <string>Search Criteria</string>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                  <string notr="true">/*QPushButton{
 border: 1px solid grey;
 }
 QPushButton:hover
 {
 border: 1px solid lightblue;
 
-}</string>
+}*/
+border: 0px;</string>
                  </property>
                  <property name="text">
-                  <string>Search</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>30</width>
+                   <height>30</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -203,18 +211,14 @@ border: 1px solid lightblue;
                  </item>
                 </widget>
                </item>
-               <item row="4" column="4">
-                <widget class="QCheckBox" name="checkBoxCbr">
-                 <property name="text">
-                  <string>.cbr</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>1023</number>
                  </property>
@@ -313,44 +317,6 @@ border: 1px solid lightblue;
                  </item>
                 </widget>
                </item>
-               <item row="5" column="4">
-                <widget class="QComboBox" name="comboBoxToggleSize">
-                 <property name="editable">
-                  <bool>false</bool>
-                 </property>
-                 <property name="currentText">
-                  <string>MB</string>
-                 </property>
-                 <property name="currentIndex">
-                  <number>1</number>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>KB</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>MB</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>GB</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="4" column="3">
-                <widget class="QCheckBox" name="checkBoxMobi">
-                 <property name="text">
-                  <string>.mobi</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="6" column="5">
                 <widget class="QPushButton" name="buttonClearCriteria">
                  <property name="minimumSize">
@@ -369,20 +335,31 @@ border: 1px solid lightblue;
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear Criteria&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>Clear Criteria</string>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                  <string notr="true">/*QPushButton{
 border: 1px solid grey;
 }
 QPushButton:hover
 {
 border: 1px solid lightblue;
 
-}</string>
+}*/
+border: 0px;</string>
                  </property>
                  <property name="text">
-                  <string>Clear</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>30</width>
+                   <height>30</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -398,6 +375,12 @@ border: 1px solid lightblue;
                </item>
                <item row="5" column="3">
                 <widget class="QSpinBox" name="spinBoxToSizeCriteria">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>1024</number>
                  </property>
@@ -427,18 +410,28 @@ border: 1px solid lightblue;
                   <string>Save Criteria</string>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                  <string notr="true">/*QPushButton{
 border: 1px solid grey;
 }
 QPushButton:hover
 {
 border: 1px solid lightblue;
 
-}
-</string>
+}*/
+border: 0px;</string>
                  </property>
                  <property name="text">
-                  <string>Save</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>30</width>
+                   <height>30</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -460,42 +453,24 @@ border: 1px solid lightblue;
                   <string>Load Criteria</string>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
+                  <string notr="true">/*QPushButton{
 border: 1px solid grey;
 }
 QPushButton:hover
 {
 border: 1px solid lightblue;
 
-}</string>
+}*/
+border: 0px;</string>
                  </property>
                  <property name="text">
-                  <string>Load</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
                  </property>
                  <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QCheckBox" name="checkBoxPdf">
-                 <property name="text">
-                  <string>.pdf</string>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="2">
-                <widget class="QCheckBox" name="checkBoxEpub">
-                 <property name="text">
-                  <string>.epub</string>
-                 </property>
-                 <property name="checked">
                   <bool>true</bool>
                  </property>
                 </widget>
@@ -516,6 +491,12 @@ border: 1px solid lightblue;
                </item>
                <item row="6" column="3">
                 <widget class="QSpinBox" name="spinBoxToPagesCriteria">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="minimum">
                   <number>0</number>
                  </property>
@@ -546,6 +527,12 @@ border: 1px solid lightblue;
                </item>
                <item row="6" column="1">
                 <widget class="QSpinBox" name="spinBoxFromPagesCriteria">
+                 <property name="maximumSize">
+                  <size>
+                   <width>70</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>100000</number>
                  </property>
@@ -561,7 +548,78 @@ border: 1px solid lightblue;
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1" colspan="4">
+               <item row="4" column="1" colspan="3">
+                <widget class="QLineEdit" name="textExts">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QPushButton" name="buttonExtensions">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Extensions</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 0px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/ext_icon.png</normaloff>:/icons/ext_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="4">
+                <widget class="QPushButton" name="buttonSizeCriteria">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Unit</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: 0px;
+</string>
+                 </property>
+                 <property name="text">
+                  <string>MB</string>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>25</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1" colspan="3">
                 <widget class="QLineEdit" name="textTagsCriteria">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -573,6 +631,40 @@ border: 1px solid lightblue;
                   <size>
                    <width>0</width>
                    <height>23</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QPushButton" name="pushButton">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Tags</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
                   </size>
                  </property>
                 </widget>
@@ -1082,6 +1174,12 @@ border:0px;
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                   </widget>
                  </item>
                  <item row="2" column="3">
@@ -1124,6 +1222,12 @@ border: 0px;
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>24</height>
+                       </size>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -1133,6 +1237,12 @@ border: 0px;
                         <horstretch>0</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>24</height>
+                       </size>
                       </property>
                       <property name="sizeAdjustPolicy">
                        <enum>QComboBox::AdjustToContents</enum>
@@ -1165,6 +1275,12 @@ border: 0px;
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                   </widget>
                  </item>
                  <item row="3" column="2">
@@ -1189,6 +1305,12 @@ border: 0px;
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                   </widget>
                  </item>
                  <item row="3" column="1">
@@ -1198,6 +1320,12 @@ border: 0px;
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -1211,6 +1339,12 @@ border: 0px;
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -1260,6 +1394,12 @@ border: 0px;
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="clearButtonEnabled">
                     <bool>false</bool>
                    </property>
@@ -1272,6 +1412,12 @@ border: 0px;
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -1504,12 +1650,11 @@ border: 1px solid lightblue;
     <addaction name="actionMin"/>
     <addaction name="separator"/>
     <addaction name="actionHideSearchBar"/>
-    <addaction name="actionHideListWidget"/>
     <addaction name="actionHideDetailsSection"/>
+    <addaction name="actionHideRightFrame"/>
     <addaction name="separator"/>
-    <addaction name="actionHideCriteriaSection"/>
-    <addaction name="actionHideAddsSection"/>
-    <addaction name="actionHideUtilitiesSection"/>
+    <addaction name="actionHideUtilities"/>
+    <addaction name="actionHideLeftFrame"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -1897,15 +2042,26 @@ border: 1px solid lightblue;
     <string>Choose Random Book</string>
    </property>
   </action>
+  <action name="actionHideRightFrame">
+   <property name="text">
+    <string>Hide Right Frame</string>
+   </property>
+  </action>
+  <action name="actionHideUtilities">
+   <property name="text">
+    <string>Hide Utilities</string>
+   </property>
+  </action>
+  <action name="actionHideLeftFrame">
+   <property name="text">
+    <string>Hide Left Frame</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>comboBoxFolderCriteria</tabstop>
   <tabstop>comboBoxAuthorCriteria</tabstop>
   <tabstop>comboBoxGenreCriteria</tabstop>
-  <tabstop>checkBoxPdf</tabstop>
-  <tabstop>checkBoxEpub</tabstop>
-  <tabstop>checkBoxMobi</tabstop>
-  <tabstop>checkBoxCbr</tabstop>
   <tabstop>textSearchBar</tabstop>
   <tabstop>buttonSearchString</tabstop>
   <tabstop>buttonSortSearch</tabstop>

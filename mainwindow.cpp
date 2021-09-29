@@ -9,6 +9,7 @@
 #include "searchnamedialog.h"
 #include "cleanebooksdialog.h"
 #include "linkmanagerwindow.h"
+#include "extselectiondialog.h"
 
 #include <QDir>
 #include <QFile>
@@ -21,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     queries::connectToDatabase();
     queries::createEbooksTable();
     queries::createSettingsTable();
@@ -104,8 +104,6 @@ void MainWindow::refreshSearches()
         ui->comboBoxSearchLoad->addItem(queries::query.value(0).toString());
     }
     ui->comboBoxSearchLoad->model()->sort(0, Qt::AscendingOrder);
-
-
 }
 
 double MainWindow::changeBookSizeUnit(double size, QString unit)
@@ -218,10 +216,7 @@ void MainWindow::on_buttonClearCriteria_clicked()
     ui->spinBoxFromSizeCriteria->setValue(0);
     ui->spinBoxToSizeCriteria->setValue(0);
 
-    ui->checkBoxCbr->setChecked(false);
-    ui->checkBoxEpub->setChecked(false);
-    ui->checkBoxMobi->setChecked(false);
-    ui->checkBoxPdf->setChecked(false);
+    ui->textExts->clear();
 
     ui->statusBar->clearMessage();
 }
@@ -264,13 +259,6 @@ void MainWindow::on_actionHideSearchBar_triggered()
     ui->actionHideSearchBar->setText(ui->frameSearchToolBar->isHidden() ? "Show Search Bar" : "Hide Search Bar");
 }
 
-void MainWindow::on_actionHideListWidget_triggered()
-{
-    ui->ebooksListWidget->setHidden(!ui->ebooksListWidget->isHidden());
-    ui->actionHideListWidget->setText(ui->ebooksListWidget->isHidden() ? "Show List Widget" : "Hide List Widget");
-    ui->frameMainRight->setHidden(ui->ebooksListWidget->isHidden() && ui->frameDetails->isHidden());
-}
-
 void MainWindow::on_actionHideDetailsSection_triggered()
 {
     ui->frameDetails->setHidden(!ui->frameDetails->isHidden());
@@ -279,29 +267,22 @@ void MainWindow::on_actionHideDetailsSection_triggered()
 
 }
 
-void MainWindow::on_actionHideCriteriaSection_triggered()
+void MainWindow::on_actionHideRightFrame_triggered()
 {
-    ui->frameSearchCriteria->setHidden(!ui->frameSearchCriteria->isHidden());
-    ui->actionHideCriteriaSection->setText(ui->frameSearchCriteria->isHidden() ? "Show Criteria Section" : "Hide Criteria Section");
-    ui->frameMainLeft->setHidden(ui->frameSearchCriteria->isHidden() && ui->frameBottomButtons->isHidden());
+    ui->frameMainRight->setHidden(!ui->frameMainRight->isHidden());
+    ui->actionHideRightFrame->setText(ui->frameMainRight->isHidden() ? "Show Right Frame" : "Hide Right Frame");
 }
 
-void MainWindow::on_actionHideAddsSection_triggered()
+void MainWindow::on_actionHideUtilities_triggered()
 {
-    ui->frameAddButtons->setHidden(!ui->frameAddButtons->isHidden());
-    ui->actionHideAddsSection->setText(ui->frameAddButtons->isHidden() ? "Show Add Section" : "Hide Add Section");
-    ui->frameBottomButtons->setHidden(ui->frameAddButtons->isHidden() && ui->frameInfoButtons->isHidden());
-    ui->frameMainLeft->setHidden(ui->frameSearchCriteria->isHidden() && ui->frameBottomButtons->isHidden());
-
+    ui->frameBottomButtons->setHidden(!ui->frameBottomButtons->isHidden());
+    ui->actionHideUtilities->setText(ui->frameBottomButtons->isHidden() ? "Show Utilities" : "Hide Utilities");
 }
 
-void MainWindow::on_actionHideUtilitiesSection_triggered()
+void MainWindow::on_actionHideLeftFrame_triggered()
 {
-    ui->frameInfoButtons->setHidden(!ui->frameInfoButtons->isHidden());
-    ui->actionHideUtilitiesSection->setText(ui->frameInfoButtons->isHidden() ? "Show Utilities Section" : "Hide Utilities Section");
-    ui->frameBottomButtons->setHidden(ui->frameAddButtons->isHidden() && ui->frameInfoButtons->isHidden());
-    ui->frameMainLeft->setHidden(ui->frameSearchCriteria->isHidden() && ui->frameBottomButtons->isHidden());
-
+    ui->frameMainLeft->setHidden(!ui->frameMainLeft->isHidden());
+    ui->actionHideLeftFrame->setText(ui->frameMainLeft->isHidden() ? "Show Left Frame" : "Hide Left Frame");
 }
 
 void MainWindow::on_buttonAddBook_clicked()
@@ -347,12 +328,12 @@ void MainWindow::on_buttonSearchCriteria_clicked()
     long long sizeTo = ui->spinBoxToSizeCriteria->value();
     long long sizeFrom = ui->spinBoxFromSizeCriteria->value();
 
-    if (ui->comboBoxToggleSize->currentText() == "KB")
+    if (ui->buttonSizeCriteria->text() == "KB")
     {
         sizeTo = sizeTo * 1024;
         sizeFrom = sizeFrom * 1024;
     }
-    else if (ui->comboBoxToggleSize->currentText() == "MB")
+    else if (ui->buttonSizeCriteria->text() == "MB")
     {
         sizeTo = sizeTo * 1024 * 1024;
         sizeFrom = sizeFrom * 1024 * 1024;
@@ -365,13 +346,9 @@ void MainWindow::on_buttonSearchCriteria_clicked()
     long pagesTo = ui->spinBoxToPagesCriteria->value();
     long pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
-    QString extensions[4] = {ui->checkBoxPdf->isChecked() ? ".pdf" : "",
-                             ui->checkBoxEpub->isChecked() ? ".epub" : "",
-                             ui->checkBoxMobi->isChecked() ? ".mobi" : "",
-                             ui->checkBoxCbr->isChecked() ? ".cbr" : ""
-                            };
+    QString ext = ui->textExts->text();
 
-    queries::selectNameBasedOnCriteria(folder, genre, author, tags, pagesFrom, pagesTo, sizeFrom, sizeTo, extensions);
+    queries::selectNameBasedOnCriteria(folder, genre, author, tags, ext, pagesFrom, pagesTo, sizeFrom, sizeTo);
     long count = 0;
     while(queries::query.next())
     {
@@ -452,13 +429,13 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     QString author = ui->comboBoxAuthorCriteria->currentText();
     QString genre = ui->comboBoxGenreCriteria->currentText();
     QString tags = ui->textTagsCriteria->text();
-    int pdf = ui->checkBoxPdf->isChecked();
-    int epub = ui->checkBoxEpub->isChecked();
-    int mobi = ui->checkBoxMobi->isChecked();
-    int cbr = ui->checkBoxCbr->isChecked();
+
+    QString ext = ui->textExts->text();
+
+
     int sizeTo = ui->spinBoxToSizeCriteria->value();
     int sizeFrom = ui->spinBoxFromSizeCriteria->value();
-    QString sizeIn = ui->comboBoxToggleSize->currentText();
+    QString sizeIn = ui->buttonSizeCriteria->text();
     int pagesTo = ui->spinBoxToPagesCriteria->value();
     int pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
@@ -466,7 +443,7 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     common::openDialog(&dialog, ":/style.qss");
     if(!dialog.searchName.isEmpty())
     {
-        queries::insertSearchQuery(dialog.searchName, folder, author, genre, tags, pdf, epub, mobi, cbr,
+        queries::insertSearchQuery(dialog.searchName, folder, author, genre, tags, ext,
                                    sizeFrom, sizeTo, sizeIn, pagesFrom, pagesTo);
         ui->statusBar->showMessage("Search saved successfully.");
     }
@@ -486,17 +463,16 @@ void MainWindow::on_buttonSearchLoad_clicked()
         ui->comboBoxGenreCriteria->setCurrentText(queries::query.value(3).toString());
         ui->textTagsCriteria->setText(queries::query.value(4).toString());
 
-        ui->checkBoxPdf->setChecked(queries::query.value(5).toBool());
-        ui->checkBoxEpub->setChecked(queries::query.value(6).toBool());
-        ui->checkBoxMobi->setChecked(queries::query.value(7).toBool());
-        ui->checkBoxCbr->setChecked(queries::query.value(8).toBool());
 
-        ui->spinBoxFromSizeCriteria->setValue(queries::query.value(9).toInt());
-        ui->spinBoxToSizeCriteria->setValue(queries::query.value(10).toInt());
-        ui->comboBoxToggleSize->setCurrentText(queries::query.value(11).toString());
+        ui->textExts->setText(queries::query.value(5).toString());
 
-        ui->spinBoxFromPagesCriteria->setValue(queries::query.value(12).toInt());
-        ui->spinBoxToPagesCriteria->setValue(queries::query.value(13).toInt());
+
+        ui->spinBoxFromSizeCriteria->setValue(queries::query.value(6).toInt());
+        ui->spinBoxToSizeCriteria->setValue(queries::query.value(7).toInt());
+        ui->buttonSizeCriteria->setText(queries::query.value(8).toString());
+
+        ui->spinBoxFromPagesCriteria->setValue(queries::query.value(9).toInt());
+        ui->spinBoxToPagesCriteria->setValue(queries::query.value(10).toInt());
 
         ui->statusBar->showMessage("Search loaded.");
     }
@@ -564,3 +540,61 @@ void MainWindow::on_ebooksListWidget_itemActivated(QListWidgetItem *item)
 
     ui->statusBar->showMessage(ebookName + " ebook opened.");
 }
+
+void MainWindow::on_buttonSizeCriteria_clicked()
+{
+    QString currentText = ui->buttonSizeCriteria->text();
+    if (currentText == "KB")
+        ui->buttonSizeCriteria->setText("MB");
+    else if (currentText == "MB")
+        ui->buttonSizeCriteria->setText("GB");
+    else
+        ui->buttonSizeCriteria->setText("KB");
+}
+
+
+void MainWindow::on_buttonExtensions_clicked()
+{
+    queries::selectExt();
+    QVector<QString> ext;
+    while(queries::query.next())
+    {
+        ext.push_back(queries::query.value(0).toString());
+    }
+
+    extSelectionDialog *dialog = new extSelectionDialog(this, ext);
+    common::openDialog(dialog, ":/style.qss");
+
+    ext = dialog->getExtVector();
+    QString extString = ext.join(", ");
+    ui->textExts->setText(extString);
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    QVector<QString> tags;
+    queries::selectTags();
+    while(queries::query.next())
+    {
+        QString tagString = queries::query.value(0).toString();
+        QStringList tagList = tagString.split(",");
+        for(QString tag : tagList)
+        {
+            if(!tags.contains(tag))
+            {
+                tags.push_back(tag);
+            }
+
+        }
+    }
+
+    extSelectionDialog *dialog = new extSelectionDialog(this, tags);
+    common::openDialog(dialog, ":style.qss");
+
+    tags = dialog->getExtVector();
+    QString tagString = tags.join(", ");
+    ui->textTagsCriteria->setText(tagString);
+
+}
+

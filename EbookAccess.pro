@@ -16,6 +16,7 @@ SOURCES += \
     bookdetailswindow.cpp \
     bulkdetailsdialog.cpp \
     cleanebooksdialog.cpp \
+    extselectiondialog.cpp \
     insertlinkdialog.cpp \
     inserttabledialog.cpp \
     linkcollectiondialog.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     bulkdetailsdialog.h \
     cleanebooksdialog.h \
     common.h \
+    extselectiondialog.h \
     insertlinkdialog.h \
     inserttabledialog.h \
     linkcollectiondialog.h \
@@ -47,6 +49,7 @@ FORMS += \
     bookdetailswindow.ui \
     bulkdetailsdialog.ui \
     cleanebooksdialog.ui \
+    extselectiondialog.ui \
     insertlinkdialog.ui \
     inserttabledialog.ui \
     linkcollectiondialog.ui \

@@ -79,15 +79,7 @@ private slots:
 
     void on_actionHideSearchBar_triggered();
 
-    void on_actionHideListWidget_triggered();
-
     void on_actionHideDetailsSection_triggered();
-
-    void on_actionHideCriteriaSection_triggered();
-
-    void on_actionHideAddsSection_triggered();
-
-    void on_actionHideUtilitiesSection_triggered();
 
     void on_buttonAddBook_clicked();
 
@@ -122,6 +114,18 @@ private slots:
     void on_actionFullscreen_triggered();
 
     void on_ebooksListWidget_itemActivated(QListWidgetItem *item);
+
+    void on_buttonSizeCriteria_clicked();
+
+    void on_actionHideRightFrame_triggered();
+
+    void on_actionHideUtilities_triggered();
+
+    void on_actionHideLeftFrame_triggered();
+
+    void on_buttonExtensions_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

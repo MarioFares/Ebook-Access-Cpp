@@ -4,6 +4,7 @@
 #include "common.h"
 #include "queries.h"
 #include "bulkdetailsdialog.h"
+#include "extselectiondialog.h"
 
 #include <QFileInfo>
 #include <QFileDialog>
@@ -55,12 +56,19 @@ void addBooksDialog::insertBooks(QString entry, QString tags, QString genre, QSt
 void addBooksDialog::iterateInsertEntries(QString dir, bool recursive)
 {
     QVector<QString> entriesVector;
-    QDirIterator iterator(dir, {"*.pdf", "*.cbr", "*.epub", "*.mobi"}, QDir::Files,
+    QVector<QString> extVector;
+    QDirIterator iterator(dir, QDir::Files,
                           recursive ? QDirIterator::Subdirectories : QDirIterator::NoIteratorFlags);
 
     while (iterator.hasNext())
     {
-        entriesVector.push_back(iterator.next());
+        QString filePath = iterator.next();
+        entriesVector.push_back(filePath);
+
+        QFileInfo file(filePath);
+        QString ext = "." + file.suffix().toLower();
+        if (!extVector.contains(ext))
+            extVector.push_back(ext);
     }
 
     long count = entriesVector.size();
@@ -69,6 +77,11 @@ void addBooksDialog::iterateInsertEntries(QString dir, bool recursive)
     bulkDetailsDialog dialog;
     common::openDialog(&dialog, ":/style.qss");
 
+    extSelectionDialog *extDialog = new extSelectionDialog(this, extVector);
+    common::openDialog(extDialog, ":/style.qss");
+
+    QVector<QString> selectedExts = extDialog->getExtVector();
+
     QString tags = dialog.tags.isEmpty() ? "N/A" : dialog.tags;
     QString genre = dialog.genre.isEmpty() ? "N/A" : dialog.genre;
     QString author = dialog.author.isEmpty() ? "N/A" : dialog.author;
@@ -76,6 +89,12 @@ void addBooksDialog::iterateInsertEntries(QString dir, bool recursive)
     queries::query.exec("BEGIN TRANSACTION");
     for(QString &entry : entriesVector)
     {
+        QFileInfo file(entry);
+        QString ext = "." + file.suffix().toLower();
+        if (!selectedExts.contains(ext))
+        {
+            continue;
+        }
         int progress = ((double)counter / count) * 100;
         ui->progressBar->setValue(progress);
         insertBooks(entry, tags, genre, author);

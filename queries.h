@@ -7,6 +7,7 @@
 #include <qsqlquery.h>
 #include <qmessagebox.h>
 
+
 using namespace std;
 
 namespace queries {
@@ -20,6 +21,26 @@ inline bool connectToDatabase()
     db.open();
     return db.isOpen();
 }
+
+inline QString genExtQuery(QString ext)
+{
+    QString query = "";
+    if (ext.isEmpty())
+    {
+        query =  "SELECT DISTINCT ext FROM ebooks";
+    }
+    else
+    {
+        QStringList tagList = ext.split(",");
+        for (QString &tag : tagList)
+        {
+            query += "\'" + tag.simplified() + "\', ";
+        }
+        query.remove(query.lastIndexOf(','), 1);
+    }
+    return query;
+}
+
 
 inline QString genTagQuery(QString tags)
 {
@@ -87,10 +108,7 @@ inline void createSearchTable()
                                                     "author TEXT, "
                                                     "genre TEXT, "
                                                     "tags TEXT, "
-                                                    "pdf INT, "
-                                                    "epub INT, "
-                                                    "mobi INT, "
-                                                    "cbr INT, "
+                                                    "ext TEXT, "
                                                     "size_from INT, "
                                                     "size_to INT, "
                                                     "size_in TEXT, "
@@ -149,6 +167,18 @@ inline void selectPath()
     query.exec();
 }
 
+inline void selectExt()
+{
+    query.prepare(QString("SELECT DISTINCT ext FROM ebooks"));
+    query.exec();
+}
+
+inline void selectTags()
+{
+    query.prepare(QString("SELECT DISTINCT tags FROM ebooks"));
+    query.exec();
+}
+
 inline void selectCountEbooks()
 {
     query.prepare(QString("SELECT COUNT(rowid) FROM ebooks"));
@@ -189,9 +219,8 @@ inline void selectSummaryBasedonName(QString name)
     query.exec();
 }
 
-inline void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags,
-                                      long fromPages, long toPages, long long fromSize, long long toSize,
-                                      QString extensions[])
+inline void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
+                                      long fromPages, long toPages, long long fromSize, long long toSize)
 {
 
     query.prepare(QString("SELECT name FROM ebooks "
@@ -200,7 +229,7 @@ inline void selectNameBasedOnCriteria(QString folder, QString genre, QString aut
                            + QString(author.isEmpty() ? "AND author LIKE '%' " : "AND author = :author ")
                            + "AND  ((size >= :fromSize AND  size <= :toSize) OR (size IS NULL)) "
                            "AND  ((pages >= :fromPages AND  pages <= :toPages) OR (pages IS NULL)) "
-                           "AND  ext in (:pdf, :epub, :mobi, :cbr) "
+                          "AND ext in (" + genExtQuery(ext) + ") "
                            + genTagQuery(tags) +
                            ""));
 
@@ -212,10 +241,6 @@ inline void selectNameBasedOnCriteria(QString folder, QString genre, QString aut
     query.bindValue(":toSize", toSize);
     query.bindValue(":fromPages", QVariant::fromValue(fromPages));
     query.bindValue(":toPages", QVariant::fromValue(toPages));
-    query.bindValue(":pdf", extensions[0]);
-    query.bindValue(":epub", extensions[1]);
-    query.bindValue(":mobi", extensions[2]);
-    query.bindValue(":cbr", extensions[3]);
     query.exec();
 }
 
@@ -274,7 +299,7 @@ inline void insertBooksQuery(QString name, QString path, QString folder, QString
 }
 
 inline void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
-                              int pdf, int epub, int mobi, int cbr,
+                              QString ext,
                               int fromSize, int toSize, QString sizeIn, int fromPages, int toPages)
 {
     query.prepare(QString("INSERT INTO searches "
@@ -283,10 +308,7 @@ inline void insertSearchQuery(QString searchName, QString folder, QString author
                                                     "author, "
                                                     "genre, "
                                                     "tags, "
-                                                    "pdf, "
-                                                    "epub, "
-                                                    "mobi, "
-                                                    "cbr, "
+                                                    "ext, "
                                                     "size_from, "
                                                     "size_to, "
                                                     "size_in, "
@@ -298,10 +320,7 @@ inline void insertSearchQuery(QString searchName, QString folder, QString author
                                                     ":author, "
                                                     ":genre, "
                                                     ":tags, "
-                                                    ":pdf, "
-                                                    ":epub, "
-                                                    ":mobi, "
-                                                    ":cbr, "
+                                                    ":ext, "
                                                     ":size_from, "
                                                     ":size_to, "
                                                     ":size_in, "
@@ -313,12 +332,7 @@ inline void insertSearchQuery(QString searchName, QString folder, QString author
     query.bindValue(":genre", genre);
     query.bindValue(":author", author);
     query.bindValue(":tags", tags);
-
-    query.bindValue(":pdf", pdf);
-    query.bindValue(":epub", epub);
-    query.bindValue(":mobi", mobi);
-    query.bindValue(":cbr", cbr);
-
+    query.bindValue(":ext", ext);
     query.bindValue(":size_from", fromSize);
     query.bindValue(":size_to", toSize);
     query.bindValue(":size_in", sizeIn);
@@ -432,6 +446,5 @@ inline void deleteCollection(QString collectionName)
     query.bindValue(":name", collectionName);
     query.exec();
 }
-
 }
 #endif // QUERIES_H
