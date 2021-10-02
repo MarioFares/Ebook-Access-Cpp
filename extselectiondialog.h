@@ -14,7 +14,8 @@ class extSelectionDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit extSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {});
+    explicit extSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {},
+                                QString title = "Preferences", QString label = "Select Preferences");
     ~extSelectionDialog();
 
     QVector<QString> getExtVector();

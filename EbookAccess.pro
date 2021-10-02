@@ -16,6 +16,7 @@ SOURCES += \
     bookdetailswindow.cpp \
     bulkdetailsdialog.cpp \
     cleanebooksdialog.cpp \
+    common.cpp \
     extselectiondialog.cpp \
     insertlinkdialog.cpp \
     inserttabledialog.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     linkmanagerwindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    queries.cpp \
     searchnamedialog.cpp \
     summarywindow.cpp
 

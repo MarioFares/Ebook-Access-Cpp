@@ -87,8 +87,12 @@
         <file>icons/hr_icon.png</file>
         <file>icons/image_icon.png</file>
         <file>icons/white_notebook_icon.png</file>
+        <file>icons/save_icon.png</file>
         <file>icons/ext_icon.png</file>
         <file>icons/upload_icon.png</file>
-        <file>icons/save_icon.png</file>
+        <file>icons/puzzle_icon.png</file>
+        <file>icons/bold_icon.png</file>
+        <file>icons/italic_icon.png</file>
+        <file>icons/underline_icon.png</file>
     </qresource>
 </RCC>

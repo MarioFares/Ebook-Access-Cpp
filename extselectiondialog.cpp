@@ -4,11 +4,15 @@
 #include <QVector>
 #include <QListWidgetItem>
 
-extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVector) :
+extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVector, QString title, QString label) :
     QDialog(parent),
     ui(new Ui::extSelectionDialog)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle(title);
+    ui->labelTitle->setText(label);
+
     ui->listWidget->setSortingEnabled(true);
     for (QString &entry : extVector)
     {

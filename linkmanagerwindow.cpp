@@ -9,6 +9,7 @@
 
 #include <QUrl>
 #include <QMenu>
+#include <QFile>
 #include <QClipboard>
 #include <QMessageBox>
 #include <QListWidgetItem>
