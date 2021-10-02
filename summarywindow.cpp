@@ -53,6 +53,7 @@ SummaryWindow::~SummaryWindow()
     queries::db.close();
     delete ui;
 }
+
 void SummaryWindow::closeEvent(QCloseEvent *event)
 {
     if (!ui->labelTitle->text().isEmpty())
