@@ -2,6 +2,8 @@
 #define ADDBOOKSDIALOG_H
 
 #include <QDialog>
+#include <QFileInfo>
+
 
 namespace Ui {
 class addBooksDialog;
@@ -16,9 +18,15 @@ public:
     ~addBooksDialog();
 
 private slots:
-    void insertBooks(QString entry, QString tags, QString genre, QString author);
+    void insertBooks(QFileInfo entry, QString tags, QString genre, QString author);
 
-    void iterateInsertEntries(QString dir, bool recursive);
+    void setupEntries(QString dir, bool recursive);
+
+    void iterateInsertEntries(QVector<QFileInfo> entries, QVector<QString> exts, QString tags, QString genres, QString authors);
+
+    QVector<QFileInfo> getEntriesVector(QString dir, bool recursive);
+
+    QVector<QString> getExtVector(QVector<QFileInfo> entries);
 
     void on_buttonClose_clicked();
 
