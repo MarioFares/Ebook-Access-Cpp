@@ -54,6 +54,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    for (LinkManagerWindow *pointer : linkPointerList)
+    {
+        pointer->close();
+        delete pointer;
+    }
+    for (SummaryWindow *pointer : summaryPointerList)
+    {
+        pointer->close();
+        delete pointer;
+    }
+    event->accept();
+}
+
 void MainWindow::refreshFolders()
 {
     ui->comboBoxFolderCriteria->clear();
@@ -64,7 +79,6 @@ void MainWindow::refreshFolders()
         ui->comboBoxFolderCriteria->addItem(queries::query.value(0).toString());
     }
     ui->comboBoxFolderCriteria->model()->sort(0, Qt::AscendingOrder);
-
 }
 
 void MainWindow::refreshAuthors()
@@ -77,7 +91,6 @@ void MainWindow::refreshAuthors()
         ui->comboBoxAuthorCriteria->addItem(queries::query.value(0).toString());
     }
     ui->comboBoxAuthorCriteria->model()->sort(0, Qt::AscendingOrder);
-
 }
 
 void MainWindow::refreshGenres()
@@ -90,8 +103,6 @@ void MainWindow::refreshGenres()
         ui->comboBoxGenreCriteria->addItem(queries::query.value(0).toString());
     }
     ui->comboBoxGenreCriteria->model()->sort(0, Qt::AscendingOrder);
-
-
 }
 
 void MainWindow::refreshSearches()
@@ -209,15 +220,16 @@ void MainWindow::on_buttonClearCriteria_clicked()
     ui->comboBoxFolderCriteria->setCurrentIndex(0);
     ui->comboBoxAuthorCriteria->setCurrentIndex(0);
     ui->comboBoxGenreCriteria->setCurrentIndex(0);
+
     ui->textTagsCriteria->clear();
-
-    ui->spinBoxFromPagesCriteria->setValue(0);
-    ui->spinBoxToPagesCriteria->setValue(0);
-    ui->spinBoxFromSizeCriteria->setValue(0);
-    ui->spinBoxToSizeCriteria->setValue(0);
-
     ui->textExts->clear();
 
+    ui->spinBoxFromPagesCriteria->setValue(0);
+    ui->spinBoxToPagesCriteria->setValue(100000);
+    ui->spinBoxFromSizeCriteria->setValue(0);
+    ui->spinBoxToSizeCriteria->setValue(1024);
+
+    ui->ebooksListWidget->clear();
     ui->statusBar->clearMessage();
 }
 
@@ -552,7 +564,6 @@ void MainWindow::on_buttonSizeCriteria_clicked()
         ui->buttonSizeCriteria->setText("KB");
 }
 
-
 void MainWindow::on_buttonExtensions_clicked()
 {
     queries::selectExt();
@@ -562,7 +573,7 @@ void MainWindow::on_buttonExtensions_clicked()
         ext.push_back(queries::query.value(0).toString());
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, ext);
+    extSelectionDialog *dialog = new extSelectionDialog(this, ext, "Extensions", "Select Available Extensions");
     common::openDialog(dialog, ":/style.qss");
 
     ext = dialog->getExtVector();
@@ -570,8 +581,58 @@ void MainWindow::on_buttonExtensions_clicked()
     ui->textExts->setText(extString);
 }
 
+void MainWindow::on_buttonFolder_clicked()
+{
+    queries::selectFoldersQuery();
+    QVector<QString> folders;
+    while(queries::query.next())
+    {
+        folders.push_back(queries::query.value(0).toString());
+    }
 
-void MainWindow::on_pushButton_clicked()
+    extSelectionDialog *dialog = new extSelectionDialog(this, folders, "Folders", "Select Available Folders");
+    common::openDialog(dialog, ":/style.qss");
+
+    folders = dialog->getExtVector();
+    QString folderString = folders.join(", ");
+    ui->comboBoxFolderCriteria->setCurrentText(folderString);
+}
+
+void MainWindow::on_buttonAuthor_clicked()
+{
+    queries::selectAuthorsQuery();
+    QVector<QString> authors;
+    while(queries::query.next())
+    {
+        authors.push_back(queries::query.value(0).toString());
+    }
+
+    extSelectionDialog *dialog = new extSelectionDialog(this, authors, "Authors", "Select Available Authors");
+    common::openDialog(dialog, ":/style.qss");
+
+    authors = dialog->getExtVector();
+    QString authorsString = authors.join(", ");
+    ui->comboBoxAuthorCriteria->setCurrentText(authorsString);
+}
+
+void MainWindow::on_buttonGenre_clicked()
+{
+    queries::selectGenreQuery();
+    QVector<QString> genres;
+    while(queries::query.next())
+    {
+        genres.push_back(queries::query.value(0).toString());
+    }
+
+    extSelectionDialog *dialog = new extSelectionDialog(this, genres, "Genres", "Select Available Genres");
+    common::openDialog(dialog, ":/style.qss");
+
+    genres = dialog->getExtVector();
+    QString extString = genres.join(", ");
+    ui->comboBoxGenreCriteria->setCurrentText(extString);
+}
+
+void MainWindow::on_buttonTags_clicked()
 {
     QVector<QString> tags;
     queries::selectTags();
@@ -579,22 +640,20 @@ void MainWindow::on_pushButton_clicked()
     {
         QString tagString = queries::query.value(0).toString();
         QStringList tagList = tagString.split(",");
-        for(QString tag : tagList)
+        for(QString &tag : tagList)
         {
             if(!tags.contains(tag))
             {
                 tags.push_back(tag);
             }
-
         }
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, tags);
+    extSelectionDialog *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
     common::openDialog(dialog, ":style.qss");
 
     tags = dialog->getExtVector();
     QString tagString = tags.join(", ");
     ui->textTagsCriteria->setText(tagString);
-
 }
 

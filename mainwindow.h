@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QFile>
+#include <QList>
+#include <QPointer>
 #include <QMainWindow>
 #include <QApplication>
 #include <summarywindow.h>
@@ -20,12 +22,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    //SummaryWindow summaryWindow;
-
     void showSummary(QString name)
     {
 
-        SummaryWindow *summaryWindow = new SummaryWindow(this);
+        SummaryWindow *summaryWindow = new SummaryWindow();
+        summaryPointerList.push_back(summaryWindow);
         QFile file(":/summarystyle.qss");
         file.open(QFile::ReadOnly);
         QString styleSheet = QLatin1String(file.readAll());
@@ -37,7 +38,8 @@ public:
 
     void showLinkManager()
     {
-        LinkManagerWindow *linkManagerWindow = new LinkManagerWindow(this);
+        LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
+        linkPointerList.push_back(linkManagerWindow);
         QFile file(":/summarystyle.qss");
         file.open(QFile::ReadOnly);
         QString styleSheet = QLatin1String(file.readAll());
@@ -45,6 +47,17 @@ public:
         linkManagerWindow->ensurePolished();
         linkManagerWindow->show();
     }
+
+//    template <typename windowPointer>
+
+//    static void deleteWindow(QString windowAlias, windowPointer window)
+//    {
+//        if(windowAlias == "summary")
+//        {
+//            QPointer<SummaryWindow> pointer(window);
+//            summaryPointerList.removeAll(summaryPointerList.indexOf(pointer));
+//        }
+//    }
 
 private slots:
     void refreshFolders();
@@ -125,11 +138,21 @@ private slots:
 
     void on_buttonExtensions_clicked();
 
-    void on_pushButton_clicked();
+    void on_buttonFolder_clicked();
+
+    void on_buttonAuthor_clicked();
+
+    void on_buttonGenre_clicked();
+
+    void on_buttonTags_clicked();
+
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::MainWindow *ui;
     Qt::SortOrder SORT;
+    QList<SummaryWindow*> summaryPointerList;
+    QList<LinkManagerWindow*> linkPointerList;
 
 };
 #endif // MAINWINDOW_H

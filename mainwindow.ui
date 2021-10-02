@@ -175,42 +175,6 @@ border: 0px;</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1" colspan="4">
-                <widget class="QComboBox" name="comboBoxAuthorCriteria">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>23</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="editable">
-                  <bool>false</bool>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-                 </property>
-                 <property name="minimumContentsLength">
-                  <number>40</number>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </item>
-                </widget>
-               </item>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
                  <property name="maximumSize">
@@ -234,81 +198,6 @@ border: 0px;</string>
                  </property>
                  <property name="editable">
                   <bool>false</bool>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="0" column="1" colspan="4">
-                <widget class="QComboBox" name="comboBoxFolderCriteria">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>23</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="editable">
-                  <bool>false</bool>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-                 </property>
-                 <property name="minimumContentsLength">
-                  <number>40</number>
-                 </property>
-                 <property name="frame">
-                  <bool>true</bool>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="2" column="1" colspan="4">
-                <widget class="QComboBox" name="comboBoxGenreCriteria">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>23</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="editable">
-                  <bool>false</bool>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-                 </property>
-                 <property name="minimumContentsLength">
-                  <number>40</number>
                  </property>
                  <item>
                   <property name="text">
@@ -574,7 +463,7 @@ border: 0px;</string>
                  </property>
                  <property name="icon">
                   <iconset resource="images.qrc">
-                   <normaloff>:/icons/ext_icon.png</normaloff>:/icons/ext_icon.png</iconset>
+                   <normaloff>:/icons/puzzle_icon.png</normaloff>:/icons/puzzle_icon.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -636,7 +525,7 @@ border: 0px;</string>
                 </widget>
                </item>
                <item row="3" column="4">
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="buttonTags">
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
@@ -660,6 +549,219 @@ border: 0px;</string>
                  <property name="icon">
                   <iconset resource="images.qrc">
                    <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1" colspan="3">
+                <widget class="QComboBox" name="comboBoxFolderCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="1" colspan="3">
+                <widget class="QComboBox" name="comboBoxAuthorCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="1" colspan="3">
+                <widget class="QComboBox" name="comboBoxGenreCriteria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                 </property>
+                 <property name="minimumContentsLength">
+                  <number>40</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QPushButton" name="buttonGenre">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Genres</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QPushButton" name="buttonAuthor">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Authors</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QPushButton" name="buttonFolder">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select Folders</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="images.qrc">
+                   <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
