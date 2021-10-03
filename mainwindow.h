@@ -22,44 +22,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void showSummary(QString name)
-    {
-
-        SummaryWindow *summaryWindow = new SummaryWindow();
-        summaryPointerList.push_back(summaryWindow);
-        QFile file(":/summarystyle.qss");
-        file.open(QFile::ReadOnly);
-        QString styleSheet = QLatin1String(file.readAll());
-        summaryWindow->setStyleSheet(styleSheet);
-        summaryWindow->ensurePolished();
-        summaryWindow->show();
-        summaryWindow->callSelectEbookSummary(name);
-    }
-
-    void showLinkManager()
-    {
-        LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
-        linkPointerList.push_back(linkManagerWindow);
-        QFile file(":/summarystyle.qss");
-        file.open(QFile::ReadOnly);
-        QString styleSheet = QLatin1String(file.readAll());
-        linkManagerWindow->setStyleSheet(styleSheet);
-        linkManagerWindow->ensurePolished();
-        linkManagerWindow->show();
-    }
-
-//    template <typename windowPointer>
-
-//    static void deleteWindow(QString windowAlias, windowPointer window)
-//    {
-//        if(windowAlias == "summary")
-//        {
-//            QPointer<SummaryWindow> pointer(window);
-//            summaryPointerList.removeAll(summaryPointerList.indexOf(pointer));
-//        }
-//    }
-
 private slots:
+    void showSummary(QString name);
+
+    void showLinkManager();
+
     void refreshFolders();
 
     void refreshAuthors();
@@ -114,8 +81,6 @@ private slots:
 
     void on_actionCleanEbooks_triggered();
 
-    void on_comboBoxSizeUnit_currentTextChanged();
-
     void on_buttonSummaries_clicked();
 
     void on_buttonLinkManager_clicked();
@@ -147,6 +112,8 @@ private slots:
     void on_buttonTags_clicked();
 
     void closeEvent(QCloseEvent *event);
+
+    void on_buttonSizeUnit_clicked();
 
 private:
     Ui::MainWindow *ui;

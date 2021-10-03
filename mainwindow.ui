@@ -1333,37 +1333,23 @@ border: 0px;
                      </widget>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="comboBoxSizeUnit">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="maximumSize">
+                     <widget class="QPushButton" name="buttonSizeUnit">
+                      <property name="minimumSize">
                        <size>
-                        <width>16777215</width>
-                        <height>24</height>
+                        <width>21</width>
+                        <height>0</height>
                        </size>
                       </property>
-                      <property name="sizeAdjustPolicy">
-                       <enum>QComboBox::AdjustToContents</enum>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
                       </property>
-                      <item>
-                       <property name="text">
-                        <string>KB</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>MB</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>GB</string>
-                       </property>
-                      </item>
+                      <property name="styleSheet">
+                       <string notr="true">border: 0px;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>KB</string>
+                      </property>
                      </widget>
                     </item>
                    </layout>

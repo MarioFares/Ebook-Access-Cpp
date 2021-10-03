@@ -69,6 +69,31 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
+void MainWindow::showSummary(QString name)
+{
+    SummaryWindow *summaryWindow = new SummaryWindow();
+    summaryPointerList.push_back(summaryWindow);
+    QFile file(":/summarystyle.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    summaryWindow->setStyleSheet(styleSheet);
+    summaryWindow->ensurePolished();
+    summaryWindow->show();
+    summaryWindow->callSelectEbookSummary(name);
+}
+
+void MainWindow::showLinkManager()
+{
+    LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
+    linkPointerList.push_back(linkManagerWindow);
+    QFile file(":/summarystyle.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    linkManagerWindow->setStyleSheet(styleSheet);
+    linkManagerWindow->ensurePolished();
+    linkManagerWindow->show();
+}
+
 void MainWindow::refreshFolders()
 {
     ui->comboBoxFolderCriteria->clear();
@@ -382,7 +407,7 @@ void MainWindow::on_ebooksListWidget_itemClicked(QListWidgetItem *item)
     QString ext = queries::query.value(4).toString();
     QString pages = queries::query.value(5).toString();
 
-    double size = changeBookSizeUnit(queries::query.value(6).toDouble(), ui->comboBoxSizeUnit->currentText());
+    double size = changeBookSizeUnit(queries::query.value(6).toDouble(), ui->buttonSizeUnit->text());
 
     QString folder = queries::query.value(7).toString();
     QString tags = queries::query.value(8).toString();
@@ -495,12 +520,6 @@ void MainWindow::on_actionCleanEbooks_triggered()
     cleanEbooksDialog dialog(this);
     common::openDialog(&dialog, ":/style.qss");
 
-}
-
-void MainWindow::on_comboBoxSizeUnit_currentTextChanged()
-{
-   if (ui->ebooksListWidget->selectedItems().size() != 0)
-    {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());}
 }
 
 void MainWindow::on_buttonSummaries_clicked()
@@ -655,5 +674,21 @@ void MainWindow::on_buttonTags_clicked()
     tags = dialog->getExtVector();
     QString tagString = tags.join(", ");
     ui->textTagsCriteria->setText(tagString);
+}
+
+
+
+void MainWindow::on_buttonSizeUnit_clicked()
+{
+    QString currentText = ui->buttonSizeUnit->text();
+    if (currentText == "KB")
+        ui->buttonSizeUnit->setText("MB");
+    else if (currentText == "MB")
+        ui->buttonSizeUnit->setText("GB");
+    else
+        ui->buttonSizeUnit->setText("KB");
+
+    if (ui->ebooksListWidget->selectedItems().size() != 0)
+     {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());}
 }
 
