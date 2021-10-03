@@ -17,10 +17,10 @@ public:
     ~LinkManagerWindow();
 
 private slots:
+
     void refreshCollections(QString searchString);
 
     void refreshLinks(QString collectionName, QString searchString);
-
 
     void showLinksContextMenu(const QPoint &pos);
 
