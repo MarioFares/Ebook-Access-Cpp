@@ -9,11 +9,16 @@ extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVect
     ui(new Ui::extSelectionDialog)
 {
     ui->setupUi(this);
-
-    this->setWindowTitle(title);
+    inputVector = extVector;
+    setWindowTitle(title);
     ui->labelTitle->setText(label);
-
     ui->listWidget->setSortingEnabled(true);
+    fillListWidget(extVector);
+}
+
+void extSelectionDialog::fillListWidget(QVector<QString> extVector)
+{
+    ui->listWidget->clear();
     for (QString &entry : extVector)
     {
         QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
@@ -26,7 +31,7 @@ extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVect
 
 QVector<QString> extSelectionDialog::getExtVector()
 {
-    return extVector;
+    return outputVector;
 }
 
 void extSelectionDialog::setExtVector()
@@ -35,7 +40,7 @@ void extSelectionDialog::setExtVector()
     {
         QListWidgetItem *item = ui->listWidget->item(i);
         if(item->checkState() == Qt::Checked)
-            extVector.push_back(item->text());
+            outputVector.push_back(item->text());
     }
 }
 
@@ -66,5 +71,18 @@ void extSelectionDialog::on_buttonDeselectAll_clicked()
 {
     for (int i = 0; i < ui->listWidget->count(); i++)
         ui->listWidget->item(i)->setCheckState(Qt::Unchecked);
+}
+
+
+void extSelectionDialog::on_textSearch_textChanged(const QString &arg1)
+{
+    QVector<QString> results;
+
+    for (QString &entry : inputVector)
+    {
+        if(entry.contains(arg1, Qt::CaseInsensitive))
+            results.push_back(entry);
+    }
+    fillListWidget(results);
 }
 

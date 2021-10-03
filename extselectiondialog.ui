@@ -27,6 +27,9 @@
       </widget>
      </item>
      <item>
+      <widget class="QLineEdit" name="textSearch"/>
+     </item>
+     <item>
       <widget class="QListWidget" name="listWidget">
        <property name="selectionMode">
         <enum>QAbstractItemView::SingleSelection</enum>

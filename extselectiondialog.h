@@ -21,6 +21,8 @@ public:
     QVector<QString> getExtVector();
 
 private slots:
+    void fillListWidget(QVector<QString> extVector);
+
     void on_listWidget_itemActivated(QListWidgetItem *item);
 
     void on_buttonOk_clicked();
@@ -29,10 +31,14 @@ private slots:
 
     void on_buttonDeselectAll_clicked();
 
+    void on_textSearch_textChanged(const QString &arg1);
+
 private:
     Ui::extSelectionDialog *ui;
 
-    QVector<QString> extVector;
+    QVector<QString> outputVector;
+
+    QVector<QString> inputVector;
 
     void setExtVector();
 };
