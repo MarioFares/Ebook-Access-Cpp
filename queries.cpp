@@ -83,6 +83,7 @@ void createEbooksTable()
                                                     "folder TEXT NOT NULL,"
                                                     "tags TEXT DEFAULT \'N/A\' NOT NULL,"
                                                     "summary TEXT DEFAULT \'N/A\' NOT NULL,"
+                                                    "time_added DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),"
                                                     "PRIMARY KEY (name)"
                                                     ")");
 
