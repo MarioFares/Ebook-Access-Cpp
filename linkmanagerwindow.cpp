@@ -75,6 +75,7 @@ void LinkManagerWindow::deleteLink(QString name)
 {
     queries::deleteLink(name);
     delete ui->listWidgetLinks->currentItem();
+    ui->statusBar->showMessage("Link \"" + name + "\" deleted.");
 }
 
 void LinkManagerWindow::editLinkDetails(QString name)
@@ -89,6 +90,7 @@ void LinkManagerWindow::editLinkDetails(QString name)
 
     queries::updateLinkDetails(name, dialog.title, dialog.link);
     ui->listWidgetLinks->currentItem()->setText(dialog.title);
+    ui->statusBar->showMessage("Link \"" + name + "\" edited.");
 }
 
 void LinkManagerWindow::copyLink(QString name)
@@ -98,6 +100,7 @@ void LinkManagerWindow::copyLink(QString name)
 
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(queries::query.value(1).toString());
+    ui->statusBar->showMessage("Link \"" + name + "\" copied.");
 }
 
 void LinkManagerWindow::renameCollection(QString name)
@@ -110,7 +113,7 @@ void LinkManagerWindow::renameCollection(QString name)
     common::openDialog(&dialog, ":/style.qss");
     queries::updateLinkCollectionName(name, dialog.collectionName);
     ui->listWidgetCollections->currentItem()->setText(dialog.collectionName);
-
+    ui->statusBar->showMessage("Collection \"" + name + "\" renamed.");
 }
 
 void LinkManagerWindow::deleteCollection(QString name)
@@ -118,6 +121,7 @@ void LinkManagerWindow::deleteCollection(QString name)
     queries::deleteCollection(name);
     ui->listWidgetLinks->clear();
     delete ui->listWidgetCollections->currentItem();
+    ui->statusBar->showMessage("Collection \"" + name + "\" deleted.");
 }
 
 void LinkManagerWindow::refreshCollections(QString searchString)
@@ -148,6 +152,7 @@ void LinkManagerWindow::on_buttonInsertCollection_clicked()
     if (!dialog.collectionName.isEmpty())
     {
         queries::insertLinkCollection(dialog.collectionName);
+        ui->statusBar->showMessage("New collection \"" + dialog.collectionName + "\" added.");
     }
     refreshCollections("");
 }
@@ -166,6 +171,8 @@ void LinkManagerWindow::on_buttonInsertLink_clicked()
         int collectionId = queries::selectCollectionId(collectionName);
         queries::insertLink(collectionId, dialog.title, dialog.link);
         refreshLinks(ui->listWidgetCollections->currentItem()->text(), "");
+        ui->statusBar->showMessage("New link \"" + dialog.title + "\" added.");
+
     }
 }
 
@@ -183,6 +190,7 @@ void LinkManagerWindow::on_textLinks_textChanged(const QString &arg1)
 void LinkManagerWindow::on_listWidgetCollections_itemClicked(QListWidgetItem *item)
 {
     refreshLinks(item->text(), "");
+    ui->statusBar->showMessage("Collection \"" + item->text() + "\" selected.");
 }
 
 void LinkManagerWindow::on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *item)
