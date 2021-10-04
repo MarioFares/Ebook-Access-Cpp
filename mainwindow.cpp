@@ -13,8 +13,10 @@
 
 #include <QDir>
 #include <QFile>
+#include <QTimer>
 #include <QProcess>
 #include <QMessageBox>
+#include <QSystemTrayIcon>
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>
 
@@ -44,6 +46,14 @@ MainWindow::MainWindow(QWidget *parent)
     refreshGenres();
     refreshSearches();
 
+
+    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+    trayIcon->setIcon(windowIcon());
+    trayIcon->setVisible(true);
+    trayIcon->setToolTip("Ebook Access\nClick to Open");
+    trayIcon->show();
+    trayIcon->connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
+
     ui->statusBar->showMessage("Ready");
 }
 
@@ -54,25 +64,34 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::trayClicked(QSystemTrayIcon::ActivationReason r)
+{
+    if( r == QSystemTrayIcon::Trigger)
+    {
+        this->show();
+    }
+}
+
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    for (LinkManagerWindow *pointer : linkPointerList)
-    {
-        pointer->close();
-        delete pointer;
-    }
-    for (SummaryWindow *pointer : summaryPointerList)
-    {
-        pointer->close();
-        delete pointer;
-    }
+//    for (LinkManagerWindow *pointer : linkPointerList)
+//    {
+//        pointer->close();
+//        delete pointer;
+//    }
+//    for (SummaryWindow *pointer : summaryPointerList)
+//    {
+//        pointer->close();
+//        delete pointer;
+//    }
     event->accept();
 }
 
 void MainWindow::showSummary(QString name)
 {
     SummaryWindow *summaryWindow = new SummaryWindow();
-    summaryPointerList.push_back(summaryWindow);
+//    summaryPointerList.push_back(summaryWindow);
     QFile file(":/summarystyle.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
@@ -85,7 +104,7 @@ void MainWindow::showSummary(QString name)
 void MainWindow::showLinkManager()
 {
     LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
-    linkPointerList.push_back(linkManagerWindow);
+//    linkPointerList.push_back(linkManagerWindow);
     QFile file(":/summarystyle.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
@@ -596,7 +615,7 @@ void MainWindow::on_buttonExtensions_clicked()
     common::openDialog(dialog, ":/style.qss");
 
     ext = dialog->getExtVector();
-    QString extString = ext.join(", ");
+    QString extString = ext.join(common::SEP);
     ui->textExts->setText(extString);
 }
 
@@ -613,7 +632,7 @@ void MainWindow::on_buttonFolder_clicked()
     common::openDialog(dialog, ":/style.qss");
 
     folders = dialog->getExtVector();
-    QString folderString = folders.join(", ");
+    QString folderString = folders.join(common::SEP);
     ui->comboBoxFolderCriteria->setCurrentText(folderString);
 }
 
@@ -630,7 +649,7 @@ void MainWindow::on_buttonAuthor_clicked()
     common::openDialog(dialog, ":/style.qss");
 
     authors = dialog->getExtVector();
-    QString authorsString = authors.join(", ");
+    QString authorsString = authors.join(common::SEP);
     ui->comboBoxAuthorCriteria->setCurrentText(authorsString);
 }
 
@@ -647,7 +666,7 @@ void MainWindow::on_buttonGenre_clicked()
     common::openDialog(dialog, ":/style.qss");
 
     genres = dialog->getExtVector();
-    QString extString = genres.join(", ");
+    QString extString = genres.join(common::SEP);
     ui->comboBoxGenreCriteria->setCurrentText(extString);
 }
 
@@ -658,7 +677,7 @@ void MainWindow::on_buttonTags_clicked()
     while(queries::query.next())
     {
         QString tagString = queries::query.value(0).toString();
-        QStringList tagList = tagString.split(",");
+        QStringList tagList = tagString.split(common::SEP);
         for(QString &tag : tagList)
         {
             if(!tags.contains(tag))
@@ -672,7 +691,7 @@ void MainWindow::on_buttonTags_clicked()
     common::openDialog(dialog, ":style.qss");
 
     tags = dialog->getExtVector();
-    QString tagString = tags.join(", ");
+    QString tagString = tags.join(common::SEP);
     ui->textTagsCriteria->setText(tagString);
 }
 
@@ -690,5 +709,11 @@ void MainWindow::on_buttonSizeUnit_clicked()
 
     if (ui->ebooksListWidget->selectedItems().size() != 0)
      {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());}
+}
+
+
+void MainWindow::on_actionMinimizeTray_triggered()
+{
+    QTimer::singleShot(0, this, SLOT(hide()));
 }
 

@@ -8,6 +8,8 @@
 #include <QApplication>
 #include <summarywindow.h>
 #include <QListWidgetItem>
+#include <QSystemTrayIcon>
+
 #include <linkmanagerwindow.h>
 
 QT_BEGIN_NAMESPACE
@@ -40,6 +42,8 @@ private slots:
     double changeBookSizeUnit(double size, QString unit);
 
     void showContextMenu(const QPoint&);
+
+    void trayClicked(QSystemTrayIcon::ActivationReason r);
 
     void deleteListItem();
 
@@ -114,6 +118,8 @@ private slots:
     void closeEvent(QCloseEvent *event);
 
     void on_buttonSizeUnit_clicked();
+
+    void on_actionMinimizeTray_triggered();
 
 private:
     Ui::MainWindow *ui;
