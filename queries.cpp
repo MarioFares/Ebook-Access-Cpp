@@ -3,6 +3,7 @@
 #include <qsqldriver.h>
 #include <qsqlerror.h>
 #include <qsqlquery.h>
+#include "common.h"
 
 namespace queries {
 
@@ -21,14 +22,14 @@ QString genExtQuery(QString entity, QString text)
     QString query = "";
     if (text.isEmpty())
     {
-        query =  "SELECT DISTINCT "+ entity +" FROM ebooks";
+        query =  "SELECT DISTINCT " + entity + " FROM ebooks";
     }
     else
     {
-        QStringList list = text.split(",");
+        QStringList list = text.split(common::SEP);
         for (QString &ent : list)
         {
-            query += "\'" + ent.simplified() + "\', ";
+            query += "\"" + ent + "\", "; // ent must not be simplified
         }
         query.remove(query.lastIndexOf(','), 1);
     }
@@ -45,10 +46,10 @@ QString genTagQuery(QString tags)
     }
     else
     {
-        QStringList tagList = tags.split(",");
+        QStringList tagList = tags.split(common::SEP);
         for (QString &tag : tagList)
         {
-            query += "AND tags LIKE \'%" + tag.simplified() + ",%\'";
+            query += "AND tags LIKE \'%" + tag.simplified() + common::SEP +"%\'";
         }
     }
     return query;
@@ -57,14 +58,15 @@ QString genTagQuery(QString tags)
 QString cleanTags(QString tags)
 {
     QString cleanString = "";
-    while(tags.endsWith(","))
+    while(tags.endsWith(common::SEP))
     {
         tags.remove(-1, 1); // remove 1 char at pos -1
     }
-    QStringList tagList = tags.split(",");
+    QStringList tagList = tags.split(common::SEP);
     for (QString &tag : tagList)
     {
-        cleanString += tag.simplified().remove(',') + ", ";
+        //cleanString += tag.simplified().remove(',') + ", ";
+        cleanString += tag.simplified() + common::SEP;
     }
     return cleanString;
 }
