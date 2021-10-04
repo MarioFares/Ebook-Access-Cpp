@@ -11,10 +11,10 @@
 #include <QMenu>
 #include <QFile>
 #include <QClipboard>
+#include <QCloseEvent>
 #include <QMessageBox>
 #include <QListWidgetItem>
 #include <QDesktopServices>
-
 LinkManagerWindow::LinkManagerWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LinkManagerWindow)
@@ -33,6 +33,12 @@ LinkManagerWindow::LinkManagerWindow(QWidget *parent) :
 LinkManagerWindow::~LinkManagerWindow()
 {
     delete ui;
+}
+
+void LinkManagerWindow::closeEvent(QCloseEvent *event)
+{
+    delete this;
+    event->accept();
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)

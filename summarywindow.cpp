@@ -60,6 +60,7 @@ void SummaryWindow::closeEvent(QCloseEvent *event)
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
+    delete this;
     event->accept();
 }
 

@@ -17,6 +17,7 @@ public:
     ~LinkManagerWindow();
 
 private slots:
+    void closeEvent(QCloseEvent *event);
 
     void refreshCollections(QString searchString);
 

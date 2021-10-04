@@ -66,6 +66,9 @@ border: 1px solid grey;
 }
 </string>
           </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
          </widget>
         </item>
        </layout>
