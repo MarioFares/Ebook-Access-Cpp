@@ -150,7 +150,7 @@ border: 0px;</string>
                <item row="4" column="0">
                 <widget class="QLabel" name="labelExtensionCriteria">
                  <property name="text">
-                  <string>Extension</string>
+                  <string>Extensions</string>
                  </property>
                 </widget>
                </item>
@@ -905,115 +905,111 @@ border: 0px;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QGridLayout" name="gridLayout_5">
-                <item row="0" column="0">
-                 <layout class="QHBoxLayout" name="horLayInfoButtons">
-                  <item>
-                   <widget class="QPushButton" name="buttonSummaries">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>Summaries</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">border: 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="images.qrc">
-                      <normaloff>:/icons/white_notebook_icon.png</normaloff>:/icons/white_notebook_icon.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>41</width>
-                      <height>44</height>
-                     </size>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="buttonLinkManager">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>Link Manager</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">border: 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="images.qrc">
-                      <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>41</width>
-                      <height>44</height>
-                     </size>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="buttonSettings">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>Settings</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">border: 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="images.qrc">
-                      <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>41</width>
-                      <height>44</height>
-                     </size>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QPushButton" name="buttonSummaries">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Summaries</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/icons/white_notebook_icon.png</normaloff>:/icons/white_notebook_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>41</width>
+                    <height>44</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="buttonLinkManager">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Link Manager</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>41</width>
+                    <height>44</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="buttonSettings">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Settings</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>41</width>
+                    <height>44</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -1254,15 +1250,24 @@ border:0px;
                 <number>9</number>
                </property>
                <item>
-                <layout class="QGridLayout" name="gridLayDetailsFields">
+                <layout class="QGridLayout" name="gridLayDetailsFields" rowstretch="1,1,1,1" rowminimumheight="1,1,1,1">
                  <property name="sizeConstraint">
                   <enum>QLayout::SetNoConstraint</enum>
+                 </property>
+                 <property name="horizontalSpacing">
+                  <number>12</number>
                  </property>
                  <property name="verticalSpacing">
                   <number>20</number>
                  </property>
                  <item row="2" column="2">
                   <widget class="QLabel" name="labelDetailsSize">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Size:</string>
                    </property>
@@ -1290,6 +1295,12 @@ border:0px;
                     <size>
                      <width>32</width>
                      <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -1373,6 +1384,12 @@ border: 0px;
                  </item>
                  <item row="3" column="2">
                   <widget class="QLabel" name="labelDetailsGroups">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Tags:</string>
                    </property>
@@ -1380,6 +1397,12 @@ border: 0px;
                  </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelDetailsName">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Name:</string>
                    </property>
@@ -1438,6 +1461,12 @@ border: 0px;
                  </item>
                  <item row="0" column="2">
                   <widget class="QLabel" name="labelDetailsExt">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Ext:</string>
                    </property>
@@ -1445,6 +1474,12 @@ border: 0px;
                  </item>
                  <item row="1" column="2">
                   <widget class="QLabel" name="labelDetailsPages">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Pages:</string>
                    </property>
@@ -1452,6 +1487,12 @@ border: 0px;
                  </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="labelDetailsGenre">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Genre:</string>
                    </property>
@@ -1459,6 +1500,12 @@ border: 0px;
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="labelDetailsFolder">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Folder:</string>
                    </property>
@@ -1466,6 +1513,12 @@ border: 0px;
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="labelDetailsAuthor">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>24</height>
+                    </size>
+                   </property>
                    <property name="text">
                     <string>Author:</string>
                    </property>
@@ -1736,6 +1789,7 @@ border: 1px solid lightblue;
     <addaction name="actionFullscreen"/>
     <addaction name="actionMax"/>
     <addaction name="actionMin"/>
+    <addaction name="actionMinimizeTray"/>
     <addaction name="separator"/>
     <addaction name="actionHideSearchBar"/>
     <addaction name="actionHideDetailsSection"/>
@@ -1743,6 +1797,7 @@ border: 1px solid lightblue;
     <addaction name="separator"/>
     <addaction name="actionHideUtilities"/>
     <addaction name="actionHideLeftFrame"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -2145,6 +2200,11 @@ border: 1px solid lightblue;
     <string>Hide Left Frame</string>
    </property>
   </action>
+  <action name="actionMinimizeTray">
+   <property name="text">
+    <string>Minimize to Tray</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>comboBoxFolderCriteria</tabstop>
@@ -2167,7 +2227,6 @@ border: 1px solid lightblue;
   <tabstop>buttonDetailsClear</tabstop>
   <tabstop>buttonAddBook</tabstop>
   <tabstop>buttonAddBooks</tabstop>
-  <tabstop>buttonSettings</tabstop>
  </tabstops>
  <resources>
   <include location="images.qrc"/>
