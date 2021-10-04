@@ -7,6 +7,8 @@
 
 namespace common {
 
+extern QString SEP;
+
 void openDialog(QDialog *dialog, QString stylesheetPath);
 
 void showMsgBox(QString title, QString text, QString stylesheetPath, QMessageBox::Icon msgIcon, QString winIcon);

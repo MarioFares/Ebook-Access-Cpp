@@ -11,6 +11,8 @@
 
 namespace common {
 
+QString SEP = "|";
+
 void openDialog(QDialog *dialog, QString stylesheetPath)
 {
     QFile file(stylesheetPath);
