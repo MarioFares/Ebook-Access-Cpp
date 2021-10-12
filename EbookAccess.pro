@@ -26,7 +26,8 @@ SOURCES += \
     mainwindow.cpp \
     queries.cpp \
     searchnamedialog.cpp \
-    summarywindow.cpp
+    summarywindow.cpp \
+    yesnodialog.cpp
 
 HEADERS += \
     addbookdialog.h \
@@ -43,7 +44,8 @@ HEADERS += \
     mainwindow.h \
     queries.h \
     searchnamedialog.h \
-    summarywindow.h
+    summarywindow.h \
+    yesnodialog.h
 
 FORMS += \
     addbookdialog.ui \
@@ -58,7 +60,8 @@ FORMS += \
     linkmanagerwindow.ui \
     mainwindow.ui \
     searchnamedialog.ui \
-    summarywindow.ui
+    summarywindow.ui \
+    yesnodialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -70,6 +73,7 @@ DISTFILES += \
     todo
 
 RESOURCES += \
+    completer.qrc \
     images.qrc \
     style.qrc
 
