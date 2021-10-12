@@ -1,14 +1,15 @@
+// Project Files
 #include "summarywindow.h"
 #include "ui_summarywindow.h"
-
-#include <fstream>
-
 #include "common.h"
 #include "queries.h"
-
 #include "insertlinkdialog.h"
 #include "inserttabledialog.h"
 
+// std Source
+#include <fstream>
+
+// Qt Source
 #include <QFile>
 #include <QHash>
 #include <QTextList>
@@ -17,7 +18,6 @@
 #include <QColorDialog>
 #include <QDesktopServices>
 #include <QtPrintSupport/QPrinter>
-
 
 SummaryWindow::SummaryWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,12 +34,7 @@ SummaryWindow::SummaryWindow(QWidget *parent) :
     charPairs['['] = ']';
     charPairs['{'] = '}';
 
-
-    QFile file(":/textEditorStyle.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    ui->textEditor->setStyleSheet(styleSheet);
-
+    ui->textEditor->setStyleSheet(common::openSheet(":/textEditorStyle.qss"));
     searchEbooks("");
 }
 
@@ -49,8 +44,6 @@ SummaryWindow::~SummaryWindow()
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
-    queries::query.clear();
-    queries::db.close();
     delete ui;
 }
 
@@ -61,7 +54,6 @@ void SummaryWindow::closeEvent(QCloseEvent *event)
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
     delete this;
-    event->accept();
 }
 
 bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
@@ -69,46 +61,32 @@ bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
     if (obj == ui->textEditor && event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == Qt::Key_Tab)
+        switch (keyEvent->key())
         {
-            this->changeListIndentation(1);
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_Backtab)
-        {
-            this->changeListIndentation(-1);
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_ParenLeft)
-        {
-            insertClosingChar('(', ui->textEditor->textCursor().selectedText());
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_QuoteDbl)
-        {
-            insertClosingChar('"', ui->textEditor->textCursor().selectedText());
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_BracketLeft)
-        {
-            insertClosingChar('[', ui->textEditor->textCursor().selectedText());
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_BraceLeft)
-        {
-            insertClosingChar('{', ui->textEditor->textCursor().selectedText());
-            return true;
-        }
-        else if (keyEvent->key() == Qt::Key_Backspace)
-        {
-            return handleBackspace();
-        }
-        else if (keyEvent->key() == Qt::Key_Return)
-        {
-            return handleReturn();
+            case Qt::Key_Tab:
+                this->changeListIndentation(1);
+                return true;
+            case Qt::Key_Backtab:
+                this->changeListIndentation(-1);
+                return true;
+            case Qt::Key_ParenLeft:
+                insertClosingChar('(', ui->textEditor->textCursor().selectedText());
+                return true;
+            case Qt::Key_QuoteDbl:
+                insertClosingChar('"', ui->textEditor->textCursor().selectedText());
+                return true;
+            case Qt::Key_BracketLeft:
+                insertClosingChar('[', ui->textEditor->textCursor().selectedText());
+                return true;
+            case Qt::Key_BraceLeft:
+                insertClosingChar('{', ui->textEditor->textCursor().selectedText());
+                return true;
+            case Qt::Key_Backspace:
+                return handleBackspace();
+            case Qt::Key_Return:
+                return handleReturn();
         }
     }
-
     return QMainWindow::eventFilter(obj, event);
 }
 
@@ -127,7 +105,6 @@ void SummaryWindow::insertClosingChar(char openChar, QString selectedText)
 
 bool SummaryWindow::handleBackspace()
 {
-
     QTextCursor cursor = ui->textEditor->textCursor();
     QTextBlock currentBlock = cursor.block();
     if (!cursor.selectedText().isEmpty())
@@ -565,6 +542,8 @@ void SummaryWindow::on_buttonTable_clicked()
     {
         QTextTableFormat tableFormat;
         tableFormat.setBorder(1);
+        tableFormat.setCellSpacing(5);
+        tableFormat.setCellPadding(1);
         tableFormat.setBorderCollapse(false);
         tableFormat.setBorderStyle(QTextTableFormat::BorderStyle_Solid);
         ui->textEditor->textCursor().insertTable(dialog.rowCount, dialog.columnCount, tableFormat);
@@ -620,5 +599,36 @@ void SummaryWindow::on_actionExportHtml_triggered()
     htmlFile << ui->textEditor->toHtml().toStdString();
     htmlFile.close();
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
+}
+
+
+void SummaryWindow::on_buttonEditorBackColor_clicked()
+{
+    QColorDialog dialog(this);
+    common::openDialog(&dialog, ":/summarystyle.qss");
+    QString styleSheet = "background-color: " + dialog.selectedColor().name();
+
+    QTextFrame *currentFrame = ui->textEditor->textCursor().currentFrame();
+    QTextFrameFormat currentFormat = currentFrame->frameFormat();
+    // Apply only to code box in case cursor in code box
+    if (currentFrame != nullptr && currentFormat.border() == 1)
+    {
+        currentFormat.setBackground(QBrush(dialog.selectedColor()));
+        currentFrame->setFrameFormat(currentFormat);
+        return;
+    }
+    // Apply to editor background
+    ui->textEditor->setStyleSheet(styleSheet);
+    ui->buttonEditorBackColor->setStyleSheet(styleSheet);
+    if (dialog.selectedColor() != Qt::white)
+    {
+        ui->buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
+    }
+    else
+    {
+        ui->buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
+    }
+    ui->buttonEditorBackColor->update();
+
 }
 

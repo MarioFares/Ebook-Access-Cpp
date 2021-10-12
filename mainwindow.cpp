@@ -3,10 +3,12 @@
 
 #include "common.h"
 #include "queries.h"
+#include "yesnodialog.h"
 #include "summarywindow.h"
 #include "addbookdialog.h"
 #include "addbooksdialog.h"
 #include "searchnamedialog.h"
+#include "bookdetailswindow.h"
 #include "cleanebooksdialog.h"
 #include "linkmanagerwindow.h"
 #include "extselectiondialog.h"
@@ -46,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent)
     refreshGenres();
     refreshSearches();
 
-
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(windowIcon());
     trayIcon->setVisible(true);
@@ -72,30 +73,15 @@ void MainWindow::trayClicked(QSystemTrayIcon::ActivationReason r)
     }
 }
 
-
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-//    for (LinkManagerWindow *pointer : linkPointerList)
-//    {
-//        pointer->close();
-//        delete pointer;
-//    }
-//    for (SummaryWindow *pointer : summaryPointerList)
-//    {
-//        pointer->close();
-//        delete pointer;
-//    }
     event->accept();
 }
 
 void MainWindow::showSummary(QString name)
 {
     SummaryWindow *summaryWindow = new SummaryWindow();
-//    summaryPointerList.push_back(summaryWindow);
-    QFile file(":/summarystyle.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    summaryWindow->setStyleSheet(styleSheet);
+    summaryWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
     summaryWindow->ensurePolished();
     summaryWindow->show();
     summaryWindow->callSelectEbookSummary(name);
@@ -104,13 +90,17 @@ void MainWindow::showSummary(QString name)
 void MainWindow::showLinkManager()
 {
     LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
-//    linkPointerList.push_back(linkManagerWindow);
-    QFile file(":/summarystyle.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    linkManagerWindow->setStyleSheet(styleSheet);
+    linkManagerWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
     linkManagerWindow->ensurePolished();
     linkManagerWindow->show();
+}
+
+void MainWindow::showDetails()
+{
+    bookDetailsWindow *detailsWindow = new bookDetailsWindow();
+    detailsWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
+    detailsWindow->ensurePolished();
+    detailsWindow->show();
 }
 
 void MainWindow::refreshFolders()
@@ -184,19 +174,17 @@ void MainWindow::showContextMenu(const QPoint &pos)
     QPoint globalPos = ui->ebooksListWidget->mapToGlobal(pos);
 
     QMenu menu;
-    QFile file(":/style.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    menu.setStyleSheet(styleSheet);
+    menu.setStyleSheet(common::openSheet(":/style.qss"));
 
     menu.addAction("Open Ebook", this, [this]{on_ebooksListWidget_itemActivated(ui->ebooksListWidget->currentItem());});
     menu.addAction("Open Summary", this, SLOT(openSummaryWindow()));
     menu.addAction("Show in Folder", this, SLOT(openFolder()));
     menu.addAction("Delete Ebook", this, SLOT(deleteListItem()));
 
-
     if (ui->ebooksListWidget->selectedItems().size() != 0)
-    {menu.exec(globalPos);}
+    {
+        menu.exec(globalPos);
+    }
 }
 
 void MainWindow::openSummaryWindow()
@@ -207,8 +195,24 @@ void MainWindow::openSummaryWindow()
 void MainWindow::deleteListItem()
 {
     QString itemName = ui->ebooksListWidget->currentItem()->text();
+    QListWidgetItem *currentItem = ui->ebooksListWidget->currentItem();
+
+    yesNoDialog dialog(this, "Delete File", "Delete File", "Do you wish to delete the file on your hard drive as well?");
+    common::openDialog(&dialog, ":/style.qss");
+    bool result = dialog.getResult();
+
+    if (result)
+    {
+        queries::selectPathBasedonName(itemName);
+        queries::query.next();
+        QString path = queries::query.value(0).toString();
+        QFile file(path);
+        file.remove();
+    }
+
     queries::deleteBook(itemName);
-    delete (ui->ebooksListWidget->currentItem());
+    delete (currentItem);
+
     ui->statusBar->showMessage(itemName + " deleted.");
 }
 
@@ -305,7 +309,7 @@ void MainWindow::on_actionResetEbooks_triggered()
     refreshFolders();
     refreshAuthors();
     refreshGenres();
-
+    ui->ebooksListWidget->clear();
     ui->statusBar->showMessage("All ebooks have been deleted.");
 }
 
@@ -370,7 +374,7 @@ void MainWindow::on_buttonClearSearch_clicked()
 
 void MainWindow::on_buttonSettings_clicked()
 {
-
+    showDetails();
 }
 
 void MainWindow::on_buttonSearchCriteria_clicked()
@@ -460,17 +464,29 @@ void MainWindow::on_buttonDetailsUpdate_clicked()
         QString author = ui->textDetailsAuthor->text();
         QString folder = ui->textDetailsFolder->text();
         QString genre = ui->textDetailsGenre->text();
-
         QString tags = ui->textDetailsTags->text().trimmed();
         int pages = ui->textDetailsPages->text().toInt();
 
-        queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags);
+        queries::selectPathBasedonName(oldName);
+        queries::query.next();
+        QString path = queries::query.value(0).toString();
+
+        if (newName != oldName)
+        {
+            yesNoDialog dialog(this, "Rename File", "Rename File", "Do you wish to rename the file on your hard drive as well?");
+            common::openDialog(&dialog, ":/style.qss");
+            bool result = dialog.getResult();
+            if (result)
+            {
+                QFile file(path);
+                QFileInfo info(file);
+                path = info.absolutePath() + "/" + newName + "." + info.suffix();
+                file.rename(path);
+            }
+        }
+        queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path);
         ui->ebooksListWidget->currentItem()->setText(newName);
 
-        if (!ui->textDetailsTags->text().isEmpty())
-        {
-
-        }
         refreshAuthors();
         refreshFolders();
         refreshGenres();
@@ -572,7 +588,8 @@ void MainWindow::on_actionChooseRandomBook_triggered()
 
 void MainWindow::on_ebooksListWidget_itemSelectionChanged()
 {
-    on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+    if (ui->ebooksListWidget->count() >= 1)
+        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
 }
 
 void MainWindow::on_actionFullscreen_triggered()
@@ -695,8 +712,6 @@ void MainWindow::on_buttonTags_clicked()
     ui->textTagsCriteria->setText(tagString);
 }
 
-
-
 void MainWindow::on_buttonSizeUnit_clicked()
 {
     QString currentText = ui->buttonSizeUnit->text();
@@ -711,9 +726,30 @@ void MainWindow::on_buttonSizeUnit_clicked()
      {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());}
 }
 
-
 void MainWindow::on_actionMinimizeTray_triggered()
 {
     QTimer::singleShot(0, this, SLOT(hide()));
+}
+
+void MainWindow::on_actionResetSummaries_triggered()
+{
+    queries::resetSummaries();
+}
+
+void MainWindow::on_actionResetTags_triggered()
+{
+    queries::resetTags();
+}
+
+void MainWindow::on_actionResetSearches_triggered()
+{
+    queries::resetSearchesTable();
+    refreshSearches();
+}
+
+void MainWindow::on_actionResetDatabase_triggered()
+{
+    on_actionResetEbooks_triggered();
+    on_actionResetSummaries_triggered();
 }
 

@@ -38,7 +38,6 @@ LinkManagerWindow::~LinkManagerWindow()
 void LinkManagerWindow::closeEvent(QCloseEvent *event)
 {
     delete this;
-    event->accept();
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
@@ -46,10 +45,7 @@ void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
     QPoint globalPos = ui->listWidgetLinks->mapToGlobal(pos);
 
     QMenu menu;
-    QFile file(":/style.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    menu.setStyleSheet(styleSheet);
+    menu.setStyleSheet(common::openSheet(":/style.qss"));
 
     menu.addAction("Open", this, [this]{on_listWidgetLinks_itemDoubleClicked(ui->listWidgetLinks->currentItem());});
     menu.addAction("Edit", this, [this]{editLinkDetails(ui->listWidgetLinks->currentItem()->text());});
@@ -65,10 +61,7 @@ void LinkManagerWindow::showCollectionsContextMenu(const QPoint &pos)
     QPoint globalPos = ui->listWidgetCollections->mapToGlobal(pos);
 
     QMenu menu;
-    QFile file(":/style.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    menu.setStyleSheet(styleSheet);
+    menu.setStyleSheet(common::openSheet(":/style.qss"));
 
     menu.addAction("Rename", this, [this]{renameCollection(ui->listWidgetCollections->currentItem()->text());});
     menu.addAction("Delete", this, [this]{deleteCollection(ui->listWidgetCollections->currentItem()->text());});
