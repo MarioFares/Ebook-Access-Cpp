@@ -40,11 +40,17 @@ void bulkDetailsDialog::on_buttonCancel_clicked()
 void bulkDetailsDialog::on_buttonApply_clicked()
 {
     if (ui->textAuthor->isEnabled())
-    {author = ui->textAuthor->text();}
+    {
+        author = ui->textAuthor->text();
+    }
     if (ui->textGenre->isEnabled())
-    {genre = ui->textGenre->text();}
+    {
+        genre = ui->textGenre->text();
+    }
     if (ui->textTags->isEnabled())
-    {tags = ui->textTags->text();}
+    {
+        tags = ui->textTags->text();
+    }
     close();
 }
 

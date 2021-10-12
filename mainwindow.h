@@ -121,6 +121,15 @@ private slots:
 
     void on_actionMinimizeTray_triggered();
 
+    void on_actionResetSummaries_triggered();
+
+    void on_actionResetTags_triggered();
+
+    void on_actionResetSearches_triggered();
+
+    void on_actionResetDatabase_triggered();
+
+    void showDetails();
 private:
     Ui::MainWindow *ui;
     Qt::SortOrder SORT;

@@ -27,7 +27,10 @@ void searchNameDialog::on_buttonOk_clicked()
     if(searchName.isEmpty())
     {
         common::showMsgBox("Name Error!", "Name cannot be empty.", ":/summarystyle.qss", QMessageBox::Warning, ":/icons/books_icon.png");
-    }else{
-    this->close();}
+    }
+    else
+    {
+        this->close();
+    }
 }
 

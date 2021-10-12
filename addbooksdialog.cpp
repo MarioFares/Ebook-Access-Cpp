@@ -41,16 +41,12 @@ void addBooksDialog::insertBooks(QFileInfo entry, QString tags, QString genre, Q
 {
     QString name = entry.completeBaseName();
     QString path = entry.absoluteFilePath();
-    QString folder = entry.dir().dirName();
     QString ext = "." + entry.suffix();
+    QString folder = entry.dir().dirName();
     long long size = entry.size();
     int pages = common::getPageCount(path);
     queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author);
 }
-
-//void getEntriesVector
-
-//
 
 QVector<QFileInfo> addBooksDialog::getEntriesVector(QString dir, bool recursive)
 {
