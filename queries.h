@@ -11,7 +11,7 @@ namespace queries {
 extern QSqlDatabase db;
 extern QSqlQuery query;
 
-bool connectToDatabase();
+void connectToDatabase();
 
 QString genExtQuery(QString entity, QString text);
 
@@ -19,7 +19,7 @@ QString genTagQuery(QString tags);
 
 QString cleanTags(QString tags);
 
-// Setup Tables
+// Setup Tables Queries
 void createEbooksTable();
 
 void createSettingsTable();
@@ -30,14 +30,19 @@ void createLinkCollectionsTable();
 
 void createLinksTable();
 
-// Reset Tables
-
+// Reset Tables Queries
 void resetSettingsTableQuery();
 
 void resetEbooksTableQuery();
 
+void resetSummaries();
 
-// Select
+void resetTags();
+
+void resetSearchesTable();
+
+
+// Select Queries
 void selectFoldersQuery();
 
 void selectAuthorsQuery();
@@ -77,22 +82,20 @@ void selectLinksBasedOnCollection(QString collectionName, QString searchString);
 
 void selectLinkRecord(QString name);
 
-// Insert
-
-void insertBooksQuery(QString name, QString path, QString folder, QString ext, long long size
-                             , long pages, QString tags, QString genre, QString author);
+// Insert Queries
+void insertBooksQuery(QString name, QString path, QString folder, QString ext, long long size,
+                      long pages, QString tags, QString genre, QString author);
 
 void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
-                              QString ext,
-                              int fromSize, int toSize, QString sizeIn, int fromPages, int toPages);
+                              QString ext, int fromSize, int toSize, QString sizeIn, int fromPages, int toPages);
 
 void insertLinkCollection(QString collectionName);
 
 void insertLink(int collectionId, QString linkName, QString linkPath);
-// Update
 
+// Update Queries
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-                            QString author, int pages, QString tags);
+                            QString author, int pages, QString tags, QString path);
 
 void updateSummary(QString name, QString summary);
 
@@ -100,7 +103,7 @@ void updateLinkDetails(QString oldName, QString newName, QString path);
 
 void updateLinkCollectionName(QString oldName, QString newName);
 
-//Delete
+//Delete Queries
 void deleteBook(QString fileName);
 
 void deleteLink(QString linkName);

@@ -39,6 +39,12 @@ private slots:
 
     void searchEbooks(QString textToSearch);
 
+    bool handleBackspace();
+
+    bool handleReturn();
+
+    void insertClosingChar(char openChar, QString selectedText);
+
     void on_buttonBold_clicked();
 
     void on_buttonItalic_clicked();
@@ -76,8 +82,6 @@ private slots:
     void on_buttonSuperscript_clicked();
 
     void on_buttonCode_clicked();
-
-//    void on_textEditor_selectionChanged();
 
     void on_buttonHighlight_clicked();
 
@@ -127,12 +131,7 @@ private slots:
 
     void on_actionExportHtml_triggered();
 
-    bool handleBackspace();
-
-    bool handleReturn();
-
-    void insertClosingChar(char openChar, QString selectedText);
-
+    void on_buttonEditorBackColor_clicked();
 
 private:
     Ui::SummaryWindow *ui;
