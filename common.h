@@ -19,5 +19,7 @@ void openWindow(QMainWindow *window, QString stylesheetPath);
 
 int getPageCount(QString path);
 
+QString openSheet(QString sheetUrl);
+
 }
 #endif // COMMON_H

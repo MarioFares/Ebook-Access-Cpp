@@ -82,4 +82,12 @@ int getPageCount(QString path)
     return pages;
 }
 
+QString openSheet(QString sheetUrl)
+{
+    QFile file(sheetUrl);
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    return styleSheet;
+}
+
 }
