@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="images.qrc">
-    <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
+    <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <widget class="QLabel" name="topLabel">
    <property name="geometry">
