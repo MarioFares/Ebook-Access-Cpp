@@ -10,11 +10,13 @@ namespace queries {
 QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "SQLITE");
 QSqlQuery query(db);
 
-bool connectToDatabase()
+void connectToDatabase()
 {
-    db.setDatabaseName("database.db");
-    db.open();
-    return db.isOpen();
+    if (!db.isOpen())
+    {
+        db.setDatabaseName("database.db");
+        db.open();
+    }
 }
 
 QString genExtQuery(QString entity, QString text)
@@ -35,7 +37,6 @@ QString genExtQuery(QString entity, QString text)
     }
     return query;
 }
-
 
 QString genTagQuery(QString tags)
 {
@@ -141,6 +142,11 @@ void resetSettingsTableQuery(){query.exec("DELETE FROM settings");}
 
 void resetEbooksTableQuery(){query.exec("DELETE FROM ebooks");}
 
+void resetSummaries(){query.exec("UPDATE ebooks SET summary=\"N/A\" WHERE summary <> \"N/A\"");}
+
+void resetTags(){query.exec("UPDATE ebooks SET tags=\"N/A" + common::SEP + "\" WHERE tags <> \"N/A" + common::SEP + "\"");}
+
+void resetSearchesTable(){query.exec("DELETE FROM searches");}
 
 // Select
 void selectFoldersQuery(){query.exec("SELECT DISTINCT folder FROM ebooks");}
@@ -345,7 +351,7 @@ void insertLink(int collectionId, QString linkName, QString linkPath)
 // Update
 
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-                            QString author, int pages, QString tags)
+                            QString author, int pages, QString tags, QString path)
 {
     query.prepare(QString("UPDATE ebooks "
                           "SET name = :newName, "
@@ -353,7 +359,8 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
                                "genre = :genre, "
                                "author = :author, "
                                "pages = :pages, "
-                                "tags = :tags "
+                                "tags = :tags, "
+                                "path = :path "
                            "WHERE name = :oldName"));
 
     query.bindValue(":newName", newName);
@@ -363,6 +370,7 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
     query.bindValue(":genre", genre);
     query.bindValue(":author", author);
     query.bindValue(":pages", pages);
+    query.bindValue(":path", path);
     query.bindValue(":oldName", oldName);
     query.exec();
 }
