@@ -94,5 +94,8 @@
         <file>icons/bold_icon.png</file>
         <file>icons/italic_icon.png</file>
         <file>icons/underline_icon.png</file>
+        <file>icons/font_color_icon.png</file>
+        <file>icons/background_fill_black.png</file>
+        <file>icons/background_fill_white.png</file>
     </qresource>
 </RCC>
