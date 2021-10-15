@@ -133,6 +133,14 @@ private slots:
 
     void on_buttonEditorBackColor_clicked();
 
+    void on_actionSentenceCase_triggered();
+
+    void on_actionUpperCase_triggered();
+
+    void on_actionLowerCase_triggered();
+
+    void on_actionCapitalCase_triggered();
+
 private:
     Ui::SummaryWindow *ui;
     QTextCharFormat currentCopiedFormat;

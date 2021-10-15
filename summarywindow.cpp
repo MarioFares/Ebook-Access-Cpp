@@ -1,15 +1,12 @@
-// Project Files
-#include "summarywindow.h"
-#include "ui_summarywindow.h"
 #include "common.h"
 #include "queries.h"
+#include "summarywindow.h"
+#include "ui_summarywindow.h"
 #include "insertlinkdialog.h"
 #include "inserttabledialog.h"
 
-// std Source
 #include <fstream>
 
-// Qt Source
 #include <QFile>
 #include <QHash>
 #include <QTextList>
@@ -630,5 +627,89 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     }
     ui->buttonEditorBackColor->update();
 
+}
+
+
+void SummaryWindow::on_actionSentenceCase_triggered()
+{
+    QTextCursor cursor = ui->textEditor->textCursor();
+    if(cursor.selectedText().isEmpty())
+    {
+        return;
+    }
+    QStringList tempList = cursor.selectedText().split(" ");
+    QStringList newText;
+    newText.append(tempList[0].at(0).toUpper() + tempList[0].mid(1).toLower());
+    for (int i = 1; i < tempList.size(); i++)
+    {
+        newText.append(tempList[i].toLower());
+    }
+
+    cursor.removeSelectedText();
+    cursor.insertText(newText.join(" "));
+}
+
+
+void SummaryWindow::on_actionUpperCase_triggered()
+{
+    QTextCursor cursor = ui->textEditor->textCursor();
+    if(cursor.selectedText().isEmpty())
+    {
+        return;
+    }
+    QStringList tempList = cursor.selectedText().split(" ");
+    QStringList newText;
+    for (int i = 1; i < tempList.size(); i++)
+    {
+        newText.append(tempList[i].toUpper());
+    }
+
+    cursor.removeSelectedText();
+    cursor.insertText(newText.join(" "));
+}
+
+
+void SummaryWindow::on_actionLowerCase_triggered()
+{
+    QTextCursor cursor = ui->textEditor->textCursor();
+    if(cursor.selectedText().isEmpty())
+    {
+        return;
+    }
+    QStringList tempList = cursor.selectedText().split(" ");
+    QStringList newText;
+    for (int i = 1; i < tempList.size(); i++)
+    {
+        newText.append(tempList[i].toLower());
+    }
+
+    cursor.removeSelectedText();
+    cursor.insertText(newText.join(" "));
+}
+
+
+void SummaryWindow::on_actionCapitalCase_triggered()
+{
+    QTextCursor cursor = ui->textEditor->textCursor();
+    if(cursor.selectedText().isEmpty())
+    {
+        return;
+    }
+    QStringList tempList = cursor.selectedText().split(" ");
+    QStringList newText;
+    for (int i = 1; i < tempList.size(); i++)
+    {
+        if (tempList[i].size() >  1)
+        {
+            newText.append(tempList[i].at(0).toUpper() + tempList[i].mid(1).toLower());
+        }
+        else
+        {
+            newText.append(tempList[i].at(0).toLower());
+        }
+    }
+
+    cursor.removeSelectedText();
+    cursor.insertText(newText.join(" "));
 }
 

@@ -1359,6 +1359,15 @@ background-color: grey;</string>
     <property name="title">
      <string>Format</string>
     </property>
+    <widget class="QMenu" name="menuChangeCase">
+     <property name="title">
+      <string>Change Case</string>
+     </property>
+     <addaction name="actionSentenceCase"/>
+     <addaction name="actionUpperCase"/>
+     <addaction name="actionLowerCase"/>
+     <addaction name="actionCapitalCase"/>
+    </widget>
     <addaction name="actionBold"/>
     <addaction name="actionItalic"/>
     <addaction name="actionUnderline"/>
@@ -1377,6 +1386,8 @@ background-color: grey;</string>
     <addaction name="separator"/>
     <addaction name="actionSuperscript"/>
     <addaction name="actionSubscript"/>
+    <addaction name="separator"/>
+    <addaction name="menuChangeCase"/>
     <addaction name="separator"/>
     <addaction name="actionResetFormat"/>
    </widget>
@@ -1741,6 +1752,26 @@ background-color: grey;</string>
   <action name="actionExportHtml">
    <property name="text">
     <string>Export to HTML</string>
+   </property>
+  </action>
+  <action name="actionSentenceCase">
+   <property name="text">
+    <string>Sentence case.</string>
+   </property>
+  </action>
+  <action name="actionUpperCase">
+   <property name="text">
+    <string>UPPERCASE</string>
+   </property>
+  </action>
+  <action name="actionLowerCase">
+   <property name="text">
+    <string>lowercase</string>
+   </property>
+  </action>
+  <action name="actionCapitalCase">
+   <property name="text">
+    <string>Capitalize Each Word</string>
    </property>
   </action>
  </widget>
