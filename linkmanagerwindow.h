@@ -37,6 +37,8 @@ private slots:
 
     void copyLink(QString linkName);
 
+    void openAllLinks();
+
     void on_buttonInsertCollection_clicked();
 
     void on_buttonInsertLink_clicked();

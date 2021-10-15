@@ -97,5 +97,6 @@
         <file>icons/font_color_icon.png</file>
         <file>icons/background_fill_black.png</file>
         <file>icons/background_fill_white.png</file>
+        <file>icons/add_icon.png</file>
     </qresource>
 </RCC>

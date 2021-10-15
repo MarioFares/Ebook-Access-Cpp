@@ -65,9 +65,20 @@ void LinkManagerWindow::showCollectionsContextMenu(const QPoint &pos)
 
     menu.addAction("Rename", this, [this]{renameCollection(ui->listWidgetCollections->currentItem()->text());});
     menu.addAction("Delete", this, [this]{deleteCollection(ui->listWidgetCollections->currentItem()->text());});
+    menu.addAction("Open Links", this, [this]{openAllLinks();});
 
     if (ui->listWidgetCollections->selectedItems().size() != 0)
     {menu.exec(globalPos);}
+}
+
+void LinkManagerWindow::openAllLinks()
+{
+    QString currentColl = ui->listWidgetCollections->currentItem()->text();
+    queries::selectLinksBasedOnCollection(currentColl, "");
+    while(queries::query.next())
+    {
+        QDesktopServices::openUrl(QUrl(queries::query.value(1).toString()));
+    }
 }
 
 void LinkManagerWindow::deleteLink(QString name)

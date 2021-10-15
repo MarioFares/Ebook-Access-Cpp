@@ -66,8 +66,18 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border: none;</string>
+            </property>
             <property name="text">
-             <string>+</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="images.qrc">
+              <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -118,8 +128,18 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border: none;</string>
+            </property>
             <property name="text">
-             <string>+</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="images.qrc">
+              <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -145,6 +165,150 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>665</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionMaximize"/>
+    <addaction name="actionMinimize"/>
+    <addaction name="actionFullscreen"/>
+    <addaction name="separator"/>
+    <addaction name="actionHide_Left_Panel"/>
+    <addaction name="actionHide_Right_Panel"/>
+    <addaction name="separator"/>
+    <addaction name="actionHide_Search_Bars"/>
+   </widget>
+   <widget class="QMenu" name="menuAdd">
+    <property name="title">
+     <string>Links</string>
+    </property>
+    <addaction name="actionAdd_Link"/>
+    <addaction name="actionEdit_Link"/>
+    <addaction name="actionAdd_Collection"/>
+   </widget>
+   <widget class="QMenu" name="menuReset">
+    <property name="title">
+     <string>Reset</string>
+    </property>
+    <addaction name="actionReset_Links"/>
+    <addaction name="actionReset_Collections"/>
+    <addaction name="actionReset_All"/>
+   </widget>
+   <widget class="QMenu" name="menuDelete">
+    <property name="title">
+     <string>Collections</string>
+    </property>
+    <addaction name="actionDelete_Link"/>
+    <addaction name="actionDelete_Collection"/>
+    <addaction name="actionRename_Collection"/>
+    <addaction name="actionOpen_All_Links"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuReset"/>
+   <addaction name="menuAdd"/>
+   <addaction name="menuDelete"/>
+  </widget>
+  <action name="actionMaximize">
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+  </action>
+  <action name="actionMinimize">
+   <property name="text">
+    <string>Minimize</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+  </action>
+  <action name="actionHide_Left_Panel">
+   <property name="text">
+    <string>Hide Left Panel</string>
+   </property>
+  </action>
+  <action name="actionHide_Right_Panel">
+   <property name="text">
+    <string>Hide Right Panel</string>
+   </property>
+  </action>
+  <action name="actionHide_Search_Bars">
+   <property name="text">
+    <string>Hide Search Bars</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionAdd_Collection">
+   <property name="text">
+    <string>Delete Link</string>
+   </property>
+  </action>
+  <action name="actionAdd_Link">
+   <property name="text">
+    <string>Add Link</string>
+   </property>
+  </action>
+  <action name="actionReset_Collections">
+   <property name="text">
+    <string>Reset Collections</string>
+   </property>
+  </action>
+  <action name="actionReset_Links">
+   <property name="text">
+    <string>Reset Links</string>
+   </property>
+  </action>
+  <action name="actionReset_All">
+   <property name="text">
+    <string>Reset All</string>
+   </property>
+  </action>
+  <action name="actionDelete_Link">
+   <property name="text">
+    <string>Add Collection</string>
+   </property>
+  </action>
+  <action name="actionDelete_Collection">
+   <property name="text">
+    <string>Delete Collection</string>
+   </property>
+  </action>
+  <action name="actionOpen_All_Links">
+   <property name="text">
+    <string>Open All Links</string>
+   </property>
+  </action>
+  <action name="actionRename_Collection">
+   <property name="text">
+    <string>Rename Collection</string>
+   </property>
+  </action>
+  <action name="actionEdit_Link">
+   <property name="text">
+    <string>Edit Link</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="images.qrc"/>
