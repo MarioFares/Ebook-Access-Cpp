@@ -101,6 +101,12 @@ QMainWindow {
      color: white;
      font: 10pt "Segoe UI";
 }
+ QMenu::item {
+     padding: 5px;
+}
+ QMenu::icon {
+    padding: 5px;
+}
  QMenu::separator {
      background-color: white;
      height: 1px
