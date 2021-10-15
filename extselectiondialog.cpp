@@ -76,13 +76,7 @@ void extSelectionDialog::on_buttonDeselectAll_clicked()
 
 void extSelectionDialog::on_textSearch_textChanged(const QString &arg1)
 {
-    QVector<QString> results;
-
-    for (QString &entry : inputVector)
-    {
-        if(entry.contains(arg1, Qt::CaseInsensitive))
-            results.push_back(entry);
-    }
-    fillListWidget(results);
+    QList<QListWidgetItem *> items =  ui->listWidget->findItems(arg1, Qt::MatchContains);
+    ui->listWidget->setCurrentItem(items.count() > 0 ? items[0] : ui->listWidget->currentItem());
 }
 
