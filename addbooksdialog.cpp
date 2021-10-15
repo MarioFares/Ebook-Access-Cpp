@@ -16,6 +16,7 @@ addBooksDialog::addBooksDialog(QWidget *parent) :
     ui(new Ui::addBooksDialog)
 {
     ui->setupUi(this);
+    ui->textFolderPath->setCompleter(common::dirCompleter(this));
 }
 
 addBooksDialog::~addBooksDialog()
@@ -120,5 +121,4 @@ void addBooksDialog::on_buttonAdd_clicked()
     {
         setupEntries(dir, ui->checkBoxRecursive->isChecked());
     }
-
 }
