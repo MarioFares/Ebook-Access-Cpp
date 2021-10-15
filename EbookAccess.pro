@@ -7,7 +7,12 @@ CONFIG += c++17
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-#QMAKE_CXXFLAGS += -std=c++17
+
+
+# Set cpp versions
+QMAKE_CXXFLAGS += /std:c++17
+# Optimize for max speed ; Eq to /Og /Oi /Ot /Oy /Ob2 /GF /Gy
+QMAKE_CXXFLAGS += /O2
 
 
 SOURCES += \
