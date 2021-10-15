@@ -6,6 +6,9 @@
 #include <QMainWindow>
 #include <QErrorMessage>
 #include <QList>
+#include <QCompleter>
+#include <QAbstractItemView>
+#include <QFileSystemModel>
 
 #include "common.h"
 
@@ -88,6 +91,21 @@ QString openSheet(QString sheetUrl)
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     return styleSheet;
+}
+
+QCompleter *dirCompleter(QWidget *parent)
+{
+    QCompleter *dirCompleter = new QCompleter(parent);
+    dirCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    dirCompleter->setCompletionMode(QCompleter::PopupCompletion);
+    QAbstractItemView *popup = dirCompleter->popup();
+    popup->setStyleSheet(common::openSheet(":/style.qss"));
+    QFileSystemModel *model = new QFileSystemModel(dirCompleter);
+    model->setRootPath("/");
+    model->sort(0, Qt::DescendingOrder);
+    dirCompleter->setModel(model);
+
+    return dirCompleter;
 }
 
 }

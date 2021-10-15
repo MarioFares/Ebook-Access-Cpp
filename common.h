@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QMainWindow>
+#include <QCompleter>
+#include <QLineEdit>
 
 namespace common {
 
@@ -20,6 +22,8 @@ void openWindow(QMainWindow *window, QString stylesheetPath);
 int getPageCount(QString path);
 
 QString openSheet(QString sheetUrl);
+
+QCompleter *dirCompleter(QWidget *parent);
 
 }
 #endif // COMMON_H
