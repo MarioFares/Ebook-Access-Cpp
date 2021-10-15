@@ -11,6 +11,7 @@ addBookDialog::addBookDialog(QWidget *parent) :
     ui(new Ui::addBookDialog)
 {
     ui->setupUi(this);
+    ui->textPath->setCompleter(common::dirCompleter(this));
 }
 
 addBookDialog::~addBookDialog()
@@ -39,7 +40,7 @@ void addBookDialog::on_buttonClear_clicked()
 void addBookDialog::on_buttonBrowse_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
-                                                     tr("Open File"), "/", tr("Ebook Files (*.pdf *.epub *.mobi *.cbr)"));
+                                                     tr("Open File"), "/", tr("All Files (*.*)"));
 
     QFileInfo file(filePath);
 
