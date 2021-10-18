@@ -8,7 +8,6 @@
 
 #include <QFileInfo>
 #include <QFileDialog>
-#include <QProgressBar>
 #include <QDirIterator>
 
 addBooksDialog::addBooksDialog(QWidget *parent) :
@@ -97,12 +96,12 @@ void addBooksDialog::iterateInsertEntries(QVector<QFileInfo> entriesVector, QVec
                                           QString tags, QString genres, QString authors)
 {
     queries::db.transaction();
-    long count = entriesVector.size();
-    long counter = 0;
+    size_t count = entriesVector.size();
+    double counter = 0;
     for(QFileInfo &entry : entriesVector)
     {
         QString ext = "." + entry.suffix().toLower();
-        int progress = ((double)counter / count) * 100;
+        int progress = (counter / count) * 100;
         ui->progressBar->setValue(progress);
         counter++;
         if (selectedExts.contains(ext))
