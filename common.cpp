@@ -5,12 +5,9 @@
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QErrorMessage>
-#include <QList>
 #include <QCompleter>
 #include <QAbstractItemView>
 #include <QFileSystemModel>
-
-#include "common.h"
 
 namespace common {
 
@@ -78,7 +75,7 @@ int getPageCount(QString path)
     {
         QProcess process;
         process.start("./xpdf/bin64/pdfinfo.exe ", QStringList() << path);
-        process.waitForFinished(-1);
+        process.waitForReadyRead();
         QList output = process.readAllStandardOutput().simplified().split(' ');
         pages = output[output.indexOf("Pages:") + 1].toInt();
     }

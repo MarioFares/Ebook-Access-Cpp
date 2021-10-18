@@ -8,7 +8,6 @@
 #include <fstream>
 
 #include <QFile>
-#include <QHash>
 #include <QTextList>
 #include <QTextTable>
 #include <QFileDialog>
@@ -50,6 +49,7 @@ void SummaryWindow::closeEvent(QCloseEvent *event)
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
+    event->accept();
     delete this;
 }
 
@@ -608,7 +608,7 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     QTextFrame *currentFrame = ui->textEditor->textCursor().currentFrame();
     QTextFrameFormat currentFormat = currentFrame->frameFormat();
     // Apply only to code box in case cursor in code box
-    if (currentFrame != nullptr && currentFormat.border() == 1)
+    if (currentFormat.border() == 1)
     {
         currentFormat.setBackground(QBrush(dialog.selectedColor()));
         currentFrame->setFrameFormat(currentFormat);

@@ -17,7 +17,6 @@
 #include <QFile>
 #include <QTimer>
 #include <QProcess>
-#include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>

@@ -12,7 +12,6 @@
 #include <QFile>
 #include <QClipboard>
 #include <QCloseEvent>
-#include <QMessageBox>
 #include <QListWidgetItem>
 #include <QDesktopServices>
 LinkManagerWindow::LinkManagerWindow(QWidget *parent) :
@@ -37,6 +36,7 @@ LinkManagerWindow::~LinkManagerWindow()
 
 void LinkManagerWindow::closeEvent(QCloseEvent *event)
 {
+    event->accept();
     delete this;
 }
 
