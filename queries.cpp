@@ -21,39 +21,39 @@ void connectToDatabase()
 
 QString genExtQuery(QString entity, QString text)
 {
-    QString query = "";
+    QString genQuery = "";
     if (text.isEmpty())
     {
-        query =  "SELECT DISTINCT " + entity + " FROM ebooks";
+        genQuery =  "SELECT DISTINCT " + entity + " FROM ebooks";
     }
     else
     {
         QStringList list = text.split(common::SEP);
         for (QString &ent : list)
         {
-            query += "\"" + ent + "\", "; // ent must not be simplified
+            genQuery += "\"" + ent + "\", "; // ent must not be simplified
         }
-        query.remove(query.lastIndexOf(','), 1);
+        genQuery.remove(genQuery.lastIndexOf(','), 1);
     }
-    return query;
+    return genQuery;
 }
 
 QString genTagQuery(QString tags)
 {
-    QString query = "";
+    QString genQuery = "";
     if (tags.isEmpty())
     {
-        query =  "AND tags LIKE \'%\'";
+        genQuery =  "AND tags LIKE \'%\'";
     }
     else
     {
         QStringList tagList = tags.split(common::SEP);
         for (QString &tag : tagList)
         {
-            query += "AND tags LIKE \'%" + tag.simplified() + common::SEP +"%\'";
+            genQuery += "AND tags LIKE \'%" + tag.simplified() + common::SEP +"%\'";
         }
     }
-    return query;
+    return genQuery;
 }
 
 QString cleanTags(QString tags)
@@ -249,7 +249,7 @@ void selectCollections(QString searchString)
 
 void selectLinksBasedOnCollection(QString collectionName, QString searchString)
 {
-    query.prepare(QString("SELECT l.link_name FROM links l "
+    query.prepare(QString("SELECT l.link_name, l.link_path FROM links l "
                            "INNER JOIN link_collections c ON c.rowid = l.collection_id "
                            "WHERE c.collection_name = :collection "
                            "AND l.link_name LIKE :string"));
