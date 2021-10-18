@@ -142,7 +142,7 @@ void resetSettingsTableQuery(){query.exec("DELETE FROM settings");}
 
 void resetEbooksTableQuery(){query.exec("DELETE FROM ebooks");}
 
-void resetSummaries(){query.exec("UPDATE ebooks SET summary=\"N/A\" WHERE summary <> \"N/A\"");}
+void resetSummaries(){query.exec(R"(UPDATE ebooks SET summary="N/A" WHERE summary <> "N/A")");}
 
 void resetTags(){query.exec("UPDATE ebooks SET tags=\"N/A" + common::SEP + "\" WHERE tags <> \"N/A" + common::SEP + "\"");}
 

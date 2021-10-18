@@ -21,7 +21,7 @@ void extSelectionDialog::fillListWidget(QVector<QString> extVector)
     ui->listWidget->clear();
     for (QString &entry : extVector)
     {
-        QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
+        auto *item = new QListWidgetItem(ui->listWidget);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         item->setCheckState(Qt::Checked);
         item->setText(entry);

@@ -52,7 +52,7 @@ void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
     menu.addAction("Delete", this, [this]{deleteLink(ui->listWidgetLinks->currentItem()->text());});
     menu.addAction("Copy Link", this, [this]{copyLink(ui->listWidgetLinks->currentItem()->text());});
 
-    if (ui->listWidgetLinks->selectedItems().size() != 0)
+    if (!ui->listWidgetLinks->selectedItems().isEmpty())
     {menu.exec(globalPos);}
 }
 
@@ -67,7 +67,7 @@ void LinkManagerWindow::showCollectionsContextMenu(const QPoint &pos)
     menu.addAction("Delete", this, [this]{deleteCollection(ui->listWidgetCollections->currentItem()->text());});
     menu.addAction("Open Links", this, [this]{openAllLinks();});
 
-    if (ui->listWidgetCollections->selectedItems().size() != 0)
+    if (!ui->listWidgetCollections->selectedItems().isEmpty())
     {menu.exec(globalPos);}
 }
 

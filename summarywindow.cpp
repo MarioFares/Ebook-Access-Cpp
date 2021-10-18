@@ -337,6 +337,9 @@ void SummaryWindow::on_comboBoxAlignment_currentIndexChanged(int index)
         case 3:
             ui->textEditor->setAlignment(Qt::AlignJustify);
             break;
+        default:
+            ui->textEditor->setAlignment(Qt::AlignLeft);
+            break;
     }
 }
 
@@ -477,7 +480,7 @@ void SummaryWindow::on_buttonInsertImage_clicked()
     QString file = QFileDialog::getOpenFileName(this,
         tr("Select Image"), "/", tr("Image Files (*.jpeg *.jpg *.png *.gif *.apng *.svg *.bmp *.ico)"));
 
-      ui->textEditor->textCursor().insertHtml(QString("<img src=\"%1\" alt = \"\"/>").arg( file ));
+      ui->textEditor->textCursor().insertHtml(QString(R"(<img src="%1" alt = ""/>)").arg( file ));
 }
 
 void SummaryWindow::on_actionPaste_triggered()

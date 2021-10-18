@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     refreshGenres();
     refreshSearches();
 
-    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+    auto *trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(windowIcon());
     trayIcon->setVisible(true);
     trayIcon->setToolTip("Ebook Access\nClick to Open");
@@ -79,7 +79,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::showSummary(QString name)
 {
-    SummaryWindow *summaryWindow = new SummaryWindow();
+    auto *summaryWindow = new SummaryWindow();
     summaryWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
     summaryWindow->ensurePolished();
     summaryWindow->show();
@@ -88,7 +88,7 @@ void MainWindow::showSummary(QString name)
 
 void MainWindow::showLinkManager()
 {
-    LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
+    auto *linkManagerWindow = new LinkManagerWindow();
     linkManagerWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
     linkManagerWindow->ensurePolished();
     linkManagerWindow->show();
@@ -96,7 +96,7 @@ void MainWindow::showLinkManager()
 
 void MainWindow::showDetails()
 {
-    bookDetailsWindow *detailsWindow = new bookDetailsWindow();
+    auto *detailsWindow = new bookDetailsWindow();
     detailsWindow->setStyleSheet(common::openSheet(":/summarystyle.qss"));
     detailsWindow->ensurePolished();
     detailsWindow->show();
@@ -180,7 +180,7 @@ void MainWindow::showContextMenu(const QPoint &pos)
     menu.addAction("Show in Folder", this, SLOT(openFolder()));
     menu.addAction("Delete Ebook", this, SLOT(deleteListItem()));
 
-    if (ui->ebooksListWidget->selectedItems().size() != 0)
+    if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
         menu.exec(globalPos);
     }
@@ -227,7 +227,7 @@ void MainWindow::openFolder()
     {
         QStringList args;
         args << "/select," << QDir::toNativeSeparators(queries::query.value(0).toString());
-        QProcess *process = new QProcess(this);
+        auto *process = new QProcess(this);
         process->start("explorer.exe", args);
     }
     else
@@ -448,15 +448,16 @@ void MainWindow::on_ebooksListWidget_itemClicked(QListWidgetItem *item)
 
 void MainWindow::on_buttonDetailsRestore_clicked()
 {
-    if (ui->ebooksListWidget->selectedItems().size() != 0)
-    {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
-    ui->statusBar->showMessage("Details restored successfully.");
+    if (!ui->ebooksListWidget->selectedItems().isEmpty())
+    {
+        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+        ui->statusBar->showMessage("Details restored successfully.");
     }
 }
 
 void MainWindow::on_buttonDetailsUpdate_clicked()
 {
-    if (ui->ebooksListWidget->selectedItems().size() != 0)
+    if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
         QString oldName = ui->ebooksListWidget->currentItem()->text();
         QString newName = ui->textDetailsName->text();
@@ -500,10 +501,7 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     QString author = ui->comboBoxAuthorCriteria->currentText();
     QString genre = ui->comboBoxGenreCriteria->currentText();
     QString tags = ui->textTagsCriteria->text();
-
     QString ext = ui->textExts->text();
-
-
     int sizeTo = ui->spinBoxToSizeCriteria->value();
     int sizeFrom = ui->spinBoxFromSizeCriteria->value();
     QString sizeIn = ui->buttonSizeCriteria->text();
@@ -627,7 +625,7 @@ void MainWindow::on_buttonExtensions_clicked()
         ext.push_back(queries::query.value(0).toString());
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, ext, "Extensions", "Select Available Extensions");
+    auto *dialog = new extSelectionDialog(this, ext, "Extensions", "Select Available Extensions");
     common::openDialog(dialog, ":/style.qss");
 
     ext = dialog->getExtVector();
@@ -644,7 +642,7 @@ void MainWindow::on_buttonFolder_clicked()
         folders.push_back(queries::query.value(0).toString());
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, folders, "Folders", "Select Available Folders");
+    auto *dialog = new extSelectionDialog(this, folders, "Folders", "Select Available Folders");
     common::openDialog(dialog, ":/style.qss");
 
     folders = dialog->getExtVector();
@@ -661,7 +659,7 @@ void MainWindow::on_buttonAuthor_clicked()
         authors.push_back(queries::query.value(0).toString());
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, authors, "Authors", "Select Available Authors");
+    auto *dialog = new extSelectionDialog(this, authors, "Authors", "Select Available Authors");
     common::openDialog(dialog, ":/style.qss");
 
     authors = dialog->getExtVector();
@@ -678,7 +676,7 @@ void MainWindow::on_buttonGenre_clicked()
         genres.push_back(queries::query.value(0).toString());
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, genres, "Genres", "Select Available Genres");
+    auto *dialog = new extSelectionDialog(this, genres, "Genres", "Select Available Genres");
     common::openDialog(dialog, ":/style.qss");
 
     genres = dialog->getExtVector();
@@ -703,7 +701,7 @@ void MainWindow::on_buttonTags_clicked()
         }
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
+    auto *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
     common::openDialog(dialog, ":style.qss");
 
     tags = dialog->getExtVector();
@@ -721,8 +719,10 @@ void MainWindow::on_buttonSizeUnit_clicked()
     else
         ui->buttonSizeUnit->setText("KB");
 
-    if (ui->ebooksListWidget->selectedItems().size() != 0)
-     {on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());}
+    if (!ui->ebooksListWidget->selectedItems().isEmpty())
+    {
+        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+    }
 }
 
 void MainWindow::on_actionMinimizeTray_triggered()
