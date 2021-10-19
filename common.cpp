@@ -11,9 +11,9 @@
 
 namespace common {
 
-QString SEP = "|";
+const QString SEP = "|";
 
-void openDialog(QDialog *dialog, QString stylesheetPath)
+void openDialog(QDialog *dialog, const QString &stylesheetPath)
 {
     QFile file(stylesheetPath);
     file.open(QFile::ReadOnly);
@@ -24,7 +24,8 @@ void openDialog(QDialog *dialog, QString stylesheetPath)
     dialog->exec();
 }
 
-void showMsgBox(QString title, QString text, QString stylesheetPath, QMessageBox::Icon msgIcon, QString winIcon)
+void showMsgBox(const QString &title, const QString &text, const QString &stylesheetPath,
+                const QMessageBox::Icon &msgIcon, const QString &winIcon)
 {
     QMessageBox box;
     box.setText(text);
@@ -41,7 +42,7 @@ void showMsgBox(QString title, QString text, QString stylesheetPath, QMessageBox
     box.exec();
 }
 
-void showErrorMsg(QString title, QString message, QString stylesheetPath)
+void showErrorMsg(const QString &title, const QString &message, const QString &stylesheetPath)
 {
     QErrorMessage msg;
 
@@ -57,7 +58,7 @@ void showErrorMsg(QString title, QString message, QString stylesheetPath)
     msg.exec();
 }
 
-void openWindow(QMainWindow *window, QString stylesheetPath)
+void openWindow(QMainWindow *window, const QString &stylesheetPath)
 {
     QFile file(stylesheetPath);
     file.open(QFile::ReadOnly);
@@ -67,7 +68,7 @@ void openWindow(QMainWindow *window, QString stylesheetPath)
     window->show();
 }
 
-quint32 getPageCount(QString path)
+quint32 getPageCount(const QString &path)
 {
     QFileInfo file(path);
     quint32 pages = 0;
@@ -82,7 +83,7 @@ quint32 getPageCount(QString path)
     return pages;
 }
 
-QString openSheet(QString sheetUrl)
+QString openSheet(const QString &sheetUrl)
 {
     QFile file(sheetUrl);
     file.open(QFile::ReadOnly);

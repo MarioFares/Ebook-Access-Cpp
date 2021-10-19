@@ -9,21 +9,22 @@
 
 namespace common {
 
-extern QString SEP;
+const extern QString SEP;
 
-void openDialog(QDialog *dialog, QString stylesheetPath);
+void openDialog(QDialog *dialog, const QString &stylesheetPath);
 
-void showMsgBox(QString title, QString text, QString stylesheetPath, QMessageBox::Icon msgIcon, QString winIcon);
+void showMsgBox(const QString &title, const QString &text,
+                const QString &stylesheetPath, const QMessageBox::Icon &msgIcon, const QString &winIcon);
 
-void showErrorMsg(QString title, QString message, QString stylesheetPath);
+void showErrorMsg(const QString &title, const QString &message, const QString &stylesheetPath);
 
-void openWindow(QMainWindow *window, QString stylesheetPath);
+void openWindow(QMainWindow *window, const QString &stylesheetPath);
 
-quint32 getPageCount(QString path);
+quint32 getPageCount(const QString &path);
 
-QString openSheet(QString sheetUrl);
+QString openSheet(const QString &sheetUrl);
 
 QCompleter *dirCompleter(QWidget *parent);
 
-}
+} // Namespace common
 #endif // COMMON_H
