@@ -50,7 +50,7 @@ void addBookDialog::on_buttonBrowse_clicked()
     ui->textPath->setText(file.absoluteFilePath());
     ui->textSize->setText(QString::number(file.size()));
 
-    int pages = common::getPageCount(filePath);
+    quint32 pages = common::getPageCount(filePath);
     ui->textPages->setText(QString::number(pages));
 }
 
@@ -61,8 +61,8 @@ void addBookDialog::on_buttonAdd_clicked()
     QString genre = ui->textGenre->text();
     QString path = ui->textPath->text();
     QString author = ui->textAuthor->text();
-    long pages = ui->textPages->text().toLong();
-    long long size = ui->textSize->text().toLongLong();
+    quint32 pages = ui->textPages->text().toUInt();
+    quint64 size = ui->textSize->text().toULongLong();
     QString ext = ui->textExtension->text();
     QString tags = ui->textTags->text();
 

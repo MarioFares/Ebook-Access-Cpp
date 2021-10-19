@@ -43,8 +43,8 @@ void addBooksDialog::insertBooks(QFileInfo entry, QString tags, QString genre, Q
     QString path = entry.absoluteFilePath();
     QString ext = "." + entry.suffix();
     QString folder = entry.dir().dirName();
-    long long size = entry.size();
-    int pages = common::getPageCount(path);
+    quint64 size = entry.size();
+    quint32 pages = common::getPageCount(path);
     queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author);
 }
 
@@ -101,7 +101,7 @@ void addBooksDialog::iterateInsertEntries(QVector<QFileInfo> entriesVector, QVec
     for(QFileInfo &entry : entriesVector)
     {
         QString ext = "." + entry.suffix().toLower();
-        int progress = (counter / count) * 100;
+        quint32 progress = (counter / count) * 100;
         ui->progressBar->setValue(progress);
         counter++;
         if (selectedExts.contains(ext))

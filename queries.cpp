@@ -176,7 +176,7 @@ void selectCountEbooks()
     query.exec();
 }
 
-void selectNameBasedOnRowid(int rowid)
+void selectNameBasedOnRowid(quint32 rowid)
 {
     query.prepare(QString("SELECT name FROM ebooks WHERE rowid = :rowid"));
     query.bindValue(":rowid", rowid);
@@ -211,7 +211,7 @@ void selectSummaryBasedonName(QString name)
 }
 
 void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-                                      long fromPages, long toPages, long long fromSize, long long toSize)
+                                      quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize)
 {
 
     query.prepare(QString("SELECT name FROM ebooks "
@@ -267,8 +267,8 @@ void selectLinkRecord(QString name)
 }
 // Insert
 
-void insertBooksQuery(QString name, QString path, QString folder, QString ext, long long size
-                             , long pages, QString tags, QString genre, QString author)
+void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
+                      quint32 pages, QString tags, QString genre, QString author)
 {
     query.prepare("INSERT INTO ebooks (name, path, folder, ext, size, pages, tags, genre, author) "
                               "VALUES (:name,:path,:folder,:ext,:size, :pages, :tags, :genre, :author)");
@@ -285,9 +285,10 @@ void insertBooksQuery(QString name, QString path, QString folder, QString ext, l
     query.exec();
 }
 
-void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
-                              QString ext,
-                              int fromSize, int toSize, QString sizeIn, int fromPages, int toPages)
+void insertSearchQuery(QString searchName, QString folder, QString author,
+                       QString genre, QString tags, QString ext,
+                       quint32 fromSize, quint32 toSize, QString sizeIn,
+                       quint32 fromPages, quint32 toPages)
 {
     query.prepare(QString("INSERT INTO searches "
                                                    "(search_name, "
@@ -351,7 +352,7 @@ void insertLink(int collectionId, QString linkName, QString linkPath)
 // Update
 
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-                            QString author, int pages, QString tags, QString path)
+                            QString author, quint32 pages, QString tags, QString path)
 {
     query.prepare(QString("UPDATE ebooks "
                           "SET name = :newName, "
@@ -435,4 +436,4 @@ void deleteCollection(QString collectionName)
     query.bindValue(":name", collectionName);
     query.exec();
 }
-}
+} // Namespace queries
