@@ -595,7 +595,7 @@ void SummaryWindow::on_actionFullscreen_triggered()
 void SummaryWindow::on_actionExportHtml_triggered()
 {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "/", tr("*.html"));
-    ofstream htmlFile(filePath.toStdString());
+    std::ofstream htmlFile(filePath.toStdString());
     htmlFile << ui->textEditor->toHtml().toStdString();
     htmlFile.close();
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
