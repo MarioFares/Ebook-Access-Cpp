@@ -27,8 +27,11 @@ void linkCollectionDialog::on_buttonOk_clicked()
     if(collectionName.isEmpty())
     {
         common::showMsgBox("Name Error!", "Name cannot be empty.", ":/summarystyle.qss", QMessageBox::Warning, ":/icons/books_icon.png");
-    }else{
-    this->close();}
+    }
+    else
+    {
+        this->close();
+    }
 }
 
 void linkCollectionDialog::setDataOnOpen()
