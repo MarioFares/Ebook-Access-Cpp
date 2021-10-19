@@ -21,6 +21,11 @@
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>
 
+// Define Size Conversion Factors
+constexpr quint32 KBF = 1024;
+constexpr quint32 MBF = 1024 * 1024;
+constexpr quint32 GBF = 1024 * 1024 * 1024;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -154,15 +159,15 @@ double MainWindow::changeBookSizeUnit(double size, QString unit)
 {
     if (unit == "KB")
     {
-        size /= 1024;
+        size /= KBF;
     }
     else if (unit == "MB")
     {
-        size /= (1024 * 1024);
+        size /= MBF;
     }
     else if (unit == "GB")
     {
-        size /= (1024 * 1024 * 1024);
+        size /= GBF;
     }
 
     return size;
@@ -253,7 +258,7 @@ void MainWindow::on_buttonSearchString_clicked()
     ui->ebooksListWidget->clear();
     QString stringToSearch = ui->textSearchBar->text();
     queries::selectNameBasedOnString(stringToSearch);
-    long count = 0;
+    quint32 count = 0;
     while(queries::query.next())
     {
         ui->ebooksListWidget->addItem(queries::query.value(0).toString());
@@ -384,31 +389,31 @@ void MainWindow::on_buttonSearchCriteria_clicked()
     QString genre = ui->comboBoxGenreCriteria->currentText();
     QString tags = ui->textTagsCriteria->text();
 
-    long long sizeTo = ui->spinBoxToSizeCriteria->value();
-    long long sizeFrom = ui->spinBoxFromSizeCriteria->value();
+    quint64 sizeTo = ui->spinBoxToSizeCriteria->value();
+    quint64 sizeFrom = ui->spinBoxFromSizeCriteria->value();
 
     if (ui->buttonSizeCriteria->text() == "KB")
     {
-        sizeTo = sizeTo * 1024;
-        sizeFrom = sizeFrom * 1024;
+        sizeTo = sizeTo * KBF;
+        sizeFrom = sizeFrom * KBF;
     }
     else if (ui->buttonSizeCriteria->text() == "MB")
     {
-        sizeTo = sizeTo * 1024 * 1024;
-        sizeFrom = sizeFrom * 1024 * 1024;
+        sizeTo = sizeTo * MBF;
+        sizeFrom = sizeFrom * MBF;
     }
     else
-    {   sizeTo = sizeTo * 1024 * 1024 * 1024;
-        sizeFrom = sizeFrom * 1024 * 1024 * 1024;
+    {   sizeTo = sizeTo * GBF;
+        sizeFrom = sizeFrom * GBF;
     }
 
-    long pagesTo = ui->spinBoxToPagesCriteria->value();
-    long pagesFrom = ui->spinBoxFromPagesCriteria->value();
+    quint32 pagesTo = ui->spinBoxToPagesCriteria->value();
+    quint32 pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
     QString ext = ui->textExts->text();
 
     queries::selectNameBasedOnCriteria(folder, genre, author, tags, ext, pagesFrom, pagesTo, sizeFrom, sizeTo);
-    long count = 0;
+    quint32 count = 0;
     while(queries::query.next())
     {
         ui->ebooksListWidget->addItem(queries::query.value(0).toString());
@@ -465,7 +470,7 @@ void MainWindow::on_buttonDetailsUpdate_clicked()
         QString folder = ui->textDetailsFolder->text();
         QString genre = ui->textDetailsGenre->text();
         QString tags = ui->textDetailsTags->text().trimmed();
-        int pages = ui->textDetailsPages->text().toInt();
+        quint32 pages = ui->textDetailsPages->text().toUInt();
 
         queries::selectPathBasedonName(oldName);
         queries::query.next();
@@ -502,11 +507,11 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     QString genre = ui->comboBoxGenreCriteria->currentText();
     QString tags = ui->textTagsCriteria->text();
     QString ext = ui->textExts->text();
-    int sizeTo = ui->spinBoxToSizeCriteria->value();
-    int sizeFrom = ui->spinBoxFromSizeCriteria->value();
+    quint32 sizeTo = ui->spinBoxToSizeCriteria->value();
+    quint32 sizeFrom = ui->spinBoxFromSizeCriteria->value();
     QString sizeIn = ui->buttonSizeCriteria->text();
-    int pagesTo = ui->spinBoxToPagesCriteria->value();
-    int pagesFrom = ui->spinBoxFromPagesCriteria->value();
+    quint32 pagesTo = ui->spinBoxToPagesCriteria->value();
+    quint32 pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
     searchNameDialog dialog(this);
     common::openDialog(&dialog, ":/style.qss");
@@ -531,17 +536,12 @@ void MainWindow::on_buttonSearchLoad_clicked()
         ui->comboBoxAuthorCriteria->setCurrentText(queries::query.value(2).toString());
         ui->comboBoxGenreCriteria->setCurrentText(queries::query.value(3).toString());
         ui->textTagsCriteria->setText(queries::query.value(4).toString());
-
-
         ui->textExts->setText(queries::query.value(5).toString());
-
-
-        ui->spinBoxFromSizeCriteria->setValue(queries::query.value(6).toInt());
-        ui->spinBoxToSizeCriteria->setValue(queries::query.value(7).toInt());
+        ui->spinBoxFromSizeCriteria->setValue(queries::query.value(6).toUInt());
+        ui->spinBoxToSizeCriteria->setValue(queries::query.value(7).toUInt());
         ui->buttonSizeCriteria->setText(queries::query.value(8).toString());
-
-        ui->spinBoxFromPagesCriteria->setValue(queries::query.value(9).toInt());
-        ui->spinBoxToPagesCriteria->setValue(queries::query.value(10).toInt());
+        ui->spinBoxFromPagesCriteria->setValue(queries::query.value(9).toUInt());
+        ui->spinBoxToPagesCriteria->setValue(queries::query.value(10).toUInt());
 
         ui->statusBar->showMessage("Search loaded.");
     }
@@ -551,7 +551,6 @@ void MainWindow::on_actionCleanEbooks_triggered()
 {
     cleanEbooksDialog dialog(this);
     common::openDialog(&dialog, ":/style.qss");
-
 }
 
 void MainWindow::on_buttonSummaries_clicked()
@@ -568,11 +567,11 @@ void MainWindow::on_actionChooseRandomBook_triggered()
 {
     queries::selectCountEbooks();
     queries::query.next();
-    int numberOfEbooks = queries::query.value(0).toInt();
+    quint32 numberOfEbooks = queries::query.value(0).toUInt();
     if (numberOfEbooks != 0)
     {
         srand((unsigned) time(0));
-        int randomNumber = 1 + (rand() % numberOfEbooks);
+        quint32 randomNumber = 1 + (rand() % numberOfEbooks);
         queries::selectNameBasedOnRowid(randomNumber);
         queries::query.next();
         QString randomName = queries::query.value(0).toString();
@@ -580,13 +579,14 @@ void MainWindow::on_actionChooseRandomBook_triggered()
         ui->ebooksListWidget->setCurrentRow(0);
         ui->statusBar->showMessage("Random Book: " + randomName);
     }
-
 }
 
 void MainWindow::on_ebooksListWidget_itemSelectionChanged()
 {
     if (ui->ebooksListWidget->count() >= 1)
+    {
         on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+    }
 }
 
 void MainWindow::on_actionFullscreen_triggered()
@@ -609,11 +609,17 @@ void MainWindow::on_buttonSizeCriteria_clicked()
 {
     QString currentText = ui->buttonSizeCriteria->text();
     if (currentText == "KB")
+    {
         ui->buttonSizeCriteria->setText("MB");
+    }
     else if (currentText == "MB")
+    {
         ui->buttonSizeCriteria->setText("GB");
+    }
     else
+    {
         ui->buttonSizeCriteria->setText("KB");
+    }
 }
 
 void MainWindow::on_buttonExtensions_clicked()
@@ -713,11 +719,17 @@ void MainWindow::on_buttonSizeUnit_clicked()
 {
     QString currentText = ui->buttonSizeUnit->text();
     if (currentText == "KB")
+    {
         ui->buttonSizeUnit->setText("MB");
+    }
     else if (currentText == "MB")
+    {
         ui->buttonSizeUnit->setText("GB");
+    }
     else
+    {
         ui->buttonSizeUnit->setText("KB");
+    }
 
     if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
