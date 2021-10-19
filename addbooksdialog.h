@@ -18,13 +18,14 @@ public:
     ~addBooksDialog();
 
 private slots:
-    void insertBooks(QFileInfo entry, QString tags, QString genre, QString author);
+    void insertBooks(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author);
 
-    void setupEntries(QString dir, bool recursive);
+    void setupEntries(const QString &dir, bool recursive);
 
-    void iterateInsertEntries(QVector<QFileInfo> entries, QVector<QString> exts, QString tags, QString genres, QString authors);
+    void iterateInsertEntries(const QVector<QFileInfo> &entries, const QVector<QString> &exts,
+                              const QString &tags, const QString &genres, const QString &authors);
 
-    QVector<QFileInfo> getEntriesVector(QString dir, bool recursive);
+    QVector<QFileInfo> getEntriesVector(const QString &dir, bool recursive);
 
     QVector<QString> getExtVector(QVector<QFileInfo> entries);
 

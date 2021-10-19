@@ -37,7 +37,7 @@ void addBooksDialog::on_buttonBrowseFolders_clicked()
     ui->textFolderPath->setText(dir);
 }
 
-void addBooksDialog::insertBooks(QFileInfo entry, QString tags, QString genre, QString author)
+void addBooksDialog::insertBooks(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author)
 {
     QString name = entry.completeBaseName();
     QString path = entry.absoluteFilePath();
@@ -48,7 +48,7 @@ void addBooksDialog::insertBooks(QFileInfo entry, QString tags, QString genre, Q
     queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author);
 }
 
-QVector<QFileInfo> addBooksDialog::getEntriesVector(QString dir, bool recursive)
+QVector<QFileInfo> addBooksDialog::getEntriesVector(const QString &dir, bool recursive)
 {
     QVector<QFileInfo> entriesVector;
     QDirIterator iterator(dir, QDir::Files, recursive ? QDirIterator::Subdirectories : QDirIterator::NoIteratorFlags);
@@ -72,7 +72,7 @@ QVector<QString> addBooksDialog::getExtVector(QVector<QFileInfo> entries)
     return extVector;
 }
 
-void addBooksDialog::setupEntries(QString dir, bool recursive)
+void addBooksDialog::setupEntries(const QString &dir, bool recursive)
 {
     QVector<QFileInfo> entriesVector = getEntriesVector(dir, recursive);
     QVector<QString> extVector = getExtVector(entriesVector);
@@ -92,13 +92,13 @@ void addBooksDialog::setupEntries(QString dir, bool recursive)
     iterateInsertEntries(entriesVector, selectedExts, tags, genres, authors);
 }
 
-void addBooksDialog::iterateInsertEntries(QVector<QFileInfo> entriesVector, QVector<QString> selectedExts,
-                                          QString tags, QString genres, QString authors)
+void addBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVector, const QVector<QString> &selectedExts,
+                                          const QString &tags, const QString &genres, const QString &authors)
 {
     queries::db.transaction();
     size_t count = entriesVector.size();
     double counter = 0;
-    for(QFileInfo &entry : entriesVector)
+    for(const QFileInfo &entry : entriesVector)
     {
         QString ext = "." + entry.suffix().toLower();
         quint32 progress = (counter / count) * 100;
