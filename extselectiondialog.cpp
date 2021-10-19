@@ -40,7 +40,9 @@ void extSelectionDialog::setExtVector()
     {
         QListWidgetItem *item = ui->listWidget->item(i);
         if(item->checkState() == Qt::Checked)
+        {
             outputVector.push_back(item->text());
+        }
     }
 }
 
@@ -63,14 +65,18 @@ void extSelectionDialog::on_buttonOk_clicked()
 void extSelectionDialog::on_buttonSelectAll_clicked()
 {
     for (int i = 0; i < ui->listWidget->count(); i++)
+    {
         ui->listWidget->item(i)->setCheckState(Qt::Checked);
+    }
 }
 
 
 void extSelectionDialog::on_buttonDeselectAll_clicked()
 {
     for (int i = 0; i < ui->listWidget->count(); i++)
+    {
         ui->listWidget->item(i)->setCheckState(Qt::Unchecked);
+    }
 }
 
 
