@@ -67,10 +67,10 @@ void openWindow(QMainWindow *window, QString stylesheetPath)
     window->show();
 }
 
-int getPageCount(QString path)
+quint32 getPageCount(QString path)
 {
     QFileInfo file(path);
-    int pages = 0;
+    quint32 pages = 0;
     if(file.suffix() == "pdf")
     {
         QProcess process;
@@ -92,12 +92,12 @@ QString openSheet(QString sheetUrl)
 
 QCompleter *dirCompleter(QWidget *parent)
 {
-    QCompleter *dirCompleter = new QCompleter(parent);
+    auto *dirCompleter = new QCompleter(parent);
     dirCompleter->setCaseSensitivity(Qt::CaseInsensitive);
     dirCompleter->setCompletionMode(QCompleter::PopupCompletion);
     QAbstractItemView *popup = dirCompleter->popup();
     popup->setStyleSheet(common::openSheet(":/style.qss"));
-    QFileSystemModel *model = new QFileSystemModel(dirCompleter);
+    auto *model = new QFileSystemModel(dirCompleter);
     model->setRootPath("/");
     model->sort(0, Qt::DescendingOrder);
     dirCompleter->setModel(model);
@@ -105,4 +105,4 @@ QCompleter *dirCompleter(QWidget *parent)
     return dirCompleter;
 }
 
-}
+} // Namespace common

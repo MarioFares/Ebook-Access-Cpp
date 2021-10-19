@@ -19,7 +19,7 @@ void showErrorMsg(QString title, QString message, QString stylesheetPath);
 
 void openWindow(QMainWindow *window, QString stylesheetPath);
 
-int getPageCount(QString path);
+quint32 getPageCount(QString path);
 
 QString openSheet(QString sheetUrl);
 
