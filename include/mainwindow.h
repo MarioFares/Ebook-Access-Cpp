@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QList>
 #include <QPointer>
+#include <QComboBox>
 #include <QMainWindow>
 #include <QApplication>
 #include <QListWidgetItem>
@@ -22,11 +23,14 @@ public:
     ~MainWindow();
 
 private slots:
+
     void closeEvent(QCloseEvent *event);
 
     void showSummary(const QString &name);
 
     void showLinkManager();
+
+    void refreshComboBox(QComboBox *comboBox);
 
     void refreshFolders();
 
@@ -57,6 +61,8 @@ private slots:
     void on_buttonDetailsClear_clicked();
 
     void on_buttonSortSearch_clicked();
+
+    void changeWidgetVisibility(QWidget *widget, QAction *action);
 
     void on_actionResetEbooks_triggered();
 
@@ -102,6 +108,8 @@ private slots:
 
     void on_actionHideLeftFrame_triggered();
 
+    void extSelectionSetup(const QString &title, const QString &prompt, QWidget *widget);
+
     void on_buttonExtensions_clicked();
 
     void on_buttonFolder_clicked();
@@ -138,5 +146,7 @@ private:
     Ui::MainWindow *ui;
     Qt::SortOrder SORT;
     QHash<QString, quint32> sizeConvFactors;
+    QHash<QString, QString> sizeUnits;
+
 };
 #endif // MAINWINDOW_H
