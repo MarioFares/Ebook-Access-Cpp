@@ -25,10 +25,6 @@ private slots:
     void iterateInsertEntries(const QVector<QFileInfo> &entries, const QVector<QString> &exts,
                               const QString &tags, const QString &genres, const QString &authors);
 
-    QVector<QFileInfo> getEntriesVector(const QString &dir, bool recursive);
-
-    QVector<QString> getExtVector(QVector<QFileInfo> entries);
-
     void on_buttonClose_clicked();
 
     void on_buttonBrowseFolders_clicked();
