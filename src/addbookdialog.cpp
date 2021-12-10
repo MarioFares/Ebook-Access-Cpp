@@ -1,14 +1,13 @@
-#include "include/addbookdialog.h"
 #include "ui_addbookdialog.h"
 
+#include "include/addbookdialog.h"
 #include "include/queries.h"
 #include "include/common.h"
 
 #include <QFileDialog>
 
-addBookDialog::addBookDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::addBookDialog)
+addBookDialog::addBookDialog(QWidget *parent):
+    QDialog(parent), ui(new Ui::addBookDialog)
 {
     ui->setupUi(this);
     ui->textPath->setCompleter(common::dirCompleter(this));
@@ -40,7 +39,7 @@ void addBookDialog::on_buttonClear_clicked()
 void addBookDialog::on_buttonBrowse_clicked()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
-                                                     tr("Open File"), "/", tr("All Files (*.*)"));
+        tr("Open File"), "/", tr("All Files (*.*)"));
 
     QFileInfo file(filePath);
     ui->textName->setText(file.completeBaseName());
@@ -65,13 +64,17 @@ void addBookDialog::on_buttonAdd_clicked()
     QString ext = ui->textExtension->text();
     QString tags = ui->textTags->text();
 
-    if(QFileInfo::exists(path))
+    QFileInfo file(path);
+    if (file.exists() && file.isFile())
     {
         queries::insertBooksQuery(name, path, folder, ext, size,
-                                  pages, tags, genre, author);
+            pages, tags, genre, author);
         common::showMsgBox("Success!", "Ebook successfully added.",
-                           ":/styles/summarystyle.qss", QMessageBox::Information,
-                           ":/icons/books_icon.png");
+            ":/styles/summarystyle.qss", QMessageBox::Information,
+            ":/icons/books_icon.png");
+    }
+    else
+    {
+        common::showMsgBox("Path Error!", "File path not valid!", ":/styles/style.qss", QMessageBox::Warning, ":/icons/books_icon.png");
     }
 }
-
