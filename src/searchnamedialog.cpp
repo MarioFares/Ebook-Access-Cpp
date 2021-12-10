@@ -1,11 +1,10 @@
-#include "include/searchnamedialog.h"
 #include "ui_searchnamedialog.h"
 
+#include "include/searchnamedialog.h"
 #include "include/common.h"
 
-searchNameDialog::searchNameDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::searchNameDialog)
+searchNameDialog::searchNameDialog(QWidget *parent):
+    QDialog(parent), ui(new Ui::searchNameDialog)
 {
     ui->setupUi(this);
 }
@@ -20,11 +19,10 @@ void searchNameDialog::on_buttonCancel_clicked()
     this->close();
 }
 
-
 void searchNameDialog::on_buttonOk_clicked()
 {
     searchName = ui->lineEdit->text();
-    if(searchName.isEmpty())
+    if (searchName.isEmpty())
     {
         common::showMsgBox("Name Error!", "Name cannot be empty.", ":/styles/summarystyle.qss", QMessageBox::Warning, ":/icons/books_icon.png");
     }
@@ -33,4 +31,3 @@ void searchNameDialog::on_buttonOk_clicked()
         this->close();
     }
 }
-

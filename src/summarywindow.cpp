@@ -1,7 +1,8 @@
+#include "ui_summarywindow.h"
+
 #include "include/common.h"
 #include "include/queries.h"
 #include "include/summarywindow.h"
-#include "ui_summarywindow.h"
 #include "include/insertlinkdialog.h"
 #include "include/inserttabledialog.h"
 
@@ -18,9 +19,8 @@
 #include <QLocale>
 #include <QCalendar>
 
-SummaryWindow::SummaryWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::SummaryWindow)
+SummaryWindow::SummaryWindow(QWidget *parent):
+    QMainWindow(parent), ui(new Ui::SummaryWindow)
 {
     ui->setupUi(this);
     queries::connectToDatabase();
@@ -43,6 +43,7 @@ SummaryWindow::~SummaryWindow()
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
+
     delete ui;
 }
 
@@ -52,6 +53,7 @@ void SummaryWindow::closeEvent(QCloseEvent *event)
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
+
     event->accept();
     delete this;
 }
@@ -60,7 +62,7 @@ bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->textEditor && event->type() == QEvent::KeyPress)
     {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*> (event);
         switch (keyEvent->key())
         {
             case Qt::Key_Tab:
@@ -87,6 +89,7 @@ bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
                 return handleReturn();
         }
     }
+
     return QMainWindow::eventFilter(obj, event);
 }
 
@@ -111,9 +114,10 @@ bool SummaryWindow::handleBackspace()
     {
         cursor.clearSelection();
     }
+
     if (cursor.currentList() != nullptr && currentBlock.text().isEmpty())
     {
-        if(changeListIndentation(-1) == 0)
+        if (changeListIndentation(-1) == 0)
         {
             int index = ui->textEditor->textCursor().currentList()->itemNumber(currentBlock);
             cursor.currentList()->removeItem(index);
@@ -123,6 +127,7 @@ bool SummaryWindow::handleBackspace()
     {
         ui->textEditor->textCursor().deletePreviousChar();
     }
+
     return true;
 }
 
@@ -134,13 +139,15 @@ bool SummaryWindow::handleReturn()
     {
         cursor.clearSelection();
     }
+
     if (cursor.currentList() != nullptr && currentBlock.text().isEmpty())
     {
-        if(changeListIndentation(-1) == 0)
+        if (changeListIndentation(-1) == 0)
         {
             int index = ui->textEditor->textCursor().currentList()->itemNumber(currentBlock);
             cursor.currentList()->removeItem(index);
         }
+
         return true;
     }
     else
@@ -163,7 +170,7 @@ void SummaryWindow::searchEbooks(const QString &textToSearch)
 {
     ui->listWidget->clear();
     queries::selectNameBasedOnString(textToSearch);
-    while(queries::query.next())
+    while (queries::query.next())
     {
         ui->listWidget->addItem(queries::query.value(0).toString());
     }
@@ -174,15 +181,15 @@ void SummaryWindow::createList(QTextListFormat::Style listStyle)
     QTextCursor cursor = ui->textEditor->textCursor();
     cursor.setKeepPositionOnInsert(true);
     QTextList *currentList = cursor.currentList();
-    if(currentList != nullptr)
+    if (currentList != nullptr)
     {
         QTextListFormat listFormat;
         listFormat.setIndent(0);
         listFormat.setStyle(listStyle);
         currentList->setFormat(listFormat);
-        for(int i = currentList->count() - 1; i >= 0 ; --i)
+        for (int i = currentList->count() - 1; i >= 0; --i)
         {
-            currentList->removeItem( i );
+            currentList->removeItem(i);
         }
     }
     else
@@ -199,7 +206,7 @@ int SummaryWindow::changeListIndentation(const int &increment)
     QTextCursor cursor = ui->textEditor->textCursor();
     QTextList *currentList = cursor.currentList();
 
-    if(currentList != nullptr)
+    if (currentList != nullptr)
     {
         QTextListFormat listFormat;
         QTextListFormat::Style currentStyle = currentList->format().style();
@@ -207,16 +214,40 @@ int SummaryWindow::changeListIndentation(const int &increment)
         listFormat.setIndent(cursor.currentList()->format().indent() + increment);
         if (currentStyle == QTextListFormat::ListDisc || currentStyle == QTextListFormat::ListCircle || currentStyle == QTextListFormat::ListSquare)
         {
-            if (listFormat.indent() == 1 || listFormat.indent() % 3 == 1){listFormat.setStyle(QTextListFormat::ListDisc);}
-            if (listFormat.indent() == 2 || listFormat.indent() % 3 == 2){listFormat.setStyle(QTextListFormat::ListCircle);}
-            if (listFormat.indent() % 3 == 0){listFormat.setStyle(QTextListFormat::ListSquare);}
+            if (listFormat.indent() == 1 || listFormat.indent() % 3 == 1)
+            {
+                listFormat.setStyle(QTextListFormat::ListDisc);
+            }
+
+            if (listFormat.indent() == 2 || listFormat.indent() % 3 == 2)
+            {
+                listFormat.setStyle(QTextListFormat::ListCircle);
+            }
+
+            if (listFormat.indent() % 3 == 0)
+            {
+                listFormat.setStyle(QTextListFormat::ListSquare);
+            }
         }
+
         if (currentStyle == QTextListFormat::ListDecimal || currentStyle == QTextListFormat::ListLowerAlpha || currentStyle == QTextListFormat::ListLowerRoman)
         {
-            if (listFormat.indent() == 1 || listFormat.indent() % 3 == 1){listFormat.setStyle(QTextListFormat::ListDecimal);}
-            if (listFormat.indent() == 2 || listFormat.indent() % 3 == 2){listFormat.setStyle(QTextListFormat::ListLowerAlpha);}
-            if (listFormat.indent() % 3 == 0){listFormat.setStyle(QTextListFormat::ListLowerRoman);}
+            if (listFormat.indent() == 1 || listFormat.indent() % 3 == 1)
+            {
+                listFormat.setStyle(QTextListFormat::ListDecimal);
+            }
+
+            if (listFormat.indent() == 2 || listFormat.indent() % 3 == 2)
+            {
+                listFormat.setStyle(QTextListFormat::ListLowerAlpha);
+            }
+
+            if (listFormat.indent() % 3 == 0)
+            {
+                listFormat.setStyle(QTextListFormat::ListLowerRoman);
+            }
         }
+
         cursor.createList(listFormat);
         return listFormat.indent();
     }
@@ -396,7 +427,7 @@ void SummaryWindow::on_textEditor_currentCharFormatChanged()
 
 void SummaryWindow::on_buttonHighlight_clicked()
 {
-    QTextCharFormat currentFormat =  ui->textEditor->currentCharFormat();
+    QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
     currentFormat.setBackground(currentFormat.background() == Qt::yellow ? Qt::white : Qt::yellow);
     ui->textEditor->setCurrentCharFormat(currentFormat);
     on_textEditor_currentCharFormatChanged();
@@ -465,7 +496,7 @@ void SummaryWindow::on_buttonInsertLine_clicked()
 void SummaryWindow::on_actionResetFormat_triggered()
 {
     QFont currentFont = ui->textEditor->currentFont();
-    QTextCharFormat currentFormat =  ui->textEditor->currentCharFormat();
+    QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
 
     currentFont.setBold(false);
     currentFont.setItalic(false);
@@ -485,7 +516,7 @@ void SummaryWindow::on_buttonInsertImage_clicked()
     QString file = QFileDialog::getOpenFileName(this,
         tr("Select Image"), "/", tr("Image Files (*.jpeg *.jpg *.png *.gif *.apng *.svg *.bmp *.ico)"));
 
-      ui->textEditor->textCursor().insertHtml(QString(R"(<img src="%1" alt = ""/>)").arg( file ));
+    ui->textEditor->textCursor().insertHtml(QString(R"(<img src="%1" alt =""/>)").arg(file));
 }
 
 void SummaryWindow::on_actionPaste_triggered()
@@ -513,17 +544,20 @@ void SummaryWindow::on_actionClearSearch_triggered()
 
 void SummaryWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
-    if(!ui->labelTitle->text().isEmpty())
+    if (!ui->labelTitle->text().isEmpty())
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
+
     ui->textEditor->clear();
     ui->labelTitle->setText(item->text());
     queries::selectSummaryBasedonName(item->text());
     queries::query.next();
     QString summary = queries::query.value(0).toString();
-    if (summary != "N/A"){ui->textEditor->insertHtml(summary);}
-
+    if (summary != "N/A")
+    {
+        ui->textEditor->insertHtml(summary);
+    }
 }
 
 void SummaryWindow::on_actionPrint_triggered()
@@ -562,13 +596,13 @@ void SummaryWindow::on_buttonLink_clicked()
 
     if (!dialog.title.isEmpty() && !dialog.link.isEmpty())
     {
-       QTextCharFormat charFormat;
-       charFormat.setFontUnderline(true);
-       charFormat.setForeground(QColor("blue"));
-       charFormat.setAnchor(true);
-       charFormat.setAnchorHref(dialog.link);
-       charFormat.setToolTip(dialog.link);
-       ui->textEditor->textCursor().insertText(dialog.title, charFormat);
+        QTextCharFormat charFormat;
+        charFormat.setFontUnderline(true);
+        charFormat.setForeground(QColor("blue"));
+        charFormat.setAnchor(true);
+        charFormat.setAnchorHref(dialog.link);
+        charFormat.setToolTip(dialog.link);
+        ui->textEditor->textCursor().insertText(dialog.title, charFormat);
     }
 }
 
@@ -606,7 +640,6 @@ void SummaryWindow::on_actionExportHtml_triggered()
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
-
 void SummaryWindow::on_buttonEditorBackColor_clicked()
 {
     QColorDialog dialog(this);
@@ -622,6 +655,7 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
         currentFrame->setFrameFormat(currentFormat);
         return;
     }
+
     // Apply to editor background
     ui->textEditor->setStyleSheet(styleSheet);
     ui->buttonEditorBackColor->setStyleSheet(styleSheet);
@@ -633,18 +667,19 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     {
         ui->buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
     }
+
     ui->buttonEditorBackColor->update();
 
 }
 
-
 void SummaryWindow::on_actionSentenceCase_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    if(cursor.selectedText().isEmpty())
+    if (cursor.selectedText().isEmpty())
     {
         return;
     }
+
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
     newText.append(tempList[0].at(0).toUpper() + tempList[0].mid(1).toLower());
@@ -657,14 +692,14 @@ void SummaryWindow::on_actionSentenceCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-
 void SummaryWindow::on_actionUpperCase_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    if(cursor.selectedText().isEmpty())
+    if (cursor.selectedText().isEmpty())
     {
         return;
     }
+
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
     for (int i = 1; i < tempList.size(); i++)
@@ -676,14 +711,14 @@ void SummaryWindow::on_actionUpperCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-
 void SummaryWindow::on_actionLowerCase_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    if(cursor.selectedText().isEmpty())
+    if (cursor.selectedText().isEmpty())
     {
         return;
     }
+
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
     for (int i = 1; i < tempList.size(); i++)
@@ -695,19 +730,19 @@ void SummaryWindow::on_actionLowerCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-
 void SummaryWindow::on_actionCapitalCase_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    if(cursor.selectedText().isEmpty())
+    if (cursor.selectedText().isEmpty())
     {
         return;
     }
+
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
     for (int i = 1; i < tempList.size(); i++)
     {
-        if (tempList[i].size() >  1)
+        if (tempList[i].size() > 1)
         {
             newText.append(tempList[i].at(0).toUpper() + tempList[i].mid(1).toLower());
         }
@@ -721,7 +756,6 @@ void SummaryWindow::on_actionCapitalCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-
 void SummaryWindow::on_actionSelectCurrentLine_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
@@ -729,7 +763,6 @@ void SummaryWindow::on_actionSelectCurrentLine_triggered()
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     ui->textEditor->setTextCursor(cursor);
 }
-
 
 void SummaryWindow::on_actionDuplicateCurrentLine_triggered()
 {
@@ -742,7 +775,6 @@ void SummaryWindow::on_actionDuplicateCurrentLine_triggered()
     cursor.insertText(currentLine);
 }
 
-
 void SummaryWindow::on_actionDeleteCurrentLine_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
@@ -752,32 +784,28 @@ void SummaryWindow::on_actionDeleteCurrentLine_triggered()
     cursor.deletePreviousChar();
 }
 
-
 void SummaryWindow::on_actionZoomIn_triggered()
 {
     ui->textEditor->zoomIn(5);
 }
-
 
 void SummaryWindow::on_actionZoomOut_triggered()
 {
     ui->textEditor->zoomOut(5);
 }
 
-
 void SummaryWindow::on_actionDateNormal_triggered()
 {
     QDate currDate = QDate::currentDate();
     QLocale locale;
     QCalendar cal;
-    QString dayName =  locale.dayName(currDate.dayOfWeek(), QLocale::LongFormat);
+    QString dayName = locale.dayName(currDate.dayOfWeek(), QLocale::LongFormat);
     quint32 dayNum = currDate.day();
     quint32 yearNum = currDate.year();
-    QString monthName =  cal.monthName(locale, currDate.month(), yearNum);
-    QString dateStr = dayName +  ", " + monthName + " " +  QString::number(dayNum) + ", " + QString::number(yearNum);
+    QString monthName = cal.monthName(locale, currDate.month(), yearNum);
+    QString dateStr = dayName + ", " + monthName + " " + QString::number(dayNum) + ", " + QString::number(yearNum);
     ui->textEditor->textCursor().insertText(dateStr);
 }
-
 
 void SummaryWindow::on_actionDateShort_triggered()
 {
@@ -789,25 +817,22 @@ void SummaryWindow::on_actionDateShort_triggered()
     ui->textEditor->textCursor().insertText(dateStr);
 }
 
-
 void SummaryWindow::on_actionTableRow_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    QTextTable *currTable =  cursor.currentTable();
+    QTextTable *currTable = cursor.currentTable();
     if (currTable != nullptr)
     {
         currTable->insertRows(currTable->cellAt(cursor).row(), 1);
     }
 }
 
-
 void SummaryWindow::on_actionTableColumn_triggered()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
-    QTextTable *currTable =  cursor.currentTable();
+    QTextTable *currTable = cursor.currentTable();
     if (currTable != nullptr)
     {
         currTable->insertColumns(currTable->cellAt(cursor).column(), 1);
     }
 }
-

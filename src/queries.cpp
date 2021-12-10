@@ -1,12 +1,13 @@
 #include "include/queries.h"
+#include "include/common.h"
+
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QSqlError>
 #include <QSqlQuery>
-#include "include/common.h"
 
-namespace queries {
-
+namespace queries
+{
 QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "SQLITE");
 QSqlQuery query(db);
 
@@ -24,17 +25,19 @@ QString genExtQuery(QString entity, QString text)
     QString genQuery = "";
     if (text.isEmpty())
     {
-        genQuery =  "SELECT DISTINCT " + entity + " FROM ebooks";
+        genQuery = "SELECT DISTINCT " + entity + " FROM ebooks";
     }
     else
     {
         QStringList list = text.split(common::SEP);
-        for (QString &ent : list)
+        for (QString &ent: list)
         {
-            genQuery += "\"" + ent + "\", "; // ent must not be simplified
+            genQuery += "\"" + ent + "\", ";	// ent must not be simplified
         }
+
         genQuery.remove(genQuery.lastIndexOf(','), 1);
     }
+
     return genQuery;
 }
 
@@ -43,32 +46,35 @@ QString genTagQuery(QString tags)
     QString genQuery = "";
     if (tags.isEmpty())
     {
-        genQuery =  "AND tags LIKE \'%\'";
+        genQuery = "AND tags LIKE \'%\'";
     }
     else
     {
         QStringList tagList = tags.split(common::SEP);
-        for (QString &tag : tagList)
+        for (QString &tag: tagList)
         {
-            genQuery += "AND tags LIKE \'%" + tag.simplified() + common::SEP +"%\'";
+            genQuery += "AND tags LIKE \'%" + tag.simplified() + common::SEP + "%\'";
         }
     }
+
     return genQuery;
 }
 
 QString cleanTags(QString tags)
 {
     QString cleanString = "";
-    while(tags.endsWith(common::SEP))
+    while (tags.endsWith(common::SEP))
     {
-        tags.remove(-1, 1); // remove 1 char at pos -1
+        tags.remove(-1, 1);	// remove 1 char at pos -1
     }
+
     QStringList tagList = tags.split(common::SEP);
-    for (QString &tag : tagList)
+    for (QString &tag: tagList)
     {
         //cleanString += tag.simplified().remove(',') + ", ";
         cleanString += tag.simplified() + common::SEP;
     }
+
     return cleanString;
 }
 
@@ -76,19 +82,19 @@ QString cleanTags(QString tags)
 void createEbooksTable()
 {
     query.exec("CREATE TABLE IF NOT EXISTS ebooks ("
-                                                    "name TEXT NOT NULL,"
-                                                    "author TEXT DEFAULT \'N/A\',"
-                                                    "genre TEXT DEFAULT \'N/A\',"
-                                                    "path TEXT NOT NULL,"
-                                                    "ext TEXT NOT NULL,"
-                                                    "pages INT DEFAULT 0,"
-                                                    "size INT NOT NULL,"
-                                                    "folder TEXT NOT NULL,"
-                                                    "tags TEXT DEFAULT \'N/A\' NOT NULL,"
-                                                    "summary TEXT DEFAULT \'N/A\' NOT NULL,"
-                                                    "time_added DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),"
-                                                    "PRIMARY KEY (name)"
-                                                    ")");
+        "name TEXT NOT NULL,"
+        "author TEXT DEFAULT \'N/A\',"
+        "genre TEXT DEFAULT \'N/A\',"
+        "path TEXT NOT NULL,"
+        "ext TEXT NOT NULL,"
+        "pages INT DEFAULT 0,"
+        "size INT NOT NULL,"
+        "folder TEXT NOT NULL,"
+        "tags TEXT DEFAULT \'N/A\' NOT NULL,"
+        "summary TEXT DEFAULT \'N/A\' NOT NULL,"
+        "time_added DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')),"
+        "PRIMARY KEY (name)"
+        ")");
 
     query.exec("CREATE UNIQUE INDEX IF NOT EXISTS ebooks_names_index ON ebooks(name)");
 }
@@ -100,20 +106,20 @@ void createSettingsTable()
 
 void createSearchTable()
 {
-    query.exec("CREATE TABLE IF NOT EXISTS searches ( "
-                                                    "search_name TEXT NOT NULL, "
-                                                    "folder TEXT, "
-                                                    "author TEXT, "
-                                                    "genre TEXT, "
-                                                    "tags TEXT, "
-                                                    "ext TEXT, "
-                                                    "size_from INT, "
-                                                    "size_to INT, "
-                                                    "size_in TEXT, "
-                                                    "pages_from INT, "
-                                                    "pages_to INT, "
-                                                    "PRIMARY KEY (search_name) "
-                                                    ")");
+    query.exec("CREATE TABLE IF NOT EXISTS searches ("
+        "search_name TEXT NOT NULL, "
+        "folder TEXT, "
+        "author TEXT, "
+        "genre TEXT, "
+        "tags TEXT, "
+        "ext TEXT, "
+        "size_from INT, "
+        "size_to INT, "
+        "size_in TEXT, "
+        "pages_from INT, "
+        "pages_to INT, "
+        "PRIMARY KEY (search_name) "
+        ")");
 
     query.exec("CREATE INDEX IF NOT EXISTS searches_names_index ON searches(search_name)");
 
@@ -121,64 +127,108 @@ void createSearchTable()
 
 void createLinkCollectionsTable()
 {
-    query.exec("CREATE TABLE IF NOT EXISTS link_collections ( "
-                                                    "collection_name TEXT NOT NULL, "
-                                                    "PRIMARY KEY (collection_name) "
-                                                    ")");
+    query.exec("CREATE TABLE IF NOT EXISTS link_collections ("
+        "collection_name TEXT NOT NULL, "
+        "PRIMARY KEY (collection_name) "
+        ")");
 }
 
 void createLinksTable()
 {
-    query.exec("CREATE TABLE IF NOT EXISTS links ( "
-                                                    "link_name TEXT NOT NULL, "
-                                                    "link_path TEXT NOT NULL, "
-                                                    "collection_id INT NOT NULL, "
-                                                    "PRIMARY KEY (link_path, collection_id) "
-                                                    ")");
+    query.exec("CREATE TABLE IF NOT EXISTS links ("
+        "link_name TEXT NOT NULL, "
+        "link_path TEXT NOT NULL, "
+        "collection_id INT NOT NULL, "
+        "PRIMARY KEY (link_path, collection_id) "
+        ")");
 }
+
 // Reset Tables
 
-void resetSettingsTableQuery(){query.exec("DELETE FROM settings");}
+void resetSettingsTableQuery()
+{
+    query.exec("DELETE FROM settings");
+}
 
-void resetEbooksTableQuery(){query.exec("DELETE FROM ebooks");}
+void resetEbooksTableQuery()
+{
+    query.exec("DELETE FROM ebooks");
+}
 
-void resetSummaries(){query.exec(R"(UPDATE ebooks SET summary="N/A" WHERE summary <> "N/A")");}
+void resetSummaries()
+{
+    query.exec(R"(UPDATE ebooks SET summary="N/A "
+                "WHERE summary <> "N/A")");
+}
 
-void resetTags(){query.exec("UPDATE ebooks SET tags=\"N/A" + common::SEP + "\" WHERE tags <> \"N/A" + common::SEP + "\"");}
+void resetTags()
+{
+    query.exec("UPDATE ebooks SET tags=\"N/A" + common::SEP + "\" WHERE tags < > \"N/A" + common::SEP + "\"");
+}
 
-void resetSearchesTable(){query.exec("DELETE FROM searches");}
+void resetSearchesTable()
+{
+    query.exec("DELETE FROM searches");
+}
 
-void resetLinksTable() {query.exec("DELETE FROM links");}
+void resetLinksTable()
+{
+    query.exec("DELETE FROM links");
+}
 
-void resetCollectionsTable() {query.exec("DELETE FROM link_collections");}
+void resetCollectionsTable()
+{
+    query.exec("DELETE FROM link_collections");
+}
 
 // Select
-void selectFoldersQuery(){query.exec("SELECT DISTINCT folder FROM ebooks");}
+void selectFoldersQuery()
+{
+    query.exec("SELECT DISTINCT folder FROM ebooks");
+}
 
-void selectAuthorsQuery(){query.exec("SELECT DISTINCT author FROM ebooks");}
+void selectAuthorsQuery()
+{
+    query.exec("SELECT DISTINCT author FROM ebooks");
+}
 
-void selectGenreQuery(){query.exec("SELECT DISTINCT genre FROM ebooks");}
+void selectGenreQuery()
+{
+    query.exec("SELECT DISTINCT genre FROM ebooks");
+}
 
-void selectSearchesQuery(){query.exec("SELECT search_name FROM searches");}
+void selectSearchesQuery()
+{
+    query.exec("SELECT search_name FROM searches");
+}
 
-void selectPath(){query.exec(QString("SELECT path FROM ebooks"));}
+void selectPath()
+{
+    query.exec(QString("SELECT path FROM ebooks"));
+}
 
-void selectExt(){query.exec(QString("SELECT DISTINCT ext FROM ebooks"));}
+void selectExt()
+{
+    query.exec(QString("SELECT DISTINCT ext FROM ebooks"));
+}
 
-void selectTags(){query.exec(QString("SELECT DISTINCT tags FROM ebooks"));}
+void selectTags()
+{
+    query.exec(QString("SELECT DISTINCT tags FROM ebooks"));
+}
 
 void selectAllTable(const QString &tableName)
 {
     QStringList tables = queries::db.tables();
     if (tables.contains(tableName))
     {
-        queries::query.exec("SELECT * FROM " + tableName.trimmed());
+        queries::query.exec("SELECT *FROM " + tableName.trimmed());
     }
 }
 
 void selectSearchCriteriaQuery(QString searchName)
 {
-    query.prepare("SELECT * FROM searches WHERE search_name = :searchName");
+    query.prepare("SELECT *FROM searches WHERE search_name = :searchName");
     query.bindValue(":searchName", searchName);
     query.exec();
 }
@@ -203,7 +253,8 @@ void selectPathBasedonName(QString name)
     query.exec();
 }
 
-void selectNameBasedOnString(QString stringToSearch){
+void selectNameBasedOnString(QString stringToSearch)
+{
     query.prepare(QString("SELECT name FROM ebooks WHERE name LIKE :string"));
     query.bindValue(":string", "%" + stringToSearch + "%");
     query.exec();
@@ -211,7 +262,7 @@ void selectNameBasedOnString(QString stringToSearch){
 
 void selectAllBasedonName(QString name)
 {
-    query.prepare(QString("SELECT * FROM ebooks WHERE name=:name"));
+    query.prepare(QString("SELECT *FROM ebooks WHERE name=:name"));
     query.bindValue(":name", name);
     query.exec();
 }
@@ -224,18 +275,17 @@ void selectSummaryBasedonName(QString name)
 }
 
 void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-                                      quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize)
+    quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize)
 {
-
     query.prepare(QString("SELECT name FROM ebooks "
-                           "WHERE folder in (" + genExtQuery("folder", folder) + ") "
-                           + "AND genre in (" + genExtQuery("genre", genre) + ") "
-                           + "AND author in (" + genExtQuery("author", author) + ") "
-                           + "AND  ((size >= :fromSize AND  size <= :toSize) OR (size IS NULL)) "
-                           "AND  ((pages >= :fromPages AND  pages <= :toPages) OR (pages IS NULL)) "
-                          "AND ext in (" + genExtQuery("ext", ext) + ") "
-                           + genTagQuery(tags) +
-                           ""));
+        "WHERE folder in (" + genExtQuery("folder", folder) + ") " +
+        "AND genre in (" + genExtQuery("genre", genre) + ") " +
+        "AND author in (" + genExtQuery("author", author) + ") " +
+        "AND  ((size >= :fromSize AND  size <= :toSize) OR (size IS NULL)) "
+        "AND  ((pages >= :fromPages AND  pages <= :toPages) OR (pages IS NULL)) "
+        "AND ext in (" + genExtQuery("ext", ext) + ") " +
+        genTagQuery(tags) +
+        ""));
 
     query.bindValue(":fromSize", fromSize);
     query.bindValue(":toSize", toSize);
@@ -263,9 +313,9 @@ void selectCollections(QString searchString)
 void selectLinksBasedOnCollection(QString collectionName, QString searchString)
 {
     query.prepare(QString("SELECT l.link_name, l.link_path FROM links l "
-                           "INNER JOIN link_collections c ON c.rowid = l.collection_id "
-                           "WHERE c.collection_name = :collection "
-                           "AND l.link_name LIKE :string"));
+        "INNER JOIN link_collections c ON c.rowid = l.collection_id "
+        "WHERE c.collection_name = :collection "
+        "AND l.link_name LIKE :string"));
     query.bindValue(":collection", collectionName);
     query.bindValue(":string", "%" + searchString + "%");
     query.exec();
@@ -274,17 +324,18 @@ void selectLinksBasedOnCollection(QString collectionName, QString searchString)
 void selectLinkRecord(QString name)
 {
     query.prepare(QString("SELECT link_name, link_path FROM links "
-                           "WHERE link_name = :name "));
+        "WHERE link_name = :name "));
     query.bindValue(":name", name);
     query.exec();
 }
+
 // Insert
 
 void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
-                      quint32 pages, QString tags, QString genre, QString author)
+    quint32 pages, QString tags, QString genre, QString author)
 {
     query.prepare("INSERT INTO ebooks (name, path, folder, ext, size, pages, tags, genre, author) "
-                              "VALUES (:name,:path,:folder,:ext,:size, :pages, :tags, :genre, :author)");
+        "VALUES (:name,:path,:folder,:ext,:size, :pages, :tags, :genre, :author)");
     query.bindValue(":name", name);
     query.bindValue(":path", path);
     query.bindValue(":folder", folder);
@@ -299,34 +350,34 @@ void insertBooksQuery(QString name, QString path, QString folder, QString ext, q
 }
 
 void insertSearchQuery(QString searchName, QString folder, QString author,
-                       QString genre, QString tags, QString ext,
-                       quint32 fromSize, quint32 toSize, QString sizeIn,
-                       quint32 fromPages, quint32 toPages)
+    QString genre, QString tags, QString ext,
+    quint32 fromSize, quint32 toSize, QString sizeIn,
+    quint32 fromPages, quint32 toPages)
 {
     query.prepare(QString("INSERT INTO searches "
-                                                   "(search_name, "
-                                                    "folder, "
-                                                    "author, "
-                                                    "genre, "
-                                                    "tags, "
-                                                    "ext, "
-                                                    "size_from, "
-                                                    "size_to, "
-                                                    "size_in, "
-                                                    "pages_from, "
-                                                    "pages_to) "
-                                                    "VALUES "
-                                                    "(:search_name, "
-                                                    ":folder, "
-                                                    ":author, "
-                                                    ":genre, "
-                                                    ":tags, "
-                                                    ":ext, "
-                                                    ":size_from, "
-                                                    ":size_to, "
-                                                    ":size_in, "
-                                                    ":pages_from, "
-                                                    ":pages_to) "));
+        "(search_name, "
+        "folder, "
+        "author, "
+        "genre, "
+        "tags, "
+        "ext, "
+        "size_from, "
+        "size_to, "
+        "size_in, "
+        "pages_from, "
+        "pages_to) "
+        "VALUES "
+        "(:search_name, "
+        ":folder, "
+        ":author, "
+        ":genre, "
+        ":tags, "
+        ":ext, "
+        ":size_from, "
+        ":size_to, "
+        ":size_in, "
+        ":pages_from, "
+        ":pages_to) "));
 
     query.bindValue(":search_name", searchName);
     query.bindValue(":folder", folder);
@@ -346,7 +397,7 @@ void insertSearchQuery(QString searchName, QString folder, QString author,
 void insertLinkCollection(QString collectionName)
 {
     query.prepare(QString("INSERT INTO link_collections (collection_name) "
-                                                        "VALUES (:collection_name) "));
+        "VALUES (:collection_name) "));
     query.bindValue(":collection_name", collectionName);
     query.exec();
 
@@ -355,7 +406,7 @@ void insertLinkCollection(QString collectionName)
 void insertLink(int collectionId, QString linkName, QString linkPath)
 {
     query.prepare(QString("INSERT INTO links (link_name, link_path, collection_id) "
-                                            "VALUES (:link_name, :link_path, :collection_id)"));
+        "VALUES (:link_name, :link_path, :collection_id)"));
     query.bindValue(":link_name", linkName);
     query.bindValue(":link_path", linkPath);
     query.bindValue(":collection_id", collectionId);
@@ -365,17 +416,17 @@ void insertLink(int collectionId, QString linkName, QString linkPath)
 // Update
 
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-                            QString author, quint32 pages, QString tags, QString path)
+    QString author, quint32 pages, QString tags, QString path)
 {
     query.prepare(QString("UPDATE ebooks "
-                          "SET name = :newName, "
-                               "folder = :folder, "
-                               "genre = :genre, "
-                               "author = :author, "
-                               "pages = :pages, "
-                                "tags = :tags, "
-                                "path = :path "
-                           "WHERE name = :oldName"));
+        "SET name = :newName, "
+        "folder = :folder, "
+        "genre = :genre, "
+        "author = :author, "
+        "pages = :pages, "
+        "tags = :tags, "
+        "path = :path "
+        "WHERE name = :oldName"));
 
     query.bindValue(":newName", newName);
     query.bindValue(":folder", folder);
@@ -400,8 +451,8 @@ void updateSummary(QString name, QString summary)
 void updateLinkDetails(QString oldName, QString newName, QString path)
 {
     query.prepare("UPDATE links SET link_name = :newName, "
-                                    "link_path = :path "
-                                    "WHERE link_name = :oldName");
+        "link_path = :path "
+        "WHERE link_name = :oldName");
     query.bindValue(":newName", newName);
     query.bindValue(":path", path);
     query.bindValue(":oldName", oldName);
@@ -411,7 +462,7 @@ void updateLinkDetails(QString oldName, QString newName, QString path)
 void updateLinkCollectionName(QString oldName, QString newName)
 {
     query.prepare("UPDATE link_collections SET collection_name = :newName "
-                                    "WHERE collection_name = :oldName");
+        "WHERE collection_name = :oldName");
     query.bindValue(":newName", newName);
     query.bindValue(":oldName", oldName);
     query.exec();
@@ -449,4 +500,4 @@ void deleteCollection(QString collectionName)
     query.bindValue(":name", collectionName);
     query.exec();
 }
-} // Namespace queries
+}	// Namespace queries

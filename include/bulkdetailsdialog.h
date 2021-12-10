@@ -14,9 +14,9 @@ class bulkDetailsDialog : public QDialog
 public:
     explicit bulkDetailsDialog(QWidget *parent = nullptr);
 
-    QString author = "";
-    QString genre = "";
-    QString tags = "";
+    QString author;
+    QString genre;
+    QString tags;
 
     ~bulkDetailsDialog();
 

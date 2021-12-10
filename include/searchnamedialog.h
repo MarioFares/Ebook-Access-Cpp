@@ -13,7 +13,9 @@ class searchNameDialog : public QDialog
 
 public:
     explicit searchNameDialog(QWidget *parent = nullptr);
+
     QString searchName;
+
     ~searchNameDialog();
 
 private slots:

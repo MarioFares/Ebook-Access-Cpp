@@ -13,8 +13,11 @@ class linkCollectionDialog : public QDialog
 
 public:
     explicit linkCollectionDialog(QWidget *parent = nullptr);
+
     QString collectionName;
+
     void setDataOnOpen();
+
     ~linkCollectionDialog();
 
 private slots:

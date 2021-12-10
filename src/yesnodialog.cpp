@@ -1,9 +1,8 @@
 #include "include/yesnodialog.h"
 #include "ui_yesnodialog.h"
 
-yesNoDialog::yesNoDialog(QWidget *parent,  QString windowTitle, QString title , QString prompt) :
-    QDialog(parent),
-    ui(new Ui::yesNoDialog)
+yesNoDialog::yesNoDialog(QWidget *parent, QString windowTitle, QString title, QString prompt):
+    QDialog(parent), ui(new Ui::yesNoDialog)
 {
     ui->setupUi(this);
     setWindowTitle(windowTitle);

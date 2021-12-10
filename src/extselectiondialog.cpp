@@ -1,12 +1,12 @@
-#include "include/extselectiondialog.h"
 #include "ui_extselectiondialog.h"
+
+#include "include/extselectiondialog.h"
 
 #include <QVector>
 #include <QListWidgetItem>
 
-extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVector, QString title, QString label) :
-    QDialog(parent),
-    ui(new Ui::extSelectionDialog)
+extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVector, QString title, QString label):
+    QDialog(parent), ui(new Ui::extSelectionDialog)
 {
     ui->setupUi(this);
     inputVector = extVector;
@@ -19,7 +19,7 @@ extSelectionDialog::extSelectionDialog(QWidget *parent, QVector<QString> extVect
 void extSelectionDialog::fillListWidget(QVector<QString> extVector)
 {
     ui->listWidget->clear();
-    for (QString &entry : extVector)
+    for (QString &entry: extVector)
     {
         auto *item = new QListWidgetItem(ui->listWidget);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -39,7 +39,7 @@ void extSelectionDialog::setExtVector()
     for (int i = 0; i < ui->listWidget->count(); i++)
     {
         QListWidgetItem *item = ui->listWidget->item(i);
-        if(item->checkState() == Qt::Checked)
+        if (item->checkState() == Qt::Checked)
         {
             outputVector.push_back(item->text());
         }
@@ -70,7 +70,6 @@ void extSelectionDialog::on_buttonSelectAll_clicked()
     }
 }
 
-
 void extSelectionDialog::on_buttonDeselectAll_clicked()
 {
     for (int i = 0; i < ui->listWidget->count(); i++)
@@ -79,10 +78,8 @@ void extSelectionDialog::on_buttonDeselectAll_clicked()
     }
 }
 
-
 void extSelectionDialog::on_textSearch_textChanged(const QString &arg1)
 {
-    QList<QListWidgetItem *> items =  ui->listWidget->findItems(arg1, Qt::MatchContains);
+    QList<QListWidgetItem*> items = ui->listWidget->findItems(arg1, Qt::MatchContains);
     ui->listWidget->setCurrentItem(items.count() > 0 ? items[0] : ui->listWidget->currentItem());
 }
-
