@@ -3,70 +3,65 @@ QT += core gui sql printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
-
-# Set cpp versions
 QMAKE_CXXFLAGS += /std:c++17
-# Optimize for max speed ; Eq to /Og /Oi /Ot /Oy /Ob2 /GF /Gy
 QMAKE_CXXFLAGS += /O2
 
 
 SOURCES += \
-    addbookdialog.cpp \
-    addbooksdialog.cpp \
-    bookdetailswindow.cpp \
-    bulkdetailsdialog.cpp \
-    cleanebooksdialog.cpp \
-    common.cpp \
-    extselectiondialog.cpp \
-    insertlinkdialog.cpp \
-    inserttabledialog.cpp \
-    linkcollectiondialog.cpp \
-    linkmanagerwindow.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    queries.cpp \
-    searchnamedialog.cpp \
-    summarywindow.cpp \
-    yesnodialog.cpp
+    src/addbookdialog.cpp \
+    src/addbooksdialog.cpp \
+    src/bulkdetailsdialog.cpp \
+    src/cleanebooksdialog.cpp \
+    src/common.cpp \
+    src/dataviewerwindow.cpp \
+    src/extselectiondialog.cpp \
+    src/insertlinkdialog.cpp \
+    src/inserttabledialog.cpp \
+    src/linkcollectiondialog.cpp \
+    src/linkmanagerwindow.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/queries.cpp \
+    src/searchnamedialog.cpp \
+    src/summarywindow.cpp \
+    src/yesnodialog.cpp
+
 
 HEADERS += \
-    addbookdialog.h \
-    addbooksdialog.h \
-    bookdetailswindow.h \
-    bulkdetailsdialog.h \
-    cleanebooksdialog.h \
-    common.h \
-    extselectiondialog.h \
-    insertlinkdialog.h \
-    inserttabledialog.h \
-    linkcollectiondialog.h \
-    linkmanagerwindow.h \
-    mainwindow.h \
-    queries.h \
-    searchnamedialog.h \
-    summarywindow.h \
-    yesnodialog.h
+    include/addbookdialog.h \
+    include/addbooksdialog.h \
+    include/bulkdetailsdialog.h \
+    include/cleanebooksdialog.h \
+    include/common.h \
+    include/dataviewerwindow.h \
+    include/extselectiondialog.h \
+    include/insertlinkdialog.h \
+    include/inserttabledialog.h \
+    include/linkcollectiondialog.h \
+    include/linkmanagerwindow.h \
+    include/mainwindow.h \
+    include/queries.h \
+    include/searchnamedialog.h \
+    include/summarywindow.h \
+    include/yesnodialog.h
+
 
 FORMS += \
-    addbookdialog.ui \
-    addbooksdialog.ui \
-    bookdetailswindow.ui \
-    bulkdetailsdialog.ui \
-    cleanebooksdialog.ui \
-    extselectiondialog.ui \
-    insertlinkdialog.ui \
-    inserttabledialog.ui \
-    linkcollectiondialog.ui \
-    linkmanagerwindow.ui \
-    mainwindow.ui \
-    searchnamedialog.ui \
-    summarywindow.ui \
-    yesnodialog.ui
+    ui/addbookdialog.ui \
+    ui/addbooksdialog.ui \
+    ui/bulkdetailsdialog.ui \
+    ui/cleanebooksdialog.ui \
+    ui/dataviewerwindow.ui \
+    ui/extselectiondialog.ui \
+    ui/insertlinkdialog.ui \
+    ui/inserttabledialog.ui \
+    ui/linkcollectiondialog.ui \
+    ui/linkmanagerwindow.ui \
+    ui/mainwindow.ui \
+    ui/searchnamedialog.ui \
+    ui/summarywindow.ui \
+    ui/yesnodialog.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -74,14 +69,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    style.qss \
-    todo
+    resources/styles/style.qss \
+    resources/styles/summarystyle.qss \
+    resources/styles/textEditorStyle.qss \
+
 
 RESOURCES += \
-    completer.qrc \
-    images.qrc \
-    style.qrc
+    resources/images.qrc \
+    resources/style.qrc
 
-RC_ICONS = ./icons/icon.ico
+
+RC_ICONS = ./resources/icons/icon.ico
 
 
