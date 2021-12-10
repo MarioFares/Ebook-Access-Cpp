@@ -13,8 +13,11 @@ class insertTableDialog : public QDialog
 
 public:
     explicit insertTableDialog(QWidget *parent = nullptr);
-    int columnCount = 0;
-    int rowCount = 0;
+
+    int columnCount;
+
+    int rowCount;
+
     ~insertTableDialog();
 
 private slots:

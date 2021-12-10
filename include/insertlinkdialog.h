@@ -14,8 +14,11 @@ class insertLinkDialog : public QDialog
 public:
     explicit insertLinkDialog(QWidget *parent = nullptr);
     ~insertLinkDialog();
-    QString title = "";
-    QString  link = "";
+
+    QString title;
+
+    QString  link;
+
     void setDataOnOpen();
 
 private slots:

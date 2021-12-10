@@ -1,10 +1,13 @@
-#include "include/bulkdetailsdialog.h"
 #include "ui_bulkdetailsdialog.h"
 
-bulkDetailsDialog::bulkDetailsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::bulkDetailsDialog)
+#include "include/bulkdetailsdialog.h"
+
+bulkDetailsDialog::bulkDetailsDialog(QWidget *parent):
+    QDialog(parent), ui(new Ui::bulkDetailsDialog)
 {
+    author = "";
+    genre = "";
+    tags = "";
     ui->setupUi(this);
 }
 
@@ -39,13 +42,16 @@ void bulkDetailsDialog::on_buttonApply_clicked()
     {
         author = ui->textAuthor->text();
     }
+
     if (ui->textGenre->isEnabled())
     {
         genre = ui->textGenre->text();
     }
+
     if (ui->textTags->isEnabled())
     {
         tags = ui->textTags->text();
     }
+
     close();
 }
