@@ -62,8 +62,6 @@ private slots:
 
     void on_buttonSortSearch_clicked();
 
-    void changeWidgetVisibility(QWidget *widget, QAction *action);
-
     void on_actionResetEbooks_triggered();
 
     void on_actionHideSearchBar_triggered();

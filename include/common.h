@@ -24,5 +24,8 @@ namespace common
 
     QCompleter* dirCompleter(QWidget *parent);
 
+    void changeWidgetVisibility(QWidget *widget, QAction *action);
+
+
 }	// Namespace common
 #endif	// COMMON_H

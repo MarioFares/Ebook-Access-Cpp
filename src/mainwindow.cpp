@@ -293,19 +293,10 @@ void MainWindow::on_actionResetEbooks_triggered()
     ui->statusBar->showMessage("All ebooks have been deleted.");
 }
 
-void MainWindow::changeWidgetVisibility(QWidget *widget, QAction *action)
-{
-    bool isHidden = widget->isHidden();
-    widget->setHidden(!isHidden);
-
-    QString actionText = action->text();
-    actionText.replace(isHidden ? "Show" : "Hide", isHidden ? "Hide" : "Show", Qt::CaseInsensitive);
-    action->setText(actionText);
-}
 
 void MainWindow::on_actionHideSearchBar_triggered()
 {
-    changeWidgetVisibility(ui->frameSearchToolBar, ui->actionHideSearchBar);
+    common::changeWidgetVisibility(ui->frameSearchToolBar, ui->actionHideSearchBar);
 }
 
 void MainWindow::on_actionHideDetailsSection_triggered()
@@ -317,17 +308,17 @@ void MainWindow::on_actionHideDetailsSection_triggered()
 
 void MainWindow::on_actionHideRightFrame_triggered()
 {
-    changeWidgetVisibility(ui->frameMainRight, ui->actionHideRightFrame);
+    common::changeWidgetVisibility(ui->frameMainRight, ui->actionHideRightFrame);
 }
 
 void MainWindow::on_actionHideUtilities_triggered()
 {
-    changeWidgetVisibility(ui->frameBottomButtons, ui->actionHideUtilities);
+    common::changeWidgetVisibility(ui->frameBottomButtons, ui->actionHideUtilities);
 }
 
 void MainWindow::on_actionHideLeftFrame_triggered()
 {
-    changeWidgetVisibility(ui->frameMainLeft, ui->actionHideLeftFrame);
+    common::changeWidgetVisibility(ui->frameMainLeft, ui->actionHideLeftFrame);
 }
 
 void MainWindow::on_buttonAddBook_clicked()

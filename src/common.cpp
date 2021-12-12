@@ -2,6 +2,7 @@
 
 #include <QFile>
 #include <QDialog>
+#include <QAction>
 #include <QProcess>
 #include <QFileInfo>
 #include <QCompleter>
@@ -89,5 +90,15 @@ namespace common
         dirCompleter->setModel(model);
 
         return dirCompleter;
+    }
+
+    void changeWidgetVisibility(QWidget *widget, QAction *action)
+    {
+        bool isHidden = widget->isHidden();
+        widget->setHidden(!isHidden);
+
+        QString actionText = action->text();
+        actionText.replace(isHidden ? "Show" : "Hide", isHidden ? "Hide" : "Show", Qt::CaseInsensitive);
+        action->setText(actionText);
     }
 }	// Namespace common
