@@ -446,14 +446,12 @@ void SummaryWindow::on_buttonEditorFontColor_clicked()
 
 void SummaryWindow::on_actionHideSearchBar_triggered()
 {
-    ui->textSearch->setHidden(!ui->textSearch->isHidden());
-    ui->actionHideSearchBar->setText(ui->textSearch->isHidden() ? "Show Search Bar" : "Hide Search Bar");
+    common::changeWidgetVisibility(ui->textSearch, ui->actionHideSearchBar);
 }
 
 void SummaryWindow::on_actionHideListWidget_triggered()
 {
-    ui->listWidget->setHidden(!ui->listWidget->isHidden());
-    ui->actionHideListWidget->setText(ui->listWidget->isHidden() ? "Show List Widget" : "Hide List Widget");
+    common::changeWidgetVisibility(ui->listWidget, ui->actionHideListWidget);
 }
 
 void SummaryWindow::on_actionHideLeftPane_triggered()
@@ -465,15 +463,12 @@ void SummaryWindow::on_actionHideLeftPane_triggered()
 
 void SummaryWindow::on_actionHideTopToolbar_triggered()
 {
-    ui->frameEditorToolBox->setHidden(!ui->frameEditorToolBox->isHidden());
-    ui->actionHideTopToolbar->setText(ui->frameEditorToolBox->isHidden() ? "Show Top Toolbox" : "Hide Top Toolbox");
+    common::changeWidgetVisibility(ui->frameEditorToolBox, ui->actionHideTopToolbar);
 }
 
 void SummaryWindow::on_actionHideRightToolbar_triggered()
 {
-    ui->frameRightToolBar->setHidden(!ui->frameRightToolBar->isHidden());
-    ui->actionHideRightToolbar->setText(ui->frameRightToolBar->isHidden() ? "Show Right Toolbox" : "Hide Right Toolbox");
-
+    common::changeWidgetVisibility(ui->frameRightToolBar, ui->actionHideRightToolbar);
 }
 
 void SummaryWindow::on_actionHideRightPane_triggered()

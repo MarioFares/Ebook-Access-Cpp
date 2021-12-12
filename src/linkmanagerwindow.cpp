@@ -336,14 +336,12 @@ void LinkManagerWindow::on_actionFullscreen_triggered()
 
 void LinkManagerWindow::on_actionHideLeftPanel_triggered()
 {
-    ui->frameLeft->setHidden(!ui->frameLeft->isHidden());
-    ui->actionHideLeftPanel->setText(ui->frameLeft->isHidden() ? "Show Left Panel" : "Hide Left Panel");
+    common::changeWidgetVisibility(ui->frameLeft, ui->actionHideLeftPanel);
 }
 
 void LinkManagerWindow::on_actionHideRightPanel_triggered()
 {
-    ui->frameRight->setHidden(!ui->frameRight->isHidden());
-    ui->actionHideRightPanel->setText(ui->frameRight->isHidden() ? "Show Right Panel" : "Hide Right Panel");
+    common::changeWidgetVisibility(ui->frameRight, ui->actionHideRightPanel);
 }
 
 void LinkManagerWindow::on_actionHideSearchBars_triggered()

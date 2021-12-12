@@ -14,7 +14,7 @@
    <string>Link Manager</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -84,7 +84,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
              </property>
              <property name="flat">
@@ -116,7 +116,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
              </property>
              <property name="flat">
@@ -148,7 +148,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
              </property>
              <property name="flat">
@@ -180,7 +180,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
              </property>
              <property name="flat">
@@ -254,7 +254,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
              </property>
              <property name="flat">
@@ -286,7 +286,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
              </property>
              <property name="flat">
@@ -318,7 +318,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
              </property>
              <property name="flat">
@@ -350,7 +350,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
              </property>
              <property name="flat">
@@ -518,7 +518,7 @@ border: 1px solid grey;
      <x>0</x>
      <y>0</y>
      <width>867</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -575,90 +575,141 @@ border: 1px solid grey;
    <property name="text">
     <string>Maximize</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+M, Ctrl+X</string>
+   </property>
   </action>
   <action name="actionMinimize">
    <property name="text">
     <string>Minimize</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M, Ctrl+N</string>
    </property>
   </action>
   <action name="actionFullscreen">
    <property name="text">
     <string>Fullscreen</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F, Ctrl+S</string>
+   </property>
   </action>
   <action name="actionHideLeftPanel">
    <property name="text">
     <string>Hide Left Panel</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+L</string>
    </property>
   </action>
   <action name="actionHideRightPanel">
    <property name="text">
     <string>Hide Right Panel</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+R</string>
+   </property>
   </action>
   <action name="actionHideSearchBars">
    <property name="text">
     <string>Hide Search Bars</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H, Ctrl+S</string>
    </property>
   </action>
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionDeleteLink">
    <property name="text">
     <string>Delete Link</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D, Ctrl+L</string>
    </property>
   </action>
   <action name="actionAddLink">
    <property name="text">
     <string>Add Link</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+L</string>
+   </property>
   </action>
   <action name="actionResetCollections">
    <property name="text">
     <string>Reset Collections</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+C</string>
    </property>
   </action>
   <action name="actionResetLinks">
    <property name="text">
     <string>Reset Links</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+L</string>
+   </property>
   </action>
   <action name="actionResetAll">
    <property name="text">
     <string>Reset All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+A</string>
    </property>
   </action>
   <action name="actionAddCollection">
    <property name="text">
     <string>Add Collection</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+C</string>
+   </property>
   </action>
   <action name="actionDeleteCollection">
    <property name="text">
     <string>Delete Collection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D, Ctrl+C</string>
    </property>
   </action>
   <action name="actionOpenAllLinks">
    <property name="text">
     <string>Open All Links</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O, Ctrl+A</string>
+   </property>
   </action>
   <action name="actionRenameCollection">
    <property name="text">
     <string>Rename Collection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, Ctrl+C</string>
    </property>
   </action>
   <action name="actionEditLink">
    <property name="text">
     <string>Edit Link</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+E, Ctrl+L</string>
+   </property>
   </action>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections>
   <connection>

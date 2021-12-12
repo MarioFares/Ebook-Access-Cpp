@@ -14,7 +14,7 @@
    <string>Ebook Access</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <property name="styleSheet">
@@ -140,7 +140,7 @@ border: 0px;
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/puzzle_icon.png</normaloff>:/icons/puzzle_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -174,7 +174,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -273,7 +273,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -335,7 +335,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -381,7 +381,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -482,7 +482,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -525,7 +525,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
                   </property>
                   <property name="flat">
@@ -605,7 +605,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -651,7 +651,7 @@ border: 0px;</string>
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="images.qrc">
+                   <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -857,7 +857,7 @@ border: 0px;
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="images.qrc">
+                    <iconset resource="../resources/images.qrc">
                      <normaloff>:/icons/add_book_icon.png</normaloff>:/icons/add_book_icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -898,7 +898,7 @@ border: 0px;
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="images.qrc">
+                    <iconset resource="../resources/images.qrc">
                      <normaloff>:/icons/add_books_icon.png</normaloff>:/icons/add_books_icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -945,7 +945,7 @@ border: 0px;
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="images.qrc">
+                    <iconset resource="../resources/images.qrc">
                      <normaloff>:/icons/white_notebook_icon.png</normaloff>:/icons/white_notebook_icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -980,7 +980,7 @@ border: 0px;
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="images.qrc">
+                    <iconset resource="../resources/images.qrc">
                      <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1015,7 +1015,7 @@ border: 0px;
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="images.qrc">
+                    <iconset resource="../resources/images.qrc">
                      <normaloff>:/icons/dbviewer_icon.png</normaloff>:/icons/dbviewer_icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1146,7 +1146,7 @@ border: 0px;
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../resources/images.qrc">
                   <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1175,7 +1175,7 @@ border: 0px;
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../resources/images.qrc">
                   <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1206,7 +1206,7 @@ border:0px;
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../resources/images.qrc">
                   <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1846,7 +1846,7 @@ border: 1px solid lightblue;
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAddBook">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/add_book_icon.png</normaloff>:/icons/add_book_icon.png</iconset>
    </property>
    <property name="text">
@@ -1866,7 +1866,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionResetDatabase">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/reset_database_icon.png</normaloff>:/icons/reset_database_icon.png</iconset>
    </property>
    <property name="text">
@@ -1878,7 +1878,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionClearEntries">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png</iconset>
    </property>
    <property name="text">
@@ -1890,7 +1890,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionCleanEbooks">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/clean_icon.png</normaloff>:/icons/clean_icon.png</iconset>
    </property>
    <property name="text">
@@ -1902,7 +1902,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionSearchFiles">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
    </property>
    <property name="text">
@@ -1914,7 +1914,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionSearchText">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/searchbar_icon.png</normaloff>:/icons/searchbar_icon.png</iconset>
    </property>
    <property name="text">
@@ -1926,7 +1926,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionClearSearch">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png</iconset>
    </property>
    <property name="text">
@@ -1938,7 +1938,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionEbooksReport">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/ebooks_report_icon.png</normaloff>:/icons/ebooks_report_icon.png</iconset>
    </property>
    <property name="text">
@@ -1950,7 +1950,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionUsageReport">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/metrics_icon.png</normaloff>:/icons/metrics_icon.png</iconset>
    </property>
    <property name="text">
@@ -1962,7 +1962,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionApplicationSettings">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/settings_icon.png</normaloff>:/icons/settings_icon.png</iconset>
    </property>
    <property name="text">
@@ -1974,7 +1974,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionFullscreen">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/fullscreen_icon.png</normaloff>:/icons/fullscreen_icon.png</iconset>
    </property>
    <property name="text">
@@ -1994,7 +1994,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionMin">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/minimize_icon.png</normaloff>:/icons/minimize_icon.png</iconset>
    </property>
    <property name="text">
@@ -2014,7 +2014,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionSortSearch">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
    </property>
    <property name="text">
@@ -2026,7 +2026,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionAddBooks">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/add_books_icon.png</normaloff>:/icons/add_books_icon.png</iconset>
    </property>
    <property name="text">
@@ -2114,7 +2114,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionSummaries">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/white_notebook_icon.png</normaloff>:/icons/white_notebook_icon.png</iconset>
    </property>
    <property name="text">
@@ -2126,7 +2126,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionLinkManager">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
    </property>
    <property name="text">
@@ -2138,7 +2138,7 @@ border: 1px solid lightblue;
   </action>
   <action name="actionDataViewer">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset resource="../resources/images.qrc">
      <normaloff>:/icons/dbviewer_icon.png</normaloff>:/icons/dbviewer_icon.png</iconset>
    </property>
    <property name="text">
@@ -2172,7 +2172,7 @@ border: 1px solid lightblue;
   <tabstop>buttonAddBooks</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections>
   <connection>
