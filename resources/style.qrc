@@ -4,5 +4,6 @@
         <file>styles/style.qss</file>
         <file>styles/summarystyle.qss</file>
         <file>styles/textEditorStyle.qss</file>
+        <file>styles/colorpickerstyle.qss</file>
     </qresource>
 </RCC>

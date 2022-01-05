@@ -6,7 +6,10 @@
 #include "include/insertlinkdialog.h"
 #include "include/inserttabledialog.h"
 
+#include "include/colorpickerwidget.h"
+
 #include <fstream>
+#include <iostream>
 
 #include <QFile>
 #include <QTextList>
@@ -435,13 +438,19 @@ void SummaryWindow::on_buttonHighlight_clicked()
 
 void SummaryWindow::on_buttonEditorFontColor_clicked()
 {
-    QColorDialog dialog(this);
-    common::openDialog(&dialog, ":/styles/summarystyle.qss");
-    QString colorSheet = "background-color: " + dialog.selectedColor().name();
+    QPoint bottom = ui->buttonEditorFontColor->rect().bottomLeft();
+    QPoint globalPos = ui->buttonEditorFontColor->mapToGlobal(bottom);
+    globalPos.setY(globalPos.y() + 2);
+
+    colorPickerWidget *widget = new colorPickerWidget(this);
+    widget->move(globalPos);
+    common::openDialog(widget, ":/styles/colorpickerstyle.qss");
+
+    QString colorSheet = "background-color: " + widget->getCurrentColor().name();
     ui->buttonEditorFontColor->setStyleSheet(colorSheet);
     ui->buttonEditorFontColor->update();
 
-    ui->textEditor->setTextColor(dialog.selectedColor());
+    ui->textEditor->setTextColor(widget->getCurrentColor());
 }
 
 void SummaryWindow::on_actionHideSearchBar_triggered()
@@ -637,16 +646,22 @@ void SummaryWindow::on_actionExportHtml_triggered()
 
 void SummaryWindow::on_buttonEditorBackColor_clicked()
 {
-    QColorDialog dialog(this);
-    common::openDialog(&dialog, ":/styles/summarystyle.qss");
-    QString styleSheet = "background-color: " + dialog.selectedColor().name();
+    QPoint bottom = ui->buttonEditorBackColor->rect().bottomLeft();
+    QPoint globalPos = ui->buttonEditorBackColor->mapToGlobal(bottom);
+    globalPos.setY(globalPos.y() + 2);
+
+    colorPickerWidget *widget = new colorPickerWidget(this);
+    widget->move(globalPos);
+    common::openDialog(widget, ":/styles/colorpickerstyle.qss");
+
+    QString styleSheet = "background-color: " + widget->getCurrentColor().name();
 
     QTextFrame *currentFrame = ui->textEditor->textCursor().currentFrame();
     QTextFrameFormat currentFormat = currentFrame->frameFormat();
     // Apply only to code box in case cursor in code box
     if (currentFormat.border() == 1)
     {
-        currentFormat.setBackground(QBrush(dialog.selectedColor()));
+        currentFormat.setBackground(QBrush(widget->getCurrentColor()));
         currentFrame->setFrameFormat(currentFormat);
         return;
     }
@@ -654,7 +669,7 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     // Apply to editor background
     ui->textEditor->setStyleSheet(styleSheet);
     ui->buttonEditorBackColor->setStyleSheet(styleSheet);
-    if (dialog.selectedColor() != Qt::white)
+    if (widget->getCurrentColor() != Qt::white)
     {
         ui->buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
     }
@@ -664,7 +679,6 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     }
 
     ui->buttonEditorBackColor->update();
-
 }
 
 void SummaryWindow::on_actionSentenceCase_triggered()

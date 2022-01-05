@@ -12,6 +12,7 @@ SOURCES += \
     src/addbooksdialog.cpp \
     src/bulkdetailsdialog.cpp \
     src/cleanebooksdialog.cpp \
+    src/colorpickerwidget.cpp \
     src/common.cpp \
     src/dataviewerwindow.cpp \
     src/extselectiondialog.cpp \
@@ -23,8 +24,9 @@ SOURCES += \
     src/mainwindow.cpp \
     src/queries.cpp \
     src/searchnamedialog.cpp \
+    src/settingswindow.cpp \
     src/summarywindow.cpp \
-    src/yesnodialog.cpp
+    src/yesnodialog.cpp \
 
 
 HEADERS += \
@@ -32,6 +34,7 @@ HEADERS += \
     include/addbooksdialog.h \
     include/bulkdetailsdialog.h \
     include/cleanebooksdialog.h \
+    include/colorpickerwidget.h \
     include/common.h \
     include/dataviewerwindow.h \
     include/extselectiondialog.h \
@@ -42,9 +45,9 @@ HEADERS += \
     include/mainwindow.h \
     include/queries.h \
     include/searchnamedialog.h \
+    include/settingswindow.h \
     include/summarywindow.h \
-    include/yesnodialog.h
-
+    include/yesnodialog.h \
 
 FORMS += \
     ui/addbookdialog.ui \
@@ -59,6 +62,7 @@ FORMS += \
     ui/linkmanagerwindow.ui \
     ui/mainwindow.ui \
     ui/searchnamedialog.ui \
+    ui/settingswindow.ui \
     ui/summarywindow.ui \
     ui/yesnodialog.ui
 

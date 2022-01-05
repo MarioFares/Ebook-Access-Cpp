@@ -113,5 +113,8 @@
         <file>icons/white_notebook_icon.png</file>
         <file>icons/zoom_in_icon.png</file>
         <file>icons/zoom_out_icon.png</file>
+        <file>icons/right_arrow_icon.png</file>
+        <file>icons/more_colors_icon.png</file>
+        <file>icons/black_square.png</file>
     </qresource>
 </RCC>
