@@ -472,24 +472,28 @@ void MainWindow::on_buttonSaveCriteria_clicked()
 
 void MainWindow::on_buttonSearchLoad_clicked()
 {
-    if (!ui->comboBoxSearchLoad->currentText().isEmpty())
+    if (ui->comboBoxSearchLoad->currentText().isEmpty())
     {
-        QString searchName = ui->comboBoxSearchLoad->currentText();
-        queries::selectSearchCriteriaQuery(searchName);
-        queries::query.next();
-        ui->comboBoxFolderCriteria->setCurrentText(queries::query.value("folder").toString());
-        ui->comboBoxAuthorCriteria->setCurrentText(queries::query.value("author").toString());
-        ui->comboBoxGenreCriteria->setCurrentText(queries::query.value("genre").toString());
-        ui->textTagsCriteria->setText(queries::query.value("tags").toString());
-        ui->textExts->setText(queries::query.value("ext").toString());
-        ui->spinBoxFromSizeCriteria->setValue(queries::query.value("size_from").toUInt());
-        ui->spinBoxToSizeCriteria->setValue(queries::query.value("size_to").toUInt());
-        ui->buttonSizeCriteria->setText(queries::query.value("size_in").toString());
-        ui->spinBoxFromPagesCriteria->setValue(queries::query.value("pages_from").toUInt());
-        ui->spinBoxToPagesCriteria->setValue(queries::query.value("pages_to").toUInt());
-
-        ui->statusBar->showMessage("Search loaded.");
+        on_buttonClearCriteria_clicked();
+        return;
     }
+
+    QString searchName = ui->comboBoxSearchLoad->currentText();
+    queries::selectSearchCriteriaQuery(searchName);
+    queries::query.next();
+    ui->comboBoxFolderCriteria->setCurrentText(queries::query.value("folder").toString());
+    ui->comboBoxAuthorCriteria->setCurrentText(queries::query.value("author").toString());
+    ui->comboBoxGenreCriteria->setCurrentText(queries::query.value("genre").toString());
+    ui->textTagsCriteria->setText(queries::query.value("tags").toString());
+    ui->textExts->setText(queries::query.value("ext").toString());
+    ui->spinBoxFromSizeCriteria->setValue(queries::query.value("size_from").toUInt());
+    ui->spinBoxToSizeCriteria->setValue(queries::query.value("size_to").toUInt());
+    ui->buttonSizeCriteria->setText(queries::query.value("size_in").toString());
+    ui->spinBoxFromPagesCriteria->setValue(queries::query.value("pages_from").toUInt());
+    ui->spinBoxToPagesCriteria->setValue(queries::query.value("pages_to").toUInt());
+
+    ui->statusBar->showMessage("Search loaded.");
+
 }
 
 void MainWindow::on_actionCleanEbooks_triggered()
@@ -697,3 +701,9 @@ void MainWindow::on_actionDataViewer_triggered()
 {
     on_buttonDbViewer_clicked();
 }
+
+void MainWindow::on_comboBoxSearchLoad_currentTextChanged()
+{
+    on_buttonSearchLoad_clicked();
+}
+

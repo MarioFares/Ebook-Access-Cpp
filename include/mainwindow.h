@@ -140,6 +140,8 @@ private slots:
 
     void on_actionDataViewer_triggered();
 
+    void on_comboBoxSearchLoad_currentTextChanged();
+
 private:
     Ui::MainWindow *ui;
     Qt::SortOrder SORT;
