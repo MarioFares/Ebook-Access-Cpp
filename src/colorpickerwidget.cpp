@@ -7,10 +7,14 @@
 #include <QPair>
 #include <QColorDialog>
 #include <QFrame>
+#include <QLabel>
 
-colorPickerWidget::colorPickerWidget(QWidget*parent)
+colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
     : QDialog(parent)
 {
+    this->defaultColor = defaultColor;
+    this->currentColor = defaultColor;
+
     this->rows = 5;
     this->columns = 10;
     this->colorGridLayout = new QGridLayout();
@@ -23,12 +27,12 @@ colorPickerWidget::colorPickerWidget(QWidget*parent)
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
 
     QHBoxLayout *defaultButtonLayout = new QHBoxLayout();
-    QSpacerItem *horizontalSpacer1 = new QSpacerItem(1,1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    QSpacerItem *horizontalSpacer1 = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
     defaultButtonLayout->addWidget(defaultColorButton);
     defaultButtonLayout->addSpacerItem(horizontalSpacer1);
 
     QHBoxLayout *moreColorsLayout = new QHBoxLayout();
-    QSpacerItem *horizontalSpacer2 = new QSpacerItem(1,1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    QSpacerItem *horizontalSpacer2 = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
     moreColorsLayout->addWidget(moreColorsButton);
     moreColorsLayout->addSpacerItem(horizontalSpacer2);
 
@@ -52,11 +56,14 @@ colorPickerWidget::colorPickerWidget(QWidget*parent)
     defaultColorButton->setCursor(Qt::PointingHandCursor);
     defaultColorButton->setObjectName("defaultColorButton");
     defaultColorButton->setFlat(true);
-    defaultColorButton->setIcon(QIcon(":/icons/black_square.png"));
+    QPixmap pixmap(13, 13);
+    pixmap.fill(this->defaultColor);
+    defaultColorButton->setIcon(QIcon(pixmap));
+    defaultColorButton->setIconSize(QSize(16, 16));
 
     connect(defaultColorButton, &QPushButton::clicked, this, [this, defaultColorButton]()
     {
-       setCurrentColor(Qt::black);
+       setCurrentColor(this->defaultColor);
     }, Qt::DirectConnection);
     connect(moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
 }
@@ -77,7 +84,7 @@ QColor colorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, f
 GradientList colorPickerWidget::initialialzeColorGradients()
 {
     GradientList gradientList;
-    gradientList.push_back(qMakePair(QColor(214, 214, 214),             Qt::black)); // white         -> black
+    gradientList.push_back(qMakePair(Qt::white            ,             Qt::black)); // white         -> black
     gradientList.push_back(qMakePair(QColor( 93, 218, 255), QColor( 20, 113, 145))); // cyan          -> blue green
     gradientList.push_back(qMakePair(QColor(129, 182, 255), QColor( 28,  51, 135))); // light blue    -> dark blue
     gradientList.push_back(qMakePair(QColor(186,   0, 255), QColor( 65,   0, 125))); // magenta       -> violet
@@ -114,7 +121,7 @@ void colorPickerWidget::setButtonColors(GradientList gradientList)
     QColor colorEnd;
     for (int column = 0; column < gradientList.size(); ++column)
     {
-        float percent = 0.0f;
+        float percent = 0.0F;
         colorStart = gradientList.at(column).first;
         colorEnd = gradientList.at(column).second;
         for (int row = 0; row < this->rows; ++row)
@@ -127,7 +134,7 @@ void colorPickerWidget::setButtonColors(GradientList gradientList)
                                        "background-color: rgb(%0,%1,%2);"
                                        "border : none;"
                                        "}").arg(interpolatedColor.red()).arg(interpolatedColor.green()).arg(interpolatedColor.blue()));
-            percent += 1.0f / (this->rows - 1);
+            percent += 1.0F / (this->rows - 1);
         }
     }
 }
@@ -150,3 +157,4 @@ void colorPickerWidget::openColorDialog()
     common::openDialog(&dialog, ":/styles/summarystyle.qss");
     setCurrentColor(dialog.selectedColor());
 }
+

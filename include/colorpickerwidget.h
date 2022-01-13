@@ -11,8 +11,10 @@ class colorPickerWidget : public QDialog
     Q_OBJECT
 
 public:
-    explicit colorPickerWidget(QWidget *parent = nullptr);
+    explicit colorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
     QColor       getCurrentColor();
+    QColor       defaultColor;
+
 
 private slots:
     QColor       interpolateColor(QColor colorStart, QColor colorEnd, float percent);
@@ -21,6 +23,7 @@ private slots:
     void         setButtonColors(GradientList gradientList);
     void         setCurrentColor(QColor color);
     void         openColorDialog();
+
 
 private:
     int          rows;
