@@ -1,0 +1,13 @@
+QDialog {
+    background-color: #2D2D30;
+}
+
+QFrame {
+    border: 0px solid grey;
+}
+
+QLabel {
+    font: italic "Segoe UI";
+    color: white;
+    font-size: 14px;
+}
