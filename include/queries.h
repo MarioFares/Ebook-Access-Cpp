@@ -23,15 +23,11 @@ QString genTagQuery(QString tags);
 QString cleanTags(QString tags);
 
 // Setup Tables Queries
-void createEbooksTable();
+void setupDb();
 
-void createSettingsTable();
+void logSessionStart();
 
-void createSearchTable();
-
-void createLinkCollectionsTable();
-
-void createLinksTable();
+void logSessionEnd();
 
 // Reset Tables Queries
 void resetSettingsTableQuery();
@@ -64,6 +60,8 @@ void selectPath();
 void selectExt();
 
 void selectTags();
+
+QString selectTagsBasedOnName(QString name);
 
 void selectSearchCriteriaQuery(QString searchName);
 
@@ -101,6 +99,7 @@ void insertLinkCollection(QString collectionName);
 
 void insertLink(int collectionId, QString linkName, QString linkPath);
 
+void insertTags(QString tags, QString bookName);
 // Update Queries
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
                             QString author, quint32 pages, QString tags, QString path);
