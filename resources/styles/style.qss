@@ -11,6 +11,9 @@ QMainWindow {
      color: white;
      font: "Segoe UI";
 }
+QSpinBox:hover {
+    border: 1px solid lightblue;
+}
  QSpinBox::up-button {
      background: #2D2D30;
      border: 1px solid grey;
@@ -144,6 +147,13 @@ QMainWindow {
      font-size: 12px;
      border: 1px solid grey;
      border-radius: 5px;
+}
+QComboBox:hover {
+    color: white;
+    font-size: 12px;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    text-align: center;
 }
  QComboBox::drop-down {
     /*button around arrow*/

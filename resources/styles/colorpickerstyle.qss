@@ -11,6 +11,11 @@ QPushButton {
     border-radius: 0px;
 }
 
+QPushButton:hover {
+    border: 1px solid lightblue;
+    padding: 1px;
+}
+
 QPushButton#moreColorsButton, QPushButton#defaultColorButton {
     background-color: #2D2D30;
     color: white;
@@ -18,3 +23,4 @@ QPushButton#moreColorsButton, QPushButton#defaultColorButton {
     padding: 3px;
     margin: 1px;
 }
+
