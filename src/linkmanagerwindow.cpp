@@ -42,7 +42,6 @@ LinkManagerWindow::~LinkManagerWindow()
 void LinkManagerWindow::closeEvent(QCloseEvent *event)
 {
     event->accept();
-    delete this;
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)

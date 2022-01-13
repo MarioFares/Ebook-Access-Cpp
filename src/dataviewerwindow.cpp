@@ -59,7 +59,6 @@ void DataViewerWindow::populateTable(const QString &tableName)
 void DataViewerWindow::closeEvent(QCloseEvent *event)
 {
     event->accept();
-    delete this;
 }
 
 void DataViewerWindow::on_comboBoxTables_currentTextChanged(const QString &arg1)
