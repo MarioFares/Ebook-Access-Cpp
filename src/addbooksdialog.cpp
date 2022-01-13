@@ -72,7 +72,7 @@ void addBooksDialog::setupEntries(const QString &dir, bool recursive)
     bulkDetailsDialog dialog;
     common::openDialog(&dialog, ":/styles/style.qss");
 
-    QString tags = dialog.tags.isEmpty() ? "N/A" : dialog.tags;
+    QString tags = dialog.tags;
     QString genres = dialog.genre.isEmpty() ? "N/A" : dialog.genre;
     QString authors = dialog.author.isEmpty() ? "N/A" : dialog.author;
 
