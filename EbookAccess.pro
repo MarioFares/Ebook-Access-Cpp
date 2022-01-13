@@ -8,6 +8,7 @@ QMAKE_CXXFLAGS += /O2
 
 
 SOURCES += \
+    src/findhighlighter.cpp \
     src/addbookdialog.cpp \
     src/addbooksdialog.cpp \
     src/bulkdetailsdialog.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/queries.cpp \
+    src/quotedialog.cpp \
     src/searchnamedialog.cpp \
     src/settingswindow.cpp \
     src/summarywindow.cpp \
@@ -30,6 +32,7 @@ SOURCES += \
 
 
 HEADERS += \
+    include/findhighlighter.h \
     include/addbookdialog.h \
     include/addbooksdialog.h \
     include/bulkdetailsdialog.h \
@@ -48,8 +51,10 @@ HEADERS += \
     include/settingswindow.h \
     include/summarywindow.h \
     include/yesnodialog.h \
+    include/quotedialog.h
 
 FORMS += \
+    ui/quotedialog.ui \
     ui/addbookdialog.ui \
     ui/addbooksdialog.ui \
     ui/bulkdetailsdialog.ui \
@@ -76,10 +81,13 @@ DISTFILES += \
     resources/styles/style.qss \
     resources/styles/summarystyle.qss \
     resources/styles/textEditorStyle.qss \
+    resources/txt/quotes.txt
 
 
 RESOURCES += \
     resources/images.qrc \
+    resources/quotes.qrc \
+    resources/sql.qrc \
     resources/style.qrc
 
 
