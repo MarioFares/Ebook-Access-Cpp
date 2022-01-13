@@ -7,6 +7,8 @@
 #include <QTextBrowser>
 #include <QListWidgetItem>
 
+#include "include/findhighlighter.h"
+
 namespace Ui {
 class SummaryWindow;
 }
@@ -89,8 +91,6 @@ private slots:
 
     void on_actionHideSearchBar_triggered();
 
-    void on_actionHideListWidget_triggered();
-
     void on_actionHideLeftPane_triggered();
 
     void on_actionHideTopToolbar_triggered();
@@ -159,11 +159,29 @@ private slots:
 
     void on_actionTableColumn_triggered();
 
+    void on_actionFind_triggered();
+
+    void on_textFind_textChanged(const QString &arg1);
+
+    void on_buttonNext_clicked();
+
+    void on_buttonPrevious_clicked();
+
+    void on_buttonCloseFind_clicked();
+
+    // Find functionality
+    void highlightText();
+
+    void textEditRefreshHighlighter(int cursorIndex);
+
+    void toggleFindWidget(bool visible);
+
 private:
     Ui::SummaryWindow *ui;
     QTextCharFormat currentCopiedFormat;
     QFont currentCopiedFont;
     QHash<char, char> charPairs;
+    FindHighlighter textHighlighter;
 };
 
 

@@ -7,6 +7,7 @@
 #include "include/inserttabledialog.h"
 
 #include "include/colorpickerwidget.h"
+#include "include/findhighlighter.h"
 
 #include <fstream>
 #include <iostream>
@@ -29,6 +30,7 @@ SummaryWindow::SummaryWindow(QWidget *parent):
     queries::connectToDatabase();
     ui->listWidget->setSortingEnabled(true);
     ui->textEditor->installEventFilter(this);
+    ui->textFind->installEventFilter(this);
     ui->textEditor->setOpenExternalLinks(true);
 
     charPairs['('] = ')';
@@ -36,6 +38,9 @@ SummaryWindow::SummaryWindow(QWidget *parent):
     charPairs['['] = ']';
     charPairs['{'] = '}';
 
+    textHighlighter.setDocument(ui->textEditor->document());
+
+    ui->frameFind->setHidden(true);
     ui->textEditor->setStyleSheet(common::openSheet(":/styles/textEditorStyle.qss"));
     searchEbooks("");
 }
@@ -46,7 +51,6 @@ SummaryWindow::~SummaryWindow()
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
-
     delete ui;
 }
 
@@ -56,43 +60,59 @@ void SummaryWindow::closeEvent(QCloseEvent *event)
     {
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
-
     event->accept();
-    delete this;
 }
 
 bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == ui->textEditor && event->type() == QEvent::KeyPress)
+    if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*> (event);
-        switch (keyEvent->key())
+        if (obj == ui->textEditor)
         {
-            case Qt::Key_Tab:
-                this->changeListIndentation(1);
-                return true;
-            case Qt::Key_Backtab:
-                this->changeListIndentation(-1);
-                return true;
-            case Qt::Key_ParenLeft:
-                insertClosingChar('(', ui->textEditor->textCursor().selectedText());
-                return true;
-            case Qt::Key_QuoteDbl:
-                insertClosingChar('"', ui->textEditor->textCursor().selectedText());
-                return true;
-            case Qt::Key_BracketLeft:
-                insertClosingChar('[', ui->textEditor->textCursor().selectedText());
-                return true;
-            case Qt::Key_BraceLeft:
-                insertClosingChar('{', ui->textEditor->textCursor().selectedText());
-                return true;
-            case Qt::Key_Backspace:
-                return handleBackspace();
-            case Qt::Key_Return:
-                return handleReturn();
+            switch (keyEvent->key())
+            {
+                case Qt::Key_Tab:
+                    this->changeListIndentation(1);
+                    return true;
+                case Qt::Key_Backtab:
+                    this->changeListIndentation(-1);
+                    return true;
+                case Qt::Key_ParenLeft:
+                    insertClosingChar('(', ui->textEditor->textCursor().selectedText());
+                    return true;
+                case Qt::Key_QuoteDbl:
+                    insertClosingChar('"', ui->textEditor->textCursor().selectedText());
+                    return true;
+                case Qt::Key_BracketLeft:
+                    insertClosingChar('[', ui->textEditor->textCursor().selectedText());
+                    return true;
+                case Qt::Key_BraceLeft:
+                    insertClosingChar('{', ui->textEditor->textCursor().selectedText());
+                    return true;
+                case Qt::Key_Backspace:
+                    return handleBackspace();
+                case Qt::Key_Return:
+                    return handleReturn();
+            }
+        }
+        else if (obj == ui->textFind)
+        {
+            bool shiftModKeyPressed = keyEvent->modifiers() & Qt::ShiftModifier;
+            switch (keyEvent->key())
+            {
+                case Qt::Key_Escape:
+                    toggleFindWidget(false);
+                    break;
+                case Qt::Key_Enter:
+                case Qt::Key_Return:
+                    shiftModKeyPressed ? on_buttonPrevious_clicked() : on_buttonNext_clicked();
+                    break;
+                default:
+                    break;
+            }
         }
     }
-
     return QMainWindow::eventFilter(obj, event);
 }
 
@@ -213,7 +233,6 @@ int SummaryWindow::changeListIndentation(const int &increment)
     {
         QTextListFormat listFormat;
         QTextListFormat::Style currentStyle = currentList->format().style();
-
         listFormat.setIndent(cursor.currentList()->format().indent() + increment);
         if (currentStyle == QTextListFormat::ListDisc || currentStyle == QTextListFormat::ListCircle || currentStyle == QTextListFormat::ListSquare)
         {
@@ -301,6 +320,7 @@ void SummaryWindow::on_fontComboBox_currentTextChanged(const QString &arg1, bool
     {
         ui->textEditor->setCurrentFont(arg1);
     }
+    ui->fontComboBox->setCurrentFont(arg1);
 }
 
 void SummaryWindow::on_spinBoxFontSize_valueChanged(int arg1, bool change)
@@ -311,6 +331,7 @@ void SummaryWindow::on_spinBoxFontSize_valueChanged(int arg1, bool change)
         currentFont.setPointSize(arg1);
         ui->textEditor->setCurrentFont(currentFont);
     }
+    ui->spinBoxFontSize->setValue(arg1);
 }
 
 void SummaryWindow::on_buttonBullets_clicked()
@@ -442,7 +463,7 @@ void SummaryWindow::on_buttonEditorFontColor_clicked()
     QPoint globalPos = ui->buttonEditorFontColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this);
+    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -456,11 +477,6 @@ void SummaryWindow::on_buttonEditorFontColor_clicked()
 void SummaryWindow::on_actionHideSearchBar_triggered()
 {
     common::changeWidgetVisibility(ui->textSearch, ui->actionHideSearchBar);
-}
-
-void SummaryWindow::on_actionHideListWidget_triggered()
-{
-    common::changeWidgetVisibility(ui->listWidget, ui->actionHideListWidget);
 }
 
 void SummaryWindow::on_actionHideLeftPane_triggered()
@@ -650,7 +666,7 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     QPoint globalPos = ui->buttonEditorBackColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this);
+    colorPickerWidget *widget = new colorPickerWidget(this, Qt::white);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -711,9 +727,9 @@ void SummaryWindow::on_actionUpperCase_triggered()
 
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
-    for (int i = 1; i < tempList.size(); i++)
+    for (const QString &word : tempList)
     {
-        newText.append(tempList[i].toUpper());
+        newText.append(word.toUpper());
     }
 
     cursor.removeSelectedText();
@@ -730,9 +746,9 @@ void SummaryWindow::on_actionLowerCase_triggered()
 
     QStringList tempList = cursor.selectedText().split(" ");
     QStringList newText;
-    for (int i = 1; i < tempList.size(); i++)
+    for (const QString &word : tempList)
     {
-        newText.append(tempList[i].toLower());
+        newText.append(word.toLower());
     }
 
     cursor.removeSelectedText();
@@ -748,19 +764,18 @@ void SummaryWindow::on_actionCapitalCase_triggered()
     }
 
     QStringList tempList = cursor.selectedText().split(" ");
-    QStringList newText;
-    for (int i = 1; i < tempList.size(); i++)
+    QStringList newText;    
+    for (const QString &word : tempList)
     {
-        if (tempList[i].size() > 1)
+        if (word.size() > 1)
         {
-            newText.append(tempList[i].at(0).toUpper() + tempList[i].mid(1).toLower());
+            newText.append(word.at(0).toUpper() + word.mid(1).toLower());
         }
         else
         {
-            newText.append(tempList[i].at(0).toLower());
+            newText.append(word.at(0).toLower());
         }
     }
-
     cursor.removeSelectedText();
     cursor.insertText(newText.join(" "));
 }
@@ -844,4 +859,98 @@ void SummaryWindow::on_actionTableColumn_triggered()
     {
         currTable->insertColumns(currTable->cellAt(cursor).column(), 1);
     }
+}
+
+// Find functionality specific
+void SummaryWindow::toggleFindWidget(bool visible)
+{
+    ui->frameFind->setVisible(visible);
+    highlightText();
+
+    if (visible)
+    {
+        ui->textFind->setFocus();
+    }
+}
+
+void SummaryWindow::highlightText()
+{
+    if (ui->frameFind->isVisible())
+    {
+        textHighlighter.setWordPattern(ui->textFind->text());
+    }
+    else
+    {
+        textHighlighter.setWordPattern("");
+    }
+
+    if (sender() == ui->textEditor)
+    {
+        ui->textEditor->blockSignals(true);
+        textHighlighter.customRehighlight();
+        ui->textEditor->blockSignals(false);
+    }
+    else
+    {
+        textHighlighter.customRehighlight();
+    }
+}
+
+void SummaryWindow::textEditRefreshHighlighter(int cursorIndex)
+{
+    if (cursorIndex >= 0)
+    {
+        QTextCursor currentCursor = ui->textEditor->textCursor();
+        currentCursor.setPosition(cursorIndex);
+        ui->textEditor->setTextCursor(currentCursor);
+        ui->textEditor->ensureCursorVisible();
+    }
+}
+
+void SummaryWindow::on_actionFind_triggered()
+{
+    toggleFindWidget(!ui->frameFind->isVisible());
+}
+
+void SummaryWindow::on_textFind_textChanged(const QString &arg1)
+{
+    highlightText();
+    if (arg1.isEmpty())
+    {
+        ui->labelFindMatchNum->setText("");
+        return;
+    }
+    QString labelText = QString("Found %1 matches").arg(QString::number(textHighlighter.matchNumber()));
+    ui->labelFindMatchNum->setText(labelText);
+    QFont customFont;
+    customFont.setItalic(true);
+    customFont.setPointSize(12);
+    customFont.setFamily("Segoe UI");
+    ui->labelFindMatchNum->setFont(customFont);
+    ui->labelFindMatchNum->setStyleSheet("color: grey");
+}
+
+void SummaryWindow::on_buttonNext_clicked()
+{
+    int cursorIndex = textHighlighter.setNextMatchStateActive();
+    if (textHighlighter.matchIndex() == textHighlighter.matchNumber() - 1)
+    {
+        textHighlighter.setMatchIndex(-1);
+    }
+    textEditRefreshHighlighter(cursorIndex);
+}
+
+void SummaryWindow::on_buttonPrevious_clicked()
+{
+    int cursorIndex = textHighlighter.setPrevMatchStateActive();
+    if (textHighlighter.matchIndex() == 0)
+    {
+        textHighlighter.setMatchIndex(textHighlighter.matchNumber() - 1);
+    }
+    textEditRefreshHighlighter(cursorIndex);
+}
+
+void SummaryWindow::on_buttonCloseFind_clicked()
+{
+    toggleFindWidget(false);
 }
