@@ -52,6 +52,8 @@ private slots:
 
     void openFolder();
 
+    void showQuote();
+
     void on_buttonAddBooks_clicked();
 
     void on_buttonSearchString_clicked();
@@ -141,6 +143,18 @@ private slots:
     void on_actionDataViewer_triggered();
 
     void on_comboBoxSearchLoad_currentTextChanged();
+
+    void on_actionEbooksReport_triggered();
+
+    void on_actionOpenDB_triggered();
+
+    void on_actionEbookReportsDir_triggered();
+
+    void on_actionUsageReportsDir_triggered();
+
+    void on_actionInstallationDir_triggered();
+
+    void on_actionHideStatusBar_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -3,6 +3,7 @@
 #include "include/mainwindow.h"
 #include "include/common.h"
 #include "include/queries.h"
+#include "include/quotedialog.h"
 #include "include/yesnodialog.h"
 #include "include/summarywindow.h"
 #include "include/addbookdialog.h"
@@ -17,20 +18,25 @@
 #include <QFile>
 #include <QTimer>
 #include <QProcess>
+#include <QSqlRecord>
+#include <QToolButton>
 #include <QSystemTrayIcon>
+#include <QRandomGenerator>
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>
-#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     // Setup DB
     queries::connectToDatabase();
-    queries::createEbooksTable();
-    queries::createSettingsTable();
-    queries::createSearchTable();
-    queries::createLinksTable();
-    queries::createLinkCollectionsTable();
+    queries::setupDb();
+    queries::logSessionStart();
+
+    // Create dirs
+    QDir dir;
+    dir.mkdir("./reports");
+    dir.mkdir("./reports/ebooks");
+    dir.mkdir("./reports/usage");
 
     // Setup Conversion
     sizeConvFactors["KB"] = 1024;
@@ -75,14 +81,23 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->textTagsCriteria->setClearButtonEnabled(true);
     ui->textSearchBar->setClearButtonEnabled(true);
 
+//    QTimer::singleShot(1500, this, SLOT(showQuote()));
+
     ui->statusBar->showMessage("Ready");
 }
 
 MainWindow::~MainWindow()
 {
+    queries::logSessionEnd();
     queries::query.clear();
     queries::db.close();
     delete ui;
+}
+
+void MainWindow::showQuote()
+{
+    quoteDialog dialog(this);
+    common::openDialog(&dialog, ":styles/quote.qss");
 }
 
 void MainWindow::trayClicked(QSystemTrayIcon::ActivationReason r)
@@ -103,12 +118,21 @@ void MainWindow::showSummary(const QString &name)
     auto *summaryWindow = new SummaryWindow();
     common::openWindow(summaryWindow, ":/styles/style.qss");
     summaryWindow->callSelectEbookSummary(name);
+    summaryWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void MainWindow::showLinkManager()
 {
     auto *linkManagerWindow = new LinkManagerWindow();
     common::openWindow(linkManagerWindow, ":/styles/style.qss");
+    linkManagerWindow->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+void MainWindow::on_buttonDbViewer_clicked()
+{
+    auto *dataViewerWindow = new DataViewerWindow();
+    common::openWindow(dataViewerWindow, ":/styles/style.qss");
+    dataViewerWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void MainWindow::refreshComboBox(QComboBox *comboBox)
@@ -384,7 +408,7 @@ void MainWindow::on_ebooksListWidget_itemClicked(QListWidgetItem *item)
     QString pages = queries::query.value("pages").toString();
     double size = changeBookSizeUnit(queries::query.value("size").toDouble(), ui->buttonSizeUnit->text());
     QString folder = queries::query.value("folder").toString();
-    QString tags = queries::query.value("tags").toString();
+    QString tags = queries::selectTagsBasedOnName(fileName);
 
     ui->textDetailsName->setText(fileName);
     ui->textDetailsAuthor->setText(author);
@@ -493,7 +517,6 @@ void MainWindow::on_buttonSearchLoad_clicked()
     ui->spinBoxToPagesCriteria->setValue(queries::query.value("pages_to").toUInt());
 
     ui->statusBar->showMessage("Search loaded.");
-
 }
 
 void MainWindow::on_actionCleanEbooks_triggered()
@@ -519,8 +542,7 @@ void MainWindow::on_actionChooseRandomBook_triggered()
     quint32 numberOfEbooks = queries::query.value(0).toUInt();
     if (numberOfEbooks != 0)
     {
-        srand((unsigned) time(0));
-        quint32 randomNumber = 1 + (rand() % numberOfEbooks);
+        quint32 randomNumber = QRandomGenerator::global()->bounded(numberOfEbooks);
         queries::selectNameBasedOnRowid(randomNumber);
         queries::query.next();
         QString randomName = queries::query.value(0).toString();
@@ -681,12 +703,6 @@ void MainWindow::on_actionWindowTop_triggered()
     show();
 }
 
-void MainWindow::on_buttonDbViewer_clicked()
-{
-    auto *summaryWindow = new DataViewerWindow();
-    common::openWindow(summaryWindow, ":/styles/style.qss");
-}
-
 void MainWindow::on_actionSummaries_triggered()
 {
     on_buttonSummaries_clicked();
@@ -705,5 +721,71 @@ void MainWindow::on_actionDataViewer_triggered()
 void MainWindow::on_comboBoxSearchLoad_currentTextChanged()
 {
     on_buttonSearchLoad_clicked();
+}
+
+void MainWindow::on_actionEbooksReport_triggered()
+{
+    QString fileName = QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss") + ".html";
+    QFile file = QFile("./reports/ebooks/" + fileName);
+    file.open(QIODevice::WriteOnly);
+    file.write(R"(<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">)");
+    file.write(R"(<table style="table-layout:fixed; width: 100vw; height: 100vh;" id="table" class="table table-responsive table-striped table-bordered table-hover table-sm table-dark">)");
+    file.write(R"(  <thead class="bg-primary">)");
+    file.write("    <tr>");
+    file.write("        <th>Name</th>");
+    file.write("        <th>Author</th>");
+    file.write("        <th>Genre</th>");
+    file.write("        <th>Path</th>");
+    file.write("        <th>Extension</th>");
+    file.write("        <th>Pages</th>");
+    file.write("        <th>Folder</th>");
+    file.write("        <th>Tags</th>");
+    file.write("        <th>Timestamp</th>");
+    file.write("    </tr>");
+    file.write("  </thead>");
+    file.write("  <tbody>");
+
+    queries::query.exec("SELECT name, author, genre, path, ext, pages, folder, tags, time_added FROM ebooks");
+    qint32 fieldCount = queries::query.record().count();
+    while (queries::query.next())
+    {
+        file.write(R"(<tr style="overflow: hidden; text-overflow: ellipsis; word-wrap: break-word;">)");
+        for (int i = 0; i < fieldCount; i++)
+        {
+            file.write(R"(<td style="overflow: hidden; text-overflow: ellipsis; word-wrap: break-word;">)");
+            file.write(queries::query.value(i).toString().toStdString().c_str());
+            file.write("</td>");
+        }
+        file.write("</tr>");
+    }
+    file.write("  </tbody>");
+    file.write("</table>");
+    file.close();
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/" + fileName));
+}
+
+void MainWindow::on_actionOpenDB_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./database.db"));
+}
+
+void MainWindow::on_actionEbookReportsDir_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/"));
+}
+
+void MainWindow::on_actionUsageReportsDir_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/usage/"));
+}
+
+void MainWindow::on_actionInstallationDir_triggered()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("./"));
+}
+
+void MainWindow::on_actionHideStatusBar_triggered()
+{
+    common::changeWidgetVisibility(ui->statusBar, ui->actionHideStatusBar);
 }
 
