@@ -23,10 +23,11 @@ public:
     ~MainWindow();
 
 private slots:
+    void setupConnections();
 
     void closeEvent(QCloseEvent *event);
 
-    void showSummary(const QString &name);
+    void showSummary(const QString &name = "");
 
     void showLinkManager();
 
@@ -54,107 +55,82 @@ private slots:
 
     void showQuote();
 
-    void on_buttonAddBooks_clicked();
+    void showAddBooksDialog();
 
-    void on_buttonSearchString_clicked();
+    void searchString();
 
-    void on_buttonClearCriteria_clicked();
+    void clearCriteria();
 
-    void on_buttonDetailsClear_clicked();
+    void clearDetails();
 
-    void on_buttonSortSearch_clicked();
+    void sortSearch();
 
-    void on_actionResetEbooks_triggered();
+    void resetEbooks();
 
-    void on_actionHideSearchBar_triggered();
+    void hideSearchBar();
 
-    void on_actionHideDetailsSection_triggered();
+    void hideDetailsSection();
 
-    void on_buttonAddBook_clicked();
+    void showAddBookDialog();
 
-    void on_buttonClearSearch_clicked();
+    void clearSearch();
 
-    void on_buttonSearchCriteria_clicked();
+    void searchCriteria();
 
-    void on_ebooksListWidget_itemClicked(QListWidgetItem *item);
+    void showEbookDetails(QListWidgetItem *item);
 
-    void on_buttonDetailsRestore_clicked();
+    void restoreDetails();
 
-    void on_buttonDetailsUpdate_clicked();
+    void updateDetails();
 
-    void on_buttonSaveCriteria_clicked();
+    void saveCriteria();
 
-    void on_buttonSearchLoad_clicked();
+    void loadSearch();
 
-    void on_actionCleanEbooks_triggered();
+    void showCleanEbooksDialog();
 
-    void on_buttonSummaries_clicked();
+    void chooseRandomBook();
 
-    void on_buttonLinkManager_clicked();
+    void openEbook(QListWidgetItem *item);
 
-    void on_actionChooseRandomBook_triggered();
+    void toggleSizeCriteria();
 
-    void on_ebooksListWidget_itemSelectionChanged();
+    void hideRightFrame();
 
-    void on_actionFullscreen_triggered();
+    void hideUtilities();
 
-    void on_ebooksListWidget_itemActivated(QListWidgetItem *item);
-
-    void on_buttonSizeCriteria_clicked();
-
-    void on_actionHideRightFrame_triggered();
-
-    void on_actionHideUtilities_triggered();
-
-    void on_actionHideLeftFrame_triggered();
+    void hideLeftFrame();
 
     void extSelectionSetup(const QString &title, const QString &prompt, QWidget *widget);
 
-    void on_buttonExtensions_clicked();
+    void selectExtensions();
 
-    void on_buttonFolder_clicked();
+    void selectFolders();
 
-    void on_buttonAuthor_clicked();
+    void selectAuthors();
 
-    void on_buttonGenre_clicked();
+    void selectGenres();
 
-    void on_buttonTags_clicked();
+    void selectTags();
 
-    void on_buttonSizeUnit_clicked();
+    void toggleSizeUnit();
 
-    void on_actionMinimizeTray_triggered();
+    void resetSummaries();
 
-    void on_actionResetSummaries_triggered();
+    void resetTags();
 
-    void on_actionResetTags_triggered();
+    void resetSearches();
 
-    void on_actionResetSearches_triggered();
+    void resetDb();
 
-    void on_actionResetDatabase_triggered();
+    void toggleWindowOnTop();
 
-    void on_actionWindowTop_triggered();
+    void showDbViewer();
 
-    void on_buttonDbViewer_clicked();
+    void genEbooksReport();
 
-    void on_actionSummaries_triggered();
+    void hideStatusBar();
 
-    void on_actionLinkManager_triggered();
-
-    void on_actionDataViewer_triggered();
-
-    void on_comboBoxSearchLoad_currentTextChanged();
-
-    void on_actionEbooksReport_triggered();
-
-    void on_actionOpenDB_triggered();
-
-    void on_actionEbookReportsDir_triggered();
-
-    void on_actionUsageReportsDir_triggered();
-
-    void on_actionInstallationDir_triggered();
-
-    void on_actionHideStatusBar_triggered();
 
 private:
     Ui::MainWindow *ui;

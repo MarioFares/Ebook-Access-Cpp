@@ -6,10 +6,10 @@
 #include "include/quotedialog.h"
 #include "include/yesnodialog.h"
 #include "include/summarywindow.h"
+#include "include/getnamedialog.h"
 #include "include/addbookdialog.h"
 #include "include/addbooksdialog.h"
 #include "include/dataviewerwindow.h"
-#include "include/searchnamedialog.h"
 #include "include/cleanebooksdialog.h"
 #include "include/linkmanagerwindow.h"
 #include "include/extselectiondialog.h"
@@ -84,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 //    QTimer::singleShot(1500, this, SLOT(showQuote()));
 
     ui->statusBar->showMessage("Ready");
+    setupConnections();
 }
 
 MainWindow::~MainWindow()
@@ -92,6 +93,104 @@ MainWindow::~MainWindow()
     queries::query.clear();
     queries::db.close();
     delete ui;
+}
+
+
+void MainWindow::setupConnections()
+{
+    connect(ui->buttonAddBooks, &QPushButton::clicked, this, &MainWindow::showAddBooksDialog);
+    connect(ui->buttonSearchString, &QPushButton::clicked, this, &MainWindow::searchString);
+    connect(ui->buttonClearCriteria, &QPushButton::clicked, this, &MainWindow::clearCriteria);
+    connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &MainWindow::clearDetails);
+    connect(ui->buttonSortSearch, &QPushButton::clicked, this, &MainWindow::sortSearch);
+    connect(ui->buttonAddBook, &QPushButton::clicked, this, &MainWindow::showAddBookDialog);
+    connect(ui->buttonClearSearch, &QPushButton::clicked, this, &MainWindow::clearSearch);
+    connect(ui->buttonSearchCriteria, &QPushButton::clicked, this, &MainWindow::searchCriteria);
+    connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &MainWindow::restoreDetails);
+    connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &MainWindow::updateDetails);
+    connect(ui->buttonSaveCriteria, &QPushButton::clicked, this, &MainWindow::saveCriteria);
+    connect(ui->buttonSearchLoad, &QPushButton::clicked, this, &MainWindow::loadSearch);
+    connect(ui->buttonLinkManager, &QPushButton::clicked, this, &MainWindow::showLinkManager);
+    connect(ui->buttonDbViewer, &QPushButton::clicked, this, &MainWindow::showDbViewer);
+    connect(ui->buttonSizeCriteria, &QPushButton::clicked, this, &MainWindow::toggleSizeCriteria);
+    connect(ui->buttonExtensions, &QPushButton::clicked, this, &MainWindow::selectExtensions);
+    connect(ui->buttonFolder, &QPushButton::clicked, this, &MainWindow::selectFolders);
+    connect(ui->buttonAuthor, &QPushButton::clicked, this, &MainWindow::selectAuthors);
+    connect(ui->buttonGenre, &QPushButton::clicked, this, &MainWindow::selectGenres);
+    connect(ui->buttonTags, &QPushButton::clicked, this, &MainWindow::selectTags);
+    connect(ui->buttonSizeUnit, &QPushButton::clicked, this, &MainWindow::toggleSizeUnit);
+    connect(ui->buttonSummaries, &QPushButton::clicked, [this] { showSummary(""); });
+
+    connect(ui->ebooksListWidget, &QListWidget::itemClicked, this, &MainWindow::showEbookDetails);
+    connect(ui->ebooksListWidget, &QListWidget::itemActivated, this, &MainWindow::openEbook);
+    connect(ui->ebooksListWidget, &QListWidget::itemSelectionChanged, [this]
+    {
+        if (ui->ebooksListWidget->count() >= 1)
+        {
+            showEbookDetails(ui->ebooksListWidget->currentItem());
+        }
+    });
+
+    connect(ui->comboBoxSearchLoad, &QComboBox::currentTextChanged, this, &MainWindow::loadSearch);
+    connect(ui->textTagsCriteria, &QLineEdit::returnPressed, this, &MainWindow::searchCriteria);
+    connect(ui->textExts, &QLineEdit::returnPressed, this, &MainWindow::searchCriteria);
+    connect(ui->textSearchBar, &QLineEdit::returnPressed, this, &MainWindow::searchString);
+    connect(ui->textSearchBar, &QLineEdit::textChanged, this, &MainWindow::searchString);
+
+    connect(ui->textDetailsName, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+    connect(ui->textDetailsAuthor, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+    connect(ui->textDetailsGenre, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+    connect(ui->textDetailsFolder, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+    connect(ui->textDetailsPages, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+    connect(ui->textDetailsTags, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
+
+
+    connect(ui->actionSearchFiles, &QAction::triggered, this, &MainWindow::searchCriteria);
+    connect(ui->actionSearchText, &QAction::triggered, this, &MainWindow::searchString);
+    connect(ui->actionSortSearch, &QAction::triggered, this, &MainWindow::sortSearch);
+    connect(ui->actionResetEbooks, &QAction::triggered, this, &MainWindow::resetEbooks);
+    connect(ui->actionHideSearchBar, &QAction::triggered, this, &MainWindow::hideSearchBar);
+    connect(ui->actionHideDetailsSection, &QAction::triggered, this, &MainWindow::hideDetailsSection);
+    connect(ui->actionHideRightFrame, &QAction::triggered, this, &MainWindow::hideRightFrame);
+    connect(ui->actionHideUtilities, &QAction::triggered, this, &MainWindow::hideUtilities);
+    connect(ui->actionHideLeftFrame, &QAction::triggered, this, &MainWindow::hideLeftFrame);
+    connect(ui->actionCleanEbooks, &QAction::triggered, this, &MainWindow::showCleanEbooksDialog);
+    connect(ui->actionChooseRandomBook, &QAction::triggered, this, &MainWindow::chooseRandomBook);
+    connect(ui->actionFullscreen, &QAction::triggered, [this] { common::toggleFullscreen(this); });
+    connect(ui->actionResetSummaries, &QAction::triggered, this, &MainWindow::resetSummaries);
+    connect(ui->actionResetTags, &QAction::triggered, this, &MainWindow::resetTags);
+    connect(ui->actionResetSearches, &QAction::triggered, this, &MainWindow::resetSearches);
+    connect(ui->actionResetDatabase, &QAction::triggered, this, &MainWindow::resetDb);
+    connect(ui->actionWindowTop, &QAction::triggered, this, &MainWindow::toggleWindowOnTop);
+    connect(ui->actionLinkManager, &QAction::triggered, this, &MainWindow::showLinkManager);
+    connect(ui->actionDataViewer, &QAction::triggered, this, &MainWindow::showDbViewer);
+    connect(ui->actionEbooksReport, &QAction::triggered, this, &MainWindow::genEbooksReport);
+    connect(ui->actionHideStatusBar, &QAction::triggered, this, &MainWindow::hideStatusBar);
+    connect(ui->actionClearSearch, &QAction::triggered, this, &MainWindow::clearSearch);
+    connect(ui->actionMin, &QAction::triggered, this, &MainWindow::showMinimized);
+    connect(ui->actionMax, &QAction::triggered, [this] { common::toggleMaximized(this); });
+    connect(ui->actionClose, &QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionSummaries, &QAction::triggered, [this] { showSummary(""); });
+    connect(ui->actionMinimizeTray, &QAction::triggered, [this]
+    {
+        QTimer::singleShot(0, this, SLOT(hide()));
+    });
+    connect(ui->actionOpenDB, &QAction::triggered, [this]
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("./database.db"));
+    });
+    connect(ui->actionEbookReportsDir, &QAction::triggered, [this]
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/"));
+    });
+    connect(ui->actionUsageReportsDir, &QAction::triggered, [this]
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/usage/"));
+    });
+    connect(ui->actionInstallationDir, &QAction::triggered, [this]
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("./"));
+    });
 }
 
 void MainWindow::showQuote()
@@ -117,7 +216,7 @@ void MainWindow::showSummary(const QString &name)
 {
     auto *summaryWindow = new SummaryWindow();
     common::openWindow(summaryWindow, ":/styles/style.qss");
-    summaryWindow->callSelectEbookSummary(name);
+    summaryWindow->selectEbookSummary(name);
     summaryWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
@@ -128,7 +227,7 @@ void MainWindow::showLinkManager()
     linkManagerWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
-void MainWindow::on_buttonDbViewer_clicked()
+void MainWindow::showDbViewer()
 {
     auto *dataViewerWindow = new DataViewerWindow();
     common::openWindow(dataViewerWindow, ":/styles/style.qss");
@@ -141,7 +240,12 @@ void MainWindow::refreshComboBox(QComboBox *comboBox)
     comboBox->addItem("");
     while (queries::query.next())
     {
-        comboBox->addItem(queries::query.value(0).toString());
+        QString value = queries::query.value(0).toString();
+        if (value.isEmpty())
+        {
+            continue;
+        }
+        comboBox->addItem(value);
     }
 
     comboBox->model()->sort(0, Qt::AscendingOrder);
@@ -186,7 +290,7 @@ void MainWindow::showContextMenu(const QPoint &pos)
 
     menu.addAction("Open Ebook", this, [this]
     {
-        on_ebooksListWidget_itemActivated(ui->ebooksListWidget->currentItem());
+        openEbook(ui->ebooksListWidget->currentItem());
     });
     menu.addAction("Open Summary", this, SLOT(openSummaryWindow()));
     menu.addAction("Show in Folder", this, SLOT(openFolder()));
@@ -248,7 +352,7 @@ void MainWindow::openFolder()
     }
 }
 
-void MainWindow::on_buttonAddBooks_clicked()
+void MainWindow::showAddBooksDialog()
 {
     addBooksDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
@@ -258,7 +362,7 @@ void MainWindow::on_buttonAddBooks_clicked()
     refreshGenres();
 }
 
-void MainWindow::on_buttonSearchString_clicked()
+void MainWindow::searchString()
 {
     ui->ebooksListWidget->clear();
     QString stringToSearch = ui->textSearchBar->text();
@@ -273,7 +377,7 @@ void MainWindow::on_buttonSearchString_clicked()
     ui->statusBar->showMessage("Number of ebooks: " + QString::number(count));
 }
 
-void MainWindow::on_buttonClearCriteria_clicked()
+void MainWindow::clearCriteria()
 {
     ui->spinBoxFromSizeCriteria->setValue(0);
     ui->spinBoxFromPagesCriteria->setValue(0);
@@ -288,7 +392,7 @@ void MainWindow::on_buttonClearCriteria_clicked()
     ui->statusBar->clearMessage();
 }
 
-void MainWindow::on_buttonDetailsClear_clicked()
+void MainWindow::clearDetails()
 {
     ui->textDetailsAuthor->clear();
     ui->textDetailsName->clear();
@@ -301,51 +405,51 @@ void MainWindow::on_buttonDetailsClear_clicked()
     ui->statusBar->clearMessage();
 }
 
-void MainWindow::on_buttonSortSearch_clicked()
+void MainWindow::sortSearch()
 {
     SORT = (SORT == Qt::AscendingOrder ? Qt::DescendingOrder : Qt::AscendingOrder);
     ui->ebooksListWidget->sortItems(SORT);
 }
 
-void MainWindow::on_actionResetEbooks_triggered()
+void MainWindow::resetEbooks()
 {
     queries::resetEbooksTableQuery();
     refreshFolders();
     refreshAuthors();
     refreshGenres();
     ui->ebooksListWidget->clear();
-    ui->statusBar->showMessage("All ebooks have been deleted.");
+    ui->statusBar->showMessage("Ebooks, summaries, and tags have been deleted.");
 }
 
 
-void MainWindow::on_actionHideSearchBar_triggered()
+void MainWindow::hideSearchBar()
 {
     common::changeWidgetVisibility(ui->frameSearchToolBar, ui->actionHideSearchBar);
 }
 
-void MainWindow::on_actionHideDetailsSection_triggered()
+void MainWindow::hideDetailsSection()
 {
     ui->frameDetails->setHidden(!ui->frameDetails->isHidden());
     ui->actionHideDetailsSection->setText(ui->frameDetails->isHidden() ? "Show Details Section" : "Hide Details Section");
     ui->frameMainRight->setHidden(ui->ebooksListWidget->isHidden() && ui->frameDetails->isHidden());
 }
 
-void MainWindow::on_actionHideRightFrame_triggered()
+void MainWindow::hideRightFrame()
 {
     common::changeWidgetVisibility(ui->frameMainRight, ui->actionHideRightFrame);
 }
 
-void MainWindow::on_actionHideUtilities_triggered()
+void MainWindow::hideUtilities()
 {
     common::changeWidgetVisibility(ui->frameBottomButtons, ui->actionHideUtilities);
 }
 
-void MainWindow::on_actionHideLeftFrame_triggered()
+void MainWindow::hideLeftFrame()
 {
     common::changeWidgetVisibility(ui->frameMainLeft, ui->actionHideLeftFrame);
 }
 
-void MainWindow::on_buttonAddBook_clicked()
+void MainWindow::showAddBookDialog()
 {
     addBookDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
@@ -354,7 +458,7 @@ void MainWindow::on_buttonAddBook_clicked()
     refreshGenres();
 }
 
-void MainWindow::on_buttonClearSearch_clicked()
+void MainWindow::clearSearch()
 {
     ui->textSearchBar->clear();
     ui->ebooksListWidget->clear();
@@ -369,7 +473,7 @@ void MainWindow::on_buttonClearSearch_clicked()
     ui->statusBar->clearMessage();
 }
 
-void MainWindow::on_buttonSearchCriteria_clicked()
+void MainWindow::searchCriteria()
 {
     ui->ebooksListWidget->clear();
     QString folder = ui->comboBoxFolderCriteria->currentText();
@@ -395,7 +499,7 @@ void MainWindow::on_buttonSearchCriteria_clicked()
     ui->statusBar->showMessage("Number of ebooks: " + QString::number(count));
 }
 
-void MainWindow::on_ebooksListWidget_itemClicked(QListWidgetItem *item)
+void MainWindow::showEbookDetails(QListWidgetItem *item)
 {
     QString fileName = item->text();
     queries::selectAllBasedonName(fileName);
@@ -421,16 +525,16 @@ void MainWindow::on_ebooksListWidget_itemClicked(QListWidgetItem *item)
     ui->statusBar->showMessage("Current selected ebook: " + fileName);
 }
 
-void MainWindow::on_buttonDetailsRestore_clicked()
+void MainWindow::restoreDetails()
 {
     if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
-        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+        showEbookDetails(ui->ebooksListWidget->currentItem());
         ui->statusBar->showMessage("Details restored successfully.");
     }
 }
 
-void MainWindow::on_buttonDetailsUpdate_clicked()
+void MainWindow::updateDetails()
 {
     if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
@@ -469,7 +573,7 @@ void MainWindow::on_buttonDetailsUpdate_clicked()
     }
 }
 
-void MainWindow::on_buttonSaveCriteria_clicked()
+void MainWindow::saveCriteria()
 {
     QString folder = ui->comboBoxFolderCriteria->currentText();
     QString author = ui->comboBoxAuthorCriteria->currentText();
@@ -482,11 +586,11 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     quint32 pagesTo = ui->spinBoxToPagesCriteria->value();
     quint32 pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
-    searchNameDialog dialog(this);
+    getNameDialog dialog(this, "Search Name", "Please provide a name for the search you want to save:");
     common::openDialog(&dialog, ":/styles/style.qss");
-    if (!dialog.searchName.isEmpty())
+    if (!dialog.name.isEmpty())
     {
-        queries::insertSearchQuery(dialog.searchName, folder, author, genre, tags, ext,
+        queries::insertSearchQuery(dialog.name, folder, author, genre, tags, ext,
             sizeFrom, sizeTo, sizeIn, pagesFrom, pagesTo);
         ui->statusBar->showMessage("Search saved successfully.");
     }
@@ -494,11 +598,11 @@ void MainWindow::on_buttonSaveCriteria_clicked()
     refreshSearches();
 }
 
-void MainWindow::on_buttonSearchLoad_clicked()
+void MainWindow::loadSearch()
 {
     if (ui->comboBoxSearchLoad->currentText().isEmpty())
     {
-        on_buttonClearCriteria_clicked();
+        clearCriteria();
         return;
     }
 
@@ -519,23 +623,13 @@ void MainWindow::on_buttonSearchLoad_clicked()
     ui->statusBar->showMessage("Search loaded.");
 }
 
-void MainWindow::on_actionCleanEbooks_triggered()
+void MainWindow::showCleanEbooksDialog()
 {
     cleanEbooksDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 }
 
-void MainWindow::on_buttonSummaries_clicked()
-{
-    showSummary("");
-}
-
-void MainWindow::on_buttonLinkManager_clicked()
-{
-    showLinkManager();
-}
-
-void MainWindow::on_actionChooseRandomBook_triggered()
+void MainWindow::chooseRandomBook()
 {
     queries::selectCountEbooks();
     queries::query.next();
@@ -552,20 +646,7 @@ void MainWindow::on_actionChooseRandomBook_triggered()
     }
 }
 
-void MainWindow::on_ebooksListWidget_itemSelectionChanged()
-{
-    if (ui->ebooksListWidget->count() >= 1)
-    {
-        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
-    }
-}
-
-void MainWindow::on_actionFullscreen_triggered()
-{
-    !this->isFullScreen() ? this->showFullScreen() : this->showNormal();
-}
-
-void MainWindow::on_ebooksListWidget_itemActivated(QListWidgetItem *item)
+void MainWindow::openEbook(QListWidgetItem *item)
 {
     QString ebookName = item->text();
     queries::selectPathBasedonName(ebookName);
@@ -575,7 +656,7 @@ void MainWindow::on_ebooksListWidget_itemActivated(QListWidgetItem *item)
     ui->statusBar->showMessage(ebookName + " ebook opened.");
 }
 
-void MainWindow::on_buttonSizeCriteria_clicked()
+void MainWindow::toggleSizeCriteria()
 {
     QString currentText = ui->buttonSizeCriteria->text();
     ui->buttonSizeCriteria->setText(sizeUnits[currentText]);
@@ -609,31 +690,31 @@ void MainWindow::extSelectionSetup(const QString &title, const QString &prompt, 
     }
 }
 
-void MainWindow::on_buttonExtensions_clicked()
+void MainWindow::selectExtensions()
 {
     queries::selectExt();
     extSelectionSetup("Extensions", "Select Available Extensions", ui->textExts);
 }
 
-void MainWindow::on_buttonFolder_clicked()
+void MainWindow::selectFolders()
 {
     queries::selectFoldersQuery();
     extSelectionSetup("Folders", "Select Available Folders", ui->comboBoxFolderCriteria);
 }
 
-void MainWindow::on_buttonAuthor_clicked()
+void MainWindow::selectAuthors()
 {
     queries::selectAuthorsQuery();
     extSelectionSetup("Authors", "Select Available Authors", ui->comboBoxAuthorCriteria);
 }
 
-void MainWindow::on_buttonGenre_clicked()
+void MainWindow::selectGenres()
 {
     queries::selectGenreQuery();
     extSelectionSetup("Genres", "Select Available Genres", ui->comboBoxGenreCriteria);
 }
 
-void MainWindow::on_buttonTags_clicked()
+void MainWindow::selectTags()
 {
     QVector<QString> tags;
     queries::selectTags();
@@ -658,44 +739,44 @@ void MainWindow::on_buttonTags_clicked()
     ui->textTagsCriteria->setText(tagString);
 }
 
-void MainWindow::on_buttonSizeUnit_clicked()
+void MainWindow::toggleSizeUnit()
 {
     QString currentText = ui->buttonSizeUnit->text();
     ui->buttonSizeUnit->setText(sizeUnits[currentText]);
     if (!ui->ebooksListWidget->selectedItems().isEmpty())
     {
-        on_ebooksListWidget_itemClicked(ui->ebooksListWidget->currentItem());
+        showEbookDetails(ui->ebooksListWidget->currentItem());
     }
 }
 
-void MainWindow::on_actionMinimizeTray_triggered()
-{
-    QTimer::singleShot(0, this, SLOT(hide()));
-}
-
-void MainWindow::on_actionResetSummaries_triggered()
+void MainWindow::resetSummaries()
 {
     queries::resetSummaries();
+    ui->statusBar->showMessage("All summaries have been deleted.");
 }
 
-void MainWindow::on_actionResetTags_triggered()
+void MainWindow::resetTags()
 {
     queries::resetTags();
+    ui->statusBar->showMessage("All tags have been deleted.");
+
 }
 
-void MainWindow::on_actionResetSearches_triggered()
+void MainWindow::resetSearches()
 {
     queries::resetSearchesTable();
     refreshSearches();
+    ui->statusBar->showMessage("All searches have been deleted.");
 }
 
-void MainWindow::on_actionResetDatabase_triggered()
+void MainWindow::resetDb()
 {
-    on_actionResetEbooks_triggered();
-    on_actionResetSummaries_triggered();
+    resetEbooks();
+    resetSearches();
+    ui->statusBar->showMessage("All data has been deleted.");
 }
 
-void MainWindow::on_actionWindowTop_triggered()
+void MainWindow::toggleWindowOnTop()
 {
     Qt::WindowFlags flags = windowFlags();
     flags ^= Qt::WindowStaysOnTopHint;
@@ -703,27 +784,7 @@ void MainWindow::on_actionWindowTop_triggered()
     show();
 }
 
-void MainWindow::on_actionSummaries_triggered()
-{
-    on_buttonSummaries_clicked();
-}
-
-void MainWindow::on_actionLinkManager_triggered()
-{
-    on_buttonLinkManager_clicked();
-}
-
-void MainWindow::on_actionDataViewer_triggered()
-{
-    on_buttonDbViewer_clicked();
-}
-
-void MainWindow::on_comboBoxSearchLoad_currentTextChanged()
-{
-    on_buttonSearchLoad_clicked();
-}
-
-void MainWindow::on_actionEbooksReport_triggered()
+void MainWindow::genEbooksReport()
 {
     QString fileName = QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss") + ".html";
     QFile file = QFile("./reports/ebooks/" + fileName);
@@ -764,28 +825,7 @@ void MainWindow::on_actionEbooksReport_triggered()
     QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/" + fileName));
 }
 
-void MainWindow::on_actionOpenDB_triggered()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("./database.db"));
-}
-
-void MainWindow::on_actionEbookReportsDir_triggered()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/"));
-}
-
-void MainWindow::on_actionUsageReportsDir_triggered()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/usage/"));
-}
-
-void MainWindow::on_actionInstallationDir_triggered()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("./"));
-}
-
-void MainWindow::on_actionHideStatusBar_triggered()
+void MainWindow::hideStatusBar()
 {
     common::changeWidgetVisibility(ui->statusBar, ui->actionHideStatusBar);
 }
-

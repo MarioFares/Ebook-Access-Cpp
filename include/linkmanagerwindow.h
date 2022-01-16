@@ -17,7 +17,7 @@ public:
     ~LinkManagerWindow();
 
 private slots:
-    void closeEvent(QCloseEvent *event);
+    void setupConnections();
 
     void refreshCollections(const QString &searchString);
 
@@ -39,67 +39,53 @@ private slots:
 
     void openAllLinks();
 
-    void on_buttonInsertCollection_clicked();
+    void addCollection();
 
-    void on_buttonInsertLink_clicked();
+    void addLink();
 
-    void on_textCollections_textChanged(const QString &arg1);
+    void searchLinks(const QString &arg1);
 
-    void on_textLinks_textChanged(const QString &arg1);
+    void collectionClicked(QListWidgetItem *item);
 
-    void on_listWidgetCollections_itemClicked(QListWidgetItem *item);
+    void openLink(QListWidgetItem *item);
 
-    void on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *item);
+    void linkClicked(QListWidgetItem *item);
 
-    void on_listWidgetLinks_itemClicked(QListWidgetItem *item);
+    void clearDetails();
 
-    void on_buttonDetailsClear_clicked();
+    void restoreDetails();
 
-    void on_buttonDetailsRestore_clicked();
+    void updateDetails();
 
-    void on_buttonDetailsUpdate_clicked();
+    void linkSelectionChanged();
 
-    void on_listWidgetLinks_itemSelectionChanged();
+    void clearCollections();
 
-    void on_buttonSearchCollections_clicked();
+    void sortCollections();
 
-    void on_buttonClearCollections_clicked();
+    void clearLinks();
 
-    void on_buttonSortCollections_clicked();
+    void sortLinks();
 
-    void on_buttonSearchLinks_clicked();
+    void hideLeftPanel();
 
-    void on_buttonClearLinks_clicked();
+    void hideRightPanel();
 
-    void on_buttonSortLinks_clicked();
+    void hideSearchBars();
 
-    void on_actionFullscreen_triggered();
+    void resetLinks();
 
-    void on_actionHideLeftPanel_triggered();
+    void resetCollections();
 
-    void on_actionHideRightPanel_triggered();
+    void actionEditLink();
 
-    void on_actionHideSearchBars_triggered();
+    void actionDeleteCollection();
 
-    void on_actionResetLinks_triggered();
+    void actionRenameCollection();
 
-    void on_actionResetCollections_triggered();
+    void actionOpenAllLinks();
 
-    void on_actionResetAll_triggered();
-
-    void on_actionAddLink_triggered();
-
-    void on_actionEditLink_triggered();
-
-    void on_actionAddCollection_triggered();
-
-    void on_actionDeleteCollection_triggered();
-
-    void on_actionRenameCollection_triggered();
-
-    void on_actionOpenAllLinks_triggered();
-
-    void on_actionDeleteLink_triggered();
+    void actionDeleteLink();
 
 private:
     Ui::LinkManagerWindow *ui;

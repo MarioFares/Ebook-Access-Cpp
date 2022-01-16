@@ -1,10 +1,10 @@
 #include "ui_linkmanagerwindow.h"
 
-#include "include/linkmanagerwindow.h"
-#include "include/queries.h"
 #include "include/common.h"
+#include "include/queries.h"
+#include "include/getnamedialog.h"
 #include "include/insertlinkdialog.h"
-#include "include/linkcollectiondialog.h"
+#include "include/linkmanagerwindow.h"
 
 #include <QUrl>
 #include <QMenu>
@@ -28,10 +28,9 @@ LinkManagerWindow::LinkManagerWindow(QWidget *parent):
     ui->listWidgetCollections->setSortingEnabled(true);
 
     ui->listWidgetLinks->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->listWidgetLinks, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showLinksContextMenu(QPoint)));
-
     ui->listWidgetCollections->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->listWidgetCollections, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showCollectionsContextMenu(QPoint)));
+
+    setupConnections();
 }
 
 LinkManagerWindow::~LinkManagerWindow()
@@ -39,9 +38,54 @@ LinkManagerWindow::~LinkManagerWindow()
     delete ui;
 }
 
-void LinkManagerWindow::closeEvent(QCloseEvent *event)
+void LinkManagerWindow::setupConnections()
 {
-    event->accept();
+    connect(ui->textLinks, &QLineEdit::textChanged, this, &LinkManagerWindow::searchLinks);
+    connect(ui->textLinks, &QLineEdit::returnPressed, [this] { searchLinks(ui->textLinks->text()); });
+    connect(ui->textCollections, &QLineEdit::textChanged, this, &LinkManagerWindow::refreshCollections);
+    connect(ui->textCollections, &QLineEdit::returnPressed, [this] { refreshCollections(ui->textCollections->text()); });
+
+    connect(ui->listWidgetLinks, &QListWidget::itemActivated, this, &LinkManagerWindow::openLink);
+    connect(ui->listWidgetLinks, &QListWidget::itemClicked, this, &LinkManagerWindow::linkClicked);
+    connect(ui->listWidgetLinks, &QListWidget::itemSelectionChanged, this, &LinkManagerWindow::linkSelectionChanged);
+    connect(ui->listWidgetLinks, &QListWidget::customContextMenuRequested, this, &LinkManagerWindow::showLinksContextMenu);
+    connect(ui->listWidgetCollections, &QListWidget::itemClicked, this, &LinkManagerWindow::collectionClicked);
+    connect(ui->listWidgetCollections, &QListWidget::customContextMenuRequested, this, &LinkManagerWindow::showCollectionsContextMenu);
+
+    connect(ui->buttonAddCollection, &QPushButton::clicked, this, &LinkManagerWindow::addCollection);
+    connect(ui->buttonAddLink, &QPushButton::clicked, this, &LinkManagerWindow::addLink);
+    connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &LinkManagerWindow::clearDetails);
+    connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &LinkManagerWindow::restoreDetails);
+    connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &LinkManagerWindow::updateDetails);
+    connect(ui->buttonClearCollections, &QPushButton::clicked, this, &LinkManagerWindow::clearCollections);
+    connect(ui->buttonSortCollections, &QPushButton::clicked, this, &LinkManagerWindow::sortCollections);
+    connect(ui->buttonClearLinks, &QPushButton::clicked, this, &LinkManagerWindow::clearLinks);
+    connect(ui->buttonSortLinks, &QPushButton::clicked, this, &LinkManagerWindow::sortLinks);
+    connect(ui->buttonSearchCollections, &QPushButton::clicked, [this]
+    {
+        refreshCollections(ui->textCollections->text());
+    });
+    connect(ui->buttonSearchLinks, &QPushButton::clicked, [this]
+    {
+        searchLinks(ui->textLinks->text());
+    });
+
+    connect(ui->actionFullscreen, &QAction::triggered, [this] { common::toggleFullscreen(this); });
+    connect(ui->actionHideLeftPanel, &QAction::triggered, this, &LinkManagerWindow::hideLeftPanel);
+    connect(ui->actionHideRightPanel, &QAction::triggered, this, &LinkManagerWindow::hideRightPanel);
+    connect(ui->actionHideSearchBars, &QAction::triggered, this, &LinkManagerWindow::hideSearchBars);
+    connect(ui->actionResetLinks, &QAction::triggered, this, &LinkManagerWindow::resetLinks);
+    connect(ui->actionResetCollections, &QAction::triggered, this, &LinkManagerWindow::resetCollections);
+    connect(ui->actionDeleteCollection, &QAction::triggered, this, &LinkManagerWindow::actionDeleteCollection);
+    connect(ui->actionRenameCollection, &QAction::triggered, this, &LinkManagerWindow::actionRenameCollection);
+    connect(ui->actionOpenAllLinks, &QAction::triggered, this, &LinkManagerWindow::actionOpenAllLinks);
+    connect(ui->actionDeleteLink, &QAction::triggered, this, &LinkManagerWindow::actionDeleteLink);
+    connect(ui->actionEditLink, &QAction::triggered, this, &LinkManagerWindow::actionEditLink);
+    connect(ui->actionClose, &QAction::triggered, this, &LinkManagerWindow::close);
+    connect(ui->actionMaximize, &QAction::triggered, [this] { common::toggleMaximized(this); });
+    connect(ui->actionMinimize, &QAction::triggered, this, &LinkManagerWindow::showMinimized);
+    connect(ui->actionAddCollection, &QAction::triggered, this, &LinkManagerWindow::addCollection);
+    connect(ui->actionAddLink, &QAction::triggered, this, &LinkManagerWindow::addLink);
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
@@ -52,7 +96,7 @@ void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
     menu.setStyleSheet(common::openSheet(":/styles/style.qss"));
     menu.addAction("Open", this, [this]
     {
-        on_listWidgetLinks_itemDoubleClicked(ui->listWidgetLinks->currentItem());
+        openLink(ui->listWidgetLinks->currentItem());
     });
     menu.addAction("Edit", this, [this]
     {
@@ -79,7 +123,7 @@ void LinkManagerWindow::showCollectionsContextMenu(const QPoint &pos)
     menu.setStyleSheet(common::openSheet(":/styles/style.qss"));
     menu.addAction("Add Link", this, [this]
     {
-        on_buttonInsertLink_clicked();
+        addLink();
     });
     menu.addAction("Rename", this, [this]
     {
@@ -148,14 +192,14 @@ void LinkManagerWindow::copyLink(const QString &name)
 
 void LinkManagerWindow::renameCollection(const QString &name)
 {
-    linkCollectionDialog dialog(this);
+    getNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
 
-    dialog.collectionName = name;
+    dialog.name = name;
     dialog.setDataOnOpen();
 
     common::openDialog(&dialog, ":/styles/style.qss");
-    queries::updateLinkCollectionName(name, dialog.collectionName);
-    ui->listWidgetCollections->currentItem()->setText(dialog.collectionName);
+    queries::updateLinkCollectionName(name, dialog.name);
+    ui->listWidgetCollections->currentItem()->setText(dialog.name);
     ui->statusBar->showMessage("Collection \"" + name + "\" renamed.");
 }
 
@@ -187,21 +231,21 @@ void LinkManagerWindow::refreshLinks(const QString &collectionName, const QStrin
     }
 }
 
-void LinkManagerWindow::on_buttonInsertCollection_clicked()
+void LinkManagerWindow::addCollection()
 {
-    linkCollectionDialog dialog(this);
+    getNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
     common::openDialog(&dialog, ":/styles/style.qss");
 
-    if (!dialog.collectionName.isEmpty())
+    if (!dialog.name.isEmpty())
     {
-        queries::insertLinkCollection(dialog.collectionName);
-        ui->statusBar->showMessage("New collection \"" + dialog.collectionName + "\" added.");
+        queries::insertLinkCollection(dialog.name);
+        ui->statusBar->showMessage("New collection \"" + dialog.name + "\" added.");
     }
 
     refreshCollections("");
 }
 
-void LinkManagerWindow::on_buttonInsertLink_clicked()
+void LinkManagerWindow::addLink()
 {
     insertLinkDialog dialog(this);
     if (!ui->listWidgetCollections->selectedItems().isEmpty())
@@ -220,12 +264,7 @@ void LinkManagerWindow::on_buttonInsertLink_clicked()
     }
 }
 
-void LinkManagerWindow::on_textCollections_textChanged(const QString &arg1)
-{
-    refreshCollections(arg1);
-}
-
-void LinkManagerWindow::on_textLinks_textChanged(const QString &arg1)
+void LinkManagerWindow::searchLinks(const QString &arg1)
 {
     if (!ui->listWidgetCollections->selectedItems().isEmpty())
     {
@@ -233,13 +272,13 @@ void LinkManagerWindow::on_textLinks_textChanged(const QString &arg1)
     }
 }
 
-void LinkManagerWindow::on_listWidgetCollections_itemClicked(QListWidgetItem *item)
+void LinkManagerWindow::collectionClicked(QListWidgetItem *item)
 {
     refreshLinks(item->text(), "");
     ui->statusBar->showMessage("Collection \"" + item->text() + "\" selected.");
 }
 
-void LinkManagerWindow::on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *item)
+void LinkManagerWindow::openLink(QListWidgetItem *item)
 {
     queries::selectLinkRecord(item->text());
     queries::query.next();
@@ -247,7 +286,7 @@ void LinkManagerWindow::on_listWidgetLinks_itemDoubleClicked(QListWidgetItem *it
     QDesktopServices::openUrl(QUrl(queries::query.value(1).toString()));
 }
 
-void LinkManagerWindow::on_listWidgetLinks_itemClicked(QListWidgetItem *item)
+void LinkManagerWindow::linkClicked(QListWidgetItem *item)
 {
     queries::selectLinkRecord(item->text());
     queries::query.next();
@@ -260,22 +299,22 @@ void LinkManagerWindow::on_listWidgetLinks_itemClicked(QListWidgetItem *item)
     ui->statusBar->showMessage(title + ": " + url);
 }
 
-void LinkManagerWindow::on_buttonDetailsClear_clicked()
+void LinkManagerWindow::clearDetails()
 {
     ui->textDetailsTitle->clear();
     ui->textDetailsUrl->clear();
 }
 
-void LinkManagerWindow::on_buttonDetailsRestore_clicked()
+void LinkManagerWindow::restoreDetails()
 {
     if (!ui->listWidgetLinks->selectedItems().isEmpty())
     {
-        on_listWidgetLinks_itemClicked(ui->listWidgetLinks->currentItem());
+        linkClicked(ui->listWidgetLinks->currentItem());
         ui->statusBar->showMessage("Details restored successfully.");
     }
 }
 
-void LinkManagerWindow::on_buttonDetailsUpdate_clicked()
+void LinkManagerWindow::updateDetails()
 {
     QString oldTitle = ui->listWidgetLinks->currentItem()->text();
     QString newTitle = ui->textDetailsTitle->text();
@@ -286,92 +325,66 @@ void LinkManagerWindow::on_buttonDetailsUpdate_clicked()
     ui->statusBar->showMessage("Link \"" + oldTitle + "\" edited.");
 }
 
-void LinkManagerWindow::on_listWidgetLinks_itemSelectionChanged()
+void LinkManagerWindow::linkSelectionChanged()
 {
     if (!ui->listWidgetLinks->selectedItems().isEmpty())
     {
-        on_listWidgetLinks_itemClicked(ui->listWidgetLinks->currentItem());
+        linkClicked(ui->listWidgetLinks->currentItem());
     }
 }
 
-void LinkManagerWindow::on_buttonSearchCollections_clicked()
-{
-    on_textCollections_textChanged(ui->textCollections->text());
-}
-
-void LinkManagerWindow::on_buttonClearCollections_clicked()
+void LinkManagerWindow::clearCollections()
 {
     ui->textCollections->clear();
     ui->listWidgetCollections->clear();
 }
 
-void LinkManagerWindow::on_buttonSortCollections_clicked()
+void LinkManagerWindow::sortCollections()
 {
     this->COLL_SORT = (this->COLL_SORT == Qt::AscendingOrder ? Qt::DescendingOrder : Qt::AscendingOrder);
     ui->listWidgetCollections->sortItems(this->COLL_SORT);
 }
 
-void LinkManagerWindow::on_buttonSearchLinks_clicked()
-{
-    on_textLinks_textChanged(ui->textLinks->text());
-}
-
-void LinkManagerWindow::on_buttonClearLinks_clicked()
+void LinkManagerWindow::clearLinks()
 {
     ui->textLinks->clear();
     ui->listWidgetLinks->clear();
 }
 
-void LinkManagerWindow::on_buttonSortLinks_clicked()
+void LinkManagerWindow::sortLinks()
 {
     this->LINKS_SORT = (this->LINKS_SORT == Qt::AscendingOrder ? Qt::DescendingOrder : Qt::AscendingOrder);
     ui->listWidgetLinks->sortItems(this->LINKS_SORT);
 }
 
-void LinkManagerWindow::on_actionFullscreen_triggered()
-{
-    !this->isFullScreen() ? this->showFullScreen() : this->showNormal();
-}
-
-void LinkManagerWindow::on_actionHideLeftPanel_triggered()
+void LinkManagerWindow::hideLeftPanel()
 {
     common::changeWidgetVisibility(ui->frameLeft, ui->actionHideLeftPanel);
 }
 
-void LinkManagerWindow::on_actionHideRightPanel_triggered()
+void LinkManagerWindow::hideRightPanel()
 {
     common::changeWidgetVisibility(ui->frameRight, ui->actionHideRightPanel);
 }
 
-void LinkManagerWindow::on_actionHideSearchBars_triggered()
+void LinkManagerWindow::hideSearchBars()
 {
     ui->frameLinksSearch->setHidden(!ui->frameLinksSearch->isHidden());
     ui->frameCollectionsSearch->setHidden(!ui->frameCollectionsSearch->isHidden());
     ui->actionHideSearchBars->setText(ui->frameCollectionsSearch->isHidden() ? "Show Search Bars" : "Hide Search Bars");
 }
 
-void LinkManagerWindow::on_actionResetLinks_triggered()
+void LinkManagerWindow::resetLinks()
 {
     queries::resetLinksTable();
 }
 
-void LinkManagerWindow::on_actionResetCollections_triggered()
+void LinkManagerWindow::resetCollections()
 {
     queries::resetCollectionsTable();
 }
 
-void LinkManagerWindow::on_actionResetAll_triggered()
-{
-    queries::resetLinksTable();
-    queries::resetCollectionsTable();
-}
-
-void LinkManagerWindow::on_actionAddLink_triggered()
-{
-    on_buttonInsertLink_clicked();
-}
-
-void LinkManagerWindow::on_actionEditLink_triggered()
+void LinkManagerWindow::actionEditLink()
 {
     if (ui->listWidgetLinks->currentItem())
     {
@@ -379,12 +392,7 @@ void LinkManagerWindow::on_actionEditLink_triggered()
     }
 }
 
-void LinkManagerWindow::on_actionAddCollection_triggered()
-{
-    on_buttonInsertCollection_clicked();
-}
-
-void LinkManagerWindow::on_actionDeleteCollection_triggered()
+void LinkManagerWindow::actionDeleteCollection()
 {
     if (ui->listWidgetCollections->currentItem())
     {
@@ -392,7 +400,7 @@ void LinkManagerWindow::on_actionDeleteCollection_triggered()
     }
 }
 
-void LinkManagerWindow::on_actionRenameCollection_triggered()
+void LinkManagerWindow::actionRenameCollection()
 {
     if (ui->listWidgetCollections->currentItem())
     {
@@ -400,12 +408,12 @@ void LinkManagerWindow::on_actionRenameCollection_triggered()
     }
 }
 
-void LinkManagerWindow::on_actionOpenAllLinks_triggered()
+void LinkManagerWindow::actionOpenAllLinks()
 {
     openAllLinks();
 }
 
-void LinkManagerWindow::on_actionDeleteLink_triggered()
+void LinkManagerWindow::actionDeleteLink()
 {
     if (ui->listWidgetLinks->currentItem())
     {
