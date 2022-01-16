@@ -26,6 +26,9 @@ namespace common
 
     void changeWidgetVisibility(QWidget *widget, QAction *action);
 
+    void toggleFullscreen(QMainWindow *window);
+
+    void toggleMaximized(QMainWindow *window);
 
 }	// Namespace common
 #endif	// COMMON_H

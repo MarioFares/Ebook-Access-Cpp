@@ -102,4 +102,16 @@ void changeWidgetVisibility(QWidget *widget, QAction *action)
     actionText.replace(isHidden ? "Show" : "Hide", isHidden ? "Hide" : "Show", Qt::CaseInsensitive);
     action->setText(actionText);
 }
+
+void toggleFullscreen(QMainWindow *window)
+{
+    window->isFullScreen() ? window->showMaximized() : window->showFullScreen();
+}
+
+void toggleMaximized(QMainWindow *window)
+{
+    window->isMaximized() ? window->showNormal() : window->showMaximized();
+}
+
+
 }	// Namespace common
