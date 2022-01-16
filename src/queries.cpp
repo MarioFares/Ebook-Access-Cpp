@@ -349,7 +349,7 @@ void insertSearchQuery(QString searchName, QString folder, QString author,
     quint32 fromPages, quint32 toPages)
 {
     query.prepare(QString("INSERT INTO searches "
-        "(search_name, "
+        "(name, "
         "folder, "
         "author, "
         "genre, "
