@@ -6,8 +6,8 @@ CONFIG += c++17
 QMAKE_CXXFLAGS += /std:c++17
 QMAKE_CXXFLAGS += /O2
 
-
 SOURCES += \
+    src/getnamedialog.cpp \
     src/findhighlighter.cpp \
     src/addbookdialog.cpp \
     src/addbooksdialog.cpp \
@@ -19,19 +19,17 @@ SOURCES += \
     src/extselectiondialog.cpp \
     src/insertlinkdialog.cpp \
     src/inserttabledialog.cpp \
-    src/linkcollectiondialog.cpp \
     src/linkmanagerwindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/queries.cpp \
     src/quotedialog.cpp \
-    src/searchnamedialog.cpp \
     src/settingswindow.cpp \
     src/summarywindow.cpp \
     src/yesnodialog.cpp \
 
-
 HEADERS += \
+    include/getnamedialog.h \
     include/findhighlighter.h \
     include/addbookdialog.h \
     include/addbooksdialog.h \
@@ -43,17 +41,16 @@ HEADERS += \
     include/extselectiondialog.h \
     include/insertlinkdialog.h \
     include/inserttabledialog.h \
-    include/linkcollectiondialog.h \
     include/linkmanagerwindow.h \
     include/mainwindow.h \
     include/queries.h \
-    include/searchnamedialog.h \
     include/settingswindow.h \
     include/summarywindow.h \
     include/yesnodialog.h \
     include/quotedialog.h
 
 FORMS += \
+    ui/getnamedialog.ui \
     ui/quotedialog.ui \
     ui/addbookdialog.ui \
     ui/addbooksdialog.ui \
@@ -63,10 +60,8 @@ FORMS += \
     ui/extselectiondialog.ui \
     ui/insertlinkdialog.ui \
     ui/inserttabledialog.ui \
-    ui/linkcollectiondialog.ui \
     ui/linkmanagerwindow.ui \
     ui/mainwindow.ui \
-    ui/searchnamedialog.ui \
     ui/settingswindow.ui \
     ui/summarywindow.ui \
     ui/yesnodialog.ui
@@ -83,13 +78,11 @@ DISTFILES += \
     resources/styles/textEditorStyle.qss \
     resources/txt/quotes.txt
 
-
 RESOURCES += \
     resources/images.qrc \
     resources/quotes.qrc \
     resources/sql.qrc \
     resources/style.qrc
-
 
 RC_ICONS = ./resources/icons/icon.ico
 
