@@ -16,13 +16,13 @@ public:
     ~addBookDialog();
 
 private slots:
-    void on_buttonCancel_clicked();
+    void setupConnections();
 
-    void on_buttonClear_clicked();
+    void clearInputs();
 
-    void on_buttonBrowse_clicked();
+    void browseFile();
 
-    void on_buttonAdd_clicked();
+    void addFile();
 
 private:
     Ui::addBookDialog *ui;

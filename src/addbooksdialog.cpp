@@ -14,6 +14,7 @@ addBooksDialog::addBooksDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::addBooksDialog)
 {
     ui->setupUi(this);
+    setupConnections();
     ui->textFolderPath->setCompleter(common::dirCompleter(this));
 }
 
@@ -22,12 +23,14 @@ addBooksDialog::~addBooksDialog()
     delete ui;
 }
 
-void addBooksDialog::on_buttonClose_clicked()
+void addBooksDialog::setupConnections()
 {
-    close();
+    connect(ui->buttonClose, &QPushButton::clicked, this, &addBooksDialog::close);
+    connect(ui->buttonBrowseFolders, &QPushButton::clicked, this, &addBooksDialog::browseDirs);
+    connect(ui->buttonAdd, &QPushButton::clicked, this, &addBooksDialog::addDir);
 }
 
-void addBooksDialog::on_buttonBrowseFolders_clicked()
+void addBooksDialog::browseDirs()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose Folder"),
         "/",
@@ -36,7 +39,7 @@ void addBooksDialog::on_buttonBrowseFolders_clicked()
     ui->textFolderPath->setText(dir);
 }
 
-void addBooksDialog::on_buttonAdd_clicked()
+void addBooksDialog::addDir()
 {
     QString dirPath = ui->textFolderPath->text();
     QFileInfo dir(dirPath);

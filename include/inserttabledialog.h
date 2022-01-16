@@ -21,9 +21,9 @@ public:
     ~insertTableDialog();
 
 private slots:
-    void on_buttonCancel_clicked();
+    void setupConnections();
 
-    void on_buttonOk_clicked();
+    void getTableDims();
 
 private:
     Ui::insertTableDialog *ui;

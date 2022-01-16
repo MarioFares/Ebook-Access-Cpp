@@ -10,6 +10,7 @@ yesNoDialog::yesNoDialog(QWidget *parent, QString windowTitle, QString title, QS
     ui->labelPrompt->setText(prompt);
 
     result = false;
+    setupConnections();
 }
 
 yesNoDialog::~yesNoDialog()
@@ -17,15 +18,15 @@ yesNoDialog::~yesNoDialog()
     delete ui;
 }
 
-void yesNoDialog::on_buttonYes_clicked()
+void yesNoDialog::setupConnections()
 {
-    result = true;
-    close();
+    connect(ui->buttonYes, &QPushButton::clicked, this, &yesNoDialog::setResult);
+    connect(ui->buttonNo, &QPushButton::clicked, this, &yesNoDialog::setResult);
 }
 
-void yesNoDialog::on_buttonNo_clicked()
+void yesNoDialog::setResult()
 {
-    result = false;
+    result = sender() == ui->buttonYes;
     close();
 }
 

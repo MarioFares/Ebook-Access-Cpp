@@ -8,6 +8,7 @@ insertLinkDialog::insertLinkDialog(QWidget *parent):
     title = "";
     link = "";
     ui->setupUi(this);
+    setupConnections();
 }
 
 insertLinkDialog::~insertLinkDialog()
@@ -15,12 +16,13 @@ insertLinkDialog::~insertLinkDialog()
     delete ui;
 }
 
-void insertLinkDialog::on_buttonCancel_clicked()
+void insertLinkDialog::setupConnections()
 {
-    close();
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &insertLinkDialog::close);
+    connect(ui->buttonOk, &QPushButton::clicked, this, &insertLinkDialog::getInput);
 }
 
-void insertLinkDialog::on_buttonOk_clicked()
+void insertLinkDialog::getInput()
 {
     title = ui->textTitle->text();
     link = ui->textLink->text();

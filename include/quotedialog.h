@@ -16,9 +16,11 @@ public:
     ~quoteDialog();
 
 private slots:
-    void on_buttonNext_clicked();
+    void setupConnections();
 
-    void on_buttonPrevious_clicked();
+    void nextQuote();
+
+    void prevQuote();
 
 private:
     Ui::quoteDialog *ui;

@@ -10,6 +10,7 @@ addBookDialog::addBookDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::addBookDialog)
 {
     ui->setupUi(this);
+    setupConnections();
     ui->textPath->setCompleter(common::dirCompleter(this));
 }
 
@@ -18,12 +19,15 @@ addBookDialog::~addBookDialog()
     delete ui;
 }
 
-void addBookDialog::on_buttonCancel_clicked()
+void addBookDialog::setupConnections()
 {
-    close();
+    connect(ui->buttonClear, &QPushButton::clicked, this, &addBookDialog::clearInputs);
+    connect(ui->buttonBrowse, &QPushButton::clicked, this, &addBookDialog::browseFile);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &addBookDialog::close);
+    connect(ui->buttonAdd, &QPushButton::clicked, this, &addBookDialog::addFile);
 }
 
-void addBookDialog::on_buttonClear_clicked()
+void addBookDialog::clearInputs()
 {
     ui->textName->clear();
     ui->textFolder->clear();
@@ -36,7 +40,7 @@ void addBookDialog::on_buttonClear_clicked()
     ui->textPages->clear();
 }
 
-void addBookDialog::on_buttonBrowse_clicked()
+void addBookDialog::browseFile()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
         tr("Open File"), "/", tr("All Files (*.*)"));
@@ -52,7 +56,7 @@ void addBookDialog::on_buttonBrowse_clicked()
     ui->textPages->setText(QString::number(pages));
 }
 
-void addBookDialog::on_buttonAdd_clicked()
+void addBookDialog::addFile()
 {
     QString name = ui->textName->text();
     QString folder = ui->textFolder->text();

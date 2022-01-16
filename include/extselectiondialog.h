@@ -21,18 +21,15 @@ public:
     QVector<QString> getExtVector();
 
 private slots:
+    void setupConnections();
+
     void fillListWidget(QVector<QString> extVector);
 
-    void on_listWidget_itemActivated(QListWidgetItem *item);
+    void setItemState(QListWidgetItem *item);
 
-    void on_buttonOk_clicked();
+    void searchText(const QString &arg1);
 
-    void on_buttonSelectAll_clicked();
-
-    void on_buttonDeselectAll_clicked();
-
-    void on_textSearch_textChanged(const QString &arg1);
-
+    void setItemsCheckState(Qt::CheckState state);
 private:
     Ui::extSelectionDialog *ui;
 

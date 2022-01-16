@@ -18,6 +18,8 @@ public:
     ~addBooksDialog();
 
 private slots:
+    void setupConnections();
+
     void insertBook(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author);
 
     void setupEntries(const QString &dir, bool recursive);
@@ -25,11 +27,9 @@ private slots:
     void iterateInsertEntries(const QVector<QFileInfo> &entries, const QVector<QString> &exts,
                               const QString &tags, const QString &genres, const QString &authors);
 
-    void on_buttonClose_clicked();
+    void browseDirs();
 
-    void on_buttonBrowseFolders_clicked();
-
-    void on_buttonAdd_clicked();
+    void addDir();
 
 private:
     Ui::addBooksDialog *ui;

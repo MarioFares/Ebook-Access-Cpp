@@ -16,7 +16,9 @@ public:
     ~cleanEbooksDialog();
 
 private slots:
-    void on_buttonBegin_clicked();
+    void setupConnections();
+
+    void beginClean();
 
 private:
     Ui::cleanEbooksDialog *ui;

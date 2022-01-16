@@ -21,15 +21,9 @@ public:
     ~bulkDetailsDialog();
 
 private slots:
-    void on_checkBoxAuthor_stateChanged(int arg1);
+    void setupConnections();
 
-    void on_checkBoxGenre_stateChanged(int arg1);
-
-    void on_checkBoxTags_stateChanged(int arg1);
-
-    void on_buttonCancel_clicked();
-
-    void on_buttonApply_clicked();
+    void applyFields();
 
 private:
     Ui::bulkDetailsDialog *ui;

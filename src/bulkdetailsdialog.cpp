@@ -9,6 +9,7 @@ bulkDetailsDialog::bulkDetailsDialog(QWidget *parent):
     genre = "";
     tags = "";
     ui->setupUi(this);
+    setupConnections();
 }
 
 bulkDetailsDialog::~bulkDetailsDialog()
@@ -16,27 +17,16 @@ bulkDetailsDialog::~bulkDetailsDialog()
     delete ui;
 }
 
-void bulkDetailsDialog::on_checkBoxAuthor_stateChanged(int arg1)
+void bulkDetailsDialog::setupConnections()
 {
-    ui->textAuthor->setEnabled(arg1);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &bulkDetailsDialog::close);
+    connect(ui->buttonApply, &QPushButton::clicked, this, &bulkDetailsDialog::applyFields);
+    connect(ui->checkBoxAuthor, &QCheckBox::stateChanged, ui->textAuthor, &QLineEdit::setEnabled);
+    connect(ui->checkBoxGenre, &QCheckBox::stateChanged, ui->textGenre, &QLineEdit::setEnabled);
+    connect(ui->checkBoxTags, &QCheckBox::stateChanged, ui->textTags, &QLineEdit::setEnabled);
 }
 
-void bulkDetailsDialog::on_checkBoxGenre_stateChanged(int arg1)
-{
-    ui->textGenre->setEnabled(arg1);
-}
-
-void bulkDetailsDialog::on_checkBoxTags_stateChanged(int arg1)
-{
-    ui->textTags->setEnabled(arg1);
-}
-
-void bulkDetailsDialog::on_buttonCancel_clicked()
-{
-    close();
-}
-
-void bulkDetailsDialog::on_buttonApply_clicked()
+void bulkDetailsDialog::applyFields()
 {
     if (ui->textAuthor->isEnabled())
     {

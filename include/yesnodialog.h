@@ -19,9 +19,9 @@ public:
     bool getResult();
 
 private slots:
-    void on_buttonYes_clicked();
+    void setupConnections();
 
-    void on_buttonNo_clicked();
+    void setResult();
 
 private:
     Ui::yesNoDialog *ui;

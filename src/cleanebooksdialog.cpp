@@ -16,7 +16,12 @@ cleanEbooksDialog::~cleanEbooksDialog()
     delete ui;
 }
 
-void cleanEbooksDialog::on_buttonBegin_clicked()
+void cleanEbooksDialog::setupConnections()
+{
+    connect(ui->buttonBegin, &QPushButton::clicked, this, &cleanEbooksDialog::beginClean);
+}
+
+void cleanEbooksDialog::beginClean()
 {
     queries::selectPath();
     while (queries::query.next())
