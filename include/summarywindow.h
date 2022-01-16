@@ -19,21 +19,17 @@ class SummaryWindow : public QMainWindow
 
 
 public:
-    void callSelectEbookSummary(QString name)
-    {
-        selectEbookSummary(name);
-    }
-
     explicit SummaryWindow(QWidget *parent = nullptr);
     ~SummaryWindow();
 
+    void selectEbookSummary(const QString &name);
 
 private slots:
+    void setupConnections();
+
     bool eventFilter(QObject *obj, QEvent *event);
 
     void closeEvent(QCloseEvent *event);
-
-    void selectEbookSummary(const QString &name);
 
     void createList(QTextListFormat::Style style);
 
@@ -47,127 +43,105 @@ private slots:
 
     void insertClosingChar(const char &openChar, const QString &selectedText);
 
-    void on_buttonBold_clicked();
+    void toggleBold();
 
-    void on_buttonItalic_clicked();
+    void toggleItalic();
 
-    void on_buttonUnderline_clicked();
+    void toggleUnderline();
 
-    void on_buttonThrough_clicked();
+    void toggleStrikethrough();
 
-    void on_fontComboBox_currentTextChanged(const QString &arg1, bool change = true);
+    void setTextFontFamily(const QString &arg1, bool change = true);
 
-    void on_spinBoxFontSize_valueChanged(int arg1, bool change = true);
+    void setTextFontSize(int arg1, bool change = true);
 
-    void on_buttonBullets_clicked();
+    void toggleBulletedList();
 
-    void on_buttonUndo_clicked();
+    void toggleOrderedList();
 
-    void on_buttonRedo_clicked();
+    void changeTextAlignment(int index);
 
-    void on_buttonClearText_clicked();
+    void setSubscript();
 
-    void on_buttonOrder_clicked();
+    void setSuperscript();
 
-    void on_buttonIncreaseFontSize_clicked();
+    void insertCodeBlock();
 
-    void on_buttonDecreaseFontSize_clicked();
+    void toggleHighlight();
 
-    void on_buttonIncreaseIndent_clicked();
+    void setFontColor();
 
-    void on_buttonDecreaseIndent_clicked();
+    void hideSearchBar();
 
-    void on_comboBoxAlignment_currentIndexChanged(int index);
+    void hideLeftPane();
 
-    void on_buttonSubscript_clicked();
+    void hideTopToolbar();
 
-    void on_buttonSuperscript_clicked();
+    void hideRightToolbar();
 
-    void on_buttonCode_clicked();
+    void hideRightPane();
 
-    void on_buttonHighlight_clicked();
+    void insertLine();
 
-    void on_buttonEditorFontColor_clicked();
+    void resetFormat();
 
-    void on_actionHideSearchBar_triggered();
+    void insertImage();
 
-    void on_actionHideLeftPane_triggered();
+    void searchText();
 
-    void on_actionHideTopToolbar_triggered();
+    void clearSearch();
 
-    void on_actionHideRightToolbar_triggered();
+    void openEbookSummary(QListWidgetItem *item);
 
-    void on_actionHideRightPane_triggered();
+    void printSummaryToPdf();
 
-    void on_buttonInsertLine_clicked();
+    void insertTable();
 
-    void on_actionResetFormat_triggered();
+    void insertLink();
 
-    void on_buttonInsertImage_clicked();
+    void copyFormatting();
 
-    void on_actionPaste_triggered();
+    void pasteMatchFormat();
 
-    void on_actionSearchText_triggered();
+    void saveSummary();
 
-    void on_actionClearSearch_triggered();
+    void textFormatChanged();
 
-    void on_listWidget_itemClicked(QListWidgetItem *item);
+    void exportSummaryToHtml();
 
-    void on_actionPrint_triggered();
+    void setBackColor();
 
-    void on_buttonTable_clicked();
+    void sentenceCase();
 
-    void on_buttonLink_clicked();
+    void upperCase();
 
-    void on_actionCopyFormatting_triggered();
+    void lowerCase();
 
-    void on_actionPasteMatchFormat_triggered();
+    void capitalCase();
 
-    void on_actionSaveSummary_triggered();
+    void selectCurrentLine();
 
-    void on_textEditor_currentCharFormatChanged();
+    void duplicateCurrentLine();
 
-    void on_actionFullscreen_triggered();
+    void deleteCurrentLine();
 
-    void on_actionExportHtml_triggered();
+    void zoomIn();
 
-    void on_buttonEditorBackColor_clicked();
+    void zoomOut();
 
-    void on_actionSentenceCase_triggered();
+    void insertNormalDate();
 
-    void on_actionUpperCase_triggered();
+    void insertShortDate();
 
-    void on_actionLowerCase_triggered();
+    void addTableRow();
 
-    void on_actionCapitalCase_triggered();
+    void addTableColumn();
 
-    void on_actionSelectCurrentLine_triggered();
+    void findText(const QString &arg1);
 
-    void on_actionDuplicateCurrentLine_triggered();
+    void findNext();
 
-    void on_actionDeleteCurrentLine_triggered();
-
-    void on_actionZoomIn_triggered();
-
-    void on_actionZoomOut_triggered();
-
-    void on_actionDateNormal_triggered();
-
-    void on_actionDateShort_triggered();
-
-    void on_actionTableRow_triggered();
-
-    void on_actionTableColumn_triggered();
-
-    void on_actionFind_triggered();
-
-    void on_textFind_textChanged(const QString &arg1);
-
-    void on_buttonNext_clicked();
-
-    void on_buttonPrevious_clicked();
-
-    void on_buttonCloseFind_clicked();
+    void findPrevious();
 
     // Find functionality
     void highlightText();
@@ -175,6 +149,14 @@ private slots:
     void textEditRefreshHighlighter(int cursorIndex);
 
     void toggleFindWidget(bool visible);
+
+    void increaseFontSize();
+
+    void decreaseFontSize();
+
+    void increaseIndent();
+
+    void decreaseIndent();
 
 private:
     Ui::SummaryWindow *ui;

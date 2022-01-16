@@ -22,6 +22,7 @@
 #include <QDate>
 #include <QLocale>
 #include <QCalendar>
+#include <QImageReader>
 
 SummaryWindow::SummaryWindow(QWidget *parent):
     QMainWindow(parent), ui(new Ui::SummaryWindow)
@@ -43,6 +44,7 @@ SummaryWindow::SummaryWindow(QWidget *parent):
     ui->frameFind->setHidden(true);
     ui->textEditor->setStyleSheet(common::openSheet(":/styles/textEditorStyle.qss"));
     searchEbooks("");
+    setupConnections();
 }
 
 SummaryWindow::~SummaryWindow()
@@ -52,6 +54,116 @@ SummaryWindow::~SummaryWindow()
         queries::updateSummary(ui->labelTitle->text(), ui->textEditor->toHtml());
     }
     delete ui;
+}
+
+void SummaryWindow::setupConnections()
+{
+    connect(ui->buttonBold, &QPushButton::clicked, this, &SummaryWindow::toggleBold);
+    connect(ui->buttonItalic, &QPushButton::clicked, this, &SummaryWindow::toggleItalic);
+    connect(ui->buttonUnderline, &QPushButton::clicked, this, &SummaryWindow::toggleUnderline);
+    connect(ui->buttonThrough, &QPushButton::clicked, this, &SummaryWindow::toggleStrikethrough);
+    connect(ui->buttonBullets, &QPushButton::clicked, this, &SummaryWindow::toggleBulletedList);
+    connect(ui->buttonUndo, &QPushButton::clicked, ui->textEditor, &QTextBrowser::undo);
+    connect(ui->buttonRedo, &QPushButton::clicked, ui->textEditor, &QTextBrowser::redo);
+    connect(ui->buttonClearText, &QPushButton::clicked, ui->textEditor, &QTextBrowser::clear);
+    connect(ui->buttonOrder, &QPushButton::clicked, this, &SummaryWindow::toggleOrderedList);
+    connect(ui->buttonSubscript, &QPushButton::clicked, this, &SummaryWindow::setSubscript);
+    connect(ui->buttonSuperscript, &QPushButton::clicked, this, &SummaryWindow::setSuperscript);
+    connect(ui->buttonCode, &QPushButton::clicked, this, &SummaryWindow::insertCodeBlock);
+    connect(ui->buttonHighlight, &QPushButton::clicked, this, &SummaryWindow::toggleHighlight);
+    connect(ui->buttonEditorFontColor, &QPushButton::clicked, this, &SummaryWindow::setFontColor);
+    connect(ui->buttonInsertLine, &QPushButton::clicked, this, &SummaryWindow::insertLine);
+    connect(ui->buttonInsertImage, &QPushButton::clicked, this, &SummaryWindow::insertImage);
+    connect(ui->buttonTable, &QPushButton::clicked, this, &SummaryWindow::insertTable);
+    connect(ui->buttonLink, &QPushButton::clicked, this, &SummaryWindow::insertLink);
+    connect(ui->buttonEditorBackColor, &QPushButton::clicked, this, &SummaryWindow::setBackColor);
+    connect(ui->buttonNext, &QPushButton::clicked, this, &SummaryWindow::findNext);
+    connect(ui->buttonPrevious, &QPushButton::clicked, this, &SummaryWindow::findPrevious);
+    connect(ui->buttonIncreaseFontSize, &QPushButton::clicked, this, &SummaryWindow::increaseFontSize);
+    connect(ui->buttonDecreaseFontSize, &QPushButton::clicked,  this, &SummaryWindow::decreaseFontSize);
+    connect(ui->buttonIncreaseIndent, &QPushButton::clicked,  this, &SummaryWindow::increaseIndent);
+    connect(ui->buttonDecreaseIndent, &QPushButton::clicked,  this, &SummaryWindow::decreaseIndent);
+    connect(ui->buttonCloseFind, &QPushButton::clicked, [this]
+    {
+        toggleFindWidget(false);
+
+    });
+    connect(ui->fontComboBox, &QFontComboBox::currentTextChanged, [this]
+    {
+        setTextFontFamily(ui->fontComboBox->currentText(), true);
+    });
+    connect(ui->spinBoxFontSize, &QSpinBox::valueChanged, [this]
+    {
+        setTextFontSize(ui->spinBoxFontSize->value(), true);
+    });
+
+    connect(ui->textFind, &QLineEdit::textChanged, this, &SummaryWindow::findText);
+    connect(ui->comboBoxAlignment, &QComboBox::currentIndexChanged, this, &SummaryWindow::changeTextAlignment);
+    connect(ui->listWidget, &QListWidget::itemClicked, this, &SummaryWindow::openEbookSummary);
+    connect(ui->textSearch, &QLineEdit::textChanged, this, &SummaryWindow::searchText);
+    connect(ui->textSearch, &QLineEdit::returnPressed, this, &SummaryWindow::searchText);
+    connect(ui->textEditor, &QTextBrowser::currentCharFormatChanged, this, &SummaryWindow::textFormatChanged);
+    connect(ui->textEditor, &QTextBrowser::selectionChanged, this, &SummaryWindow::textFormatChanged);
+
+    connect(ui->actionClose, &QAction::triggered, this, &SummaryWindow::close);
+    connect(ui->actionMaximize, &QAction::triggered, [this] { common::toggleMaximized(this); });
+    connect(ui->actionFullscreen, &QAction::triggered, [this] { common::toggleFullscreen(this); });
+    connect(ui->actionMinimize, &QAction::triggered, this, &SummaryWindow::showMinimized);
+    connect(ui->actionHideSearchBar, &QAction::triggered, this, &SummaryWindow::hideSearchBar);
+    connect(ui->actionHideLeftPane, &QAction::triggered, this, &SummaryWindow::hideLeftPane);
+    connect(ui->actionHideTopToolbar, &QAction::triggered, this, &SummaryWindow::hideTopToolbar);
+    connect(ui->actionHideRightToolbar, &QAction::triggered, this, &SummaryWindow::hideRightToolbar);
+    connect(ui->actionHideRightPane, &QAction::triggered, this, &SummaryWindow::hideRightPane);
+    connect(ui->actionResetFormat, &QAction::triggered, this, &SummaryWindow::resetFormat);
+    connect(ui->actionPaste, &QAction::triggered, ui->textEditor, &QTextBrowser::paste);
+    connect(ui->actionSearchText, &QAction::triggered, this, &SummaryWindow::searchText);
+    connect(ui->actionClearSearch, &QAction::triggered, this, &SummaryWindow::clearSearch);
+    connect(ui->actionPrint, &QAction::triggered, this, &SummaryWindow::printSummaryToPdf);
+    connect(ui->actionCopyFormatting, &QAction::triggered, this, &SummaryWindow::copyFormatting);
+    connect(ui->actionPasteMatchFormat, &QAction::triggered, this, &SummaryWindow::pasteMatchFormat);
+    connect(ui->actionSaveSummary, &QAction::triggered, this, &SummaryWindow::saveSummary);
+    connect(ui->actionExportHtml, &QAction::triggered, this, &SummaryWindow::exportSummaryToHtml);
+    connect(ui->actionSentenceCase, &QAction::triggered, this, &SummaryWindow::sentenceCase);
+    connect(ui->actionUpperCase, &QAction::triggered, this, &SummaryWindow::upperCase);
+    connect(ui->actionLowerCase, &QAction::triggered, this, &SummaryWindow::lowerCase);
+    connect(ui->actionCapitalCase, &QAction::triggered, this, &SummaryWindow::capitalCase);
+    connect(ui->actionSelectCurrentLine, &QAction::triggered, this, &SummaryWindow::selectCurrentLine);
+    connect(ui->actionDuplicateCurrentLine, &QAction::triggered, this, &SummaryWindow::duplicateCurrentLine);
+    connect(ui->actionDeleteCurrentLine, &QAction::triggered, this, &SummaryWindow::deleteCurrentLine);
+    connect(ui->actionZoomIn, &QAction::triggered, this, &SummaryWindow::zoomIn);
+    connect(ui->actionZoomOut, &QAction::triggered, this, &SummaryWindow::zoomOut);
+    connect(ui->actionDateNormal, &QAction::triggered, this, &SummaryWindow::insertNormalDate);
+    connect(ui->actionDateShort, &QAction::triggered, this, &SummaryWindow::insertShortDate);
+    connect(ui->actionTableRow, &QAction::triggered, this, &SummaryWindow::addTableRow);
+    connect(ui->actionTableColumn, &QAction::triggered, this, &SummaryWindow::addTableColumn);
+    connect(ui->actionFind, &QAction::triggered, [this]
+    {
+        toggleFindWidget(!ui->frameFind->isVisible());
+    });
+    connect(ui->actionBold, &QAction::triggered, this, &SummaryWindow::toggleBold);
+    connect(ui->actionItalic, &QAction::triggered, this, &SummaryWindow::toggleItalic);
+    connect(ui->actionUnderline, &QAction::triggered, this, &SummaryWindow::toggleUnderline);
+    connect(ui->actionThrough, &QAction::triggered, this, &SummaryWindow::toggleStrikethrough);
+    connect(ui->actionBulletedList, &QAction::triggered, this, &SummaryWindow::toggleBulletedList);
+    connect(ui->actionOrderedList, &QAction::triggered, this, &SummaryWindow::toggleOrderedList);
+    connect(ui->actionSubscript, &QAction::triggered, this, &SummaryWindow::setSubscript);
+    connect(ui->actionSuperscript, &QAction::triggered, this, &SummaryWindow::setSuperscript);
+    connect(ui->actionCodeBlock, &QAction::triggered, this, &SummaryWindow::insertCodeBlock);
+    connect(ui->actionHighlight, &QAction::triggered, this, &SummaryWindow::toggleHighlight);
+    connect(ui->actionIncFontSize, &QAction::triggered, this, &SummaryWindow::increaseFontSize);
+    connect(ui->actionDecFontSize, &QAction::triggered, this, &SummaryWindow::decreaseFontSize);
+    connect(ui->actionIncIndent, &QAction::triggered, this, &SummaryWindow::increaseIndent);
+    connect(ui->actionDecIndent, &QAction::triggered, this, &SummaryWindow::decreaseIndent);
+    connect(ui->actionUndo, &QAction::triggered, ui->textEditor, &QTextBrowser::undo);
+    connect(ui->actionRedo, &QAction::triggered, ui->textEditor, &QTextBrowser::redo);
+    connect(ui->actionClearAll, &QAction::triggered, ui->textEditor, &QTextBrowser::clear);
+    connect(ui->actionCut, &QAction::triggered, ui->textEditor, &QTextBrowser::cut);
+    connect(ui->actionCopy, &QAction::triggered, ui->textEditor, &QTextBrowser::copy);
+    connect(ui->actionSelectAll, &QAction::triggered, ui->textEditor, &QTextBrowser::selectAll);
+    connect(ui->actionInsertLine, &QAction::triggered, this, &SummaryWindow::insertLine);
+    connect(ui->actionInsertLink, &QAction::triggered, this, &SummaryWindow::insertLink);
+    connect(ui->actionInsertImage, &QAction::triggered, this, &SummaryWindow::insertImage);
+    connect(ui->actionInsertTable, &QAction::triggered, this, &SummaryWindow::insertTable);
 }
 
 void SummaryWindow::closeEvent(QCloseEvent *event)
@@ -106,7 +218,7 @@ bool SummaryWindow::eventFilter(QObject *obj, QEvent *event)
                     break;
                 case Qt::Key_Enter:
                 case Qt::Key_Return:
-                    shiftModKeyPressed ? on_buttonPrevious_clicked() : on_buttonNext_clicked();
+                    shiftModKeyPressed ? findPrevious() : findNext();
                     break;
                 default:
                     break;
@@ -184,7 +296,7 @@ void SummaryWindow::selectEbookSummary(const QString &name)
     if (!name.isEmpty())
     {
         QList listItems = ui->listWidget->findItems(name, Qt::MatchExactly);
-        on_listWidget_itemClicked(listItems[0]);
+        openEbookSummary(listItems[0]);
         ui->listWidget->setCurrentItem(listItems[0]);
     }
 }
@@ -282,48 +394,53 @@ int SummaryWindow::changeListIndentation(const int &increment)
     }
 }
 
-void SummaryWindow::on_buttonBold_clicked()
+void SummaryWindow::toggleBold()
 {
     QFont currentFont = ui->textEditor->currentFont();
     currentFont.setBold(!currentFont.bold());
     ui->textEditor->setCurrentFont(currentFont);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonItalic_clicked()
+void SummaryWindow::toggleItalic()
 {
     QFont currentFont = ui->textEditor->currentFont();
     currentFont.setItalic(!currentFont.italic());
     ui->textEditor->setCurrentFont(currentFont);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonUnderline_clicked()
+void SummaryWindow::toggleUnderline()
 {
     QFont currentFont = ui->textEditor->currentFont();
     currentFont.setUnderline(!currentFont.underline());
     ui->textEditor->setCurrentFont(currentFont);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonThrough_clicked()
+void SummaryWindow::toggleStrikethrough()
 {
     QFont currentFont = ui->textEditor->currentFont();
     currentFont.setStrikeOut(!currentFont.strikeOut());
     ui->textEditor->setCurrentFont(currentFont);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_fontComboBox_currentTextChanged(const QString &arg1, bool change)
+void SummaryWindow::setTextFontFamily(const QString &arg1, bool change)
 {
     if (change)
     {
         ui->textEditor->setCurrentFont(arg1);
     }
-    ui->fontComboBox->setCurrentFont(arg1);
+    else
+    {
+        ui->fontComboBox->blockSignals(true);
+        ui->fontComboBox->setCurrentFont(arg1);
+        ui->fontComboBox->blockSignals(false);
+    }
 }
 
-void SummaryWindow::on_spinBoxFontSize_valueChanged(int arg1, bool change)
+void SummaryWindow::setTextFontSize(int arg1, bool change)
 {
     if (change)
     {
@@ -331,57 +448,27 @@ void SummaryWindow::on_spinBoxFontSize_valueChanged(int arg1, bool change)
         currentFont.setPointSize(arg1);
         ui->textEditor->setCurrentFont(currentFont);
     }
-    ui->spinBoxFontSize->setValue(arg1);
+    else
+    {
+        ui->spinBoxFontSize->blockSignals(true);
+        ui->spinBoxFontSize->setValue(arg1);
+        ui->spinBoxFontSize->blockSignals(false);
+    }
 }
 
-void SummaryWindow::on_buttonBullets_clicked()
+void SummaryWindow::toggleBulletedList()
 {
     createList(QTextListFormat::ListDisc);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonUndo_clicked()
-{
-    ui->textEditor->undo();
-}
-
-void SummaryWindow::on_buttonRedo_clicked()
-{
-    ui->textEditor->redo();
-}
-
-void SummaryWindow::on_buttonClearText_clicked()
-{
-    ui->textEditor->clear();
-}
-
-void SummaryWindow::on_buttonOrder_clicked()
+void SummaryWindow::toggleOrderedList()
 {
     createList(QTextListFormat::ListDecimal);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonIncreaseFontSize_clicked()
-{
-    ui->spinBoxFontSize->setValue(ui->spinBoxFontSize->value() + 1);
-}
-
-void SummaryWindow::on_buttonDecreaseFontSize_clicked()
-{
-    ui->spinBoxFontSize->setValue(ui->spinBoxFontSize->value() - 1);
-}
-
-void SummaryWindow::on_buttonIncreaseIndent_clicked()
-{
-    changeListIndentation(1);
-}
-
-void SummaryWindow::on_buttonDecreaseIndent_clicked()
-{
-    changeListIndentation(-1);
-}
-
-void SummaryWindow::on_comboBoxAlignment_currentIndexChanged(int index)
+void SummaryWindow::changeTextAlignment(int index)
 {
     switch (index)
     {
@@ -403,21 +490,21 @@ void SummaryWindow::on_comboBoxAlignment_currentIndexChanged(int index)
     }
 }
 
-void SummaryWindow::on_buttonSubscript_clicked()
+void SummaryWindow::setSubscript()
 {
     QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignSubScript);
     ui->textEditor->setCurrentCharFormat(currentFormat);
 }
 
-void SummaryWindow::on_buttonSuperscript_clicked()
+void SummaryWindow::setSuperscript()
 {
     QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
     ui->textEditor->setCurrentCharFormat(currentFormat);
 }
 
-void SummaryWindow::on_buttonCode_clicked()
+void SummaryWindow::insertCodeBlock()
 {
     QTextFrameFormat frameFormat;
     frameFormat.setBackground(QBrush(QColor(QString("#FBFAF8"))));
@@ -436,28 +523,28 @@ void SummaryWindow::on_buttonCode_clicked()
 
 }
 
-void SummaryWindow::on_textEditor_currentCharFormatChanged()
+void SummaryWindow::textFormatChanged()
 {
-    on_fontComboBox_currentTextChanged(ui->textEditor->currentFont().family(), false);
-    on_spinBoxFontSize_valueChanged(ui->textEditor->currentFont().pointSize(), false);
+    setTextFontFamily(ui->textEditor->currentFont().family(), false);
+    setTextFontSize(ui->textEditor->currentFont().pointSize(), false);
     ui->buttonEditorFontColor->setStyleSheet("background-color: " + ui->textEditor->textColor().name());
 
-    ui->buttonBold->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().bold() ? "blue" : "#2D2D30"));
-    ui->buttonItalic->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().italic() ? "blue" : "#2D2D30"));
-    ui->buttonUnderline->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().underline() ? "blue" : "#2D2D30"));
-    ui->buttonThrough->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().strikeOut() ? "blue" : "#2D2D30"));
-    ui->buttonHighlight->setStyleSheet("background-color: " + QString(ui->textEditor->currentCharFormat().background() == Qt::yellow ? "blue" : "#2D2D30"));
+    ui->buttonBold->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().bold() ? "#1C3387" : "#2D2D30"));
+    ui->buttonItalic->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().italic() ? "#1C3387" : "#2D2D30"));
+    ui->buttonUnderline->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().underline() ? "#1C3387" : "#2D2D30"));
+    ui->buttonThrough->setStyleSheet("background-color: " + QString(ui->textEditor->currentFont().strikeOut() ? "#1C3387" : "#2D2D30"));
+    ui->buttonHighlight->setStyleSheet("background-color: " + QString(ui->textEditor->currentCharFormat().background() == Qt::yellow ? "#1C3387" : "#2D2D30"));
 }
 
-void SummaryWindow::on_buttonHighlight_clicked()
+void SummaryWindow::toggleHighlight()
 {
     QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
     currentFormat.setBackground(currentFormat.background() == Qt::yellow ? Qt::white : Qt::yellow);
     ui->textEditor->setCurrentCharFormat(currentFormat);
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonEditorFontColor_clicked()
+void SummaryWindow::setFontColor()
 {
     QPoint bottom = ui->buttonEditorFontColor->rect().bottomLeft();
     QPoint globalPos = ui->buttonEditorFontColor->mapToGlobal(bottom);
@@ -474,38 +561,38 @@ void SummaryWindow::on_buttonEditorFontColor_clicked()
     ui->textEditor->setTextColor(widget->getCurrentColor());
 }
 
-void SummaryWindow::on_actionHideSearchBar_triggered()
+void SummaryWindow::hideSearchBar()
 {
     common::changeWidgetVisibility(ui->textSearch, ui->actionHideSearchBar);
 }
 
-void SummaryWindow::on_actionHideLeftPane_triggered()
+void SummaryWindow::hideLeftPane()
 {
     ui->frameListWidget->setHidden(!ui->frameListWidget->isHidden());
     ui->mainSplitterPane->refresh();
     ui->actionHideLeftPane->setText(ui->frameListWidget->isHidden() ? "Show Left Pane" : "Hide Left Pane");
 }
 
-void SummaryWindow::on_actionHideTopToolbar_triggered()
+void SummaryWindow::hideTopToolbar()
 {
     common::changeWidgetVisibility(ui->frameEditorToolBox, ui->actionHideTopToolbar);
 }
 
-void SummaryWindow::on_actionHideRightToolbar_triggered()
+void SummaryWindow::hideRightToolbar()
 {
     common::changeWidgetVisibility(ui->frameRightToolBar, ui->actionHideRightToolbar);
 }
 
-void SummaryWindow::on_actionHideRightPane_triggered()
+void SummaryWindow::hideRightPane()
 {
     ui->frameEditor->setHidden(!ui->frameEditor->isHidden());
     ui->mainSplitterPane->refresh();
-    on_actionHideRightToolbar_triggered();
+    hideRightToolbar();
     ui->actionHideRightPane->setText(ui->frameEditor->isHidden() ? "Show Right Pane" : "Hide Right Pane");
 
 }
 
-void SummaryWindow::on_buttonInsertLine_clicked()
+void SummaryWindow::insertLine()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     cursor.insertHtml(QString("<hr><br>"));
@@ -513,38 +600,43 @@ void SummaryWindow::on_buttonInsertLine_clicked()
     ui->textEditor->setTextCursor(cursor);
 }
 
-void SummaryWindow::on_actionResetFormat_triggered()
+void SummaryWindow::resetFormat()
 {
     QFont currentFont = ui->textEditor->currentFont();
-    QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
-
     currentFont.setBold(false);
     currentFont.setItalic(false);
     currentFont.setStrikeOut(false);
     currentFont.setUnderline(false);
-    currentFormat.setBackground(Qt::white);
+
+    QTextCharFormat currentFormat = ui->textEditor->currentCharFormat();
+    currentFormat.setBackground(ui->textEditor->palette().base().color());
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignNormal);
 
     ui->textEditor->setCurrentCharFormat(currentFormat);
     ui->textEditor->setCurrentFont(currentFont);
 
-    on_textEditor_currentCharFormatChanged();
+    textFormatChanged();
 }
 
-void SummaryWindow::on_buttonInsertImage_clicked()
+void SummaryWindow::insertImage()
 {
     QString file = QFileDialog::getOpenFileName(this,
         tr("Select Image"), "/", tr("Image Files (*.jpeg *.jpg *.png *.gif *.apng *.svg *.bmp *.ico)"));
 
-    ui->textEditor->textCursor().insertHtml(QString(R"(<img src="%1" alt =""/>)").arg(file));
+    QUrl Uri(QString("%1").arg(file));
+    QImage image = QImageReader(file).read();
+
+    QTextDocument *textDocument = ui->textEditor->document();
+    textDocument->addResource(QTextDocument::ImageResource, Uri, QVariant(image));
+    QTextCursor cursor = ui->textEditor->textCursor();
+    QTextImageFormat imageFormat;
+    imageFormat.setWidth(image.width());
+    imageFormat.setHeight(image.height());
+    imageFormat.setName(Uri.toString());
+    cursor.insertImage(imageFormat);
 }
 
-void SummaryWindow::on_actionPaste_triggered()
-{
-    ui->textEditor->paste();
-}
-
-void SummaryWindow::on_actionSearchText_triggered()
+void SummaryWindow::searchText()
 {
     if (ui->listWidget->selectedItems().count() != 0)
     {
@@ -553,16 +645,15 @@ void SummaryWindow::on_actionSearchText_triggered()
 
     QString stringToSearch = ui->textSearch->text();
     searchEbooks(stringToSearch);
-
 }
 
-void SummaryWindow::on_actionClearSearch_triggered()
+void SummaryWindow::clearSearch()
 {
     ui->textSearch->clear();
     ui->listWidget->clear();
 }
 
-void SummaryWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+void SummaryWindow::openEbookSummary(QListWidgetItem *item)
 {
     if (!ui->labelTitle->text().isEmpty())
     {
@@ -580,7 +671,7 @@ void SummaryWindow::on_listWidget_itemClicked(QListWidgetItem *item)
     }
 }
 
-void SummaryWindow::on_actionPrint_triggered()
+void SummaryWindow::printSummaryToPdf()
 {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "/", tr("*.pdf"));
 
@@ -592,7 +683,7 @@ void SummaryWindow::on_actionPrint_triggered()
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
-void SummaryWindow::on_buttonTable_clicked()
+void SummaryWindow::insertTable()
 {
     insertTableDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
@@ -609,7 +700,7 @@ void SummaryWindow::on_buttonTable_clicked()
     }
 }
 
-void SummaryWindow::on_buttonLink_clicked()
+void SummaryWindow::insertLink()
 {
     insertLinkDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
@@ -626,19 +717,19 @@ void SummaryWindow::on_buttonLink_clicked()
     }
 }
 
-void SummaryWindow::on_actionCopyFormatting_triggered()
+void SummaryWindow::copyFormatting()
 {
     currentCopiedFormat = ui->textEditor->currentCharFormat();
     currentCopiedFont = ui->textEditor->currentFont();
 }
 
-void SummaryWindow::on_actionPasteMatchFormat_triggered()
+void SummaryWindow::pasteMatchFormat()
 {
     ui->textEditor->setCurrentCharFormat(currentCopiedFormat);
     ui->textEditor->setCurrentFont(currentCopiedFont);
 }
 
-void SummaryWindow::on_actionSaveSummary_triggered()
+void SummaryWindow::saveSummary()
 {
     if (!ui->labelTitle->text().isEmpty())
     {
@@ -646,12 +737,7 @@ void SummaryWindow::on_actionSaveSummary_triggered()
     }
 }
 
-void SummaryWindow::on_actionFullscreen_triggered()
-{
-    !this->isFullScreen() ? this->showFullScreen() : this->showNormal();
-}
-
-void SummaryWindow::on_actionExportHtml_triggered()
+void SummaryWindow::exportSummaryToHtml()
 {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "/", tr("*.html"));
     std::ofstream htmlFile(filePath.toStdString());
@@ -660,7 +746,7 @@ void SummaryWindow::on_actionExportHtml_triggered()
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
-void SummaryWindow::on_buttonEditorBackColor_clicked()
+void SummaryWindow::setBackColor()
 {
     QPoint bottom = ui->buttonEditorBackColor->rect().bottomLeft();
     QPoint globalPos = ui->buttonEditorBackColor->mapToGlobal(bottom);
@@ -697,7 +783,7 @@ void SummaryWindow::on_buttonEditorBackColor_clicked()
     ui->buttonEditorBackColor->update();
 }
 
-void SummaryWindow::on_actionSentenceCase_triggered()
+void SummaryWindow::sentenceCase()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     if (cursor.selectedText().isEmpty())
@@ -717,7 +803,7 @@ void SummaryWindow::on_actionSentenceCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-void SummaryWindow::on_actionUpperCase_triggered()
+void SummaryWindow::upperCase()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     if (cursor.selectedText().isEmpty())
@@ -736,7 +822,7 @@ void SummaryWindow::on_actionUpperCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-void SummaryWindow::on_actionLowerCase_triggered()
+void SummaryWindow::lowerCase()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     if (cursor.selectedText().isEmpty())
@@ -755,7 +841,7 @@ void SummaryWindow::on_actionLowerCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-void SummaryWindow::on_actionCapitalCase_triggered()
+void SummaryWindow::capitalCase()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     if (cursor.selectedText().isEmpty())
@@ -780,7 +866,7 @@ void SummaryWindow::on_actionCapitalCase_triggered()
     cursor.insertText(newText.join(" "));
 }
 
-void SummaryWindow::on_actionSelectCurrentLine_triggered()
+void SummaryWindow::selectCurrentLine()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
@@ -788,7 +874,7 @@ void SummaryWindow::on_actionSelectCurrentLine_triggered()
     ui->textEditor->setTextCursor(cursor);
 }
 
-void SummaryWindow::on_actionDuplicateCurrentLine_triggered()
+void SummaryWindow::duplicateCurrentLine()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
@@ -799,7 +885,7 @@ void SummaryWindow::on_actionDuplicateCurrentLine_triggered()
     cursor.insertText(currentLine);
 }
 
-void SummaryWindow::on_actionDeleteCurrentLine_triggered()
+void SummaryWindow::deleteCurrentLine()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
@@ -808,17 +894,17 @@ void SummaryWindow::on_actionDeleteCurrentLine_triggered()
     cursor.deletePreviousChar();
 }
 
-void SummaryWindow::on_actionZoomIn_triggered()
+void SummaryWindow::zoomIn()
 {
     ui->textEditor->zoomIn(5);
 }
 
-void SummaryWindow::on_actionZoomOut_triggered()
+void SummaryWindow::zoomOut()
 {
     ui->textEditor->zoomOut(5);
 }
 
-void SummaryWindow::on_actionDateNormal_triggered()
+void SummaryWindow::insertNormalDate()
 {
     QDate currDate = QDate::currentDate();
     QLocale locale;
@@ -831,7 +917,7 @@ void SummaryWindow::on_actionDateNormal_triggered()
     ui->textEditor->textCursor().insertText(dateStr);
 }
 
-void SummaryWindow::on_actionDateShort_triggered()
+void SummaryWindow::insertShortDate()
 {
     QDate currDate = QDate::currentDate();
     QString day = QString::number(currDate.day());
@@ -841,7 +927,7 @@ void SummaryWindow::on_actionDateShort_triggered()
     ui->textEditor->textCursor().insertText(dateStr);
 }
 
-void SummaryWindow::on_actionTableRow_triggered()
+void SummaryWindow::addTableRow()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     QTextTable *currTable = cursor.currentTable();
@@ -851,7 +937,7 @@ void SummaryWindow::on_actionTableRow_triggered()
     }
 }
 
-void SummaryWindow::on_actionTableColumn_triggered()
+void SummaryWindow::addTableColumn()
 {
     QTextCursor cursor = ui->textEditor->textCursor();
     QTextTable *currTable = cursor.currentTable();
@@ -907,12 +993,7 @@ void SummaryWindow::textEditRefreshHighlighter(int cursorIndex)
     }
 }
 
-void SummaryWindow::on_actionFind_triggered()
-{
-    toggleFindWidget(!ui->frameFind->isVisible());
-}
-
-void SummaryWindow::on_textFind_textChanged(const QString &arg1)
+void SummaryWindow::findText(const QString &arg1)
 {
     highlightText();
     if (arg1.isEmpty())
@@ -930,7 +1011,7 @@ void SummaryWindow::on_textFind_textChanged(const QString &arg1)
     ui->labelFindMatchNum->setStyleSheet("color: grey");
 }
 
-void SummaryWindow::on_buttonNext_clicked()
+void SummaryWindow::findNext()
 {
     int cursorIndex = textHighlighter.setNextMatchStateActive();
     if (textHighlighter.matchIndex() == textHighlighter.matchNumber() - 1)
@@ -940,7 +1021,7 @@ void SummaryWindow::on_buttonNext_clicked()
     textEditRefreshHighlighter(cursorIndex);
 }
 
-void SummaryWindow::on_buttonPrevious_clicked()
+void SummaryWindow::findPrevious()
 {
     int cursorIndex = textHighlighter.setPrevMatchStateActive();
     if (textHighlighter.matchIndex() == 0)
@@ -950,7 +1031,22 @@ void SummaryWindow::on_buttonPrevious_clicked()
     textEditRefreshHighlighter(cursorIndex);
 }
 
-void SummaryWindow::on_buttonCloseFind_clicked()
+void SummaryWindow::increaseFontSize()
 {
-    toggleFindWidget(false);
+    ui->spinBoxFontSize->setValue(ui->spinBoxFontSize->value() + 1);
+}
+
+void SummaryWindow::decreaseFontSize()
+{
+    ui->spinBoxFontSize->setValue(ui->spinBoxFontSize->value() - 1);
+}
+
+void SummaryWindow::increaseIndent()
+{
+    changeListIndentation(1);
+}
+
+void SummaryWindow::decreaseIndent()
+{
+    changeListIndentation(-1);
 }
