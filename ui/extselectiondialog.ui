@@ -14,7 +14,7 @@
    <string>Extensions</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -100,7 +100,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonOk">
+        <widget class="QPushButton" name="buttonContinue">
          <property name="minimumSize">
           <size>
            <width>80</width>
@@ -141,7 +141,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections/>
 </ui>
