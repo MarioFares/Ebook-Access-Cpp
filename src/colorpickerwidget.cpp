@@ -1,13 +1,14 @@
 #include "include/colorpickerwidget.h"
 #include "include/common.h"
+
+#include <QPair>
+#include <QFrame>
+#include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QApplication>
-#include <QPair>
 #include <QColorDialog>
-#include <QFrame>
-#include <QLabel>
 
 colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
     : QDialog(parent)
