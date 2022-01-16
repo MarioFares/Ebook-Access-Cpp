@@ -157,7 +157,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonInsertCollection">
+            <widget class="QPushButton" name="buttonAddCollection">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -327,7 +327,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonInsertLink">
+            <widget class="QPushButton" name="buttonAddLink">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -554,7 +554,6 @@ border: 1px solid grey;
     </property>
     <addaction name="actionResetLinks"/>
     <addaction name="actionResetCollections"/>
-    <addaction name="actionResetAll"/>
    </widget>
    <widget class="QMenu" name="menuCollections">
     <property name="title">
@@ -711,54 +710,5 @@ border: 1px solid grey;
  <resources>
   <include location="../resources/images.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>actionMaximize</sender>
-   <signal>triggered()</signal>
-   <receiver>LinkManagerWindow</receiver>
-   <slot>showMaximized()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>433</x>
-     <y>189</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionMinimize</sender>
-   <signal>triggered()</signal>
-   <receiver>LinkManagerWindow</receiver>
-   <slot>showMinimized()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>433</x>
-     <y>189</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionClose</sender>
-   <signal>triggered()</signal>
-   <receiver>LinkManagerWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>433</x>
-     <y>189</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

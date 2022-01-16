@@ -1614,38 +1614,6 @@ border: 0px;
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="buttonDetailsClear">
-                    <property name="minimumSize">
-                     <size>
-                      <width>70</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>Clear Details</string>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>Clear</string>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QPushButton" name="buttonDetailsRestore">
                     <property name="minimumSize">
                      <size>
@@ -1703,6 +1671,38 @@ border: 1px solid lightblue;
                     </property>
                     <property name="text">
                      <string>Update</string>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="buttonDetailsClear">
+                    <property name="minimumSize">
+                     <size>
+                      <width>70</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Clear Details</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Clear</string>
                     </property>
                     <property name="flat">
                      <bool>true</bool>
@@ -2214,8 +2214,6 @@ border: 1px solid lightblue;
   <tabstop>textDetailsExt</tabstop>
   <tabstop>textDetailsPages</tabstop>
   <tabstop>textDetailsTags</tabstop>
-  <tabstop>buttonDetailsUpdate</tabstop>
-  <tabstop>buttonDetailsRestore</tabstop>
   <tabstop>buttonDetailsClear</tabstop>
   <tabstop>buttonAddBook</tabstop>
   <tabstop>buttonAddBooks</tabstop>
@@ -2223,118 +2221,5 @@ border: 1px solid lightblue;
  <resources>
   <include location="../resources/images.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>actionMax</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>showMaximized()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>562</x>
-     <y>345</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionMin</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>showMinimized()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>562</x>
-     <y>345</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionClose</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>601</x>
-     <y>333</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>textTagsCriteria</sender>
-   <signal>returnPressed()</signal>
-   <receiver>buttonSearchCriteria</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>299</x>
-     <y>268</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>524</x>
-     <y>383</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>textSearchBar</sender>
-   <signal>returnPressed()</signal>
-   <receiver>buttonSearchString</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>842</x>
-     <y>43</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1103</x>
-     <y>42</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>textSearchBar</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>buttonSearchString</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>842</x>
-     <y>43</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1103</x>
-     <y>42</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionClearSearch</sender>
-   <signal>triggered()</signal>
-   <receiver>buttonClearSearch</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1134</x>
-     <y>39</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
