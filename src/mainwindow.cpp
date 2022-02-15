@@ -515,13 +515,16 @@ void MainWindow::showEbookDetails(QListWidgetItem *item)
     QString tags = queries::selectTagsBasedOnName(fileName);
 
     ui->textDetailsName->setText(fileName);
+    ui->textDetailsName->setCursorPosition(0);
     ui->textDetailsAuthor->setText(author);
     ui->textDetailsGenre->setText(genre);
     ui->textDetailsPages->setText(pages);
     ui->textDetailsExt->setText(ext);
     ui->textDetailsSize->setText(QString::number(size));
     ui->textDetailsFolder->setText(folder);
+    ui->textDetailsFolder->setCursorPosition(0);
     ui->textDetailsTags->setText(tags);
+    ui->textDetailsTags->setCursorPosition(0);
     ui->statusBar->showMessage("Current selected ebook: " + fileName);
 }
 
