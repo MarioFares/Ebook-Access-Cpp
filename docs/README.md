@@ -1,5 +1,4 @@
 # Project Documentation
-<hr>
 
 ## Table of Contents
 - [Demo](#demo)
