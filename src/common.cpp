@@ -78,14 +78,14 @@ void openWindow(QMainWindow *window, const QString &stylesheetPath)
     window->show();
 }
 
-QCompleter* dirCompleter(QWidget *parent)
+QCompleter *dirCompleter(QWidget *parent)
 {
-    auto *dirCompleter = new QCompleter(parent);
+    QCompleter *dirCompleter = new QCompleter(parent);
     dirCompleter->setCaseSensitivity(Qt::CaseInsensitive);
     dirCompleter->setCompletionMode(QCompleter::PopupCompletion);
     QAbstractItemView *popup = dirCompleter->popup();
     popup->setStyleSheet(common::openSheet(":/styles/style.qss"));
-    auto *model = new QFileSystemModel(dirCompleter);
+    QFileSystemModel *model = new QFileSystemModel(dirCompleter);
     model->setRootPath("/");
     model->sort(0, Qt::DescendingOrder);
     dirCompleter->setModel(model);
@@ -114,4 +114,4 @@ void toggleMaximized(QMainWindow *window)
 }
 
 
-}	// Namespace common
+} // Namespace common

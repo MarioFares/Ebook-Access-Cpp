@@ -80,7 +80,7 @@ void addBooksDialog::setupEntries(const QString &dir, bool recursive)
     QString authors = dialog.author.isEmpty() ? "N/A" : dialog.author;
 
     // Let the user select desired extensions
-    auto *extDialog = new extSelectionDialog(this, extVector, "Extensions", "Select Extensions");
+    extSelectionDialog *extDialog = new extSelectionDialog(this, extVector, "Extensions", "Select Extensions");
     common::openDialog(extDialog, ":/styles/style.qss");
 
     QVector<QString> selectedExts = extDialog->getExtVector();
