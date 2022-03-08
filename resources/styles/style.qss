@@ -103,6 +103,7 @@ QSpinBox:hover {
      background-color: #1B1B1C;
      color: white;
      font: 10pt "Segoe UI";
+     border: 1px solid grey;
 }
  QMenu::item {
      padding: 7px;
@@ -240,33 +241,39 @@ QComboBox:hover {
 }
 
 QTableWidget {
-        background-color: #2D2D30;
-        font: 10pt "Segoe UI";
-        color: white;
-        gridline-color: grey;
-        border: 1px solid grey;
-        border-radius: 5px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-
+    background-color: #2D2D30;
+    alternate-background-color: #1B1B1C;
+    font: 10pt "Segoe UI";
+    color: white;
+    gridline-color: grey;
+    border: 1px solid grey;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 QHeaderView {
-        border-radius: 0px;
-        background-color: #002060;
+    border-radius: 0px;
+    background-color: #1B1B1C;
+    border: none;
 }
 
 QHeaderView::section {
-        background-color: #002060;
-        font: 10pt "Segoe UI";
-        color: white;
-        border-right: 1px solid grey;
-    }
-
-QHeaderView::section:horizontal {
-       border-top: none;
+    background-color: #1B1B1C;
+    padding: 1px;
+    font: 10pt "Segoe UI";
+    color: white;
+    border-style: none;
+    border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
 }
 
-QHeaderView::section:vertical {
-       border-left: none;
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid grey;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid grey;
 }
