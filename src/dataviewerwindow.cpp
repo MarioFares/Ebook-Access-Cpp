@@ -19,7 +19,7 @@ DataViewerWindow::DataViewerWindow(QWidget *parent):
     ui->comboBoxTables->insertItem(4, "Session Logs");
     ui->comboBoxTables->insertItem(5, "Tags");
 
-    QHeaderView::ResizeMode columnsResizeMode = QHeaderView::Stretch;
+    this->columnsResizeMode = QHeaderView::Stretch;
     toggleFitColumns();
 
     setupConnections();
