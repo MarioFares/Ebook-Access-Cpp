@@ -12,24 +12,34 @@ class colorPickerWidget : public QDialog
 
 public:
     explicit colorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
-    QColor       getCurrentColor();
-    QColor       defaultColor;
+
+    QColor getCurrentColor();
+
+    QColor defaultColor;
 
 
 private slots:
-    QColor       interpolateColor(QColor colorStart, QColor colorEnd, float percent);
+    QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
+
     GradientList initialialzeColorGradients();
-    void         createColorsButtons();
-    void         setButtonColors(GradientList gradientList);
-    void         setCurrentColor(QColor color);
-    void         openColorDialog();
+
+    void createColorsButtons();
+
+    void setButtonColors(GradientList gradientList);
+
+    void setCurrentColor(QColor color);
+
+    void openColorDialog();
 
 
 private:
-    int          rows;
-    int          columns;
+    int rows;
+
+    int columns;
+
     QGridLayout* colorGridLayout;
-    QColor       currentColor;
+
+    QColor currentColor;
 };
 
 #endif // COLORPICKERWIDGET_H

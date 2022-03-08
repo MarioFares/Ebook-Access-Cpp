@@ -12,7 +12,9 @@ class getNameDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit getNameDialog(QWidget *parent = nullptr, QString title = "Input Name", QString prompt = "Please input a name");
+    explicit getNameDialog(QWidget *parent = nullptr,
+                           QString title = "Input Name",
+                           QString prompt = "Please input a name");
 
     ~getNameDialog();
 
