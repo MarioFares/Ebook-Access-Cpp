@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS links
   (
      "id"                 INTEGER PRIMARY KEY,
      "name"               TEXT NOT NULL COLLATE NOCASE,
-     "path"          TEXT NOT NULL,
+     "path"               TEXT NOT NULL,
      "timestamp"          DATETIME NOT NULL DEFAULT (Datetime(CURRENT_TIMESTAMP, 'localtime'))
   );
 --break
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS searches
      "size_in"            TEXT NOT NULL,
      "pages_from"         INTEGER NOT NULL,
      "pages_to"           INTEGER NOT NULL,
-	 "timestamp"          DATETIME NOT NULL DEFAULT (Datetime(CURRENT_TIMESTAMP, 'localtime')),
+     "timestamp"          DATETIME NOT NULL DEFAULT (Datetime(CURRENT_TIMESTAMP, 'localtime')),
      UNIQUE("name")
   );
 --break
@@ -118,14 +118,15 @@ ON session_log
 BEGIN
     UPDATE session_log
     SET    duration = (JULIANDAY(logout) - JULIANDAY(login)) * 24 * 60
-	WHERE  id  IN (SELECT id FROM session_log ORDER BY id DESC LIMIT 1);
+    WHERE  id = OLD.id;
 END;
 --break
 CREATE TRIGGER IF NOT EXISTS ebooks_modified
 AFTER UPDATE ON ebooks
 BEGIN
     UPDATE ebooks
-    SET last_modified = (Datetime(CURRENT_TIMESTAMP, 'localtime'));
+    SET last_modified = (Datetime(CURRENT_TIMESTAMP, 'localtime'))
+    WHERE id = OLD.id;
 END;
 --break
 CREATE VIEW IF NOT EXISTS ebooks_tags_name AS
@@ -148,16 +149,16 @@ CREATE VIEW IF NOT EXISTS links_collections_name AS
         ON         lca.collection_id = lc.id;
 --break
 CREATE UNIQUE INDEX IF NOT EXISTS ebooks_index 
-ON 								  ebooks ("name");
+ON 				  ebooks ("name");
 --break
 CREATE UNIQUE INDEX IF NOT EXISTS searches_index 
-ON 								  searches ("name");
+ON 				  searches ("name");
 --break
 CREATE UNIQUE INDEX IF NOT EXISTS tags_index 
-ON 								  tags ("name");
+ON 				  tags ("name");
 --break
 CREATE UNIQUE INDEX IF NOT EXISTS link_collections_index 
-ON								  link_collections ("name");
+ON				  link_collections ("name");
 --break
 CREATE UNIQUE INDEX IF NOT EXISTS links_index 
-ON 								  links ("name"); 
+ON 				  links ("name");
