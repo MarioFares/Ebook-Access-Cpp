@@ -125,6 +125,138 @@ border: 0px;
                 <property name="verticalSpacing">
                  <number>30</number>
                 </property>
+                <item row="1" column="5">
+                 <widget class="QPushButton" name="buttonAuthor">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Authors</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="5">
+                 <widget class="QPushButton" name="buttonSearchLoad">
+                  <property name="minimumSize">
+                   <size>
+                    <width>51</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Load Criteria</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="labelGenreCriteria">
+                  <property name="text">
+                   <string>Genre</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="5">
+                 <widget class="QPushButton" name="buttonSizeCriteria">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Unit</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 0px;
+</string>
+                  </property>
+                  <property name="text">
+                   <string>MB</string>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>25</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="4">
+                 <widget class="QSpinBox" name="spinBoxToPagesCriteria">
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>100000</number>
+                  </property>
+                  <property name="value">
+                   <number>100000</number>
+                  </property>
+                 </widget>
+                </item>
                 <item row="6" column="2" colspan="2">
                  <widget class="QLabel" name="labelPagesToCriteria">
                   <property name="text">
@@ -136,291 +268,6 @@ border: 0px;
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
                   </property>
-                 </widget>
-                </item>
-                <item row="5" column="6">
-                 <widget class="QPushButton" name="buttonSearchCriteria">
-                  <property name="minimumSize">
-                   <size>
-                    <width>70</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>90</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Search Criteria</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>30</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="flat">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="1">
-                 <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
-                  <property name="maximumSize">
-                   <size>
-                    <width>70</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="maximum">
-                   <number>1023</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1" colspan="4">
-                 <widget class="QComboBox" name="comboBoxGenreCriteria">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="editable">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumContentsLength">
-                   <number>40</number>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="5" column="2" colspan="2">
-                 <widget class="QLabel" name="label_2">
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap resource="../resources/images.qrc">:/icons/right_arrow_icon.png</pixmap>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>false</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="4">
-                 <widget class="QSpinBox" name="spinBoxToSizeCriteria">
-                  <property name="maximumSize">
-                   <size>
-                    <width>70</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="maximum">
-                   <number>1024</number>
-                  </property>
-                  <property name="value">
-                   <number>1024</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="0">
-                 <widget class="QLabel" name="labelSizeCriteria">
-                  <property name="text">
-                   <string>Size</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="1">
-                 <widget class="QSpinBox" name="spinBoxFromPagesCriteria">
-                  <property name="maximumSize">
-                   <size>
-                    <width>70</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="maximum">
-                   <number>100000</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1" colspan="4">
-                 <widget class="QComboBox" name="comboBoxFolderCriteria">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="editable">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumContentsLength">
-                   <number>40</number>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                  <property name="frame">
-                   <bool>true</bool>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="7" column="1" colspan="4">
-                 <widget class="QComboBox" name="comboBoxSearchLoad">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
-                  </property>
-                  <property name="editable">
-                   <bool>false</bool>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QLabel" name="labelExtensionCriteria">
-                  <property name="text">
-                   <string>Extensions</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QLabel" name="labelSearchCriteria">
-                  <property name="text">
-                   <string>Search</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="5">
-                 <widget class="QPushButton" name="buttonGenre">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Genres</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1" colspan="4">
-                 <widget class="QComboBox" name="comboBoxAuthorCriteria">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="editable">
-                   <bool>true</bool>
-                  </property>
-                  <property name="minimumContentsLength">
-                   <number>40</number>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
                  </widget>
                 </item>
                 <item row="4" column="5">
@@ -449,10 +296,77 @@ border: 0px;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="labelGroupsCriteria">
+                <item row="5" column="2" colspan="2">
+                 <widget class="QLabel" name="label_2">
                   <property name="text">
-                   <string>Tags</string>
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="../resources/images.qrc">:/icons/right_arrow_icon.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>false</bool>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="labelAuthorCriteria">
+                  <property name="text">
+                   <string>Author</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="labelSearchCriteria">
+                  <property name="text">
+                   <string>Search</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1" colspan="4">
+                 <widget class="QLineEdit" name="textExts">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="5">
+                 <widget class="QPushButton" name="buttonTags">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Tags</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -505,176 +419,23 @@ border: 0px;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="5">
-                 <widget class="QPushButton" name="buttonSearchLoad">
-                  <property name="minimumSize">
-                   <size>
-                    <width>51</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Load Criteria</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
-                  </property>
-                  <property name="flat">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="labelGenreCriteria">
-                  <property name="text">
-                   <string>Genre</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="5">
-                 <widget class="QPushButton" name="buttonFolder">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Folders</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="5">
-                 <widget class="QPushButton" name="buttonTags">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Tags</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="5">
-                 <widget class="QPushButton" name="buttonSizeCriteria">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
+                <item row="5" column="1">
+                 <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>70</width>
                     <height>16777215</height>
                    </size>
                   </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
+                  <property name="maximum">
+                   <number>1023</number>
                   </property>
-                  <property name="toolTip">
-                   <string>Select Unit</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border: 0px;
-</string>
-                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="labelGroupsCriteria">
                   <property name="text">
-                   <string>MB</string>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>25</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="1" colspan="4">
-                 <widget class="QLineEdit" name="textTagsCriteria">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="1" colspan="4">
-                 <widget class="QLineEdit" name="textExts">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>23</height>
-                   </size>
+                   <string>Tags</string>
                   </property>
                  </widget>
                 </item>
@@ -734,46 +495,115 @@ border: 0px;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="labelAuthorCriteria">
-                  <property name="text">
-                   <string>Author</string>
+                <item row="7" column="1" colspan="4">
+                 <widget class="QComboBox" name="comboBoxSearchLoad">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                  <property name="editable">
+                   <bool>false</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="3" column="1" colspan="4">
+                 <widget class="QLineEdit" name="textTagsCriteria">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
-                <item row="6" column="4">
-                 <widget class="QSpinBox" name="spinBoxToPagesCriteria">
+                <item row="5" column="4">
+                 <widget class="QSpinBox" name="spinBoxToSizeCriteria">
                   <property name="maximumSize">
                    <size>
                     <width>70</width>
                     <height>16777215</height>
                    </size>
                   </property>
-                  <property name="minimum">
-                   <number>0</number>
+                  <property name="maximum">
+                   <number>1024</number>
+                  </property>
+                  <property name="value">
+                   <number>1024</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="1">
+                 <widget class="QSpinBox" name="spinBoxFromPagesCriteria">
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
                   </property>
                   <property name="maximum">
                    <number>100000</number>
                   </property>
-                  <property name="value">
-                   <number>100000</number>
-                  </property>
                  </widget>
                 </item>
-                <item row="6" column="0">
-                 <widget class="QLabel" name="labelPagesCriteria">
-                  <property name="text">
-                   <string>Pages</string>
+                <item row="0" column="1" colspan="4">
+                 <widget class="QComboBox" name="comboBoxFolderCriteria">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
                   </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="editable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumContentsLength">
+                   <number>40</number>
+                  </property>
+                  <property name="placeholderText">
+                   <string/>
+                  </property>
+                  <property name="frame">
+                   <bool>true</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
                  </widget>
                 </item>
-                <item row="1" column="5">
-                 <widget class="QPushButton" name="buttonAuthor">
+                <item row="2" column="5">
+                 <widget class="QPushButton" name="buttonGenre">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="toolTip">
-                   <string>Select Authors</string>
+                   <string>Select Genres</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">/*QPushButton{
@@ -791,7 +621,177 @@ border: 0px;</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+                    <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1" colspan="4">
+                 <widget class="QComboBox" name="comboBoxGenreCriteria">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="editable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumContentsLength">
+                   <number>40</number>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="1" column="1" colspan="4">
+                 <widget class="QComboBox" name="comboBoxAuthorCriteria">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>23</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="editable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="minimumContentsLength">
+                   <number>40</number>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="labelSizeCriteria">
+                  <property name="text">
+                   <string>Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
+                 <widget class="QLabel" name="labelPagesCriteria">
+                  <property name="text">
+                   <string>Pages</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="labelExtensionCriteria">
+                  <property name="text">
+                   <string>Extensions</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="6">
+                 <widget class="QPushButton" name="buttonSearchCriteria">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>90</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Search Criteria</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>30</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="5">
+                 <widget class="QPushButton" name="buttonFolder">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Folders</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/*QPushButton{
+border: 1px solid grey;
+}
+QPushButton:hover
+{
+border: 1px solid lightblue;
+
+}*/
+border: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -1856,6 +1856,7 @@ border: 1px solid lightblue;
     <addaction name="actionSummaries"/>
     <addaction name="actionLinkManager"/>
     <addaction name="actionDataViewer"/>
+    <addaction name="actionBookDetails"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -2195,6 +2196,18 @@ border: 1px solid lightblue;
   <action name="actionHideStatusBar">
    <property name="text">
     <string>Hide Status Bar</string>
+   </property>
+  </action>
+  <action name="actionBookDetails">
+   <property name="icon">
+    <iconset resource="../resources/images.qrc">
+     <normaloff>:/icons/stack_icon.png</normaloff>:/icons/stack_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Book Metadata</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O, Ctrl+M</string>
    </property>
   </action>
  </widget>
