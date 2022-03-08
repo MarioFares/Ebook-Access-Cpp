@@ -50,9 +50,9 @@ border: none;
         <number>0</number>
        </property>
        <widget class="QWidget" name="layoutWidget">
-        <layout class="QGridLayout" name="gridLayout">
+        <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
          <property name="leftMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <property name="rightMargin">
           <number>10</number>
@@ -61,59 +61,12 @@ border: none;
           <number>20</number>
          </property>
          <property name="horizontalSpacing">
-          <number>6</number>
+          <number>0</number>
          </property>
          <property name="verticalSpacing">
-          <number>11</number>
+          <number>10</number>
          </property>
-         <item row="10" column="1">
-          <widget class="QLineEdit" name="textPublisher">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="textPages">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="0">
-          <widget class="QLabel" name="labelStatus">
-           <property name="text">
-            <string>Status</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="1">
-          <widget class="QLineEdit" name="textDateAdded">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QLineEdit" name="textExt">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
+         <item row="5" column="1" colspan="4">
           <widget class="QLineEdit" name="textSize">
            <property name="minimumSize">
             <size>
@@ -123,8 +76,30 @@ border: none;
            </property>
           </widget>
          </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelName">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Name</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
          <item row="5" column="0">
           <widget class="QLabel" name="labelSize">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Size</string>
            </property>
@@ -135,6 +110,12 @@ border: none;
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="labelFolder">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Folder</string>
            </property>
@@ -145,6 +126,12 @@ border: none;
          </item>
          <item row="11" column="0">
           <widget class="QLabel" name="labelDatePublished">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Published</string>
            </property>
@@ -153,8 +140,8 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="textName">
+         <item row="9" column="1" colspan="4">
+          <widget class="QLineEdit" name="textDateAdded">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -165,6 +152,12 @@ border: none;
          </item>
          <item row="12" column="0">
           <widget class="QLabel" name="labelSeries">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Series</string>
            </property>
@@ -173,8 +166,8 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="12" column="1">
-          <widget class="QLineEdit" name="textSeries">
+         <item row="2" column="1" colspan="4">
+          <widget class="QLineEdit" name="textGenre">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -183,8 +176,8 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
-          <widget class="QLineEdit" name="textTags">
+         <item row="7" column="1" colspan="4">
+          <widget class="QLineEdit" name="textPath">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -195,6 +188,12 @@ border: none;
          </item>
          <item row="9" column="0">
           <widget class="QLabel" name="labelDateAdded">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Added</string>
            </property>
@@ -205,6 +204,12 @@ border: none;
          </item>
          <item row="13" column="0">
           <widget class="QLabel" name="labelRating">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Rating</string>
            </property>
@@ -215,6 +220,12 @@ border: none;
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="labelTags">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Tags</string>
            </property>
@@ -223,11 +234,41 @@ border: none;
            </property>
           </widget>
          </item>
+         <item row="1" column="1" colspan="4">
+          <widget class="QLineEdit" name="textAuthor">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>23</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="4">
+          <widget class="QLineEdit" name="textFolder">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>23</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" colspan="4">
+          <widget class="QLineEdit" name="textPages">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>23</height>
+            </size>
+           </property>
+          </widget>
+         </item>
          <item row="13" column="1">
           <widget class="QComboBox" name="comboBoxRating">
            <property name="minimumSize">
             <size>
-             <width>0</width>
+             <width>170</width>
              <height>23</height>
             </size>
            </property>
@@ -269,28 +310,14 @@ border: none;
            </item>
           </widget>
          </item>
-         <item row="7" column="1">
-          <widget class="QLineEdit" name="textPath">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="textGenre">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>23</height>
-            </size>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="0">
           <widget class="QLabel" name="labelAuthor">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Author</string>
            </property>
@@ -299,8 +326,18 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="textAuthor">
+         <item row="6" column="1" colspan="4">
+          <widget class="QLineEdit" name="textTags">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>23</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1" colspan="4">
+          <widget class="QLineEdit" name="textPublisher">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -311,6 +348,12 @@ border: none;
          </item>
          <item row="8" column="0">
           <widget class="QLabel" name="labelExt">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Ext</string>
            </property>
@@ -319,7 +362,71 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="11" column="1">
+         <item row="4" column="0">
+          <widget class="QLabel" name="labelPages">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Pages</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelGenre">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Genre</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="labelPath">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Path</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0">
+          <widget class="QLabel" name="labelPublisher">
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Publisher</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1" colspan="4">
           <widget class="QLineEdit" name="textDatePublished">
            <property name="minimumSize">
             <size>
@@ -329,48 +436,8 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="labelPath">
-           <property name="text">
-            <string>Path</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="labelGenre">
-           <property name="text">
-            <string>Genre</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="labelPages">
-           <property name="text">
-            <string>Pages</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="labelPublisher">
-           <property name="text">
-            <string>Publisher</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="textFolder">
+         <item row="0" column="1" colspan="4">
+          <widget class="QLineEdit" name="textName">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -379,51 +446,87 @@ border: none;
            </property>
           </widget>
          </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelName">
-           <property name="text">
-            <string>Name</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
-         <item row="14" column="1">
-          <widget class="QComboBox" name="comboBoxStatus">
+         <item row="12" column="1" colspan="4">
+          <widget class="QLineEdit" name="textSeries">
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>23</height>
             </size>
            </property>
-           <property name="maximumSize">
+          </widget>
+         </item>
+         <item row="8" column="1" colspan="4">
+          <widget class="QLineEdit" name="textExt">
+           <property name="minimumSize">
             <size>
-             <width>170</width>
-             <height>16777215</height>
+             <width>0</width>
+             <height>23</height>
             </size>
            </property>
-           <item>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Prospective</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Pending</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Complete</string>
-            </property>
-           </item>
           </widget>
+         </item>
+         <item row="13" column="2">
+          <layout class="QHBoxLayout" name="horLayStatus">
+           <item>
+            <widget class="QLabel" name="labelStatus">
+             <property name="minimumSize">
+              <size>
+               <width>70</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>70</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Status</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBoxStatus">
+             <property name="minimumSize">
+              <size>
+               <width>170</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>170</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Prospective</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Pending</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Complete</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -438,7 +541,7 @@ border:none;
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <property name="topMargin">
           <number>0</number>
@@ -457,7 +560,45 @@ border:none;
           </widget>
          </item>
          <item>
-          <widget class="QPlainTextEdit" name="textEdit"/>
+          <widget class="QPlainTextEdit" name="textEdit">
+           <property name="palette">
+            <palette>
+             <active>
+              <colorrole role="WindowText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>208</red>
+                 <green>208</green>
+                 <blue>208</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </active>
+             <inactive>
+              <colorrole role="WindowText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>208</red>
+                 <green>208</green>
+                 <blue>208</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </inactive>
+             <disabled>
+              <colorrole role="WindowText">
+               <brush brushstyle="SolidPattern">
+                <color alpha="96">
+                 <red>164</red>
+                 <green>166</green>
+                 <blue>168</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </disabled>
+            </palette>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -499,18 +640,18 @@ border: none;
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonApply">
+        <widget class="QPushButton" name="buttonUpdate">
          <property name="minimumSize">
           <size>
            <width>70</width>
-           <height>25</height>
+           <height>30</height>
           </size>
          </property>
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Apply</string>
+          <string>Update</string>
          </property>
         </widget>
        </item>
@@ -519,7 +660,7 @@ border: none;
          <property name="minimumSize">
           <size>
            <width>70</width>
-           <height>25</height>
+           <height>30</height>
           </size>
          </property>
          <property name="cursor">
@@ -535,7 +676,7 @@ border: none;
          <property name="minimumSize">
           <size>
            <width>70</width>
-           <height>25</height>
+           <height>30</height>
           </size>
          </property>
          <property name="cursor">
@@ -557,7 +698,7 @@ border: none;
          <property name="minimumSize">
           <size>
            <width>70</width>
-           <height>25</height>
+           <height>30</height>
           </size>
          </property>
          <property name="cursor">
@@ -569,7 +710,7 @@ border: none;
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_4">
+        <spacer name="horizontalSpacer2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -595,6 +736,18 @@ border: none;
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
