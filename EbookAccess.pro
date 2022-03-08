@@ -7,6 +7,7 @@ QMAKE_CXXFLAGS += /std:c++17
 QMAKE_CXXFLAGS += /O2
 
 SOURCES += \
+    src/bookdetailswindow.cpp \
     src/getnamedialog.cpp \
     src/findhighlighter.cpp \
     src/addbookdialog.cpp \
@@ -26,9 +27,10 @@ SOURCES += \
     src/quotedialog.cpp \
     src/settingswindow.cpp \
     src/summarywindow.cpp \
-    src/yesnodialog.cpp \
+    src/yesnodialog.cpp
 
 HEADERS += \
+    include/bookdetailswindow.h \
     include/getnamedialog.h \
     include/findhighlighter.h \
     include/addbookdialog.h \
@@ -50,6 +52,7 @@ HEADERS += \
     include/quotedialog.h
 
 FORMS += \
+    ui/bookdetailswindow.ui \
     ui/getnamedialog.ui \
     ui/quotedialog.ui \
     ui/addbookdialog.ui \
