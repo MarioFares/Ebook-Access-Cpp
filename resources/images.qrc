@@ -116,5 +116,13 @@
         <file>icons/right_arrow_icon.png</file>
         <file>icons/more_colors_icon.png</file>
         <file>icons/black_square.png</file>
+        <file>icons/refresh_icon.png</file>
+        <file>icons/stack_icon.png</file>
+        <file>icons/crossed_drop_icon.png</file>
+        <file>icons/drop_icon.png</file>
+        <file>icons/square_icon.png</file>
+        <file>icons/grid_icon.png</file>
+        <file>icons/reduce_icon.png</file>
+        <file>icons/expand_icon.png</file>
     </qresource>
 </RCC>
