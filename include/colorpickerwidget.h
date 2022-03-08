@@ -15,7 +15,10 @@ public:
 
     QColor getCurrentColor();
 
+    bool colorSelected();
+
     QColor defaultColor;
+
 
 
 private slots:
@@ -33,6 +36,10 @@ private slots:
 
 
 private:
+    void setupConnections();
+
+    void setupUi();
+
     int rows;
 
     int columns;
@@ -40,6 +47,12 @@ private:
     QGridLayout* colorGridLayout;
 
     QColor currentColor;
+
+    QPushButton *defaultColorButton;
+
+    QPushButton *moreColorsButton;
+
+    bool isColorSelected;
 };
 
 #endif // COLORPICKERWIDGET_H

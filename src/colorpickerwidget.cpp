@@ -15,7 +15,14 @@ colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
 {
     this->defaultColor = defaultColor;
     this->currentColor = defaultColor;
+    this->isColorSelected = false;
 
+    setupUi();
+    setupConnections();
+}
+
+void colorPickerWidget::setupUi()
+{
     this->rows = 5;
     this->columns = 10;
     this->colorGridLayout = new QGridLayout();
@@ -23,8 +30,8 @@ colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
     this->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::Popup);
     this->setFixedSize(224,187);
 
-    QPushButton *defaultColorButton = new QPushButton("Default Color", this);
-    QPushButton *moreColorsButton = new QPushButton("More Colors...", this);
+    this->defaultColorButton = new QPushButton("Default Color", this);
+    this->moreColorsButton = new QPushButton("More Colors...", this);
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
 
     QHBoxLayout *defaultButtonLayout = new QHBoxLayout();
@@ -61,14 +68,16 @@ colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
     pixmap.fill(this->defaultColor);
     defaultColorButton->setIcon(QIcon(pixmap));
     defaultColorButton->setIconSize(QSize(16, 16));
-
-    connect(defaultColorButton, &QPushButton::clicked, this, [this, defaultColorButton]()
-    {
-       setCurrentColor(this->defaultColor);
-    }, Qt::DirectConnection);
-    connect(moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
 }
 
+void colorPickerWidget::setupConnections()
+{
+    connect(defaultColorButton, &QPushButton::clicked, [this]
+    {
+       setCurrentColor(this->defaultColor);
+    });
+    connect(moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
+}
 
 QColor colorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, float percent)
 {
@@ -144,6 +153,7 @@ void colorPickerWidget::setCurrentColor(QColor color)
 {
     this->close();
     this->currentColor = color;
+    this->isColorSelected = true;
 }
 
 QColor colorPickerWidget::getCurrentColor()
@@ -159,3 +169,7 @@ void colorPickerWidget::openColorDialog()
     setCurrentColor(dialog.selectedColor());
 }
 
+bool colorPickerWidget::colorSelected()
+{
+    return this->isColorSelected;
+}
