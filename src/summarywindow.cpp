@@ -554,6 +554,11 @@ void SummaryWindow::setFontColor()
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
+    if (!widget->colorSelected())
+    {
+        return;
+    }
+
     QString colorSheet = "background-color: " + widget->getCurrentColor().name();
     ui->buttonEditorFontColor->setStyleSheet(colorSheet);
     ui->buttonEditorFontColor->update();
@@ -755,6 +760,11 @@ void SummaryWindow::setBackColor()
     colorPickerWidget *widget = new colorPickerWidget(this, Qt::white);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
+
+    if (!widget->colorSelected())
+    {
+        return;
+    }
 
     QString styleSheet = "background-color: " + widget->getCurrentColor().name();
 
