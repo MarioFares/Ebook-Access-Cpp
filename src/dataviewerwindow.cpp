@@ -12,11 +12,18 @@ DataViewerWindow::DataViewerWindow(QWidget *parent):
 {
     ui->setupUi(this);
 
-    QStringList tables = queries::db.tables();
-    ui->comboBoxTables->insertItems(0, tables);
+    ui->comboBoxTables->insertItem(0, "Ebooks");
+    ui->comboBoxTables->insertItem(1, "Links");
+    ui->comboBoxTables->insertItem(2, "Link Collections");
+    ui->comboBoxTables->insertItem(3, "Searches");
+    ui->comboBoxTables->insertItem(4, "Session Logs");
+    ui->comboBoxTables->insertItem(5, "Tags");
 
-    populateTable(ui->comboBoxTables->currentText());
+    QHeaderView::ResizeMode columnsResizeMode = QHeaderView::Stretch;
+    toggleFitColumns();
 
+    setupConnections();
+    tableSelected(0);
 }
 
 DataViewerWindow::~DataViewerWindow()
@@ -24,16 +31,23 @@ DataViewerWindow::~DataViewerWindow()
     delete ui;
 }
 
-void DataViewerWindow::populateTable(const QString &tableName)
+void DataViewerWindow::setupConnections()
 {
-    queries::selectAllTable(tableName);
+    connect(ui->comboBoxTables, &QComboBox::currentIndexChanged, this, &DataViewerWindow::tableSelected);
+    connect(ui->buttonRefresh, &QPushButton::clicked, this, [this] {tableSelected(ui->comboBoxTables->currentIndex());});
+    connect(ui->buttonToggleColors, &QPushButton::clicked, this, &DataViewerWindow::toggleColors);
+    connect(ui->buttonToggleGrid, &QPushButton::clicked, this, &DataViewerWindow::toggleGrid);
+    connect(ui->buttonToggleFitColumns, &QPushButton::clicked, this, &DataViewerWindow::toggleFitColumns);
+    connect(ui->tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
+}
 
+void DataViewerWindow::populateTable()
+{
     qint32 fieldCount = queries::query.record().count();
     QStringList fieldNames;
     for (int i = 0; i < fieldCount; i++)
     {
         QString fieldName = queries::query.record().fieldName(i);
-        fieldName = fieldName.at(0).toUpper() + fieldName.mid(1).toLower();
         fieldNames.append(fieldName);
     }
 
@@ -46,7 +60,7 @@ void DataViewerWindow::populateTable(const QString &tableName)
         ui->tableWidget->insertRow(rowCount);
         for (int i = 0; i < fieldCount; i++)
         {
-            auto *item = new QTableWidgetItem();
+            QTableWidgetItem *item = new QTableWidgetItem();
             item->setText(queries::query.value(i).toString());
             ui->tableWidget->setItem(rowCount, i, item);
         }
@@ -54,6 +68,8 @@ void DataViewerWindow::populateTable(const QString &tableName)
 
     ui->tableWidget->resizeColumnsToContents();
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->statusbar->clearMessage();
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(columnsResizeMode);
 }
 
 void DataViewerWindow::closeEvent(QCloseEvent *event)
@@ -61,9 +77,87 @@ void DataViewerWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void DataViewerWindow::on_comboBoxTables_currentTextChanged(const QString &arg1)
+void DataViewerWindow::tableSelected(int index)
 {
+    switch (index)
+    {
+        case 0:
+            queries::selectEbooksTable();
+            break;
+
+        case 1:
+            queries::selectLinksTable();
+            break;
+
+        case 2:
+            queries::selectLinkCollectionsTable();
+            break;
+
+        case 3:
+            queries::selectSearchesTable();
+            break;
+
+        case 4:
+            queries::selectSessionLogTable();
+            break;
+
+        case 5:
+            queries::selectTagsTable();
+            break;
+    }
+
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
-    populateTable(arg1);
+    populateTable();
+}
+
+void DataViewerWindow::toggleColors()
+{
+    if (ui->tableWidget->alternatingRowColors())
+    {
+        ui->tableWidget->setAlternatingRowColors(false);
+        ui->buttonToggleColors->setIcon(QIcon(":/icons/drop_icon.png"));
+    }
+    else
+    {
+        ui->tableWidget->setAlternatingRowColors(true);
+        ui->buttonToggleColors->setIcon(QIcon(":/icons/crossed_drop_icon.png"));
+    }
+}
+
+void DataViewerWindow::toggleGrid()
+{
+    bool gridOn = ui->tableWidget->showGrid();
+    if (gridOn)
+    {
+        ui->buttonToggleGrid->setIcon(QIcon(":/icons/grid_icon.png"));
+    }
+    else
+    {
+        ui->buttonToggleGrid->setIcon(QIcon(":/icons/square_icon.png"));
+    }
+    ui->tableWidget->setShowGrid(!gridOn);
+}
+
+void DataViewerWindow::toggleFitColumns()
+{
+    if (columnsResizeMode == QHeaderView::Stretch)
+    {
+        ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+        columnsResizeMode = QHeaderView::ResizeToContents;
+    }
+    else
+    {
+        ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        columnsResizeMode = QHeaderView::Stretch;
+    }
+}
+
+void DataViewerWindow::showCellText()
+{
+    if (ui->tableWidget->currentItem())
+    {
+        QString text = ui->tableWidget->currentItem()->text();
+        ui->statusbar->showMessage(text);
+    }
 }

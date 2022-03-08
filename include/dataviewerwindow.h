@@ -2,6 +2,7 @@
 #define DATAVIEWERWINDOW_H
 
 #include <QMainWindow>
+#include <QHeaderView>
 
 namespace Ui {
 class DataViewerWindow;
@@ -17,15 +18,25 @@ public:
 
 
 private slots:
+    void setupConnections();
 
     void closeEvent(QCloseEvent *event);
 
-    void populateTable(const QString &tableName);
+    void populateTable();
 
-    void on_comboBoxTables_currentTextChanged(const QString &arg1);
+    void tableSelected(int index);
+
+    void toggleColors();
+
+    void toggleGrid();
+
+    void toggleFitColumns();
+
+    void showCellText();
 
 private:
     Ui::DataViewerWindow *ui;
+    QHeaderView::ResizeMode columnsResizeMode;
 };
 
 #endif // DATAVIEWERWINDOW_H
