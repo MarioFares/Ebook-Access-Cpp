@@ -66,7 +66,6 @@ void DataViewerWindow::populateTable()
         }
     }
 
-    ui->tableWidget->resizeColumnsToContents();
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->statusbar->clearMessage();
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(columnsResizeMode);
@@ -134,7 +133,7 @@ void DataViewerWindow::toggleGrid()
     }
     else
     {
-        ui->buttonToggleGrid->setIcon(QIcon(":/icons/square_icon.png"));
+        ui->buttonToggleGrid->setIcon(QIcon(":/icons/hide_grid_icon.png"));
     }
     ui->tableWidget->setShowGrid(!gridOn);
 }

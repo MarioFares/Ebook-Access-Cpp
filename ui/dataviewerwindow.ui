@@ -154,7 +154,7 @@ border: none;
         </property>
         <property name="icon">
          <iconset resource="../resources/images.qrc">
-          <normaloff>:/icons/square_icon.png</normaloff>:/icons/square_icon.png</iconset>
+          <normaloff>:/icons/hide_grid_icon.png</normaloff>:/icons/hide_grid_icon.png</iconset>
         </property>
         <property name="iconSize">
          <size>
