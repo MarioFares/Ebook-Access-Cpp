@@ -139,6 +139,76 @@ void resetCollectionsTable()
 }
 
 // Select
+
+// Data Viewer Queries
+void selectEbooksTable ()
+{
+    query.exec("SELECT id AS ID,"
+                            "name AS Name, "
+                            "author AS Author, "
+                            "genre AS Genre, "
+                            "path AS 'Full Path', "
+                            "ext AS Extension, "
+                            "pages AS 'Page Count', "
+                            "size AS 'Size (bytes)', "
+                            "folder AS Folder, "
+                            "time_added AS 'Date Added', "
+                            "last_modified AS 'Date Modified' "
+               "FROM ebooks");
+}
+
+void selectLinksTable ()
+{
+    query.exec("SELECT id AS ID, "
+               "name AS Title, "
+               "path AS Link, "
+               "timestamp AS 'Date Added' "
+        "FROM links");
+}
+
+void selectLinkCollectionsTable ()
+{
+    query.exec("SELECT id AS ID, "
+               "name AS 'Collection Name', "
+               "timestamp AS 'Date Added' "
+        "FROM link_collections");
+}
+
+void selectSearchesTable ()
+{
+    query.exec("SELECT id AS ID,"
+               "name AS Name,"
+               "folder AS Folder,"
+               "author AS Author, "
+               "genre AS Genre,"
+               "tags AS Tags,"
+               "ext AS Extension,"
+               "size_from 'From Size',"
+               "size_to 'To Size',"
+               "size_in 'Size Unit',"
+               "pages_from 'From Pages', "
+               "pages_to 'To Pages',"
+               "timestamp 'Date Added'"
+        "FROM searches");
+}
+
+void selectSessionLogTable ()
+{
+    query.exec("SELECT id AS 'Session ID', "
+               "login AS 'Login Date', "
+               "logout AS 'Logout Time', "
+               "duration AS 'Session Duration (min)' "
+              "FROM session_log");
+}
+
+void selectTagsTable ()
+{
+    query.exec("SELECT id AS 'Tag ID', "
+               "name AS 'Tag', "
+               "timestamp AS 'Date Added' "
+            "FROM tags");
+}
+// End data viewer queries
 void selectFoldersQuery()
 {
     query.exec("SELECT DISTINCT folder FROM ebooks");

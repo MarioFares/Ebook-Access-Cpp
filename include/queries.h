@@ -45,6 +45,19 @@ void resetLinksTable();
 void resetCollectionsTable();
 
 // Select Queries
+
+void selectEbooksTable ();
+
+void selectLinksTable ();
+
+void selectLinkCollectionsTable ();
+
+void selectSearchesTable ();
+
+void selectSessionLogTable ();
+
+void selectTagsTable ();
+
 void selectAllTable(const QString &tableName);
 
 void selectFoldersQuery();
