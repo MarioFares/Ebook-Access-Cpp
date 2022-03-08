@@ -14,7 +14,7 @@
    <string>Clean Ebooks</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <widget class="QLabel" name="labelTitle">
@@ -58,7 +58,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections/>
 </ui>

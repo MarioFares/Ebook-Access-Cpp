@@ -12,7 +12,6 @@
   </property>
   <property name="font">
    <font>
-    <family>Segoe UI</family>
     <pointsize>10</pointsize>
    </font>
   </property>
@@ -20,7 +19,7 @@
    <string>Bulk Details</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -153,7 +152,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections/>
 </ui>

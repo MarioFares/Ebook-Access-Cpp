@@ -14,7 +14,7 @@
    <string>Add Book</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="../resources/images.qrc">
     <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -292,7 +292,7 @@ border:  0px;
   <tabstop>buttonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../resources/images.qrc"/>
  </resources>
  <connections/>
 </ui>
