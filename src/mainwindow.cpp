@@ -10,6 +10,7 @@
 #include "include/addbookdialog.h"
 #include "include/addbooksdialog.h"
 #include "include/dataviewerwindow.h"
+#include "include/bookdetailswindow.h"
 #include "include/cleanebooksdialog.h"
 #include "include/linkmanagerwindow.h"
 #include "include/extselectiondialog.h"
@@ -69,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     refreshSearches();
 
     // Setup Tray Icon
-    auto *trayIcon = new QSystemTrayIcon(this);
+    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(windowIcon());
     trayIcon->setVisible(true);
     trayIcon->setToolTip("Ebook Access\nClick to Open");
@@ -144,7 +145,7 @@ void MainWindow::setupConnections()
     connect(ui->textDetailsPages, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
     connect(ui->textDetailsTags, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
 
-
+    connect(ui->actionBookDetails, &QAction::triggered, this, &MainWindow::showBookDetailsWindow);
     connect(ui->actionSearchFiles, &QAction::triggered, this, &MainWindow::searchCriteria);
     connect(ui->actionSearchText, &QAction::triggered, this, &MainWindow::searchString);
     connect(ui->actionSortSearch, &QAction::triggered, this, &MainWindow::sortSearch);
@@ -212,9 +213,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
+void MainWindow::showBookDetailsWindow()
+{
+    BookDetailsWindow *bookDetailsWindow = new BookDetailsWindow();
+    common::openWindow(bookDetailsWindow, ":/styles/style.qss");
+    bookDetailsWindow->setAttribute(Qt::WA_DeleteOnClose);
+}
+
 void MainWindow::showSummary(const QString &name)
 {
-    auto *summaryWindow = new SummaryWindow();
+    SummaryWindow *summaryWindow = new SummaryWindow();
     common::openWindow(summaryWindow, ":/styles/style.qss");
     summaryWindow->selectEbookSummary(name);
     summaryWindow->setAttribute(Qt::WA_DeleteOnClose);
@@ -222,14 +230,14 @@ void MainWindow::showSummary(const QString &name)
 
 void MainWindow::showLinkManager()
 {
-    auto *linkManagerWindow = new LinkManagerWindow();
+    LinkManagerWindow *linkManagerWindow = new LinkManagerWindow();
     common::openWindow(linkManagerWindow, ":/styles/style.qss");
     linkManagerWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void MainWindow::showDbViewer()
 {
-    auto *dataViewerWindow = new DataViewerWindow();
+    DataViewerWindow *dataViewerWindow = new DataViewerWindow();
     common::openWindow(dataViewerWindow, ":/styles/style.qss");
     dataViewerWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
@@ -343,7 +351,7 @@ void MainWindow::openFolder()
     {
         QStringList args;
         args << "/select," << QDir::toNativeSeparators(queries::query.value(0).toString());
-        auto *process = new QProcess(this);
+        QProcess *process = new QProcess(this);
         process->start("explorer.exe", args);
     }
     else
@@ -677,7 +685,7 @@ void MainWindow::extSelectionSetup(const QString &title, const QString &prompt, 
         }
     }
 
-    auto *dialog = new extSelectionDialog(this, results, title, prompt);
+    extSelectionDialog *dialog = new extSelectionDialog(this, results, title, prompt);
     common::openDialog(dialog, ":/styles/style.qss");
 
     results = dialog->getExtVector();
@@ -734,7 +742,7 @@ void MainWindow::selectTags()
         }
     }
 
-    auto *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
+    extSelectionDialog *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
     common::openDialog(dialog, ":/styles/style.qss");
 
     tags = dialog->getExtVector();

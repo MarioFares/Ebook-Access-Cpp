@@ -27,6 +27,8 @@ private slots:
 
     void closeEvent(QCloseEvent *event);
 
+    void showBookDetailsWindow();
+
     void showSummary(const QString &name = "");
 
     void showLinkManager();
