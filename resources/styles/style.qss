@@ -268,12 +268,15 @@ QHeaderView::section {
     border-right: 1px solid grey;
 }
 
-QHeaderView::section:horizontal
-{
+QHeaderView::section:horizontal {
     border-top: 1px solid grey;
 }
 
-QHeaderView::section:vertical
-{
+QHeaderView::section:vertical {
     border-left: 1px solid grey;
+}
+
+QToolTip {
+    border: 1px solid grey;
+    border-radius: 5px;
 }
