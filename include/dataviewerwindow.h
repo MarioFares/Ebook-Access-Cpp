@@ -34,9 +34,15 @@ private slots:
 
     void showCellText();
 
+    void showTableContextMenu(const QPoint &pos);
+
+    void hideColumn(int index);
+
+    void showColumn(int index);
 private:
     Ui::DataViewerWindow *ui;
     QHeaderView::ResizeMode columnsResizeMode;
+    QHash<int, QString> hiddenColumns;
 };
 
 #endif // DATAVIEWERWINDOW_H

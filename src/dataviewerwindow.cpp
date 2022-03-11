@@ -7,6 +7,8 @@
 #include <QCloseEvent>
 #include <QComboBox>
 
+#include "include/common.h"
+
 DataViewerWindow::DataViewerWindow(QWidget *parent):
     QMainWindow(parent), ui(new Ui::DataViewerWindow)
 {
@@ -20,7 +22,8 @@ DataViewerWindow::DataViewerWindow(QWidget *parent):
     ui->comboBoxTables->insertItem(5, "Tags");
 
     this->columnsResizeMode = QHeaderView::Stretch;
-    toggleFitColumns();
+
+    ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 
     setupConnections();
     tableSelected(0);
@@ -39,6 +42,45 @@ void DataViewerWindow::setupConnections()
     connect(ui->buttonToggleGrid, &QPushButton::clicked, this, &DataViewerWindow::toggleGrid);
     connect(ui->buttonToggleFitColumns, &QPushButton::clicked, this, &DataViewerWindow::toggleFitColumns);
     connect(ui->tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
+    connect(ui->tableWidget, &QTableWidget::customContextMenuRequested, this, &DataViewerWindow::showTableContextMenu);
+}
+
+void DataViewerWindow::showTableContextMenu(const QPoint &pos)
+{
+    QPoint globalPos = ui->tableWidget->mapToGlobal(pos);
+
+    QMenu mainMenu;
+    mainMenu.setStyleSheet(common::openSheet(":/styles/style.qss"));
+    mainMenu.addAction("Hide Column", this, [this]
+    {
+        hideColumn(ui->tableWidget->currentColumn());
+    });
+
+    QMenu *showMenu = mainMenu.addMenu("Show Column");
+    showMenu->setStyleSheet(common::openSheet(":/styles/style.qss"));
+
+    QHashIterator<int, QString> i(this->hiddenColumns);
+    while (i.hasNext())
+    {
+        i.next();
+        showMenu->addAction(i.value(), this, [this, i]
+        {
+            showColumn(i.key());
+        });
+    }
+    mainMenu.exec(globalPos);
+}
+
+void DataViewerWindow::showColumn(int index)
+{
+    this->hiddenColumns.remove(index);
+    ui->tableWidget->showColumn(index);
+}
+
+void DataViewerWindow::hideColumn(int index)
+{
+    this->hiddenColumns[index] = ui->tableWidget->horizontalHeaderItem(index)->text();
+    ui->tableWidget->hideColumn(index);
 }
 
 void DataViewerWindow::populateTable()
@@ -68,7 +110,7 @@ void DataViewerWindow::populateTable()
 
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->statusbar->clearMessage();
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(columnsResizeMode);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(this->columnsResizeMode);
 }
 
 void DataViewerWindow::closeEvent(QCloseEvent *event)
