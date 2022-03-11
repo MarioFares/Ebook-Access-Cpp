@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     // Set Right-Click Menu
     ui->ebooksListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->ebooksListWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+    ui->comboBoxSearchLoad->setContextMenuPolicy(Qt::CustomContextMenu);
 
     // Refresh ComboBoxes
     refreshFolders();
@@ -70,12 +70,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     refreshSearches();
 
     // Setup Tray Icon
-    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+    trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(windowIcon());
     trayIcon->setVisible(true);
     trayIcon->setToolTip("Ebook Access\nClick to Open");
     trayIcon->show();
-    trayIcon->connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
 
     // Set up clear buttons
     ui->textExts->setClearButtonEnabled(true);
@@ -99,6 +98,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupConnections()
 {
+    connect(ui->ebooksListWidget, &QListWidget::customContextMenuRequested, this, &MainWindow::showContextMenu);
+    trayIcon->connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
+    connect(ui->comboBoxSearchLoad, &QComboBox::customContextMenuRequested, this, &MainWindow::showSearchBoxContextMenu);
+
     connect(ui->buttonAddBooks, &QPushButton::clicked, this, &MainWindow::showAddBooksDialog);
     connect(ui->buttonSearchString, &QPushButton::clicked, this, &MainWindow::searchString);
     connect(ui->buttonClearCriteria, &QPushButton::clicked, this, &MainWindow::clearCriteria);
@@ -308,6 +311,23 @@ void MainWindow::showContextMenu(const QPoint &pos)
     {
         menu.exec(globalPos);
     }
+}
+
+void MainWindow::showSearchBoxContextMenu(const QPoint &pos)
+{
+    QPoint globalPos = ui->comboBoxSearchLoad->mapToGlobal(pos);
+
+    QMenu menu;
+    menu.setStyleSheet(common::openSheet(":/styles/style.qss"));
+
+    menu.addAction("Delete Search", this, [this]
+    {
+        QString item = ui->comboBoxSearchLoad->currentText();
+        queries::deleteSearch(item);
+        refreshSearches();
+    });
+
+    menu.exec(globalPos);
 }
 
 void MainWindow::openSummaryWindow()

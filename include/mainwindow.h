@@ -49,6 +49,8 @@ private slots:
 
     void showContextMenu(const QPoint&);
 
+    void showSearchBoxContextMenu(const QPoint &pos);
+
     void trayClicked(QSystemTrayIcon::ActivationReason r);
 
     void deleteListItem();
@@ -139,6 +141,7 @@ private:
     Qt::SortOrder SORT;
     QHash<QString, quint32> sizeConvFactors;
     QHash<QString, QString> sizeUnits;
+    QSystemTrayIcon *trayIcon;
 
 };
 #endif // MAINWINDOW_H
