@@ -197,7 +197,7 @@ void selectSessionLogTable ()
     query.exec("SELECT id AS 'Session ID', "
                "login AS 'Login Date', "
                "logout AS 'Logout Time', "
-               "duration AS 'Session Duration (min)' "
+               "printf(\"%.2f\", duration) AS 'Session Duration (min)' "
               "FROM session_log");
 }
 
@@ -557,6 +557,13 @@ void deleteCollection(QString collectionName)
 {
     query.prepare("DELETE FROM link_collections WHERE name = :name");
     query.bindValue(":name", collectionName);
+    query.exec();
+}
+
+void deleteSearch(QString searchName)
+{
+    query.prepare("DELETE FROM searches WHERE name = :searchName");
+    query.bindValue(":searchName", searchName);
     query.exec();
 }
 }	// Namespace queries

@@ -129,5 +129,7 @@ void deleteBook(QString fileName);
 void deleteLink(QString linkName);
 
 void deleteCollection(QString collectionName);
+
+void deleteSearch(QString searchName);
 } // Namespace queries
 #endif // QUERIES_H
