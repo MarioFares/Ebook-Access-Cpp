@@ -107,6 +107,7 @@ QSpinBox:hover {
 }
  QMenu::item {
      padding: 7px;
+     padding-right: 15px;
      font: 10pt "Segoe UI";
 }
  QMenu::icon {
@@ -279,4 +280,15 @@ QHeaderView::section:vertical {
 QToolTip {
     border: 1px solid grey;
     border-radius: 5px;
+}
+
+QToolButton {
+    background-color: #2D2D30;
+    color: white;
+    border: none;
+    font: 10pt "Segoe UI";
+}
+
+QToolButton:hover {
+    background-color: #2D2D30
 }
