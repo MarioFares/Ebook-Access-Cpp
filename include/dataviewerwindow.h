@@ -39,6 +39,9 @@ private slots:
     void hideColumn(int index);
 
     void showColumn(int index);
+
+    void showAllColumns();
+
 private:
     Ui::DataViewerWindow *ui;
     QHeaderView::ResizeMode columnsResizeMode;

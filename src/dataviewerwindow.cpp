@@ -37,10 +37,10 @@ DataViewerWindow::~DataViewerWindow()
 void DataViewerWindow::setupConnections()
 {
     connect(ui->comboBoxTables, &QComboBox::currentIndexChanged, this, &DataViewerWindow::tableSelected);
-    connect(ui->buttonRefresh, &QPushButton::clicked, this, [this] {tableSelected(ui->comboBoxTables->currentIndex());});
-    connect(ui->buttonToggleColors, &QPushButton::clicked, this, &DataViewerWindow::toggleColors);
-    connect(ui->buttonToggleGrid, &QPushButton::clicked, this, &DataViewerWindow::toggleGrid);
-    connect(ui->buttonToggleFitColumns, &QPushButton::clicked, this, &DataViewerWindow::toggleFitColumns);
+    connect(ui->buttonRefresh, &QToolButton::clicked, this, [this] {tableSelected(ui->comboBoxTables->currentIndex());});
+    connect(ui->buttonToggleColors, &QToolButton::clicked, this, &DataViewerWindow::toggleColors);
+    connect(ui->buttonToggleGrid, &QToolButton::clicked, this, &DataViewerWindow::toggleGrid);
+    connect(ui->buttonToggleFitColumns, &QToolButton::clicked, this, &DataViewerWindow::toggleFitColumns);
     connect(ui->tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
     connect(ui->tableWidget, &QTableWidget::customContextMenuRequested, this, &DataViewerWindow::showTableContextMenu);
 }
@@ -75,6 +75,16 @@ void DataViewerWindow::showColumn(int index)
 {
     this->hiddenColumns.remove(index);
     ui->tableWidget->showColumn(index);
+}
+
+void DataViewerWindow::showAllColumns()
+{
+    QHashIterator<int, QString> i(this->hiddenColumns);
+    while (i.hasNext())
+    {
+        i.next();
+        showColumn(i.key());
+    }
 }
 
 void DataViewerWindow::hideColumn(int index)
@@ -120,6 +130,7 @@ void DataViewerWindow::closeEvent(QCloseEvent *event)
 
 void DataViewerWindow::tableSelected(int index)
 {
+    showAllColumns();
     switch (index)
     {
         case 0:
@@ -146,7 +157,6 @@ void DataViewerWindow::tableSelected(int index)
             queries::selectTagsTable();
             break;
     }
-
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
     populateTable();
