@@ -198,7 +198,7 @@ border: 1px solid grey;
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonEditorFontColor">
+            <widget class="QToolButton" name="buttonEditorFontColor">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -230,13 +230,10 @@ border: 1px solid grey;
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/font_color_icon.png</normaloff>:/icons/font_color_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonEditorBackColor">
+            <widget class="QToolButton" name="buttonEditorBackColor">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -259,9 +256,6 @@ border: 1px solid grey;
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/background_fill_white.png</normaloff>:/icons/background_fill_white.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -276,7 +270,7 @@ background-color: grey;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonBold">
+            <widget class="QToolButton" name="buttonBold">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -310,13 +304,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/bold_icon.png</normaloff>:/icons/bold_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonItalic">
+            <widget class="QToolButton" name="buttonItalic">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -350,13 +341,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/italic_icon.png</normaloff>:/icons/italic_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonUnderline">
+            <widget class="QToolButton" name="buttonUnderline">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -390,13 +378,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/underline_icon.png</normaloff>:/icons/underline_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonThrough">
+            <widget class="QToolButton" name="buttonThrough">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -425,13 +410,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/strikethrough_icon.png</normaloff>:/icons/strikethrough_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonHighlight">
+            <widget class="QToolButton" name="buttonHighlight">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -460,13 +442,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/highlight_icon.png</normaloff>:/icons/highlight_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonCode">
+            <widget class="QToolButton" name="buttonCode">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -494,9 +473,6 @@ background-color: grey;</string>
              <property name="icon">
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/code_icon.png</normaloff>:/icons/code_icon.png</iconset>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -527,7 +503,7 @@ background-color: grey;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonBullets">
+            <widget class="QToolButton" name="buttonBullets">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -556,13 +532,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/bullets_icon.png</normaloff>:/icons/bullets_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonOrder">
+            <widget class="QToolButton" name="buttonOrder">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -590,9 +563,6 @@ background-color: grey;</string>
              <property name="icon">
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/numbers_icon.png</normaloff>:/icons/numbers_icon.png</iconset>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -680,7 +650,7 @@ background-color: grey;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonTable">
+            <widget class="QToolButton" name="buttonTable">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -712,7 +682,7 @@ background-color: grey;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonInsertImage">
+            <widget class="QToolButton" name="buttonInsertImage">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -741,13 +711,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/image_icon.png</normaloff>:/icons/image_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonInsertLine">
+            <widget class="QToolButton" name="buttonInsertLine">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -776,13 +743,10 @@ background-color: grey;</string>
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/hr_icon.png</normaloff>:/icons/hr_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonLink">
+            <widget class="QToolButton" name="buttonLink">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -840,39 +804,7 @@ background-color: grey;</string>
            <cursorShape>IBeamCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">QTextEdit{
-		border: 1px solid grey;
-		background-color: white;
-}
-QScrollBar:vertical {
-        border: none;
-        background: white;
-        width: 15px;
-		margin: 3px;
-}
-
-QScrollBar::handle:vertical {
-        border: none;
-        background:  lightgrey;
-        min-height: 30px;
-        border-radius: 0px;
-}
-
-QScrollBar::add-line:vertical {
-        border: none;
-        background: none;
-        width: 0px;
-        height: 0px;
-}
-
-QScrollBar::sub-line:vertical {
-        border: none;
-        background: none;
-        width: 0px;
-        height: 0px;
-}
-
-</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -1086,7 +1018,7 @@ border: 0px;
         <number>1</number>
        </property>
        <item>
-        <widget class="QPushButton" name="buttonUndo">
+        <widget class="QToolButton" name="buttonUndo">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1118,7 +1050,7 @@ border: 0px;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonRedo">
+        <widget class="QToolButton" name="buttonRedo">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1150,7 +1082,7 @@ border: 0px;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonClearText">
+        <widget class="QToolButton" name="buttonClearText">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1193,7 +1125,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonSuperscript">
+        <widget class="QToolButton" name="buttonSuperscript">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1225,7 +1157,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonSubscript">
+        <widget class="QToolButton" name="buttonSubscript">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1268,7 +1200,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonIncreaseFontSize">
+        <widget class="QToolButton" name="buttonIncreaseFontSize">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1300,7 +1232,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonDecreaseFontSize">
+        <widget class="QToolButton" name="buttonDecreaseFontSize">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1343,7 +1275,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonIncreaseIndent">
+        <widget class="QToolButton" name="buttonIncreaseIndent">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -1375,7 +1307,7 @@ background-color: grey;</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="buttonDecreaseIndent">
+        <widget class="QToolButton" name="buttonDecreaseIndent">
          <property name="minimumSize">
           <size>
            <width>30</width>

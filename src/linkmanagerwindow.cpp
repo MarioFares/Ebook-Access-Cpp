@@ -52,20 +52,22 @@ void LinkManagerWindow::setupConnections()
     connect(ui->listWidgetCollections, &QListWidget::itemClicked, this, &LinkManagerWindow::collectionClicked);
     connect(ui->listWidgetCollections, &QListWidget::customContextMenuRequested, this, &LinkManagerWindow::showCollectionsContextMenu);
 
-    connect(ui->buttonAddCollection, &QPushButton::clicked, this, &LinkManagerWindow::addCollection);
-    connect(ui->buttonAddLink, &QPushButton::clicked, this, &LinkManagerWindow::addLink);
+
     connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &LinkManagerWindow::clearDetails);
     connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &LinkManagerWindow::restoreDetails);
     connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &LinkManagerWindow::updateDetails);
-    connect(ui->buttonClearCollections, &QPushButton::clicked, this, &LinkManagerWindow::clearCollections);
-    connect(ui->buttonSortCollections, &QPushButton::clicked, this, &LinkManagerWindow::sortCollections);
-    connect(ui->buttonClearLinks, &QPushButton::clicked, this, &LinkManagerWindow::clearLinks);
-    connect(ui->buttonSortLinks, &QPushButton::clicked, this, &LinkManagerWindow::sortLinks);
-    connect(ui->buttonSearchCollections, &QPushButton::clicked, [this]
+
+    connect(ui->buttonAddCollection, &QToolButton::clicked, this, &LinkManagerWindow::addCollection);
+    connect(ui->buttonAddLink, &QToolButton::clicked, this, &LinkManagerWindow::addLink);
+    connect(ui->buttonClearCollections, &QToolButton::clicked, this, &LinkManagerWindow::clearCollections);
+    connect(ui->buttonSortCollections, &QToolButton::clicked, this, &LinkManagerWindow::sortCollections);
+    connect(ui->buttonClearLinks, &QToolButton::clicked, this, &LinkManagerWindow::clearLinks);
+    connect(ui->buttonSortLinks, &QToolButton::clicked, this, &LinkManagerWindow::sortLinks);
+    connect(ui->buttonSearchCollections, &QToolButton::clicked, [this]
     {
         refreshCollections(ui->textCollections->text());
     });
-    connect(ui->buttonSearchLinks, &QPushButton::clicked, [this]
+    connect(ui->buttonSearchLinks, &QToolButton::clicked, [this]
     {
         searchLinks(ui->textLinks->text());
     });

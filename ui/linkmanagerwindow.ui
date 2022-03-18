@@ -61,7 +61,7 @@
             <widget class="QLineEdit" name="textCollections"/>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonSearchCollections">
+            <widget class="QToolButton" name="buttonSearchCollections">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -78,7 +78,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -87,13 +87,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonClearCollections">
+            <widget class="QToolButton" name="buttonClearCollections">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -110,7 +107,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -119,13 +116,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonSortCollections">
+            <widget class="QToolButton" name="buttonSortCollections">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -142,7 +136,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -151,13 +145,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonAddCollection">
+            <widget class="QToolButton" name="buttonAddCollection">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -174,7 +165,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -182,9 +173,6 @@
              <property name="icon">
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -231,7 +219,7 @@
             <widget class="QLineEdit" name="textLinks"/>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonSearchLinks">
+            <widget class="QToolButton" name="buttonSearchLinks">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -248,7 +236,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -257,13 +245,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/search_icon.png</normaloff>:/icons/search_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonClearLinks">
+            <widget class="QToolButton" name="buttonClearLinks">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -280,7 +265,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -289,13 +274,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonSortLinks">
+            <widget class="QToolButton" name="buttonSortLinks">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -312,7 +294,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -321,13 +303,10 @@
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/sort_icon.png</normaloff>:/icons/sort_icon.png</iconset>
              </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="buttonAddLink">
+            <widget class="QToolButton" name="buttonAddLink">
              <property name="minimumSize">
               <size>
                <width>30</width>
@@ -344,7 +323,7 @@
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
@@ -352,9 +331,6 @@
              <property name="icon">
               <iconset resource="../resources/images.qrc">
                <normaloff>:/icons/add_icon.png</normaloff>:/icons/add_icon.png</iconset>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
              </property>
             </widget>
            </item>

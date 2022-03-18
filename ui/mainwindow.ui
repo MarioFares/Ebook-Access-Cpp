@@ -125,116 +125,10 @@ border: 0px;
                 <property name="verticalSpacing">
                  <number>30</number>
                 </property>
-                <item row="1" column="5">
-                 <widget class="QPushButton" name="buttonAuthor">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Authors</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="5">
-                 <widget class="QPushButton" name="buttonSearchLoad">
-                  <property name="minimumSize">
-                   <size>
-                    <width>51</width>
-                    <height>25</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Load Criteria</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
-                  </property>
-                  <property name="flat">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
                 <item row="2" column="0">
                  <widget class="QLabel" name="labelGenreCriteria">
                   <property name="text">
                    <string>Genre</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="5">
-                 <widget class="QPushButton" name="buttonSizeCriteria">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Unit</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border: 0px;
-</string>
-                  </property>
-                  <property name="text">
-                   <string>MB</string>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>25</width>
-                    <height>20</height>
-                   </size>
                   </property>
                  </widget>
                 </item>
@@ -270,34 +164,8 @@ border: 0px;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="4" column="5">
-                 <widget class="QPushButton" name="buttonExtensions">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Extensions</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/puzzle_icon.png</normaloff>:/icons/puzzle_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
                 <item row="5" column="2" colspan="2">
-                 <widget class="QLabel" name="label_2">
+                 <widget class="QLabel" name="labelSizeToCriteria">
                   <property name="text">
                    <string/>
                   </property>
@@ -336,89 +204,6 @@ border: 0px;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="5">
-                 <widget class="QPushButton" name="buttonTags">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Tags</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="6">
-                 <widget class="QPushButton" name="buttonSaveCriteria">
-                  <property name="minimumSize">
-                   <size>
-                    <width>70</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>90</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Save Criteria</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>30</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="flat">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
                 <item row="5" column="1">
                  <widget class="QSpinBox" name="spinBoxFromSizeCriteria">
                   <property name="maximumSize">
@@ -443,55 +228,6 @@ border: 0px;</string>
                  <widget class="QLabel" name="labelFolderCriteria">
                   <property name="text">
                    <string>Folder</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="6">
-                 <widget class="QPushButton" name="buttonClearCriteria">
-                  <property name="minimumSize">
-                   <size>
-                    <width>70</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>90</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Clear Criteria</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>30</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                  <property name="flat">
-                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -597,40 +333,6 @@ border: 0px;</string>
                   </item>
                  </widget>
                 </item>
-                <item row="2" column="5">
-                 <widget class="QPushButton" name="buttonGenre">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Select Genres</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
                 <item row="2" column="1" colspan="4">
                  <widget class="QComboBox" name="comboBoxGenreCriteria">
                   <property name="sizePolicy">
@@ -719,7 +421,7 @@ border: 0px;</string>
                  </widget>
                 </item>
                 <item row="5" column="6">
-                 <widget class="QPushButton" name="buttonSearchCriteria">
+                 <widget class="QToolButton" name="buttonSearchCriteria">
                   <property name="minimumSize">
                    <size>
                     <width>70</width>
@@ -739,15 +441,7 @@ border: 0px;</string>
                    <string>Search Criteria</string>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
+                   <string notr="true"/>
                   </property>
                   <property name="text">
                    <string/>
@@ -762,13 +456,103 @@ border: 0px;</string>
                     <height>30</height>
                    </size>
                   </property>
-                  <property name="flat">
-                   <bool>true</bool>
+                  <property name="autoRaise">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="5">
+                 <widget class="QToolButton" name="buttonAuthor">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Authors</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="6">
+                 <widget class="QToolButton" name="buttonClearCriteria">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>90</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Clear Criteria</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/clear_search_white_icon.png</normaloff>:/icons/clear_search_white_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>30</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="5">
+                 <widget class="QToolButton" name="buttonExtensions">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Extensions</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/puzzle_icon.png</normaloff>:/icons/puzzle_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="5">
-                 <widget class="QPushButton" name="buttonFolder">
+                 <widget class="QToolButton" name="buttonFolder">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -776,15 +560,7 @@ border: 0px;</string>
                    <string>Select Folders</string>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">/*QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}*/
-border: 0px;</string>
+                   <string notr="true"/>
                   </property>
                   <property name="text">
                    <string/>
@@ -792,6 +568,156 @@ border: 0px;</string>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
                     <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="5">
+                 <widget class="QToolButton" name="buttonGenre">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Genres</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/add_new_icon.png</normaloff>:/icons/add_new_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="6">
+                 <widget class="QToolButton" name="buttonSaveCriteria">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>90</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Save Criteria</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>30</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="5">
+                 <widget class="QToolButton" name="buttonSearchLoad">
+                  <property name="minimumSize">
+                   <size>
+                    <width>51</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Load Criteria</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/upload_icon.png</normaloff>:/icons/upload_icon.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="5">
+                 <widget class="QToolButton" name="buttonSizeCriteria">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Unit</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>MB</string>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>25</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="5">
+                 <widget class="QToolButton" name="buttonTags">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Select Tags</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/tags_icon.png</normaloff>:/icons/tags_icon.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -843,7 +769,7 @@ border: 0px;
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QPushButton" name="buttonAddBook">
+                  <widget class="QToolButton" name="buttonAddBook">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -863,7 +789,7 @@ border: 0px;
                     <string>Add Book</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border: 0px;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -878,13 +804,10 @@ border: 0px;
                      <height>37</height>
                     </size>
                    </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="buttonAddBooks">
+                  <widget class="QToolButton" name="buttonAddBooks">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -904,7 +827,7 @@ border: 0px;
                     <string>Add Books</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border: 0px;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -918,9 +841,6 @@ border: 0px;
                      <width>41</width>
                      <height>44</height>
                     </size>
-                   </property>
-                   <property name="flat">
-                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -937,7 +857,7 @@ border: 0px;
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
-                  <widget class="QPushButton" name="buttonSummaries">
+                  <widget class="QToolButton" name="buttonSummaries">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -951,7 +871,7 @@ border: 0px;
                     <string>Summaries</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border: 0px;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -966,13 +886,10 @@ border: 0px;
                      <height>44</height>
                     </size>
                    </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="buttonLinkManager">
+                  <widget class="QToolButton" name="buttonLinkManager">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -986,7 +903,7 @@ border: 0px;
                     <string>Link Manager</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border: 0px;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -1001,13 +918,10 @@ border: 0px;
                      <height>44</height>
                     </size>
                    </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="buttonDbViewer">
+                  <widget class="QToolButton" name="buttonDbViewer">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1021,7 +935,7 @@ border: 0px;
                     <string>Data Viewer</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border: 0px;</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -1035,9 +949,6 @@ border: 0px;
                      <width>41</width>
                      <height>34</height>
                     </size>
-                   </property>
-                   <property name="flat">
-                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -1144,7 +1055,7 @@ border: 0px;
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="buttonSearchString">
+               <widget class="QToolButton" name="buttonSearchString">
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -1152,7 +1063,7 @@ border: 0px;
                  <string>Search String</string>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border: 0px;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -1167,13 +1078,10 @@ border: 0px;
                   <height>20</height>
                  </size>
                 </property>
-                <property name="flat">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="buttonClearSearch">
+               <widget class="QToolButton" name="buttonClearSearch">
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -1181,7 +1089,7 @@ border: 0px;
                  <string>Clear Search</string>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">border: 0px;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -1196,13 +1104,10 @@ border: 0px;
                   <height>20</height>
                  </size>
                 </property>
-                <property name="flat">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="buttonSortSearch">
+               <widget class="QToolButton" name="buttonSortSearch">
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -1210,9 +1115,7 @@ border: 0px;
                  <string>Sort Titles</string>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-border:0px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -1226,9 +1129,6 @@ border:0px;
                   <width>25</width>
                   <height>20</height>
                  </size>
-                </property>
-                <property name="flat">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1628,14 +1528,7 @@ border: 0px;
                      <string>Restore Original Details</string>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Restore</string>
@@ -1660,14 +1553,7 @@ border: 1px solid lightblue;
                      <string>Update Details</string>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Update</string>
@@ -1692,14 +1578,7 @@ border: 1px solid lightblue;
                      <string>Clear Details</string>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-border: 1px solid grey;
-}
-QPushButton:hover
-{
-border: 1px solid lightblue;
-
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Clear</string>

@@ -102,28 +102,30 @@ void MainWindow::setupConnections()
     trayIcon->connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
     connect(ui->comboBoxSearchLoad, &QComboBox::customContextMenuRequested, this, &MainWindow::showSearchBoxContextMenu);
 
-    connect(ui->buttonAddBooks, &QPushButton::clicked, this, &MainWindow::showAddBooksDialog);
-    connect(ui->buttonSearchString, &QPushButton::clicked, this, &MainWindow::searchString);
-    connect(ui->buttonClearCriteria, &QPushButton::clicked, this, &MainWindow::clearCriteria);
+
     connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &MainWindow::clearDetails);
-    connect(ui->buttonSortSearch, &QPushButton::clicked, this, &MainWindow::sortSearch);
-    connect(ui->buttonAddBook, &QPushButton::clicked, this, &MainWindow::showAddBookDialog);
-    connect(ui->buttonClearSearch, &QPushButton::clicked, this, &MainWindow::clearSearch);
-    connect(ui->buttonSearchCriteria, &QPushButton::clicked, this, &MainWindow::searchCriteria);
     connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &MainWindow::restoreDetails);
     connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &MainWindow::updateDetails);
-    connect(ui->buttonSaveCriteria, &QPushButton::clicked, this, &MainWindow::saveCriteria);
-    connect(ui->buttonSearchLoad, &QPushButton::clicked, this, &MainWindow::loadSearch);
-    connect(ui->buttonLinkManager, &QPushButton::clicked, this, &MainWindow::showLinkManager);
-    connect(ui->buttonDbViewer, &QPushButton::clicked, this, &MainWindow::showDbViewer);
-    connect(ui->buttonSizeCriteria, &QPushButton::clicked, this, &MainWindow::toggleSizeCriteria);
-    connect(ui->buttonExtensions, &QPushButton::clicked, this, &MainWindow::selectExtensions);
-    connect(ui->buttonFolder, &QPushButton::clicked, this, &MainWindow::selectFolders);
-    connect(ui->buttonAuthor, &QPushButton::clicked, this, &MainWindow::selectAuthors);
-    connect(ui->buttonGenre, &QPushButton::clicked, this, &MainWindow::selectGenres);
-    connect(ui->buttonTags, &QPushButton::clicked, this, &MainWindow::selectTags);
-    connect(ui->buttonSizeUnit, &QPushButton::clicked, this, &MainWindow::toggleSizeUnit);
-    connect(ui->buttonSummaries, &QPushButton::clicked, [this] { showSummary(""); });
+
+    connect(ui->buttonAddBooks, &QToolButton::clicked, this, &MainWindow::showAddBooksDialog);
+    connect(ui->buttonSearchString, &QToolButton::clicked, this, &MainWindow::searchString);
+    connect(ui->buttonClearCriteria, &QToolButton::clicked, this, &MainWindow::clearCriteria);
+    connect(ui->buttonSortSearch, &QToolButton::clicked, this, &MainWindow::sortSearch);
+    connect(ui->buttonAddBook, &QToolButton::clicked, this, &MainWindow::showAddBookDialog);
+    connect(ui->buttonClearSearch, &QToolButton::clicked, this, &MainWindow::clearSearch);
+    connect(ui->buttonSearchCriteria, &QToolButton::clicked, this, &MainWindow::searchCriteria);
+    connect(ui->buttonSaveCriteria, &QToolButton::clicked, this, &MainWindow::saveCriteria);
+    connect(ui->buttonSearchLoad, &QToolButton::clicked, this, &MainWindow::loadSearch);
+    connect(ui->buttonLinkManager, &QToolButton::clicked, this, &MainWindow::showLinkManager);
+    connect(ui->buttonDbViewer, &QToolButton::clicked, this, &MainWindow::showDbViewer);
+    connect(ui->buttonSizeCriteria, &QToolButton::clicked, this, &MainWindow::toggleSizeCriteria);
+    connect(ui->buttonExtensions, &QToolButton::clicked, this, &MainWindow::selectExtensions);
+    connect(ui->buttonFolder, &QToolButton::clicked, this, &MainWindow::selectFolders);
+    connect(ui->buttonAuthor, &QToolButton::clicked, this, &MainWindow::selectAuthors);
+    connect(ui->buttonGenre, &QToolButton::clicked, this, &MainWindow::selectGenres);
+    connect(ui->buttonTags, &QToolButton::clicked, this, &MainWindow::selectTags);
+    connect(ui->buttonSizeUnit, &QToolButton::clicked, this, &MainWindow::toggleSizeUnit);
+    connect(ui->buttonSummaries, &QToolButton::clicked, [this] { showSummary(""); });
 
     connect(ui->ebooksListWidget, &QListWidget::itemClicked, this, &MainWindow::showEbookDetails);
     connect(ui->ebooksListWidget, &QListWidget::itemActivated, this, &MainWindow::openEbook);

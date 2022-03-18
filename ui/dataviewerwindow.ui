@@ -89,7 +89,7 @@ border: 1px solid white;
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonRefresh">
+       <widget class="QToolButton" name="buttonRefresh">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -97,9 +97,7 @@ border: 1px solid white;
          <string>Refresh Data</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-border: none;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
@@ -108,13 +106,13 @@ border: none;
          <iconset resource="../resources/images.qrc">
           <normaloff>:/icons/refresh_icon.png</normaloff>:/icons/refresh_icon.png</iconset>
         </property>
-        <property name="flat">
-         <bool>true</bool>
+        <property name="autoRaise">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonToggleColors">
+       <widget class="QToolButton" name="buttonToggleColors">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -122,9 +120,7 @@ border: none;
          <string>Alternate Row Colors</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-border: none;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
@@ -133,13 +129,13 @@ border: none;
          <iconset resource="../resources/images.qrc">
           <normaloff>:/icons/drop_icon.png</normaloff>:/icons/drop_icon.png</iconset>
         </property>
-        <property name="flat">
-         <bool>true</bool>
+        <property name="autoRaise">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonToggleGrid">
+       <widget class="QToolButton" name="buttonToggleGrid">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -147,7 +143,7 @@ border: none;
          <string>Show/Hide Grid</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
@@ -162,13 +158,13 @@ border: none;
           <height>22</height>
          </size>
         </property>
-        <property name="flat">
-         <bool>true</bool>
+        <property name="autoRaise">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonToggleFitColumns">
+       <widget class="QToolButton" name="buttonToggleFitColumns">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -179,7 +175,7 @@ border: none;
          <number>-1</number>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
@@ -194,8 +190,8 @@ border: none;
           <height>22</height>
          </size>
         </property>
-        <property name="flat">
-         <bool>true</bool>
+        <property name="autoRaise">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
