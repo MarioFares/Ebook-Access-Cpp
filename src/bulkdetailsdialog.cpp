@@ -2,7 +2,7 @@
 
 #include "include/bulkdetailsdialog.h"
 
-bulkDetailsDialog::bulkDetailsDialog(QWidget *parent):
+BulkDetailsDialog::BulkDetailsDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::bulkDetailsDialog)
 {
     author = "";
@@ -12,21 +12,21 @@ bulkDetailsDialog::bulkDetailsDialog(QWidget *parent):
     setupConnections();
 }
 
-bulkDetailsDialog::~bulkDetailsDialog()
+BulkDetailsDialog::~BulkDetailsDialog()
 {
     delete ui;
 }
 
-void bulkDetailsDialog::setupConnections()
+void BulkDetailsDialog::setupConnections()
 {
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &bulkDetailsDialog::close);
-    connect(ui->buttonApply, &QPushButton::clicked, this, &bulkDetailsDialog::applyFields);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &BulkDetailsDialog::close);
+    connect(ui->buttonApply, &QPushButton::clicked, this, &BulkDetailsDialog::applyFields);
     connect(ui->checkBoxAuthor, &QCheckBox::stateChanged, ui->textAuthor, &QLineEdit::setEnabled);
     connect(ui->checkBoxGenre, &QCheckBox::stateChanged, ui->textGenre, &QLineEdit::setEnabled);
     connect(ui->checkBoxTags, &QCheckBox::stateChanged, ui->textTags, &QLineEdit::setEnabled);
 }
 
-void bulkDetailsDialog::applyFields()
+void BulkDetailsDialog::applyFields()
 {
     if (ui->textAuthor->isEnabled())
     {

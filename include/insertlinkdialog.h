@@ -7,13 +7,13 @@ namespace Ui {
 class insertLinkDialog;
 }
 
-class insertLinkDialog : public QDialog
+class InsertLinkDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit insertLinkDialog(QWidget *parent = nullptr);
-    ~insertLinkDialog();
+    explicit InsertLinkDialog(QWidget *parent = nullptr);
+    ~InsertLinkDialog();
 
     QString title;
 

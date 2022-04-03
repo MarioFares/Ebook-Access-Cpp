@@ -2,7 +2,7 @@
 
 #include "include/inserttabledialog.h"
 
-insertTableDialog::insertTableDialog(QWidget *parent):
+InsertTableDialog::InsertTableDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::insertTableDialog)
 {
     columnCount = 0;
@@ -11,18 +11,18 @@ insertTableDialog::insertTableDialog(QWidget *parent):
     setupConnections();
 }
 
-insertTableDialog::~insertTableDialog()
+InsertTableDialog::~InsertTableDialog()
 {
     delete ui;
 }
 
-void insertTableDialog::setupConnections()
+void InsertTableDialog::setupConnections()
 {
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &insertTableDialog::close);
-    connect(ui->buttonOk, &QPushButton::clicked, this, &insertTableDialog::getTableDims);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &InsertTableDialog::close);
+    connect(ui->buttonOk, &QPushButton::clicked, this, &InsertTableDialog::getTableDims);
 }
 
-void insertTableDialog::getTableDims()
+void InsertTableDialog::getTableDims()
 {
     rowCount = ui->spinBoxRows->value();
     columnCount = ui->spinBoxColumns->value();

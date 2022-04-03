@@ -7,18 +7,18 @@ namespace Ui {
 class bulkDetailsDialog;
 }
 
-class bulkDetailsDialog : public QDialog
+class BulkDetailsDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit bulkDetailsDialog(QWidget *parent = nullptr);
+    explicit BulkDetailsDialog(QWidget *parent = nullptr);
 
     QString author;
     QString genre;
     QString tags;
 
-    ~bulkDetailsDialog();
+    ~BulkDetailsDialog();
 
 private slots:
     void setupConnections();

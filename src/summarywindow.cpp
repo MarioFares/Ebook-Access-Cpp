@@ -550,7 +550,7 @@ void SummaryWindow::setFontColor()
     QPoint globalPos = ui->buttonEditorFontColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -690,7 +690,7 @@ void SummaryWindow::printSummaryToPdf()
 
 void SummaryWindow::insertTable()
 {
-    insertTableDialog dialog(this);
+    InsertTableDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 
     if (dialog.rowCount != 0 && dialog.columnCount != 0)
@@ -707,7 +707,7 @@ void SummaryWindow::insertTable()
 
 void SummaryWindow::insertLink()
 {
-    insertLinkDialog dialog(this);
+    InsertLinkDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 
     if (!dialog.title.isEmpty() && !dialog.link.isEmpty())
@@ -757,7 +757,7 @@ void SummaryWindow::setBackColor()
     QPoint globalPos = ui->buttonEditorBackColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this, Qt::white);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::white);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 

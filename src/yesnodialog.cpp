@@ -1,7 +1,7 @@
 #include "include/yesnodialog.h"
 #include "ui_yesnodialog.h"
 
-yesNoDialog::yesNoDialog(QWidget *parent, QString windowTitle, QString title, QString prompt):
+YesNoDialog::YesNoDialog(QWidget *parent, QString windowTitle, QString title, QString prompt):
     QDialog(parent), ui(new Ui::yesNoDialog)
 {
     ui->setupUi(this);
@@ -13,24 +13,24 @@ yesNoDialog::yesNoDialog(QWidget *parent, QString windowTitle, QString title, QS
     setupConnections();
 }
 
-yesNoDialog::~yesNoDialog()
+YesNoDialog::~YesNoDialog()
 {
     delete ui;
 }
 
-void yesNoDialog::setupConnections()
+void YesNoDialog::setupConnections()
 {
-    connect(ui->buttonYes, &QPushButton::clicked, this, &yesNoDialog::setResult);
-    connect(ui->buttonNo, &QPushButton::clicked, this, &yesNoDialog::setResult);
+    connect(ui->buttonYes, &QPushButton::clicked, this, &YesNoDialog::setResult);
+    connect(ui->buttonNo, &QPushButton::clicked, this, &YesNoDialog::setResult);
 }
 
-void yesNoDialog::setResult()
+void YesNoDialog::setResult()
 {
     result = sender() == ui->buttonYes;
     close();
 }
 
-bool yesNoDialog::getResult()
+bool YesNoDialog::getResult()
 {
     return result;
 }

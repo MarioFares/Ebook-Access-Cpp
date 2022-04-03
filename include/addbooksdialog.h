@@ -9,13 +9,13 @@ namespace Ui {
 class addBooksDialog;
 }
 
-class addBooksDialog : public QDialog
+class AddBooksDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit addBooksDialog(QWidget *parent = nullptr);
-    ~addBooksDialog();
+    explicit AddBooksDialog(QWidget *parent = nullptr);
+    ~AddBooksDialog();
 
 private slots:
     void setupConnections();

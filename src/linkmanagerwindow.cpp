@@ -169,7 +169,7 @@ void LinkManagerWindow::deleteLink(const QString &name)
 
 void LinkManagerWindow::editLinkDetails(const QString &name)
 {
-    insertLinkDialog dialog(this);
+    InsertLinkDialog dialog(this);
     dialog.setWindowTitle("Edit Link");
     dialog.title = name;
     queries::selectLinkRecord(name);
@@ -195,7 +195,7 @@ void LinkManagerWindow::copyLink(const QString &name)
 
 void LinkManagerWindow::renameCollection(const QString &name)
 {
-    getNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
+    GetNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
 
     dialog.name = name;
     dialog.setDataOnOpen();
@@ -236,7 +236,7 @@ void LinkManagerWindow::refreshLinks(const QString &collectionName, const QStrin
 
 void LinkManagerWindow::addCollection()
 {
-    getNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
+    GetNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
     common::openDialog(&dialog, ":/styles/style.qss");
 
     if (!dialog.name.isEmpty())
@@ -250,7 +250,7 @@ void LinkManagerWindow::addCollection()
 
 void LinkManagerWindow::addLink()
 {
-    insertLinkDialog dialog(this);
+    InsertLinkDialog dialog(this);
     if (!ui->listWidgetCollections->selectedItems().isEmpty())
     {
         common::openDialog(&dialog, ":/styles/style.qss");

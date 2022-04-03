@@ -10,7 +10,7 @@
 #include <QFileDialog>
 #include <QDirIterator>
 
-addBooksDialog::addBooksDialog(QWidget *parent):
+AddBooksDialog::AddBooksDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::addBooksDialog)
 {
     ui->setupUi(this);
@@ -18,19 +18,19 @@ addBooksDialog::addBooksDialog(QWidget *parent):
     ui->textFolderPath->setCompleter(common::dirCompleter(this));
 }
 
-addBooksDialog::~addBooksDialog()
+AddBooksDialog::~AddBooksDialog()
 {
     delete ui;
 }
 
-void addBooksDialog::setupConnections()
+void AddBooksDialog::setupConnections()
 {
-    connect(ui->buttonClose, &QPushButton::clicked, this, &addBooksDialog::close);
-    connect(ui->buttonBrowseFolders, &QPushButton::clicked, this, &addBooksDialog::browseDirs);
-    connect(ui->buttonAdd, &QPushButton::clicked, this, &addBooksDialog::addDir);
+    connect(ui->buttonClose, &QPushButton::clicked, this, &AddBooksDialog::close);
+    connect(ui->buttonBrowseFolders, &QPushButton::clicked, this, &AddBooksDialog::browseDirs);
+    connect(ui->buttonAdd, &QPushButton::clicked, this, &AddBooksDialog::addDir);
 }
 
-void addBooksDialog::browseDirs()
+void AddBooksDialog::browseDirs()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose Folder"),
         "/",
@@ -39,7 +39,7 @@ void addBooksDialog::browseDirs()
     ui->textFolderPath->setText(dir);
 }
 
-void addBooksDialog::addDir()
+void AddBooksDialog::addDir()
 {
     QString dirPath = ui->textFolderPath->text();
     QFileInfo dir(dirPath);
@@ -53,7 +53,7 @@ void addBooksDialog::addDir()
     }
 }
 
-void addBooksDialog::setupEntries(const QString &dir, bool recursive)
+void AddBooksDialog::setupEntries(const QString &dir, bool recursive)
 {
     // Iterate over directory and get fileInfo and extensions
     QVector<QString> extVector;
@@ -72,7 +72,7 @@ void addBooksDialog::setupEntries(const QString &dir, bool recursive)
     }
 
     // Input for common tags, genres, or authors
-    bulkDetailsDialog dialog;
+    BulkDetailsDialog dialog;
     common::openDialog(&dialog, ":/styles/style.qss");
 
     QString tags = dialog.tags;
@@ -80,14 +80,14 @@ void addBooksDialog::setupEntries(const QString &dir, bool recursive)
     QString authors = dialog.author.isEmpty() ? "N/A" : dialog.author;
 
     // Let the user select desired extensions
-    extSelectionDialog *extDialog = new extSelectionDialog(this, extVector, "Extensions", "Select Extensions");
+    ExtSelectionDialog *extDialog = new ExtSelectionDialog(this, extVector, "Extensions", "Select Extensions");
     common::openDialog(extDialog, ":/styles/style.qss");
 
     QVector<QString> selectedExts = extDialog->getExtVector();
     iterateInsertEntries(entriesVector, selectedExts, tags, genres, authors);
 }
 
-void addBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVector, const QVector<QString> &selectedExts, const QString &tags, const QString &genres, const QString &authors)
+void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVector, const QVector<QString> &selectedExts, const QString &tags, const QString &genres, const QString &authors)
 {
     queries::db.transaction();
     size_t count = entriesVector.size();
@@ -108,7 +108,7 @@ void addBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVecto
     ui->progressBar->setValue(100);
 }
 
-void addBooksDialog::insertBook(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author)
+void AddBooksDialog::insertBook(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author)
 {
     QString name = entry.completeBaseName();
     QString path = entry.absoluteFilePath();

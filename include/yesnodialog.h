@@ -7,14 +7,14 @@ namespace Ui {
 class yesNoDialog;
 }
 
-class yesNoDialog : public QDialog
+class YesNoDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit yesNoDialog(QWidget *parent = nullptr, QString windowTitle = "Select",
+    explicit YesNoDialog(QWidget *parent = nullptr, QString windowTitle = "Select",
                          QString title = "Select", QString prompt = "Select");
-    ~yesNoDialog();
+    ~YesNoDialog();
 
     bool getResult();
 

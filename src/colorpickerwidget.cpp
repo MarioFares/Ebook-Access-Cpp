@@ -10,7 +10,7 @@
 #include <QApplication>
 #include <QColorDialog>
 
-colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
+ColorPickerWidget::ColorPickerWidget(QWidget*parent, QColor defaultColor)
     : QDialog(parent)
 {
     this->defaultColor = defaultColor;
@@ -21,7 +21,7 @@ colorPickerWidget::colorPickerWidget(QWidget*parent, QColor defaultColor)
     setupConnections();
 }
 
-void colorPickerWidget::setupUi()
+void ColorPickerWidget::setupUi()
 {
     this->rows = 5;
     this->columns = 10;
@@ -70,7 +70,7 @@ void colorPickerWidget::setupUi()
     defaultColorButton->setIconSize(QSize(16, 16));
 }
 
-void colorPickerWidget::setupConnections()
+void ColorPickerWidget::setupConnections()
 {
     connect(defaultColorButton, &QPushButton::clicked, [this]
     {
@@ -79,7 +79,7 @@ void colorPickerWidget::setupConnections()
     connect(moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
 }
 
-QColor colorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, float percent)
+QColor ColorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, float percent)
 {
     double resultRedF = colorStart.redF()   + percent * (colorEnd.redF()   - colorStart.redF());
     double resultGreenF = colorStart.greenF() + percent * (colorEnd.greenF() - colorStart.greenF());
@@ -91,7 +91,7 @@ QColor colorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, f
     return interpolatedColor;
 }
 
-GradientList colorPickerWidget::initialialzeColorGradients()
+GradientList ColorPickerWidget::initialialzeColorGradients()
 {
     GradientList gradientList;
     gradientList.push_back(qMakePair(Qt::white            ,             Qt::black)); // white         -> black
@@ -107,7 +107,7 @@ GradientList colorPickerWidget::initialialzeColorGradients()
     return gradientList;
 }
 
-void colorPickerWidget::createColorsButtons()
+void ColorPickerWidget::createColorsButtons()
 {
     for (int row = 0; row < this->rows; ++row)
     {
@@ -125,7 +125,7 @@ void colorPickerWidget::createColorsButtons()
     }
 }
 
-void colorPickerWidget::setButtonColors(GradientList gradientList)
+void ColorPickerWidget::setButtonColors(GradientList gradientList)
 {
     QColor colorStart;
     QColor colorEnd;
@@ -149,19 +149,19 @@ void colorPickerWidget::setButtonColors(GradientList gradientList)
     }
 }
 
-void colorPickerWidget::setCurrentColor(QColor color)
+void ColorPickerWidget::setCurrentColor(QColor color)
 {
     this->close();
     this->currentColor = color;
     this->isColorSelected = true;
 }
 
-QColor colorPickerWidget::getCurrentColor()
+QColor ColorPickerWidget::getCurrentColor()
 {
     return this->currentColor;
 }
 
-void colorPickerWidget::openColorDialog()
+void ColorPickerWidget::openColorDialog()
 {
     this->close();
     QColorDialog dialog(this);
@@ -169,7 +169,7 @@ void colorPickerWidget::openColorDialog()
     setCurrentColor(dialog.selectedColor());
 }
 
-bool colorPickerWidget::colorSelected()
+bool ColorPickerWidget::colorSelected()
 {
     return this->isColorSelected;
 }

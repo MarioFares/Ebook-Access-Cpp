@@ -5,7 +5,7 @@
 #include <QRandomGenerator>
 #include <QRegularExpression>
 
-quoteDialog::quoteDialog(QWidget *parent) :
+QuoteDialog::QuoteDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::quoteDialog)
 {
@@ -24,24 +24,24 @@ quoteDialog::quoteDialog(QWidget *parent) :
     setupConnections();
 }
 
-quoteDialog::~quoteDialog()
+QuoteDialog::~QuoteDialog()
 {
     delete ui;
 }
 
-void quoteDialog::setupConnections()
+void QuoteDialog::setupConnections()
 {
-    connect(ui->buttonNext, &QPushButton::clicked, this, &quoteDialog::nextQuote);
-    connect(ui->buttonPrevious, &QPushButton::clicked, this, &quoteDialog::prevQuote);
+    connect(ui->buttonNext, &QPushButton::clicked, this, &QuoteDialog::nextQuote);
+    connect(ui->buttonPrevious, &QPushButton::clicked, this, &QuoteDialog::prevQuote);
 }
 
-void quoteDialog::nextQuote()
+void QuoteDialog::nextQuote()
 {
     this->currIndex < this->quotesList.count() - 1 ? this->currIndex++ : this->quotesList.count();
     ui->label->setText(this->quotesList[this->currIndex]);
 }
 
-void quoteDialog::prevQuote()
+void QuoteDialog::prevQuote()
 {
     this->currIndex > 0 ? this->currIndex-- : 0;
     ui->label->setText(this->quotesList[this->currIndex]);

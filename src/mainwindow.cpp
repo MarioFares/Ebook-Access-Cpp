@@ -203,7 +203,7 @@ void MainWindow::setupConnections()
 
 void MainWindow::showQuote()
 {
-    quoteDialog dialog(this);
+    QuoteDialog dialog(this);
     common::openDialog(&dialog, ":styles/quote.qss");
 }
 
@@ -356,7 +356,7 @@ void MainWindow::deleteListItem()
     QString itemName = ui->ebooksListWidget->currentItem()->text();
     QListWidgetItem *currentItem = ui->ebooksListWidget->currentItem();
 
-    yesNoDialog dialog(this, "Delete File", "Delete File", "Do you wish to delete the file on your hard drive as well?");
+    YesNoDialog dialog(this, "Delete File", "Delete File", "Do you wish to delete the file on your hard drive as well?");
     common::openDialog(&dialog, ":/styles/style.qss");
     bool result = dialog.getResult();
 
@@ -398,7 +398,7 @@ void MainWindow::openFolder()
 
 void MainWindow::showAddBooksDialog()
 {
-    addBooksDialog dialog(this);
+    AddBooksDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 
     refreshFolders();
@@ -495,7 +495,7 @@ void MainWindow::hideLeftFrame()
 
 void MainWindow::showAddBookDialog()
 {
-    addBookDialog dialog(this);
+    AddBookDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
     refreshFolders();
     refreshAuthors();
@@ -598,7 +598,7 @@ void MainWindow::updateDetails()
         QString path = queries::query.value(0).toString();
         if (newName != oldName)
         {
-            yesNoDialog dialog(this, "Rename File", "Rename File", "Do you wish to rename the file on your hard drive as well?");
+            YesNoDialog dialog(this, "Rename File", "Rename File", "Do you wish to rename the file on your hard drive as well?");
             common::openDialog(&dialog, ":/styles/style.qss");
             bool result = dialog.getResult();
             if (result)
@@ -633,7 +633,7 @@ void MainWindow::saveCriteria()
     quint32 pagesTo = ui->spinBoxToPagesCriteria->value();
     quint32 pagesFrom = ui->spinBoxFromPagesCriteria->value();
 
-    getNameDialog dialog(this, "Search Name", "Please provide a name for the search you want to save:");
+    GetNameDialog dialog(this, "Search Name", "Please provide a name for the search you want to save:");
     common::openDialog(&dialog, ":/styles/style.qss");
     if (!dialog.name.isEmpty())
     {
@@ -672,7 +672,7 @@ void MainWindow::loadSearch()
 
 void MainWindow::showCleanEbooksDialog()
 {
-    cleanEbooksDialog dialog(this);
+    CleanEbooksDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 }
 
@@ -721,7 +721,7 @@ void MainWindow::extSelectionSetup(const QString &title, const QString &prompt, 
         }
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, results, title, prompt);
+    ExtSelectionDialog *dialog = new ExtSelectionDialog(this, results, title, prompt);
     common::openDialog(dialog, ":/styles/style.qss");
 
     results = dialog->getExtVector();
@@ -778,7 +778,7 @@ void MainWindow::selectTags()
         }
     }
 
-    extSelectionDialog *dialog = new extSelectionDialog(this, tags, "Tags", "Select Available Tags");
+    ExtSelectionDialog *dialog = new ExtSelectionDialog(this, tags, "Tags", "Select Available Tags");
     common::openDialog(dialog, ":/styles/style.qss");
 
     tags = dialog->getExtVector();

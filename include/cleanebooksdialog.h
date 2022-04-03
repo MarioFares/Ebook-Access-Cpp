@@ -7,13 +7,13 @@ namespace Ui {
 class cleanEbooksDialog;
 }
 
-class cleanEbooksDialog : public QDialog
+class CleanEbooksDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit cleanEbooksDialog(QWidget *parent = nullptr);
-    ~cleanEbooksDialog();
+    explicit CleanEbooksDialog(QWidget *parent = nullptr);
+    ~CleanEbooksDialog();
 
 private slots:
     void setupConnections();

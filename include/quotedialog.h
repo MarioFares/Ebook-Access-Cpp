@@ -7,13 +7,13 @@ namespace Ui {
 class quoteDialog;
 }
 
-class quoteDialog : public QDialog
+class QuoteDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit quoteDialog(QWidget *parent = nullptr);
-    ~quoteDialog();
+    explicit QuoteDialog(QWidget *parent = nullptr);
+    ~QuoteDialog();
 
 private slots:
     void setupConnections();

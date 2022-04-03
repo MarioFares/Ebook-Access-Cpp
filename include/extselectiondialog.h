@@ -9,14 +9,14 @@ namespace Ui {
 class extSelectionDialog;
 }
 
-class extSelectionDialog : public QDialog
+class ExtSelectionDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit extSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {},
+    explicit ExtSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {},
                                 QString title = "Preferences", QString label = "Select Preferences");
-    ~extSelectionDialog();
+    ~ExtSelectionDialog();
 
     QVector<QString> getExtVector();
 

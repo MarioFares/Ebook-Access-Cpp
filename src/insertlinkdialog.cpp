@@ -2,7 +2,7 @@
 
 #include "include/insertlinkdialog.h"
 
-insertLinkDialog::insertLinkDialog(QWidget *parent):
+InsertLinkDialog::InsertLinkDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::insertLinkDialog)
 {
     title = "";
@@ -11,25 +11,25 @@ insertLinkDialog::insertLinkDialog(QWidget *parent):
     setupConnections();
 }
 
-insertLinkDialog::~insertLinkDialog()
+InsertLinkDialog::~InsertLinkDialog()
 {
     delete ui;
 }
 
-void insertLinkDialog::setupConnections()
+void InsertLinkDialog::setupConnections()
 {
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &insertLinkDialog::close);
-    connect(ui->buttonOk, &QPushButton::clicked, this, &insertLinkDialog::getInput);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &InsertLinkDialog::close);
+    connect(ui->buttonOk, &QPushButton::clicked, this, &InsertLinkDialog::getInput);
 }
 
-void insertLinkDialog::getInput()
+void InsertLinkDialog::getInput()
 {
     title = ui->textTitle->text();
     link = ui->textLink->text();
     close();
 }
 
-void insertLinkDialog::setDataOnOpen()
+void InsertLinkDialog::setDataOnOpen()
 {
     if (!title.isEmpty() && !link.isEmpty())
     {

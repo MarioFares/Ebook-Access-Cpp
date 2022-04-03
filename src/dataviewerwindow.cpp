@@ -259,7 +259,7 @@ void DataViewerWindow::setFontColor()
     QPoint globalPos = ui->buttonFontColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -280,7 +280,7 @@ void DataViewerWindow::setBackColor()
     QPoint globalPos = ui->buttonBackColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 

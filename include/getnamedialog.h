@@ -7,16 +7,16 @@ namespace Ui {
 class getNameDialog;
 }
 
-class getNameDialog : public QDialog
+class GetNameDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit getNameDialog(QWidget *parent = nullptr,
+    explicit GetNameDialog(QWidget *parent = nullptr,
                            QString title = "Input Name",
                            QString prompt = "Please input a name");
 
-    ~getNameDialog();
+    ~GetNameDialog();
 
     QString name;
 

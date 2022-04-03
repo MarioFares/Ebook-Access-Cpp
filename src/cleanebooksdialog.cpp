@@ -5,23 +5,23 @@
 
 #include <QFileInfo>
 
-cleanEbooksDialog::cleanEbooksDialog(QWidget *parent):
+CleanEbooksDialog::CleanEbooksDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::cleanEbooksDialog)
 {
     ui->setupUi(this);
 }
 
-cleanEbooksDialog::~cleanEbooksDialog()
+CleanEbooksDialog::~CleanEbooksDialog()
 {
     delete ui;
 }
 
-void cleanEbooksDialog::setupConnections()
+void CleanEbooksDialog::setupConnections()
 {
-    connect(ui->buttonBegin, &QPushButton::clicked, this, &cleanEbooksDialog::beginClean);
+    connect(ui->buttonBegin, &QPushButton::clicked, this, &CleanEbooksDialog::beginClean);
 }
 
-void cleanEbooksDialog::beginClean()
+void CleanEbooksDialog::beginClean()
 {
     queries::selectPath();
     while (queries::query.next())

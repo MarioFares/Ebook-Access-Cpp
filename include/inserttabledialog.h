@@ -7,18 +7,18 @@ namespace Ui {
 class insertTableDialog;
 }
 
-class insertTableDialog : public QDialog
+class InsertTableDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit insertTableDialog(QWidget *parent = nullptr);
+    explicit InsertTableDialog(QWidget *parent = nullptr);
 
     int columnCount;
 
     int rowCount;
 
-    ~insertTableDialog();
+    ~InsertTableDialog();
 
 private slots:
     void setupConnections();

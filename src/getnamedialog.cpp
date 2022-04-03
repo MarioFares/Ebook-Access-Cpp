@@ -3,7 +3,7 @@
 
 #include "include/common.h"
 
-getNameDialog::getNameDialog(QWidget *parent, QString title, QString prompt) :
+GetNameDialog::GetNameDialog(QWidget *parent, QString title, QString prompt) :
     QDialog(parent),
     ui(new Ui::getNameDialog)
 {
@@ -14,18 +14,18 @@ getNameDialog::getNameDialog(QWidget *parent, QString title, QString prompt) :
     setupConnections();
 }
 
-getNameDialog::~getNameDialog()
+GetNameDialog::~GetNameDialog()
 {
     delete ui;
 }
 
-void getNameDialog::setupConnections()
+void GetNameDialog::setupConnections()
 {
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &getNameDialog::close);
-    connect(ui->buttonOk, &QPushButton::clicked, this, &getNameDialog::setName);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &GetNameDialog::close);
+    connect(ui->buttonOk, &QPushButton::clicked, this, &GetNameDialog::setName);
 }
 
-void getNameDialog::setName()
+void GetNameDialog::setName()
 {
     name = ui->textName->text();
     if (name.isEmpty())
@@ -38,7 +38,7 @@ void getNameDialog::setName()
     }
 }
 
-void getNameDialog::setDataOnOpen()
+void GetNameDialog::setDataOnOpen()
 {
     ui->textName->setText(name);
 }

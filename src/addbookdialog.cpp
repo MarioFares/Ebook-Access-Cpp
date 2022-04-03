@@ -6,7 +6,7 @@
 
 #include <QFileDialog>
 
-addBookDialog::addBookDialog(QWidget *parent):
+AddBookDialog::AddBookDialog(QWidget *parent):
     QDialog(parent), ui(new Ui::addBookDialog)
 {
     ui->setupUi(this);
@@ -14,20 +14,20 @@ addBookDialog::addBookDialog(QWidget *parent):
     ui->textPath->setCompleter(common::dirCompleter(this));
 }
 
-addBookDialog::~addBookDialog()
+AddBookDialog::~AddBookDialog()
 {
     delete ui;
 }
 
-void addBookDialog::setupConnections()
+void AddBookDialog::setupConnections()
 {
-    connect(ui->buttonClear, &QPushButton::clicked, this, &addBookDialog::clearInputs);
-    connect(ui->buttonBrowse, &QPushButton::clicked, this, &addBookDialog::browseFile);
-    connect(ui->buttonCancel, &QPushButton::clicked, this, &addBookDialog::close);
-    connect(ui->buttonAdd, &QPushButton::clicked, this, &addBookDialog::addFile);
+    connect(ui->buttonClear, &QPushButton::clicked, this, &AddBookDialog::clearInputs);
+    connect(ui->buttonBrowse, &QPushButton::clicked, this, &AddBookDialog::browseFile);
+    connect(ui->buttonCancel, &QPushButton::clicked, this, &AddBookDialog::close);
+    connect(ui->buttonAdd, &QPushButton::clicked, this, &AddBookDialog::addFile);
 }
 
-void addBookDialog::clearInputs()
+void AddBookDialog::clearInputs()
 {
     ui->textName->clear();
     ui->textFolder->clear();
@@ -40,7 +40,7 @@ void addBookDialog::clearInputs()
     ui->textPages->clear();
 }
 
-void addBookDialog::browseFile()
+void AddBookDialog::browseFile()
 {
     QString filePath = QFileDialog::getOpenFileName(this,
         tr("Open File"), "/", tr("All Files (*.*)"));
@@ -56,7 +56,7 @@ void addBookDialog::browseFile()
     ui->textPages->setText(QString::number(pages));
 }
 
-void addBookDialog::addFile()
+void AddBookDialog::addFile()
 {
     QString name = ui->textName->text();
     QString folder = ui->textFolder->text();

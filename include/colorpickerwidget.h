@@ -6,12 +6,12 @@
 class QGridLayout;
 typedef QList<QPair<QColor,QColor>> GradientList;
 
-class colorPickerWidget : public QDialog
+class ColorPickerWidget : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit colorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
+    explicit ColorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
 
     QColor getCurrentColor();
 
