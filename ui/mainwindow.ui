@@ -73,7 +73,7 @@ border: 0px;
             <enum>QLayout::SetDefaultConstraint</enum>
            </property>
            <property name="topMargin">
-            <number>29</number>
+            <number>32</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
@@ -477,12 +477,12 @@ border: 0px;
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_user_icon.png</normaloff>:/icons/add_user_icon.png</iconset>
+                    <normaloff>:/icons/author_icon.png</normaloff>:/icons/author_icon.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
-                    <width>20</width>
-                    <height>20</height>
+                    <width>22</width>
+                    <height>22</height>
                    </size>
                   </property>
                  </widget>
@@ -567,7 +567,7 @@ border: 0px;
                   </property>
                   <property name="icon">
                    <iconset resource="../resources/images.qrc">
-                    <normaloff>:/icons/add_folder_icon.png</normaloff>:/icons/add_folder_icon.png</iconset>
+                    <normaloff>:/icons/folder_icon.png</normaloff>:/icons/folder_icon.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>

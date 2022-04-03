@@ -125,5 +125,7 @@
         <file>icons/reduce_icon.png</file>
         <file>icons/expand_icon.png</file>
         <file>icons/hide_grid_icon.png</file>
+        <file>icons/folder_icon.png</file>
+        <file>icons/author_icon.png</file>
     </qresource>
 </RCC>
