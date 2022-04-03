@@ -8,6 +8,7 @@
 #include <QComboBox>
 
 #include "include/common.h"
+#include "include/colorpickerwidget.h"
 
 DataViewerWindow::DataViewerWindow(QWidget *parent):
     QMainWindow(parent), ui(new Ui::DataViewerWindow)
@@ -41,8 +42,38 @@ void DataViewerWindow::setupConnections()
     connect(ui->buttonToggleColors, &QToolButton::clicked, this, &DataViewerWindow::toggleColors);
     connect(ui->buttonToggleGrid, &QToolButton::clicked, this, &DataViewerWindow::toggleGrid);
     connect(ui->buttonToggleFitColumns, &QToolButton::clicked, this, &DataViewerWindow::toggleFitColumns);
+    connect(ui->buttonFontColor, &QToolButton::clicked, this, &DataViewerWindow::setFontColor);
+    connect(ui->buttonBackColor, &QToolButton::clicked, this, &DataViewerWindow::setBackColor);
     connect(ui->tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
     connect(ui->tableWidget, &QTableWidget::customContextMenuRequested, this, &DataViewerWindow::showTableContextMenu);
+}
+
+void DataViewerWindow::setupGridMenu()
+{
+    QMenu gridMenu;
+    gridMenu.setStyleSheet(common::openSheet(":/styles/style.qss"));
+    gridMenu.addAction("Solid Line", this, [this]
+    {
+       ui->tableWidget->setGridStyle(Qt::SolidLine);
+    });
+    gridMenu.addAction("Dash Line", this, [this]
+    {
+        ui->tableWidget->setGridStyle(Qt::DashLine);
+    });
+    gridMenu.addAction("Dot Line", this, [this]
+    {
+        ui->tableWidget->setGridStyle(Qt::DotLine);
+    });
+    gridMenu.addAction("DashDot Line", this, [this]
+    {
+        ui->tableWidget->setGridStyle(Qt::DashDotLine);
+    });
+    gridMenu.addAction("DashDotDot Line", this, [this]
+    {
+        ui->tableWidget->setGridStyle(Qt::DashDotDotLine);
+    });
+    ui->buttonToggleGrid->setMenu(&gridMenu);
+    ui->buttonToggleGrid->showMenu();
 }
 
 void DataViewerWindow::showTableContextMenu(const QPoint &pos)
@@ -51,6 +82,10 @@ void DataViewerWindow::showTableContextMenu(const QPoint &pos)
 
     QMenu mainMenu;
     mainMenu.setStyleSheet(common::openSheet(":/styles/style.qss"));
+    mainMenu.addAction("Edit Cell", this, [this]
+    {
+        ui->tableWidget->editItem(ui->tableWidget->currentItem());
+    });
     mainMenu.addAction("Hide Column", this, [this]
     {
         hideColumn(ui->tableWidget->currentColumn());
@@ -68,6 +103,11 @@ void DataViewerWindow::showTableContextMenu(const QPoint &pos)
             showColumn(i.key());
         });
     }
+
+    mainMenu.addAction("Show All Columns", this, [this]
+    {
+        showAllColumns();
+    });
     mainMenu.exec(globalPos);
 }
 
@@ -212,3 +252,55 @@ void DataViewerWindow::showCellText()
         ui->statusbar->showMessage(text);
     }
 }
+
+void DataViewerWindow::setFontColor()
+{
+    QPoint bottom = ui->buttonFontColor->rect().bottomLeft();
+    QPoint globalPos = ui->buttonFontColor->mapToGlobal(bottom);
+    globalPos.setY(globalPos.y() + 2);
+
+    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
+    widget->move(globalPos);
+    common::openDialog(widget, ":/styles/colorpickerstyle.qss");
+
+    if (!widget->colorSelected())
+    {
+        return;
+    }
+
+    QString colorSheet = "color: " + widget->getCurrentColor().name();
+    ui->buttonFontColor->setStyleSheet(colorSheet);
+    ui->buttonFontColor->update();
+    ui->tableWidget->setStyleSheet(colorSheet);
+}
+
+void DataViewerWindow::setBackColor()
+{
+    QPoint bottom = ui->buttonBackColor->rect().bottomLeft();
+    QPoint globalPos = ui->buttonBackColor->mapToGlobal(bottom);
+    globalPos.setY(globalPos.y() + 2);
+
+    colorPickerWidget *widget = new colorPickerWidget(this, Qt::black);
+    widget->move(globalPos);
+    common::openDialog(widget, ":/styles/colorpickerstyle.qss");
+
+    if (!widget->colorSelected())
+    {
+        return;
+    }
+
+    QString colorSheet = "background-color: " + widget->getCurrentColor().name();
+    ui->buttonBackColor->setStyleSheet(colorSheet);
+    ui->buttonBackColor->update();
+    ui->tableWidget->setStyleSheet(colorSheet);
+
+    if (widget->getCurrentColor() != Qt::white)
+    {
+        ui->buttonBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
+    }
+    else
+    {
+        ui->buttonBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
+    }
+}
+

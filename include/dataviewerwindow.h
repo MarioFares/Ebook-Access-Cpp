@@ -42,6 +42,13 @@ private slots:
 
     void showAllColumns();
 
+    void setupGridMenu();
+
+    void setFontColor();
+
+    void setBackColor();
+
+
 private:
     Ui::DataViewerWindow *ui;
     QHeaderView::ResizeMode columnsResizeMode;
