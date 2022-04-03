@@ -88,6 +88,7 @@ void LinkManagerWindow::setupConnections()
     connect(ui->actionMinimize, &QAction::triggered, this, &LinkManagerWindow::showMinimized);
     connect(ui->actionAddCollection, &QAction::triggered, this, &LinkManagerWindow::addCollection);
     connect(ui->actionAddLink, &QAction::triggered, this, &LinkManagerWindow::addLink);
+    connect(ui->actionHideStatusBar, &QAction::triggered, this, &LinkManagerWindow::hideStatusBar);
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint &pos)
@@ -421,4 +422,9 @@ void LinkManagerWindow::actionDeleteLink()
     {
         deleteLink(ui->listWidgetLinks->currentItem()->text());
     }
+}
+
+void LinkManagerWindow::hideStatusBar()
+{
+    common::changeWidgetVisibility(ui->statusBar, ui->actionHideStatusBar);
 }

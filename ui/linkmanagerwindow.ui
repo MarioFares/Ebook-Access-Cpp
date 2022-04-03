@@ -515,6 +515,8 @@ border: 1px solid grey;
     <addaction name="actionHideRightPanel"/>
     <addaction name="separator"/>
     <addaction name="actionHideSearchBars"/>
+    <addaction name="separator"/>
+    <addaction name="actionHideStatusBar"/>
    </widget>
    <widget class="QMenu" name="menuLinks">
     <property name="title">
@@ -680,6 +682,11 @@ border: 1px solid grey;
    </property>
    <property name="shortcut">
     <string>Ctrl+E, Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionHideStatusBar">
+   <property name="text">
+    <string>Hide Status Bar</string>
    </property>
   </action>
  </widget>

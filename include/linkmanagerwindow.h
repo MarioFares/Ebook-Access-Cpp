@@ -87,6 +87,8 @@ private slots:
 
     void actionDeleteLink();
 
+    void hideStatusBar();
+
 private:
     Ui::LinkManagerWindow *ui;
 
