@@ -2,6 +2,8 @@ PRAGMA foreign_keys = ON;
 --break
 PRAGMA recursive_triggers = OFF;
 --break
+PRAGMA case_sensitive_like=OFF;
+--break
 CREATE TABLE IF NOT EXISTS ebooks
   (
      "id"                 INTEGER PRIMARY KEY,
