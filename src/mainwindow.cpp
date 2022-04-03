@@ -1,13 +1,14 @@
 #include "ui_mainwindow.h"
 
-#include "include/mainwindow.h"
 #include "include/common.h"
 #include "include/queries.h"
+#include "include/mainwindow.h"
 #include "include/quotedialog.h"
 #include "include/yesnodialog.h"
 #include "include/summarywindow.h"
 #include "include/getnamedialog.h"
 #include "include/addbookdialog.h"
+#include "include/settingswindow.h"
 #include "include/addbooksdialog.h"
 #include "include/dataviewerwindow.h"
 #include "include/bookdetailswindow.h"
@@ -150,7 +151,7 @@ void MainWindow::setupConnections()
     connect(ui->textDetailsPages, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
     connect(ui->textDetailsTags, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
 
-    connect(ui->actionBookDetails, &QAction::triggered, this, &MainWindow::showBookDetailsWindow);
+    connect(ui->actionBookDetails, &QAction::triggered, [this] { showBookDetailsWindow(""); });
     connect(ui->actionSearchFiles, &QAction::triggered, this, &MainWindow::searchCriteria);
     connect(ui->actionSearchText, &QAction::triggered, this, &MainWindow::searchString);
     connect(ui->actionSortSearch, &QAction::triggered, this, &MainWindow::sortSearch);
@@ -170,6 +171,7 @@ void MainWindow::setupConnections()
     connect(ui->actionWindowTop, &QAction::triggered, this, &MainWindow::toggleWindowOnTop);
     connect(ui->actionLinkManager, &QAction::triggered, this, &MainWindow::showLinkManager);
     connect(ui->actionDataViewer, &QAction::triggered, this, &MainWindow::showDbViewer);
+    connect(ui->actionApplicationSettings, &QAction::triggered, this, &MainWindow::showSettings);
     connect(ui->actionEbooksReport, &QAction::triggered, this, &MainWindow::genEbooksReport);
     connect(ui->actionHideStatusBar, &QAction::triggered, this, &MainWindow::hideStatusBar);
     connect(ui->actionClearSearch, &QAction::triggered, this, &MainWindow::clearSearch);
@@ -218,10 +220,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void MainWindow::showBookDetailsWindow()
+void MainWindow::showBookDetailsWindow(const QString &name)
 {
     BookDetailsWindow *bookDetailsWindow = new BookDetailsWindow();
     common::openWindow(bookDetailsWindow, ":/styles/style.qss");
+    bookDetailsWindow->showBookDetails(name);
     bookDetailsWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
@@ -245,6 +248,13 @@ void MainWindow::showDbViewer()
     DataViewerWindow *dataViewerWindow = new DataViewerWindow();
     common::openWindow(dataViewerWindow, ":/styles/style.qss");
     dataViewerWindow->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+void MainWindow::showSettings()
+{
+    SettingsWindow *settingsWindow = new SettingsWindow();
+    common::openWindow(settingsWindow, ":/styles/style.qss");
+    settingsWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 void MainWindow::refreshComboBox(QComboBox *comboBox)
@@ -306,6 +316,10 @@ void MainWindow::showContextMenu(const QPoint &pos)
         openEbook(ui->ebooksListWidget->currentItem());
     });
     menu.addAction("Open Summary", this, SLOT(openSummaryWindow()));
+    menu.addAction("Open MetaData", this, [this]
+    {
+        showBookDetailsWindow(ui->ebooksListWidget->currentItem()->text());
+    });
     menu.addAction("Show in Folder", this, SLOT(openFolder()));
     menu.addAction("Delete Ebook", this, SLOT(deleteListItem()));
 
