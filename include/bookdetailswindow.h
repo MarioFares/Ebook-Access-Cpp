@@ -15,8 +15,15 @@ public:
     explicit BookDetailsWindow(QWidget *parent = nullptr);
     ~BookDetailsWindow();
 
+    void showBookDetails(const QString &name);
+
+
 private:
     Ui::BookDetailsWindow *ui;
+
+    void setupConnections();
+
+    void searchEbooks(const QString &name);
 };
 
 #endif // BOOKDETAILSWINDOW_H
