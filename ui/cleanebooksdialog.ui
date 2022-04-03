@@ -42,6 +42,9 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Scan</string>
    </property>
