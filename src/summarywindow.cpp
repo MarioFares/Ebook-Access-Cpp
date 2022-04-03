@@ -58,32 +58,31 @@ SummaryWindow::~SummaryWindow()
 
 void SummaryWindow::setupConnections()
 {
-    connect(ui->buttonBold, &QToolButton::clicked, this, &SummaryWindow::toggleBold);
-    connect(ui->buttonItalic, &QToolButton::clicked, this, &SummaryWindow::toggleItalic);
-    connect(ui->buttonUnderline, &QToolButton::clicked, this, &SummaryWindow::toggleUnderline);
-    connect(ui->buttonThrough, &QToolButton::clicked, this, &SummaryWindow::toggleStrikethrough);
-    connect(ui->buttonBullets, &QToolButton::clicked, this, &SummaryWindow::toggleBulletedList);
-    connect(ui->buttonUndo, &QToolButton::clicked, ui->textEditor, &QTextBrowser::undo);
-    connect(ui->buttonRedo, &QToolButton::clicked, ui->textEditor, &QTextBrowser::redo);
-    connect(ui->buttonClearText, &QToolButton::clicked, ui->textEditor, &QTextBrowser::clear);
-    connect(ui->buttonOrder, &QToolButton::clicked, this, &SummaryWindow::toggleOrderedList);
-    connect(ui->buttonSubscript, &QToolButton::clicked, this, &SummaryWindow::setSubscript);
-    connect(ui->buttonSuperscript, &QToolButton::clicked, this, &SummaryWindow::setSuperscript);
-    connect(ui->buttonCode, &QToolButton::clicked, this, &SummaryWindow::insertCodeBlock);
-    connect(ui->buttonHighlight, &QToolButton::clicked, this, &SummaryWindow::toggleHighlight);
-    connect(ui->buttonEditorFontColor, &QToolButton::clicked, this, &SummaryWindow::setFontColor);
-    connect(ui->buttonInsertLine, &QToolButton::clicked, this, &SummaryWindow::insertLine);
-    connect(ui->buttonInsertImage, &QToolButton::clicked, this, &SummaryWindow::insertImage);
-    connect(ui->buttonTable, &QToolButton::clicked, this, &SummaryWindow::insertTable);
-    connect(ui->buttonLink, &QToolButton::clicked, this, &SummaryWindow::insertLink);
-    connect(ui->buttonEditorBackColor, &QToolButton::clicked, this, &SummaryWindow::setBackColor);
-    connect(ui->buttonIncreaseFontSize, &QToolButton::clicked, this, &SummaryWindow::increaseFontSize);
-    connect(ui->buttonDecreaseFontSize, &QToolButton::clicked,  this, &SummaryWindow::decreaseFontSize);
-    connect(ui->buttonIncreaseIndent, &QToolButton::clicked,  this, &SummaryWindow::increaseIndent);
-    connect(ui->buttonDecreaseIndent, &QToolButton::clicked,  this, &SummaryWindow::decreaseIndent);
-
+    connect(ui->buttonBold, &QPushButton::clicked, this, &SummaryWindow::toggleBold);
+    connect(ui->buttonItalic, &QPushButton::clicked, this, &SummaryWindow::toggleItalic);
+    connect(ui->buttonUnderline, &QPushButton::clicked, this, &SummaryWindow::toggleUnderline);
+    connect(ui->buttonThrough, &QPushButton::clicked, this, &SummaryWindow::toggleStrikethrough);
+    connect(ui->buttonBullets, &QPushButton::clicked, this, &SummaryWindow::toggleBulletedList);
+    connect(ui->buttonUndo, &QPushButton::clicked, ui->textEditor, &QTextBrowser::undo);
+    connect(ui->buttonRedo, &QPushButton::clicked, ui->textEditor, &QTextBrowser::redo);
+    connect(ui->buttonClearText, &QPushButton::clicked, ui->textEditor, &QTextBrowser::clear);
+    connect(ui->buttonOrder, &QPushButton::clicked, this, &SummaryWindow::toggleOrderedList);
+    connect(ui->buttonSubscript, &QPushButton::clicked, this, &SummaryWindow::setSubscript);
+    connect(ui->buttonSuperscript, &QPushButton::clicked, this, &SummaryWindow::setSuperscript);
+    connect(ui->buttonCode, &QPushButton::clicked, this, &SummaryWindow::insertCodeBlock);
+    connect(ui->buttonHighlight, &QPushButton::clicked, this, &SummaryWindow::toggleHighlight);
+    connect(ui->buttonEditorFontColor, &QPushButton::clicked, this, &SummaryWindow::setFontColor);
+    connect(ui->buttonInsertLine, &QPushButton::clicked, this, &SummaryWindow::insertLine);
+    connect(ui->buttonInsertImage, &QPushButton::clicked, this, &SummaryWindow::insertImage);
+    connect(ui->buttonTable, &QPushButton::clicked, this, &SummaryWindow::insertTable);
+    connect(ui->buttonLink, &QPushButton::clicked, this, &SummaryWindow::insertLink);
+    connect(ui->buttonEditorBackColor, &QPushButton::clicked, this, &SummaryWindow::setBackColor);
     connect(ui->buttonNext, &QPushButton::clicked, this, &SummaryWindow::findNext);
     connect(ui->buttonPrevious, &QPushButton::clicked, this, &SummaryWindow::findPrevious);
+    connect(ui->buttonIncreaseFontSize, &QPushButton::clicked, this, &SummaryWindow::increaseFontSize);
+    connect(ui->buttonDecreaseFontSize, &QPushButton::clicked,  this, &SummaryWindow::decreaseFontSize);
+    connect(ui->buttonIncreaseIndent, &QPushButton::clicked,  this, &SummaryWindow::increaseIndent);
+    connect(ui->buttonDecreaseIndent, &QPushButton::clicked,  this, &SummaryWindow::decreaseIndent);
     connect(ui->buttonCloseFind, &QPushButton::clicked, [this]
     {
         toggleFindWidget(false);
