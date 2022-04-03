@@ -3,6 +3,8 @@
 #include "include/queries.h"
 #include "include/bookdetailswindow.h"
 
+#include <QDesktopServices>
+
 BookDetailsWindow::BookDetailsWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BookDetailsWindow)
@@ -24,6 +26,7 @@ BookDetailsWindow::~BookDetailsWindow()
 void BookDetailsWindow::setupConnections()
 {
     connect(ui->textSearch, &QLineEdit::textChanged, this, &BookDetailsWindow::searchEbooks);
+    connect(ui->listWidget, &QListWidget::itemActivated, this, &BookDetailsWindow::openEbook);
     connect(ui->listWidget, &QListWidget::itemClicked, [this]
     {
         showBookDetails(ui->listWidget->currentItem()->text());
@@ -68,4 +71,13 @@ void BookDetailsWindow::showBookDetails(const QString &name)
     }
     QString tags = queries::selectTagsBasedOnName(name);
     ui->textTags->setText(tags);
+}
+
+void BookDetailsWindow::openEbook(QListWidgetItem *item)
+{
+    QString ebookName = item->text();
+    queries::selectPathBasedonName(ebookName);
+    queries::query.next();
+    QString path = queries::query.value(0).toString();
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }

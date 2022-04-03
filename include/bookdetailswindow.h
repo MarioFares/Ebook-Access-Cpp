@@ -2,6 +2,7 @@
 #define BOOKDETAILSWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidgetItem>
 
 namespace Ui {
 class BookDetailsWindow;
@@ -24,6 +25,8 @@ private:
     void setupConnections();
 
     void searchEbooks(const QString &name);
+
+    void openEbook(QListWidgetItem *item);
 };
 
 #endif // BOOKDETAILSWINDOW_H
