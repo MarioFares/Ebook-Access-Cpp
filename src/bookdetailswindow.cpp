@@ -24,7 +24,12 @@ BookDetailsWindow::~BookDetailsWindow()
 void BookDetailsWindow::setupConnections()
 {
     connect(ui->textSearch, &QLineEdit::textChanged, this, &BookDetailsWindow::searchEbooks);
-    connect(ui->listWidget, &QListWidget::itemClicked, [this] {
+    connect(ui->listWidget, &QListWidget::itemClicked, [this]
+    {
+        showBookDetails(ui->listWidget->currentItem()->text());
+    });
+    connect(ui->listWidget, &QListWidget::currentItemChanged, [this]
+    {
         showBookDetails(ui->listWidget->currentItem()->text());
     });
 }
