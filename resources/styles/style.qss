@@ -97,7 +97,8 @@ QSpinBox:hover {
 }
  QMenu::item:selected {
      background: #303050;
-     border: 1px solid #0000FF
+     border: 1px solid #0000FF;
+     border-radius: 5px;
 }
  QMenu {
      background-color: #1B1B1C;
@@ -295,4 +296,14 @@ QToolButton:hover {
 
 QSplitter {
     border: none;
+}
+
+QScrollArea {
+    background-color: #2D2D30;
+    border: none;
+}
+
+QWidget {
+    background-color: #2D2D30;
+    border-radius: 5px;
 }
