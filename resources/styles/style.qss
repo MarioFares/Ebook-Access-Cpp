@@ -292,3 +292,7 @@ QToolButton {
 QToolButton:hover {
     background-color: #2D2D30
 }
+
+QSplitter {
+    border: none;
+}
