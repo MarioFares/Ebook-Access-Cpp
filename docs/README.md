@@ -80,8 +80,8 @@ The IDE that we will be using is the Qt Creator IDE. Once you complete the above
 - Executable file should be there
 
 
-### Around the Implemenation Directory <a name="implementation"></a>
-Please find descriptions for the following in the implemenation directory:
+### Around the Implementation Directory <a name="implementation"></a>
+Please find descriptions for the following in the implementation directory:
 - `docs`: Contains all documentation files
 - `forms`: Contains .ui files for GUI
 - `headers`: contains .h header files
