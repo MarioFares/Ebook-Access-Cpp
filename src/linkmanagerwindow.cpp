@@ -52,7 +52,6 @@ void LinkManagerWindow::setupConnections()
     connect(ui->listWidgetCollections, &QListWidget::itemClicked, this, &LinkManagerWindow::collectionClicked);
     connect(ui->listWidgetCollections, &QListWidget::customContextMenuRequested, this, &LinkManagerWindow::showCollectionsContextMenu);
 
-
     connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &LinkManagerWindow::clearDetails);
     connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &LinkManagerWindow::restoreDetails);
     connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &LinkManagerWindow::updateDetails);

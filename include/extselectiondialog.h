@@ -30,6 +30,7 @@ private slots:
     void searchText(const QString &arg1);
 
     void setItemsCheckState(Qt::CheckState state);
+
 private:
     Ui::extSelectionDialog *ui;
 
