@@ -117,6 +117,10 @@ void insertTags(QString tags, QString bookName);
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
                             QString author, quint32 pages, QString tags, QString path);
 
+void updateBookName(QString oldName, QString newName);
+
+void updateBookPath(QString oldPath, QString newPath);
+
 void updateSummary(QString name, QString summary);
 
 void updateLinkDetails(QString oldName, QString newName, QString path);

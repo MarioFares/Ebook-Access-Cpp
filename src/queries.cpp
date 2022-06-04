@@ -538,6 +538,24 @@ void updateLinkCollectionName(QString oldName, QString newName)
     query.exec();
 }
 
+
+void updateBookName(QString oldName, QString newName)
+{
+    query.prepare("UPDATE ebooks SET name = :newName WHERE name = :oldName");
+    query.bindValue(":newName", newName);
+    query.bindValue(":oldName", oldName);
+    query.exec();
+}
+
+
+void updateBookPath(QString oldPath, QString newPath)
+{
+    query.prepare("UPDATE ebooks SET path = :newPath WHERE path = :oldPath");
+    query.bindValue(":newPath", newPath);
+    query.bindValue(":oldPath", oldPath);
+    query.exec();
+}
+
 //Delete
 void deleteBook(QString fileName)
 {
