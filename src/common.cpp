@@ -1,5 +1,6 @@
 #include <include/common.h>
 
+#include <QtPdf>
 #include <QFile>
 #include <QDialog>
 #include <QAction>
@@ -18,18 +19,9 @@ QString SEP = "|";
 
 quint32 getPageCount(const QString &path)
 {
-    QFileInfo file(path);
-    quint32 pages = 0;
-    if (file.suffix() == "pdf")
-    {
-        QProcess process;
-        process.start("./xpdf/bin64/pdfinfo.exe ", QStringList() << path);
-        process.waitForReadyRead();
-        QList output = process.readAllStandardOutput().simplified().split(' ');
-        pages = output[output.indexOf("Pages:") + 1].toInt();
-    }
-
-    return pages;
+    QPdfDocument document;
+    document.load(path);
+    return document.pageCount();
 }
 
 QString openSheet(const QString &sheetUrl)
