@@ -15,7 +15,7 @@ public:
     explicit AddBookDialog(QWidget *parent = nullptr);
     ~AddBookDialog();
 
-private slots:
+private:
     void setupConnections();
 
     void clearInputs();
@@ -24,7 +24,6 @@ private slots:
 
     void addFile();
 
-private:
     Ui::addBookDialog *ui;
 };
 
