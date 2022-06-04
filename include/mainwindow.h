@@ -137,6 +137,7 @@ private slots:
 
     void hideStatusBar();
 
+    void editListItem(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

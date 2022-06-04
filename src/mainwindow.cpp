@@ -103,7 +103,6 @@ void MainWindow::setupConnections()
     trayIcon->connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
     connect(ui->comboBoxSearchLoad, &QComboBox::customContextMenuRequested, this, &MainWindow::showSearchBoxContextMenu);
 
-
     connect(ui->buttonDetailsClear, &QPushButton::clicked, this, &MainWindow::clearDetails);
     connect(ui->buttonDetailsRestore, &QPushButton::clicked, this, &MainWindow::restoreDetails);
     connect(ui->buttonDetailsUpdate, &QPushButton::clicked, this, &MainWindow::updateDetails);
@@ -129,6 +128,7 @@ void MainWindow::setupConnections()
     connect(ui->buttonSummaries, &QToolButton::clicked, [this] { showSummary(""); });
 
     connect(ui->ebooksListWidget, &QListWidget::itemClicked, this, &MainWindow::showEbookDetails);
+    connect(ui->ebooksListWidget, &QListWidget::itemDoubleClicked, this, &MainWindow::openEbook);
     connect(ui->ebooksListWidget, &QListWidget::itemActivated, this, &MainWindow::openEbook);
     connect(ui->ebooksListWidget, &QListWidget::itemSelectionChanged, [this]
     {
@@ -152,6 +152,8 @@ void MainWindow::setupConnections()
     connect(ui->textDetailsTags, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
 
     connect(ui->actionBookDetails, &QAction::triggered, [this] { showBookDetailsWindow(""); });
+    connect(ui->actionAddBook, &QAction::triggered, this, &MainWindow::showAddBookDialog);
+    connect(ui->actionAddBooks, &QAction::triggered, this, &MainWindow::showAddBooksDialog);
     connect(ui->actionSearchFiles, &QAction::triggered, this, &MainWindow::searchCriteria);
     connect(ui->actionSearchText, &QAction::triggered, this, &MainWindow::searchString);
     connect(ui->actionSortSearch, &QAction::triggered, this, &MainWindow::sortSearch);
@@ -231,7 +233,7 @@ void MainWindow::showBookDetailsWindow(const QString &name)
 void MainWindow::showSummary(const QString &name)
 {
     SummaryWindow *summaryWindow = new SummaryWindow();
-    common::openWindow(summaryWindow, ":/styles/style.qss");
+    common::openWindow(summaryWindow, ":/styles/summarystyle.qss");
     summaryWindow->selectEbookSummary(name);
     summaryWindow->setAttribute(Qt::WA_DeleteOnClose);
 }
@@ -311,6 +313,11 @@ void MainWindow::showContextMenu(const QPoint &pos)
     QMenu menu;
     menu.setStyleSheet(common::openSheet(":/styles/style.qss"));
 
+
+    menu.addAction("Rename", this, [this]
+    {
+        editListItem(ui->ebooksListWidget->currentItem());
+    });
     menu.addAction("Open Ebook", this, [this]
     {
         openEbook(ui->ebooksListWidget->currentItem());
@@ -414,7 +421,10 @@ void MainWindow::searchString()
     quint32 count = 0;
     while (queries::query.next())
     {
-        ui->ebooksListWidget->addItem(queries::query.value(0).toString());
+        QListWidgetItem *item = new QListWidgetItem(ui->ebooksListWidget);
+        item->setText(queries::query.value(0).toString());
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+        ui->ebooksListWidget->addItem(item);
         count++;
     }
 
@@ -596,6 +606,7 @@ void MainWindow::updateDetails()
         queries::selectPathBasedonName(oldName);
         queries::query.next();
         QString path = queries::query.value(0).toString();
+
         if (newName != oldName)
         {
             YesNoDialog dialog(this, "Rename File", "Rename File", "Do you wish to rename the file on your hard drive as well?");
@@ -609,7 +620,6 @@ void MainWindow::updateDetails()
                 file.rename(path);
             }
         }
-
         queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path);
         ui->ebooksListWidget->currentItem()->setText(newName);
 
@@ -876,3 +886,34 @@ void MainWindow::hideStatusBar()
 {
     common::changeWidgetVisibility(ui->statusBar, ui->actionHideStatusBar);
 }
+
+void MainWindow::editListItem(QListWidgetItem *item)
+{
+    QString oldName = item->text();
+    ui->ebooksListWidget->editItem(item);
+    QEventLoop loop;
+    connect(ui->ebooksListWidget->itemDelegate(), &QAbstractItemDelegate::closeEditor, &loop, &QEventLoop::quit);
+    loop.exec();
+    QString newName = item->text();
+    if (newName == oldName)
+    {
+        return;
+    }
+    queries::selectPathBasedonName(oldName);
+    queries::query.next();
+    QString oldPath = queries::query.value(0).toString();
+    YesNoDialog dialog(this, "Rename File", "Rename File", "Do you wish to rename the file on your hard drive as well?");
+    common::openDialog(&dialog, ":/styles/style.qss");
+    bool result = dialog.getResult();
+    if (result)
+    {
+        QFile file(oldPath);
+        QFileInfo info(file);
+        QString newPath = info.absolutePath() + "/" + newName + "." + info.suffix();
+        file.rename(newPath);
+        queries::updateBookPath(oldPath, newPath);
+    }
+    queries::updateBookName(oldName, newName);
+    ui->textDetailsName->setText(newName);
+}
+
