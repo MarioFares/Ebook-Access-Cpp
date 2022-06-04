@@ -1,6 +1,15 @@
 QMainWindow {
      background-color: #2D2D30;
 }
+QScrollArea {
+    background-color: #2D2D30;
+    border: none;
+}
+
+QWidget {
+    background-color: #2D2D30;
+    border-radius: 5px;
+}
  QDialog {
      background-color: #2D2D30;
 }
@@ -298,12 +307,6 @@ QSplitter {
     border: none;
 }
 
-QScrollArea {
-    background-color: #2D2D30;
-    border: none;
-}
-
-QWidget {
-    background-color: #2D2D30;
-    border-radius: 5px;
+QPlainTextEdit {
+    border: 1px solid grey;
 }
