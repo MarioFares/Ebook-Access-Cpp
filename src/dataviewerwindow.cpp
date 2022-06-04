@@ -46,6 +46,7 @@ void DataViewerWindow::setupConnections()
     connect(ui->buttonBackColor, &QToolButton::clicked, this, &DataViewerWindow::setBackColor);
     connect(ui->tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
     connect(ui->tableWidget, &QTableWidget::customContextMenuRequested, this, &DataViewerWindow::showTableContextMenu);
+    connect(ui->buttonGridStyle, &QToolButton::clicked, this, &DataViewerWindow::setupGridMenu);
 }
 
 void DataViewerWindow::setupGridMenu()
@@ -72,8 +73,8 @@ void DataViewerWindow::setupGridMenu()
     {
         ui->tableWidget->setGridStyle(Qt::DashDotDotLine);
     });
-    ui->buttonToggleGrid->setMenu(&gridMenu);
-    ui->buttonToggleGrid->showMenu();
+    ui->buttonGridStyle->setMenu(&gridMenu);
+    ui->buttonGridStyle->showMenu();
 }
 
 void DataViewerWindow::showTableContextMenu(const QPoint &pos)
@@ -259,7 +260,7 @@ void DataViewerWindow::setFontColor()
     QPoint globalPos = ui->buttonFontColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::white);
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -268,10 +269,11 @@ void DataViewerWindow::setFontColor()
         return;
     }
 
-    QString colorSheet = "color: " + widget->getCurrentColor().name();
+    QString colorSheet = "background-color: " + widget->getCurrentColor().name();
     ui->buttonFontColor->setStyleSheet(colorSheet);
     ui->buttonFontColor->update();
-    ui->tableWidget->setStyleSheet(colorSheet);
+    colorSheet = "color: " + widget->getCurrentColor().name();
+    ui->tableWidget->setStyleSheet(ui->tableWidget->styleSheet() + ";" + colorSheet);
 }
 
 void DataViewerWindow::setBackColor()
@@ -280,7 +282,7 @@ void DataViewerWindow::setBackColor()
     QPoint globalPos = ui->buttonBackColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
-    ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
+    ColorPickerWidget *widget = new ColorPickerWidget(this, QColor("#2D2D30"));
     widget->move(globalPos);
     common::openDialog(widget, ":/styles/colorpickerstyle.qss");
 
@@ -292,7 +294,7 @@ void DataViewerWindow::setBackColor()
     QString colorSheet = "background-color: " + widget->getCurrentColor().name();
     ui->buttonBackColor->setStyleSheet(colorSheet);
     ui->buttonBackColor->update();
-    ui->tableWidget->setStyleSheet(colorSheet);
+    ui->tableWidget->setStyleSheet(ui->tableWidget->styleSheet() + ";" + colorSheet);
 
     if (widget->getCurrentColor() != Qt::white)
     {
