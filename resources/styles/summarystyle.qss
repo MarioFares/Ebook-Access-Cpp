@@ -1,6 +1,15 @@
 QMainWindow {
      background-color: #2D2D30;
 }
+QScrollArea {
+    background-color: #2D2D30;
+    border: none;
+}
+
+QWidget {
+    background-color: #2D2D30;
+    border-radius: 5px;
+}
  QDialog {
      background-color: #2D2D30;
 }
@@ -10,6 +19,9 @@ QMainWindow {
      border-radius: 5px;
      color: white;
      font: "Segoe UI";
+}
+QSpinBox:hover {
+    border: 1px solid lightblue;
 }
  QSpinBox::up-button {
      background: #2D2D30;
@@ -94,12 +106,22 @@ QMainWindow {
 }
  QMenu::item:selected {
      background: #303050;
-     border: 1px solid #0000FF
+     border: 1px solid #0000FF;
+     border-radius: 5px;
 }
  QMenu {
      background-color: #1B1B1C;
      color: white;
      font: 10pt "Segoe UI";
+     border: 1px solid grey;
+}
+ QMenu::item {
+     padding: 7px;
+     padding-right: 15px;
+     font: 10pt "Segoe UI";
+}
+ QMenu::icon {
+    padding: 4px;
 }
  QMenu::separator {
      background-color: white;
@@ -109,12 +131,8 @@ QMainWindow {
      background-color: #2D2D30;
      color: white;
      border-radius: 5px;
-     border: 1px solid grey;
      font: 10pt "Segoe UI";
-     padding-right: 15px;
-     padding-left: 15px;
-     padding-top: 2px;
-     padding-bottom: 2px;
+     border: 1px solid grey;
 }
  QPushButton:hover {
      border: 1px solid lightblue;
@@ -142,6 +160,13 @@ QMainWindow {
      border: 1px solid grey;
      border-radius: 5px;
 }
+QComboBox:hover {
+    color: white;
+    font-size: 12px;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    text-align: center;
+}
  QComboBox::drop-down {
     /*button around arrow*/
      background-color: #2D2D30;
@@ -167,7 +192,7 @@ QMainWindow {
  QScrollBar:horizontal {
      border: none;
      background: #2D2D30;
-     height: 15px;
+     height: 0px;
      margin: 3px;
 }
  QScrollBar::handle:horizontal {
@@ -224,4 +249,60 @@ QMainWindow {
  QTreeWidget::branch {
      color: white;
      width: 1px;
+}
+
+QTableWidget {
+    background-color: #2D2D30;
+    alternate-background-color: #1B1B1C;
+    font: 10pt "Segoe UI";
+    color: white;
+    gridline-color: grey;
+    border: 1px solid grey;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+QHeaderView {
+    border-radius: 0px;
+    background-color: #1B1B1C;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #1B1B1C;
+    padding: 1px;
+    font: 10pt "Segoe UI";
+    color: white;
+    border-style: none;
+    border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+QHeaderView::section:horizontal {
+    border-top: 1px solid grey;
+}
+
+QHeaderView::section:vertical {
+    border-left: 1px solid grey;
+}
+
+QToolTip {
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+QToolButton {
+    background-color: #2D2D30;
+    color: white;
+    border: 1px solid grey;
+    font: 10pt "Segoe UI";
+}
+
+QToolButton:hover {
+    background-color: #2D2D30
+}
+
+QSplitter {
+    border: none;
 }
