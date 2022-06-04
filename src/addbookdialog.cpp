@@ -74,7 +74,7 @@ void AddBookDialog::addFile()
         queries::insertBooksQuery(name, path, folder, ext, size,
             pages, tags, genre, author);
         common::showMsgBox("Success!", "Ebook successfully added.",
-            ":/styles/summarystyle.qss", QMessageBox::Information,
+            ":/styles/style.qss", QMessageBox::Information,
             ":/icons/books_icon.png");
     }
     else

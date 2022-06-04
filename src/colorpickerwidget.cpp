@@ -165,7 +165,7 @@ void ColorPickerWidget::openColorDialog()
 {
     this->close();
     QColorDialog dialog(this);
-    common::openDialog(&dialog, ":/styles/summarystyle.qss");
+    common::openDialog(&dialog, ":/styles/style.qss");
     setCurrentColor(dialog.selectedColor());
 }
 

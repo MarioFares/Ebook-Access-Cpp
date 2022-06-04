@@ -30,7 +30,7 @@ void GetNameDialog::setName()
     name = ui->textName->text();
     if (name.isEmpty())
     {
-        common::showMsgBox("Name Error!", "Name cannot be empty.", ":/styles/summarystyle.qss", QMessageBox::Warning, ":/icons/books_icon.png");
+        common::showMsgBox("Name Error!", "Name cannot be empty.", ":/styles/style.qss", QMessageBox::Warning, ":/icons/books_icon.png");
     }
     else
     {
