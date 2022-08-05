@@ -5,7 +5,6 @@
 #include <QDialog>
 #include <QAction>
 #include <QProcess>
-#include <QFileInfo>
 #include <QCompleter>
 #include <QMessageBox>
 #include <QMainWindow>
@@ -17,93 +16,93 @@ namespace common
 {
 QString SEP = "|";
 
-quint32 getPageCount(const QString &path)
+quint32 getPageCount(const QString& path)
 {
-    QPdfDocument document;
-    document.load(path);
-    return document.pageCount();
+	QPdfDocument document;
+	document.load(path);
+	return document.pageCount();
 }
 
-QString openSheet(const QString &sheetUrl)
+QString openSheet(const QString& sheetUrl)
 {
-    QFile file(sheetUrl);
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    file.close();
-    return styleSheet;
+	QFile file(sheetUrl);
+	file.open(QFile::ReadOnly);
+	QString styleSheet = QLatin1String(file.readAll());
+	file.close();
+	return styleSheet;
 }
 
-void openDialog(QDialog *dialog, const QString &stylesheetPath)
+void openDialog(QDialog* dialog, const QString& stylesheetPath)
 {
-    dialog->setStyleSheet(common::openSheet(stylesheetPath));
-    dialog->ensurePolished();
-    dialog->setFixedSize(dialog->size());
-    dialog->exec();
+	dialog->setStyleSheet(common::openSheet(stylesheetPath));
+	dialog->ensurePolished();
+	dialog->setFixedSize(dialog->size());
+	dialog->exec();
 }
 
-void showMsgBox(const QString &title, const QString &text, const QString &stylesheetPath, const QMessageBox::Icon &msgIcon, const QString &winIcon)
+void showMsgBox(const QString& title, const QString& text, const QString& stylesheetPath,
+				const QMessageBox::Icon& msgIcon, const QString& winIcon)
 {
-    QMessageBox box;
-    box.setText(text);
-    box.setWindowTitle(title);
-    box.setStyleSheet(common::openSheet(stylesheetPath));
-    box.setIcon(msgIcon);
-    box.setWindowIcon(QIcon(winIcon));
-    box.ensurePolished();
-    box.exec();
+	QMessageBox box;
+	box.setText(text);
+	box.setWindowTitle(title);
+	box.setStyleSheet(common::openSheet(stylesheetPath));
+	box.setIcon(msgIcon);
+	box.setWindowIcon(QIcon(winIcon));
+	box.ensurePolished();
+	box.exec();
 }
 
-void showErrorMsg(const QString &title, const QString &message, const QString &stylesheetPath)
+void showErrorMsg(const QString& title, const QString& message, const QString& stylesheetPath)
 {
-    QErrorMessage msg;
-    msg.showMessage(message);
-    msg.setWindowTitle(title);
-    msg.setStyleSheet(common::openSheet(stylesheetPath));
-    msg.ensurePolished();
-    msg.exec();
+	QErrorMessage msg;
+	msg.showMessage(message);
+	msg.setWindowTitle(title);
+	msg.setStyleSheet(common::openSheet(stylesheetPath));
+	msg.ensurePolished();
+	msg.exec();
 }
 
-void openWindow(QMainWindow *window, const QString &stylesheetPath)
+void openWindow(QMainWindow* window, const QString& stylesheetPath)
 {
-    window->setStyleSheet(common::openSheet(stylesheetPath));
-    window->ensurePolished();
-    window->show();
+	window->setStyleSheet(common::openSheet(stylesheetPath));
+	window->ensurePolished();
+	window->show();
 }
 
-QCompleter *dirCompleter(QWidget *parent)
+QCompleter* dirCompleter(QWidget* parent)
 {
-    QCompleter *dirCompleter = new QCompleter(parent);
-    dirCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    dirCompleter->setCompletionMode(QCompleter::PopupCompletion);
-    QAbstractItemView *popup = dirCompleter->popup();
-    popup->setStyleSheet(common::openSheet(":/styles/style.qss"));
-    QFileSystemModel *model = new QFileSystemModel(dirCompleter);
-    model->setRootPath("/");
-    model->sort(0, Qt::DescendingOrder);
-    dirCompleter->setModel(model);
+	QCompleter* dirCompleter = new QCompleter(parent);
+	dirCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+	dirCompleter->setCompletionMode(QCompleter::PopupCompletion);
+	QAbstractItemView* popup = dirCompleter->popup();
+	popup->setStyleSheet(common::openSheet(":/styles/style.qss"));
+	QFileSystemModel* model = new QFileSystemModel(dirCompleter);
+	model->setRootPath("/");
+	model->sort(0, Qt::DescendingOrder);
+	dirCompleter->setModel(model);
 
-    return dirCompleter;
+	return dirCompleter;
 }
 
-void changeWidgetVisibility(QWidget *widget, QAction *action)
+void changeWidgetVisibility(QWidget* widget, QAction* action)
 {
-    bool isHidden = widget->isHidden();
-    widget->setHidden(!isHidden);
+	bool isHidden = widget->isHidden();
+	widget->setHidden(!isHidden);
 
-    QString actionText = action->text();
-    actionText.replace(isHidden ? "Show" : "Hide", isHidden ? "Hide" : "Show", Qt::CaseInsensitive);
-    action->setText(actionText);
+	QString actionText = action->text();
+	actionText.replace(isHidden ? "Show" : "Hide", isHidden ? "Hide" : "Show", Qt::CaseInsensitive);
+	action->setText(actionText);
 }
 
-void toggleFullscreen(QMainWindow *window)
+void toggleFullscreen(QMainWindow* window)
 {
-    window->isFullScreen() ? window->showMaximized() : window->showFullScreen();
+	window->isFullScreen() ? window->showMaximized() : window->showFullScreen();
 }
 
-void toggleMaximized(QMainWindow *window)
+void toggleMaximized(QMainWindow* window)
 {
-    window->isMaximized() ? window->showNormal() : window->showMaximized();
+	window->isMaximized() ? window->showNormal() : window->showMaximized();
 }
-
 
 } // Namespace common

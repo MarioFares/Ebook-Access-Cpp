@@ -1,31 +1,47 @@
 #ifndef QUOTEDIALOG_H
 #define QUOTEDIALOG_H
 
+#include <QLabel>
 #include <QDialog>
-
-namespace Ui {
-class quoteDialog;
-}
+#include <QBoxLayout>
+#include <QPushButton>
 
 class QuoteDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit QuoteDialog(QWidget *parent = nullptr);
-    ~QuoteDialog();
+	explicit QuoteDialog(QWidget* parent = nullptr);
 
 private slots:
-    void setupConnections();
 
-    void nextQuote();
+	void setupInterface();
 
-    void prevQuote();
+	void setupConnections();
+
+	void nextQuote();
+
+	void prevQuote();
 
 private:
-    Ui::quoteDialog *ui;
-    QStringList quotesList;
-    quint32 currIndex;
+	QStringList m_quotesList;
+	quint32 m_currIndex;
+
+	// Widgets
+	QLabel* m_labelQuote;
+	QPushButton* m_buttonPrevious;
+	QPushButton* m_buttonNext;
+
+	// Layouts
+	QHBoxLayout* m_horLayQuote;
+	QHBoxLayout* m_horLayButtons;
+
+	// Spacers
+	QSpacerItem* m_horSpacerQuoteLeft;
+	QSpacerItem* m_horSpacerQuoteRight;
+	QSpacerItem* m_horSpacerButtonsLeft;
+	QSpacerItem* m_horSpacerButtonsRight;
+	QVBoxLayout* m_vertLayMain;
 };
 
 #endif // QUOTEDIALOG_H

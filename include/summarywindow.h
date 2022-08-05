@@ -1,171 +1,292 @@
 #ifndef SUMMARYWINDOW_H
 #define SUMMARYWINDOW_H
 
-#include <QHash>
+#include "include/texteditor.h"
+#include "include/findhighlighter.h"
+#include "include/booksearchwidget.h"
+
+#include <QLabel>
+#include <QAction>
+#include <QSpinBox>
+#include <QMenuBar>
 #include <QTextList>
+#include <QSplitter>
+#include <QStatusBar>
+#include <QToolButton>
+#include <QPushButton>
 #include <QMainWindow>
 #include <QTextBrowser>
+#include <QFontComboBox>
 #include <QListWidgetItem>
-
-#include "include/findhighlighter.h"
-
-namespace Ui {
-class SummaryWindow;
-}
 
 class SummaryWindow : public QMainWindow
 {
-    Q_OBJECT
-
+Q_OBJECT
 
 public:
-    explicit SummaryWindow(QWidget *parent = nullptr);
-    ~SummaryWindow();
+	explicit SummaryWindow(QWidget* parent = nullptr);
 
-    void selectEbookSummary(const QString &name);
+	void selectEbookSummary(const QString& name);
 
 private slots:
-    void setupConnections();
 
-    bool eventFilter(QObject *obj, QEvent *event);
+	void setupInterface();
 
-    void closeEvent(QCloseEvent *event);
+	void setupConnections();
 
-    void createList(QTextListFormat::Style style);
+	void setupActions();
 
-    int changeListIndentation(const int &increment);
+	void setupMenus();
 
-    void searchEbooks(const QString &textToSearch);
+	void closeEvent(QCloseEvent* event) override;
 
-    bool handleBackspace();
+	void toggleBold();
 
-    bool handleReturn();
+	void toggleItalic();
 
-    void insertClosingChar(const char &openChar, const QString &selectedText);
+	void toggleUnderline();
 
-    void toggleBold();
+	void toggleStrikethrough();
 
-    void toggleItalic();
+	void setTextFontFamily(const QString& arg1, bool change = true);
 
-    void toggleUnderline();
+	void setTextFontSize(int arg1, bool change = true);
 
-    void toggleStrikethrough();
+	void toggleBulletedList();
 
-    void setTextFontFamily(const QString &arg1, bool change = true);
+	void toggleOrderedList();
 
-    void setTextFontSize(int arg1, bool change = true);
+	void changeTextAlignment(int index);
 
-    void toggleBulletedList();
+	void setSubscript();
 
-    void toggleOrderedList();
+	void setSuperscript();
 
-    void changeTextAlignment(int index);
+	void insertCodeBlock();
 
-    void setSubscript();
+	void toggleHighlight();
 
-    void setSuperscript();
+	void setFontColor();
 
-    void insertCodeBlock();
+	void hideSearchBar();
 
-    void toggleHighlight();
+	void hideLeftPane();
 
-    void setFontColor();
+	void hideTopToolbar();
 
-    void hideSearchBar();
+	void hideRightToolbar();
 
-    void hideLeftPane();
+	void hideRightPane();
 
-    void hideTopToolbar();
+	void insertLine();
 
-    void hideRightToolbar();
+	void resetFormat();
 
-    void hideRightPane();
+	void insertImage();
 
-    void insertLine();
+	void searchText();
 
-    void resetFormat();
+	void clearSearch();
 
-    void insertImage();
+	void openEbookSummary(const QString& name);
 
-    void searchText();
+	void printSummaryToPdf();
 
-    void clearSearch();
+	void insertTable();
 
-    void openEbookSummary(QListWidgetItem *item);
+	void insertLink();
 
-    void printSummaryToPdf();
+	void copyFormatting();
 
-    void insertTable();
+	void pasteMatchFormat();
 
-    void insertLink();
+	void saveSummary();
 
-    void copyFormatting();
+	void textFormatChanged();
 
-    void pasteMatchFormat();
+	void exportSummaryToHtml();
 
-    void saveSummary();
+	void setBackColor();
 
-    void textFormatChanged();
+	void sentenceCase();
 
-    void exportSummaryToHtml();
+	void upperCase();
 
-    void setBackColor();
+	void lowerCase();
 
-    void sentenceCase();
+	void capitalCase();
 
-    void upperCase();
+	void selectCurrentLine();
 
-    void lowerCase();
+	void duplicateCurrentLine();
 
-    void capitalCase();
+	void deleteCurrentLine();
 
-    void selectCurrentLine();
+	void zoomIn();
 
-    void duplicateCurrentLine();
+	void zoomOut();
 
-    void deleteCurrentLine();
+	void insertNormalDate();
 
-    void zoomIn();
+	void insertShortDate();
 
-    void zoomOut();
+	void addTableRow();
 
-    void insertNormalDate();
+	void addTableColumn();
 
-    void insertShortDate();
+	void findText(const QString& arg1);
 
-    void addTableRow();
+	void findNext();
 
-    void addTableColumn();
+	void findPrevious();
 
-    void findText(const QString &arg1);
+	// Find functionality
+	void highlightText();
 
-    void findNext();
+	void textEditRefreshHighlighter(int cursorIndex);
 
-    void findPrevious();
+	void toggleFindWidget(bool visible);
 
-    // Find functionality
-    void highlightText();
+	void increaseFontSize();
 
-    void textEditRefreshHighlighter(int cursorIndex);
+	void decreaseFontSize();
 
-    void toggleFindWidget(bool visible);
+	void increaseIndent();
 
-    void increaseFontSize();
-
-    void decreaseFontSize();
-
-    void increaseIndent();
-
-    void decreaseIndent();
+	void decreaseIndent();
 
 private:
-    Ui::SummaryWindow *ui;
-    QTextCharFormat currentCopiedFormat;
-    QFont currentCopiedFont;
-    QHash<char, char> charPairs;
-    FindHighlighter textHighlighter;
+	QTextCharFormat m_currentCopiedFormat;
+	QFont m_currentCopiedFont;
+	FindHighlighter m_textHighlighter;
+
+	// Widgets
+	QAction* m_actionUndo;
+	QAction* m_actionRedo;
+	QAction* m_actionBold;
+	QAction* m_actionItalic;
+	QAction* m_actionUnderline;
+	QAction* m_actionThrough;
+	QAction* m_actionIncFontSize;
+	QAction* m_actionDecFontSize;
+	QAction* m_actionIncIndent;
+	QAction* m_actionDecIndent;
+	QAction* m_actionSuperscript;
+	QAction* m_actionSubscript;
+	QAction* m_actionCopyFormatting;
+	QAction* m_actionHideSearchBar;
+	QAction* m_actionHideListWidget;
+	QAction* m_actionHideLeftPane;
+	QAction* m_actionHideTopToolbar;
+	QAction* m_actionHideRightToolbar;
+	QAction* m_actionHideRightPane;
+	QAction* m_actionInsertLink;
+	QAction* m_actionInsertImage;
+	QAction* m_actionInsertTable;
+	QAction* m_actionMaximize;
+	QAction* m_actionMinimize;
+	QAction* m_actionClose;
+	QAction* m_actionInsertLine;
+	QAction* m_actionPrintToPDF;
+	QAction* m_actionCopy;
+	QAction* m_actionPaste;
+	QAction* m_actionPasteMatchFormat;
+	QAction* m_actionSelectAll;
+	QAction* m_actionCut;
+	QAction* m_actionClearAll;
+	QAction* m_actionResetFormat;
+	QAction* m_actionZoomIn;
+	QAction* m_actionZoomOut;
+	QAction* m_actionSearchText;
+	QAction* m_actionClearSearch;
+	QAction* m_actionHighlight;
+	QAction* m_actionCodeBlock;
+	QAction* m_actionBulletedList;
+	QAction* m_actionOrderedList;
+	QAction* m_actionSaveSummary;
+	QAction* m_actionFullscreen;
+	QAction* m_actionExportHtml;
+	QAction* m_actionSentenceCase;
+	QAction* m_actionUpperCase;
+	QAction* m_actionLowerCase;
+	QAction* m_actionCapitalCase;
+	QAction* m_actionSelectCurrentLine;
+	QAction* m_actionDuplicateCurrentLine;
+	QAction* m_actionDeleteCurrentLine;
+	QAction* m_actionDateNormal;
+	QAction* m_actionDateShort;
+	QAction* m_actionTableRow;
+	QAction* m_actionTableColumn;
+	QAction* m_actionFind;
+	QWidget* m_centralWidget;
+	QSplitter* m_mainSplitterPane;
+	QFrame* m_frameEditor;
+	QLabel* m_labelTitle;
+	QFrame* m_frameEditorToolBox;
+	QFontComboBox* m_fontComboBox;
+	QSpinBox* m_spinBoxFontSize;
+	QToolButton* m_buttonEditorFontColor;
+	QToolButton* m_buttonEditorBackColor;
+	QFrame* m_lineVert1;
+	QToolButton* m_buttonBold;
+	QToolButton* m_buttonItalic;
+	QToolButton* m_buttonUnderline;
+	QToolButton* m_buttonThrough;
+	QToolButton* m_buttonHighlight;
+	QToolButton* m_buttonCodeBlock;
+	QFrame* m_lineVert2;
+	QToolButton* m_buttonBulletedList;
+	QToolButton* m_buttonOrderedList;
+	QComboBox* m_comboBoxAlignment;
+	QFrame* m_lineVert3;
+	QToolButton* m_buttonInsertTable;
+	QToolButton* m_buttonInsertImage;
+	QToolButton* m_buttonInsertLine;
+	QToolButton* m_buttonInsertLink;
+	TextEditor* m_textEditor;
+	QFrame* m_frameFind;
+	QLineEdit* m_textFind;
+	QPushButton* m_buttonNext;
+	QPushButton* m_buttonPrevious;
+	QPushButton* m_buttonCloseFind;
+	QLabel* m_labelFindMatchNum;
+	QFrame* m_frameRightToolBar;
+	QToolButton* m_buttonUndo;
+	QToolButton* m_buttonRedo;
+	QToolButton* m_buttonClearAll;
+	QFrame* m_horLine1;
+	QToolButton* m_buttonSuperscript;
+	QToolButton* m_buttonSubscript;
+	QFrame* m_horLine2;
+	QToolButton* m_buttonIncFontSize;
+	QToolButton* m_buttonDecFontSize;
+	QFrame* m_horLine3;
+	QToolButton* m_buttonIncIndent;
+	QToolButton* m_buttonDecIndent;
+	QFrame* m_horLine4;
+	QStatusBar* m_statusBar;
+	QMenuBar* m_menuBar;
+	QMenu* m_menuFile;
+	QMenu* m_menuEdit;
+	QMenu* m_menuView;
+	QMenu* m_menuInsert;
+	QMenu* m_menuDateTime;
+	QMenu* m_menuFormat;
+	QMenu* m_menuChangeCase;
+	QMenu* m_menuSearch;
+	BookSearchWidget* m_bookSearchWidget;
+
+	// Layouts
+	QHBoxLayout* m_horLayMain;
+	QVBoxLayout* m_vertLayEditor;
+	QHBoxLayout* m_horLayToolBox;
+	QHBoxLayout* m_horLayFind;
+	QVBoxLayout* m_vertLayToolBar;
+
+	// Spacers
+	QSpacerItem* m_horSpacerTopToolBar;
+	QSpacerItem* m_horSpacerFind;
+	QSpacerItem* m_vertSpacerRightToolBar;
 };
-
-
 
 #endif // SUMMARYWINDOW_H

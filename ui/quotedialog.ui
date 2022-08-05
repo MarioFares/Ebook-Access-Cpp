@@ -1,110 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>quoteDialog</class>
- <widget class="QDialog" name="quoteDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>475</width>
-    <height>208</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Quote of the Day</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QFrame" name="frameQuote">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Times New Roman</family>
-          <pointsize>10</pointsize>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
+    <class>quoteDialog</class>
+    <widget class="QDialog" m_name="quoteDialog">
+        <property m_name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>475</width>
+                <height>208</height>
+            </rect>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
+        <property m_name="windowTitle">
+            <string>Quote of the Day</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
+        <layout class="QVBoxLayout" m_name="verticalLayout">
+            <item>
+                <widget class="QFrame" m_name="frameQuote">
+                    <layout class="QHBoxLayout" m_name="horizontalLayout">
+                        <item>
+                            <widget class="QLabel" m_name="label">
+                                <property m_name="font">
+                                    <font>
+                                        <family>Times New Roman</family>
+                                        <pointsize>10</pointsize>
+                                        <italic>true</italic>
+                                        <bold>true</bold>
+                                    </font>
+                                </property>
+                                <property m_name="text">
+                                    <string>TextLabel</string>
+                                </property>
+                                <property m_name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                </property>
+                                <property m_name="wordWrap">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QFrame" m_name="frameButtons">
+                    <property m_name="maximumSize">
+                        <size>
+                            <width>16777215</width>
+                            <height>40</height>
+                        </size>
+                    </property>
+                    <property m_name="styleSheet">
+                        <string notr="true">QFrame {
+                            border: none;
+                            }
+                        </string>
+                    </property>
+                    <layout class="QHBoxLayout" m_name="horizontalLayout_2">
+                        <item>
+                            <spacer m_name="horizontalSpacer">
+                                <property m_name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property m_name="sizeHint" stdset="0">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" m_name="buttonPrevious">
+                                <property m_name="minimumSize">
+                                    <size>
+                                        <width>80</width>
+                                        <height>25</height>
+                                    </size>
+                                </property>
+                                <property m_name="cursor">
+                                    <cursorShape>PointingHandCursor</cursorShape>
+                                </property>
+                                <property m_name="text">
+                                    <string>Previous</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" m_name="buttonNext">
+                                <property m_name="minimumSize">
+                                    <size>
+                                        <width>80</width>
+                                        <height>25</height>
+                                    </size>
+                                </property>
+                                <property m_name="cursor">
+                                    <cursorShape>PointingHandCursor</cursorShape>
+                                </property>
+                                <property m_name="text">
+                                    <string>Next</string>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+        </layout>
     </widget>
-   </item>
-   <item>
-    <widget class="QFrame" name="frameButtons">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>40</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
-	border: none;
-}</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="buttonPrevious">
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Previous</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="buttonNext">
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Next</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <resources/>
+    <connections/>
 </ui>

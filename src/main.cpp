@@ -3,14 +3,14 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
+	QApplication a(argc, argv);
+	MainWindow w;
 
-    w.setStyleSheet(common::openSheet(":/styles/style.qss"));
-    w.ensurePolished();
-    w.setVisible(true);
-    w.show();
-    return a.exec();
+	w.setStyleSheet(common::openSheet(":/styles/style.qss"));
+	w.ensurePolished();
+	w.setVisible(true);
+	w.show();
+	return a.exec();
 }

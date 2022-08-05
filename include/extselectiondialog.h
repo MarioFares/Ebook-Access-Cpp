@@ -4,41 +4,60 @@
 #include <QDialog>
 #include <QVector>
 #include <QListWidgetItem>
-
-namespace Ui {
-class extSelectionDialog;
-}
+#include <QBoxLayout>
+#include <QLabel>
 
 class ExtSelectionDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit ExtSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {},
-                                QString title = "Preferences", QString label = "Select Preferences");
-    ~ExtSelectionDialog();
+	explicit ExtSelectionDialog(QWidget* parent = nullptr, QVector<QString> extVector = {},
+								QString title = "Preferences", QString label = "Select Preferences");
 
-    QVector<QString> getExtVector();
+	QVector<QString> getExtVector();
 
 private slots:
-    void setupConnections();
 
-    void fillListWidget(QVector<QString> extVector);
+	void setupInterface();
 
-    void setItemState(QListWidgetItem *item);
+	void setupConnections();
 
-    void searchText(const QString &arg1);
+	void fillListWidget(QVector<QString> extVector);
 
-    void setItemsCheckState(Qt::CheckState state);
+	static void setItemState(QListWidgetItem* item);
+
+	void searchText(const QString& arg1);
+
+	void setItemsCheckState(Qt::CheckState state);
 
 private:
-    Ui::extSelectionDialog *ui;
+	QVector<QString> m_outputVector;
+	QVector<QString> m_inputVector;
 
-    QVector<QString> outputVector;
+	void setExtVector();
 
-    QVector<QString> inputVector;
+	QString m_title;
+	QString m_label;
 
-    void setExtVector();
+	// Widgets
+	QLabel* m_labelTitle;
+	QLineEdit* m_textSearch;
+	QListWidget* m_listWidget;
+	QPushButton* m_buttonSelectAll;
+	QPushButton* m_buttonDeselectAll;
+	QPushButton* m_buttonContinue;
+
+	// Layouts
+	QHBoxLayout* m_horLayTitle;
+	QHBoxLayout* m_horLayButtons;
+	QVBoxLayout* m_vertLayMain;
+
+	// Spacers
+	QSpacerItem* m_horSpacerTitleLeft;
+	QSpacerItem* m_horSpacerTitleRight;
+	QSpacerItem* m_horSpacerButtonsLeft;
+	QSpacerItem* m_horSpacerButtonsRight;
 };
 
 #endif // EXTSELECTIONDIALOG_H

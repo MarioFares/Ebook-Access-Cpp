@@ -1,2090 +1,2187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SummaryWindow</class>
- <widget class="QMainWindow" name="SummaryWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1035</width>
-    <height>600</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Summary</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="../resources/images.qrc">
-    <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png</iconset>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QSplitter" name="mainSplitterPane">
-      <property name="styleSheet">
-       <string notr="true">QSplitter
-{border: 0px;}</string>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="handleWidth">
-       <number>0</number>
-      </property>
-      <widget class="QFrame" name="frameListWidget">
-       <property name="styleSheet">
-        <string notr="true">QFrame
-{
-border:0px;
-}</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="spacing">
-         <number>15</number>
+    <class>SummaryWindow</class>
+    <widget class="QMainWindow" m_name="SummaryWindow">
+        <property m_name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1035</width>
+                <height>600</height>
+            </rect>
         </property>
-        <property name="topMargin">
-         <number>41</number>
+        <property m_name="windowTitle">
+            <string>Summary</string>
         </property>
-        <item>
-         <widget class="QLineEdit" name="textSearch">
-          <property name="minimumSize">
-           <size>
-            <width>25</width>
-            <height>26</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QListWidget" name="listWidget">
-          <property name="styleSheet">
-           <string notr="true">QListWidget{
-border: 1px solid grey;
-}
-</string>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QFrame" name="frameEditor">
-       <property name="styleSheet">
-        <string notr="true">QFrame
-{
-	border: 0px;
-}</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="leftMargin">
-         <number>0</number>
+        <property m_name="windowIcon">
+            <iconset resource="../resources/images.qrc">
+                <normaloff>:/icons/books_icon.png</normaloff>:/icons/books_icon.png
+            </iconset>
         </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="labelTitle">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>19</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QFrame" name="frameEditorToolBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>7</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QFontComboBox" name="fontComboBox">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Text Font</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QFontComboBox{
-border: 1px solid grey;
-}</string>
-             </property>
-             <property name="editable">
-              <bool>false</bool>
-             </property>
-             <property name="currentText">
-              <string>Segoe UI</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBoxFontSize">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>40</width>
-               <height>999999</height>
-              </size>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Font Size</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>70</number>
-             </property>
-             <property name="value">
-              <number>12</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonEditorFontColor">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Font Color</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/font_color_icon.png</normaloff>:/icons/font_color_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonEditorBackColor">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/background_fill_white.png</normaloff>:/icons/background_fill_white.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line">
-             <property name="styleSheet">
-              <string notr="true">color: grey;
-background-color: grey;</string>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonBold">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Bold (Ctrl+B)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/bold_icon.png</normaloff>:/icons/bold_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonItalic">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <italic>true</italic>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Italic (Ctrl+I)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/italic_icon.png</normaloff>:/icons/italic_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonUnderline">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <underline>true</underline>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Underline (Ctrl+U)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/underline_icon.png</normaloff>:/icons/underline_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonThrough">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Through (Ctrl+T)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/strikethrough_icon.png</normaloff>:/icons/strikethrough_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonHighlight">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Highlight (Ctrl+Shift+H)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/highlight_icon.png</normaloff>:/icons/highlight_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonCode">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Code Snippet (Ctrl+Shift+L)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/code_icon.png</normaloff>:/icons/code_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="lineOneVert">
-             <property name="font">
-              <font>
-               <pointsize>1</pointsize>
-               <kerning>false</kerning>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: grey;
-background-color: grey;</string>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Plain</enum>
-             </property>
-             <property name="lineWidth">
-              <number>0</number>
-             </property>
-             <property name="midLineWidth">
-              <number>0</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonBullets">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Bulleted List (Ctrl+Shift+B)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/bullets_icon.png</normaloff>:/icons/bullets_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonOrder">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Ordered List (Ctrl+Shift+O)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/numbers_icon.png</normaloff>:/icons/numbers_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBoxAlignment">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>40</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Text Alignment</string>
-             </property>
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-             <item>
-              <property name="text">
-               <string>Left</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <selectedon>:/icons/alignleft_icon.png</selectedon>
-               </iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Center</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normalon>:/icons/aligncenter_icon.png</normalon>
-               </iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Right</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normalon>:/icons/alignright_icon.png</normalon>
-               </iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Justify</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normalon>:/icons/justifytext_icon.png</normalon>
-               </iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="lineTwoVert">
-             <property name="styleSheet">
-              <string notr="true">
-color: grey;
-background-color: grey;</string>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="lineWidth">
-              <number>1</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonTable">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Insert Table</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/table_icon.png</normaloff>:/icons/table_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonInsertImage">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Insert Image</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/image_icon.png</normaloff>:/icons/image_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonInsertLine">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Insert Line</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/hr_icon.png</normaloff>:/icons/hr_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="buttonLink">
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>Insert Link</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTextBrowser" name="textEditor">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="cursor" stdset="0">
-           <cursorShape>IBeamCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="lineWidth">
-           <number>0</number>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="autoFormatting">
-           <set>QTextEdit::AutoAll</set>
-          </property>
-          <property name="undoRedoEnabled">
-           <bool>true</bool>
-          </property>
-          <property name="lineWrapMode">
-           <enum>QTextEdit::WidgetWidth</enum>
-          </property>
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
-          <property name="openExternalLinks">
-           <bool>true</bool>
-          </property>
-          <property name="openLinks">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QFrame" name="frameFind">
-          <property name="styleSheet">
-           <string notr="true">QFrame { 
-	border: none;
-	padding: 0px;
-	margin: 0px;
-}</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>1</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>1</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="textFind">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="placeholderText">
-              <string>Find text in summary...</string>
-             </property>
-             <property name="clearButtonEnabled">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="buttonNext">
-             <property name="minimumSize">
-              <size>
-               <width>25</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">padding: 5px;</string>
-             </property>
-             <property name="text">
-              <string>Next</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="buttonPrevious">
-             <property name="minimumSize">
-              <size>
-               <width>25</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>26</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">padding: 5px;</string>
-             </property>
-             <property name="text">
-              <string>Previous</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="buttonCloseFind">
-             <property name="font">
-              <font>
-               <italic>true</italic>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border: none;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="../resources/images.qrc">
-               <normaloff>:/icons/close_icon.png</normaloff>:/icons/close_icon.png</iconset>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="labelFindMatchNum">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QFrame" name="frameRightToolBar">
-      <property name="minimumSize">
-       <size>
-        <width>32</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QFrame
-{
-border: 0px;
-}</string>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>1</number>
-       </property>
-       <property name="topMargin">
-        <number>82</number>
-       </property>
-       <property name="rightMargin">
-        <number>1</number>
-       </property>
-       <item>
-        <widget class="QToolButton" name="buttonUndo">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Undo (Ctrl+Z)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/undo_icon.png</normaloff>:/icons/undo_icon.png</iconset>
-         </property>
+        <widget class="QWidget" m_name="centralwidget">
+            <layout class="QHBoxLayout" m_name="horizontalLayout_2">
+                <item>
+                    <widget class="QSplitter" m_name="mainSplitterPane">
+                        <property m_name="styleSheet">
+                            <string notr="true">QSplitter
+                                {border: 0px;}
+                            </string>
+                        </property>
+                        <property m_name="lineWidth">
+                            <number>0</number>
+                        </property>
+                        <property m_name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property m_name="handleWidth">
+                            <number>0</number>
+                        </property>
+                        <widget class="QFrame" m_name="frameListWidget">
+                            <property m_name="styleSheet">
+                                <string notr="true">QFrame
+                                    {
+                                    border:0px;
+                                    }
+                                </string>
+                            </property>
+                            <layout class="QVBoxLayout" m_name="verticalLayout_2">
+                                <property m_name="spacing">
+                                    <number>15</number>
+                                </property>
+                                <property m_name="topMargin">
+                                    <number>41</number>
+                                </property>
+                                <item>
+                                    <widget class="QLineEdit" m_name="textSearch">
+                                        <property m_name="minimumSize">
+                                            <size>
+                                                <width>25</width>
+                                                <height>26</height>
+                                            </size>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QListWidget" m_name="listWidget">
+                                        <property m_name="styleSheet">
+                                            <string notr="true">QListWidget{
+                                                border: 1px solid grey;
+                                                }
+                                            </string>
+                                        </property>
+                                        <property m_name="horizontalScrollBarPolicy">
+                                            <enum>Qt::ScrollBarAlwaysOff</enum>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </widget>
+                        <widget class="QFrame" m_name="frameEditor">
+                            <property m_name="styleSheet">
+                                <string notr="true">QFrame
+                                    {
+                                    border: 0px;
+                                    }
+                                </string>
+                            </property>
+                            <layout class="QVBoxLayout" m_name="verticalLayout">
+                                <property m_name="leftMargin">
+                                    <number>0</number>
+                                </property>
+                                <property m_name="rightMargin">
+                                    <number>0</number>
+                                </property>
+                                <item>
+                                    <widget class="QLabel" m_name="labelTitle">
+                                        <property m_name="minimumSize">
+                                            <size>
+                                                <width>0</width>
+                                                <height>19</height>
+                                            </size>
+                                        </property>
+                                        <property m_name="text">
+                                            <string/>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QFrame" m_name="frameEditorToolBox">
+                                        <property m_name="sizePolicy">
+                                            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
+                                        </property>
+                                        <property m_name="minimumSize">
+                                            <size>
+                                                <width>0</width>
+                                                <height>0</height>
+                                            </size>
+                                        </property>
+                                        <property m_name="styleSheet">
+                                            <string notr="true"/>
+                                        </property>
+                                        <property m_name="frameShape">
+                                            <enum>QFrame::StyledPanel</enum>
+                                        </property>
+                                        <property m_name="frameShadow">
+                                            <enum>QFrame::Raised</enum>
+                                        </property>
+                                        <layout class="QHBoxLayout" m_name="horizontalLayout">
+                                            <property m_name="leftMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property m_name="topMargin">
+                                                <number>7</number>
+                                            </property>
+                                            <property m_name="rightMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <item>
+                                                <widget class="QFontComboBox" m_name="fontComboBox">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>0</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Text Font</string>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">QFontComboBox{
+                                                            border: 1px solid grey;
+                                                            }
+                                                        </string>
+                                                    </property>
+                                                    <property m_name="editable">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                    <property m_name="currentText">
+                                                        <string>Segoe UI</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSpinBox" m_name="spinBoxFontSize">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>0</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>40</width>
+                                                            <height>999999</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Font Size</string>
+                                                    </property>
+                                                    <property m_name="minimum">
+                                                        <number>1</number>
+                                                    </property>
+                                                    <property m_name="maximum">
+                                                        <number>70</number>
+                                                    </property>
+                                                    <property m_name="value">
+                                                        <number>12</number>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonEditorFontColor">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Font Color</string>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true"/>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/font_color_icon.png</normaloff>
+                                                            :/icons/font_color_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonEditorBackColor">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/background_fill_white.png</normaloff>
+                                                            :/icons/background_fill_white.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="Line" m_name="line">
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">color: grey;
+                                                            background-color: grey;
+                                                        </string>
+                                                    </property>
+                                                    <property m_name="orientation">
+                                                        <enum>Qt::Vertical</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonBold">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="font">
+                                                        <font>
+                                                            <bold>true</bold>
+                                                        </font>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Bold (Ctrl+B)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/bold_icon.png</normaloff>
+                                                            :/icons/bold_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonItalic">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="font">
+                                                        <font>
+                                                            <italic>true</italic>
+                                                        </font>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Italic (Ctrl+I)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/italic_icon.png</normaloff>
+                                                            :/icons/italic_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonUnderline">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="font">
+                                                        <font>
+                                                            <underline>true</underline>
+                                                        </font>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Underline (Ctrl+U)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/underline_icon.png</normaloff>
+                                                            :/icons/underline_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonThrough">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Through (Ctrl+T)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/strikethrough_icon.png</normaloff>
+                                                            :/icons/strikethrough_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonHighlight">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Highlight (Ctrl+Shift+H)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/highlight_icon.png</normaloff>
+                                                            :/icons/highlight_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonCode">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Code Snippet (Ctrl+Shift+L)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/code_icon.png</normaloff>
+                                                            :/icons/code_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="Line" m_name="lineOneVert">
+                                                    <property m_name="font">
+                                                        <font>
+                                                            <pointsize>1</pointsize>
+                                                            <kerning>false</kerning>
+                                                        </font>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">color: grey;
+                                                            background-color: grey;
+                                                        </string>
+                                                    </property>
+                                                    <property m_name="frameShadow">
+                                                        <enum>QFrame::Plain</enum>
+                                                    </property>
+                                                    <property m_name="lineWidth">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property m_name="midLineWidth">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property m_name="orientation">
+                                                        <enum>Qt::Vertical</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonBullets">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Bulleted List (Ctrl+Shift+B)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/bullets_icon.png</normaloff>
+                                                            :/icons/bullets_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonOrder">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Ordered List (Ctrl+Shift+O)</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/numbers_icon.png</normaloff>
+                                                            :/icons/numbers_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QComboBox" m_name="comboBoxAlignment">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>0</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>40</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Text Alignment</string>
+                                                    </property>
+                                                    <property m_name="sizeAdjustPolicy">
+                                                        <enum>QComboBox::AdjustToContents</enum>
+                                                    </property>
+                                                    <item>
+                                                        <property m_name="text">
+                                                            <string>Left</string>
+                                                        </property>
+                                                        <property m_name="icon">
+                                                            <iconset>
+                                                                <selectedon>:/icons/alignleft_icon.png</selectedon>
+                                                            </iconset>
+                                                        </property>
+                                                    </item>
+                                                    <item>
+                                                        <property m_name="text">
+                                                            <string>Center</string>
+                                                        </property>
+                                                        <property m_name="icon">
+                                                            <iconset>
+                                                                <normalon>:/icons/aligncenter_icon.png</normalon>
+                                                            </iconset>
+                                                        </property>
+                                                    </item>
+                                                    <item>
+                                                        <property m_name="text">
+                                                            <string>Right</string>
+                                                        </property>
+                                                        <property m_name="icon">
+                                                            <iconset>
+                                                                <normalon>:/icons/alignright_icon.png</normalon>
+                                                            </iconset>
+                                                        </property>
+                                                    </item>
+                                                    <item>
+                                                        <property m_name="text">
+                                                            <string>Justify</string>
+                                                        </property>
+                                                        <property m_name="icon">
+                                                            <iconset>
+                                                                <normalon>:/icons/justifytext_icon.png</normalon>
+                                                            </iconset>
+                                                        </property>
+                                                    </item>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="Line" m_name="lineTwoVert">
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">
+                                                            color: grey;
+                                                            background-color: grey;
+                                                        </string>
+                                                    </property>
+                                                    <property m_name="frameShadow">
+                                                        <enum>QFrame::Sunken</enum>
+                                                    </property>
+                                                    <property m_name="lineWidth">
+                                                        <number>1</number>
+                                                    </property>
+                                                    <property m_name="orientation">
+                                                        <enum>Qt::Vertical</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonTable">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Insert Table</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/table_icon.png</normaloff>
+                                                            :/icons/table_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonInsertImage">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>25</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Insert Image</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/image_icon.png</normaloff>
+                                                            :/icons/image_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonInsertLine">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>25</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Insert Line</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/hr_icon.png</normaloff>
+                                                            :/icons/hr_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QToolButton" m_name="buttonLink">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>30</width>
+                                                            <height>16777215</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="focusPolicy">
+                                                        <enum>Qt::NoFocus</enum>
+                                                    </property>
+                                                    <property m_name="toolTip">
+                                                        <string>Insert Link</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/link_icon.png</normaloff>
+                                                            :/icons/link_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <spacer m_name="horizontalSpacer">
+                                                    <property m_name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                    <property m_name="sizeHint" stdset="0">
+                                                        <size>
+                                                            <width>40</width>
+                                                            <height>20</height>
+                                                        </size>
+                                                    </property>
+                                                </spacer>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QTextBrowser" m_name="textEditor">
+                                        <property m_name="font">
+                                            <font>
+                                                <pointsize>12</pointsize>
+                                            </font>
+                                        </property>
+                                        <property m_name="cursor" stdset="0">
+                                            <cursorShape>IBeamCursor</cursorShape>
+                                        </property>
+                                        <property m_name="styleSheet">
+                                            <string notr="true"/>
+                                        </property>
+                                        <property m_name="frameShape">
+                                            <enum>QFrame::NoFrame</enum>
+                                        </property>
+                                        <property m_name="lineWidth">
+                                            <number>0</number>
+                                        </property>
+                                        <property m_name="horizontalScrollBarPolicy">
+                                            <enum>Qt::ScrollBarAsNeeded</enum>
+                                        </property>
+                                        <property m_name="autoFormatting">
+                                            <set>QTextEdit::AutoAll</set>
+                                        </property>
+                                        <property m_name="undoRedoEnabled">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property m_name="lineWrapMode">
+                                            <enum>QTextEdit::WidgetWidth</enum>
+                                        </property>
+                                        <property m_name="readOnly">
+                                            <bool>false</bool>
+                                        </property>
+                                        <property m_name="textInteractionFlags">
+                                            <set>
+                                                Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse
+                                            </set>
+                                        </property>
+                                        <property m_name="openExternalLinks">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property m_name="openLinks">
+                                            <bool>true</bool>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QFrame" m_name="frameFind">
+                                        <property m_name="styleSheet">
+                                            <string notr="true">QFrame {
+                                                border: none;
+                                                padding: 0px;
+                                                margin: 0px;
+                                                }
+                                            </string>
+                                        </property>
+                                        <property m_name="frameShape">
+                                            <enum>QFrame::StyledPanel</enum>
+                                        </property>
+                                        <property m_name="frameShadow">
+                                            <enum>QFrame::Raised</enum>
+                                        </property>
+                                        <layout class="QHBoxLayout" m_name="horizontalLayout_3">
+                                            <property m_name="leftMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property m_name="topMargin">
+                                                <number>1</number>
+                                            </property>
+                                            <property m_name="rightMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property m_name="bottomMargin">
+                                                <number>1</number>
+                                            </property>
+                                            <item>
+                                                <widget class="QLineEdit" m_name="textFind">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>300</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>300</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="placeholderText">
+                                                        <string>Find text in summary...</string>
+                                                    </property>
+                                                    <property m_name="clearButtonEnabled">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QPushButton" m_name="buttonNext">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>25</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>16777215</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">padding: 5px;</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string>Next</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QPushButton" m_name="buttonPrevious">
+                                                    <property m_name="minimumSize">
+                                                        <size>
+                                                            <width>25</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="maximumSize">
+                                                        <size>
+                                                            <width>16777215</width>
+                                                            <height>26</height>
+                                                        </size>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">padding: 5px;</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string>Previous</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QPushButton" m_name="buttonCloseFind">
+                                                    <property m_name="font">
+                                                        <font>
+                                                            <italic>true</italic>
+                                                        </font>
+                                                    </property>
+                                                    <property m_name="cursor">
+                                                        <cursorShape>PointingHandCursor</cursorShape>
+                                                    </property>
+                                                    <property m_name="styleSheet">
+                                                        <string notr="true">border: none;</string>
+                                                    </property>
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property m_name="icon">
+                                                        <iconset resource="../resources/images.qrc">
+                                                            <normaloff>:/icons/close_icon.png</normaloff>
+                                                            :/icons/close_icon.png
+                                                        </iconset>
+                                                    </property>
+                                                    <property m_name="flat">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLabel" m_name="labelFindMatchNum">
+                                                    <property m_name="text">
+                                                        <string/>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <spacer m_name="horizontalSpacer_2">
+                                                    <property m_name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                    <property m_name="sizeHint" stdset="0">
+                                                        <size>
+                                                            <width>40</width>
+                                                            <height>20</height>
+                                                        </size>
+                                                    </property>
+                                                </spacer>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </widget>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QFrame" m_name="frameRightToolBar">
+                        <property m_name="minimumSize">
+                            <size>
+                                <width>32</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property m_name="styleSheet">
+                            <string notr="true">QFrame
+                                {
+                                border: 0px;
+                                }
+                            </string>
+                        </property>
+                        <property m_name="lineWidth">
+                            <number>0</number>
+                        </property>
+                        <layout class="QVBoxLayout" m_name="verticalLayout_3">
+                            <property m_name="leftMargin">
+                                <number>1</number>
+                            </property>
+                            <property m_name="topMargin">
+                                <number>82</number>
+                            </property>
+                            <property m_name="rightMargin">
+                                <number>1</number>
+                            </property>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonUndo">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>16777215</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Undo (Ctrl+Z)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/undo_icon.png</normaloff>:/icons/undo_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonRedo">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>16777215</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Redo (Ctrl+Y)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonClearText">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>16777215</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Clear (Ctrl+Shift+Del)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/cleartext_icon.png</normaloff>:/icons/cleartext_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="Line" m_name="line_2">
+                                    <property m_name="styleSheet">
+                                        <string notr="true">color: grey;
+                                            background-color: grey;
+                                        </string>
+                                    </property>
+                                    <property m_name="orientation">
+                                        <enum>Qt::Horizontal</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonSuperscript">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Superscript (Ctrl+Shift+Up)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/superscript_icon.png</normaloff>
+                                            :/icons/superscript_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonSubscript">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Subscript (Ctrl+Shift+Down)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/subscript_icon.png</normaloff>:/icons/subscript_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="Line" m_name="line_3">
+                                    <property m_name="styleSheet">
+                                        <string notr="true">color: grey;
+                                            background-color: grey;
+                                        </string>
+                                    </property>
+                                    <property m_name="orientation">
+                                        <enum>Qt::Horizontal</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonIncreaseFontSize">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Increase Font Size (Ctrl+Shift+=)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/increasefont_icon.png</normaloff>
+                                            :/icons/increasefont_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonDecreaseFontSize">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Increase Font Size (Ctrl+Shift+-)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/decreasefont_icon.png</normaloff>
+                                            :/icons/decreasefont_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="Line" m_name="line_4">
+                                    <property m_name="styleSheet">
+                                        <string notr="true">color: grey;
+                                            background-color: grey;
+                                        </string>
+                                    </property>
+                                    <property m_name="orientation">
+                                        <enum>Qt::Horizontal</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonIncreaseIndent">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Increase Indent (Ctrl+M)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/increaseindent_icon.png</normaloff>
+                                            :/icons/increaseindent_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QToolButton" m_name="buttonDecreaseIndent">
+                                    <property m_name="minimumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="maximumSize">
+                                        <size>
+                                            <width>30</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property m_name="cursor">
+                                        <cursorShape>PointingHandCursor</cursorShape>
+                                    </property>
+                                    <property m_name="focusPolicy">
+                                        <enum>Qt::NoFocus</enum>
+                                    </property>
+                                    <property m_name="toolTip">
+                                        <string>Decrease Indent (Ctrl+Shift+M)</string>
+                                    </property>
+                                    <property m_name="text">
+                                        <string/>
+                                    </property>
+                                    <property m_name="icon">
+                                        <iconset resource="../resources/images.qrc">
+                                            <normaloff>:/icons/decreaseindent_icon.png</normaloff>
+                                            :/icons/decreaseindent_icon.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="Line" m_name="line_5">
+                                    <property m_name="styleSheet">
+                                        <string notr="true">color: grey;
+                                            background-color: grey;
+                                        </string>
+                                    </property>
+                                    <property m_name="orientation">
+                                        <enum>Qt::Horizontal</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <spacer m_name="verticalSpacer">
+                                    <property m_name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                    </property>
+                                    <property m_name="sizeHint" stdset="0">
+                                        <size>
+                                            <width>20</width>
+                                            <height>40</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </item>
+                        </layout>
+                    </widget>
+                </item>
+            </layout>
         </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonRedo">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Redo (Ctrl+Y)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png</iconset>
-         </property>
+        <widget class="QMenuBar" m_name="menubar">
+            <property m_name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>1035</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <widget class="QMenu" m_name="menuFile">
+                <property m_name="title">
+                    <string>File</string>
+                </property>
+                <addaction m_name="actionSaveSummary"/>
+                <addaction m_name="actionPrint"/>
+                <addaction m_name="actionExportHtml"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionClose"/>
+            </widget>
+            <widget class="QMenu" m_name="menuEdit">
+                <property m_name="title">
+                    <string>Edit</string>
+                </property>
+                <addaction m_name="actionUndo"/>
+                <addaction m_name="actionRedo"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionCut"/>
+                <addaction m_name="actionCopy"/>
+                <addaction m_name="actionCopyFormatting"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionPaste"/>
+                <addaction m_name="actionPasteMatchFormat"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionSelectAll"/>
+                <addaction m_name="actionClearAll"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionSelectCurrentLine"/>
+                <addaction m_name="actionDuplicateCurrentLine"/>
+                <addaction m_name="actionDeleteCurrentLine"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionFind"/>
+            </widget>
+            <widget class="QMenu" m_name="menuView">
+                <property m_name="title">
+                    <string>View</string>
+                </property>
+                <addaction m_name="actionFullscreen"/>
+                <addaction m_name="actionMaximize"/>
+                <addaction m_name="actionMinimize"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionZoomIn"/>
+                <addaction m_name="actionZoomOut"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionHideSearchBar"/>
+                <addaction m_name="actionHideLeftPane"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionHideTopToolbar"/>
+                <addaction m_name="actionHideRightToolbar"/>
+                <addaction m_name="actionHideRightPane"/>
+            </widget>
+            <widget class="QMenu" m_name="menuInssert">
+                <property m_name="title">
+                    <string>Insert</string>
+                </property>
+                <widget class="QMenu" m_name="menuDateTime">
+                    <property m_name="title">
+                        <string>Date-Time</string>
+                    </property>
+                    <addaction m_name="actionDateShort"/>
+                    <addaction m_name="actionDateNormal"/>
+                </widget>
+                <addaction m_name="actionInsertLine"/>
+                <addaction m_name="actionInsertLink"/>
+                <addaction m_name="actionInsertImage"/>
+                <addaction m_name="actionInsertTable"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionTableRow"/>
+                <addaction m_name="actionTableColumn"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="menuDateTime"/>
+            </widget>
+            <widget class="QMenu" m_name="menuFormat">
+                <property m_name="title">
+                    <string>Format</string>
+                </property>
+                <widget class="QMenu" m_name="menuChangeCase">
+                    <property m_name="title">
+                        <string>Change Case</string>
+                    </property>
+                    <addaction m_name="actionSentenceCase"/>
+                    <addaction m_name="actionUpperCase"/>
+                    <addaction m_name="actionLowerCase"/>
+                    <addaction m_name="actionCapitalCase"/>
+                </widget>
+                <addaction m_name="actionBold"/>
+                <addaction m_name="actionItalic"/>
+                <addaction m_name="actionUnderline"/>
+                <addaction m_name="actionThrough"/>
+                <addaction m_name="actionHighlight"/>
+                <addaction m_name="actionCodeBlock"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionBulletedList"/>
+                <addaction m_name="actionOrderedList"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionIncFontSize"/>
+                <addaction m_name="actionDecFontSize"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionIncIndent"/>
+                <addaction m_name="actionDecIndent"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionSuperscript"/>
+                <addaction m_name="actionSubscript"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="menuChangeCase"/>
+                <addaction m_name="separator"/>
+                <addaction m_name="actionResetFormat"/>
+            </widget>
+            <widget class="QMenu" m_name="menuSearch">
+                <property m_name="title">
+                    <string>Search</string>
+                </property>
+                <addaction m_name="actionSearchText"/>
+                <addaction m_name="actionClearSearch"/>
+            </widget>
+            <addaction m_name="menuFile"/>
+            <addaction m_name="menuEdit"/>
+            <addaction m_name="menuView"/>
+            <addaction m_name="menuInssert"/>
+            <addaction m_name="menuFormat"/>
+            <addaction m_name="menuSearch"/>
         </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonClearText">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Clear (Ctrl+Shift+Del)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/cleartext_icon.png</normaloff>:/icons/cleartext_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_2">
-         <property name="styleSheet">
-          <string notr="true">color: grey;
-background-color: grey;</string>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonSuperscript">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Superscript (Ctrl+Shift+Up)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/superscript_icon.png</normaloff>:/icons/superscript_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonSubscript">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Subscript (Ctrl+Shift+Down)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/subscript_icon.png</normaloff>:/icons/subscript_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_3">
-         <property name="styleSheet">
-          <string notr="true">color: grey;
-background-color: grey;</string>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonIncreaseFontSize">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Increase Font Size (Ctrl+Shift+=)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/increasefont_icon.png</normaloff>:/icons/increasefont_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonDecreaseFontSize">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Increase Font Size (Ctrl+Shift+-)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/decreasefont_icon.png</normaloff>:/icons/decreasefont_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_4">
-         <property name="styleSheet">
-          <string notr="true">color: grey;
-background-color: grey;</string>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonIncreaseIndent">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Increase Indent (Ctrl+M)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/increaseindent_icon.png</normaloff>:/icons/increaseindent_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="buttonDecreaseIndent">
-         <property name="minimumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>30</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="toolTip">
-          <string>Decrease Indent (Ctrl+Shift+M)</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/images.qrc">
-           <normaloff>:/icons/decreaseindent_icon.png</normaloff>:/icons/decreaseindent_icon.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_5">
-         <property name="styleSheet">
-          <string notr="true">color: grey;
-background-color: grey;</string>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1035</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionSaveSummary"/>
-    <addaction name="actionPrint"/>
-    <addaction name="actionExportHtml"/>
-    <addaction name="separator"/>
-    <addaction name="actionClose"/>
-   </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-    <addaction name="actionUndo"/>
-    <addaction name="actionRedo"/>
-    <addaction name="separator"/>
-    <addaction name="actionCut"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionCopyFormatting"/>
-    <addaction name="separator"/>
-    <addaction name="actionPaste"/>
-    <addaction name="actionPasteMatchFormat"/>
-    <addaction name="separator"/>
-    <addaction name="actionSelectAll"/>
-    <addaction name="actionClearAll"/>
-    <addaction name="separator"/>
-    <addaction name="actionSelectCurrentLine"/>
-    <addaction name="actionDuplicateCurrentLine"/>
-    <addaction name="actionDeleteCurrentLine"/>
-    <addaction name="separator"/>
-    <addaction name="actionFind"/>
-   </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="title">
-     <string>View</string>
-    </property>
-    <addaction name="actionFullscreen"/>
-    <addaction name="actionMaximize"/>
-    <addaction name="actionMinimize"/>
-    <addaction name="separator"/>
-    <addaction name="actionZoomIn"/>
-    <addaction name="actionZoomOut"/>
-    <addaction name="separator"/>
-    <addaction name="actionHideSearchBar"/>
-    <addaction name="actionHideLeftPane"/>
-    <addaction name="separator"/>
-    <addaction name="actionHideTopToolbar"/>
-    <addaction name="actionHideRightToolbar"/>
-    <addaction name="actionHideRightPane"/>
-   </widget>
-   <widget class="QMenu" name="menuInssert">
-    <property name="title">
-     <string>Insert</string>
-    </property>
-    <widget class="QMenu" name="menuDateTime">
-     <property name="title">
-      <string>Date-Time</string>
-     </property>
-     <addaction name="actionDateShort"/>
-     <addaction name="actionDateNormal"/>
+        <action m_name="actionUndo">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/undo_icon.png</normaloff>:/icons/undo_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Undo</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Z</string>
+            </property>
+        </action>
+        <action m_name="actionRedo">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Redo</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Y</string>
+            </property>
+        </action>
+        <action m_name="actionBold">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/bold_icon.png</normaloff>:/icons/bold_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Bold</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+B</string>
+            </property>
+        </action>
+        <action m_name="actionItalic">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/italic_icon.png</normaloff>:/icons/italic_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Italic</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+I</string>
+            </property>
+        </action>
+        <action m_name="actionUnderline">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/underline_icon.png</normaloff>:/icons/underline_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Underline</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+U</string>
+            </property>
+        </action>
+        <action m_name="actionThrough">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/strikethrough_icon.png</normaloff>:/icons/strikethrough_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Through</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+T</string>
+            </property>
+        </action>
+        <action m_name="actionIncFontSize">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/increasefont_icon.png</normaloff>:/icons/increasefont_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>+ Font Size</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+=</string>
+            </property>
+        </action>
+        <action m_name="actionDecFontSize">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/decreasefont_icon.png</normaloff>:/icons/decreasefont_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>- Font Size</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+-</string>
+            </property>
+        </action>
+        <action m_name="actionIncIndent">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/increaseindent_icon.png</normaloff>:/icons/increaseindent_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>+ Indent</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+M</string>
+            </property>
+        </action>
+        <action m_name="actionDecIndent">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/decreaseindent_icon.png</normaloff>:/icons/decreaseindent_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>- Indent</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+M</string>
+            </property>
+        </action>
+        <action m_name="actionSuperscript">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/superscript_icon.png</normaloff>:/icons/superscript_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Superscript</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+Up</string>
+            </property>
+        </action>
+        <action m_name="actionSubscript">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/subscript_icon.png</normaloff>:/icons/subscript_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Subscript</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+Down</string>
+            </property>
+        </action>
+        <action m_name="actionCopyFormatting">
+            <property m_name="text">
+                <string>Copy Format</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+C</string>
+            </property>
+        </action>
+        <action m_name="actionHideSearchBar">
+            <property m_name="text">
+                <string>Hide Search Bar</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+H, Ctrl+S</string>
+            </property>
+        </action>
+        <action m_name="actionHideListWidget">
+            <property m_name="text">
+                <string>Hide List Widget</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+H, Ctrl+L</string>
+            </property>
+        </action>
+        <action m_name="actionHideLeftPane">
+            <property m_name="text">
+                <string>Hide Left Pane</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+L, Ctrl+P</string>
+            </property>
+        </action>
+        <action m_name="actionHideTopToolbar">
+            <property m_name="text">
+                <string>Hide Top Toolbar</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+H, Ctrl+T</string>
+            </property>
+        </action>
+        <action m_name="actionHideRightToolbar">
+            <property m_name="text">
+                <string>Hide Right Toolbar</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+H, Ctrl+R</string>
+            </property>
+        </action>
+        <action m_name="actionHideRightPane">
+            <property m_name="text">
+                <string>Hide Right Pane</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+R, Ctrl+P</string>
+            </property>
+        </action>
+        <action m_name="actionInsertLink">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Link</string>
+            </property>
+        </action>
+        <action m_name="actionInsertImage">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/image_icon.png</normaloff>:/icons/image_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Image</string>
+            </property>
+        </action>
+        <action m_name="actionInsertTable">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/table_icon.png</normaloff>:/icons/table_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Table</string>
+            </property>
+        </action>
+        <action m_name="actionMaximize">
+            <property m_name="text">
+                <string>Maximize</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+M, Ctrl+X</string>
+            </property>
+        </action>
+        <action m_name="actionMinimize">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/minimize_icon.png</normaloff>:/icons/minimize_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Minimize</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+M, Ctrl+N</string>
+            </property>
+        </action>
+        <action m_name="actionClose">
+            <property m_name="text">
+                <string>Close</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Q</string>
+            </property>
+        </action>
+        <action m_name="actionInsertLine">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/hr_icon.png</normaloff>:/icons/hr_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Line</string>
+            </property>
+        </action>
+        <action m_name="actionPrint">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/pdf_icon.png</normaloff>:/icons/pdf_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Print to PDF</string>
+            </property>
+        </action>
+        <action m_name="actionPrint_to_PDF">
+            <property m_name="text">
+                <string>Print to PDF</string>
+            </property>
+        </action>
+        <action m_name="actionPrint_to_HTML">
+            <property m_name="text">
+                <string>Print to HTML</string>
+            </property>
+        </action>
+        <action m_name="actionCopy">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/copy_icon.png</normaloff>:/icons/copy_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Copy</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+C</string>
+            </property>
+        </action>
+        <action m_name="actionPaste">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/paste_icon.png</normaloff>:/icons/paste_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Paste</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+V</string>
+            </property>
+        </action>
+        <action m_name="actionPasteMatchFormat">
+            <property m_name="text">
+                <string>Paste and Match Format</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+V</string>
+            </property>
+        </action>
+        <action m_name="actionSelectAll">
+            <property m_name="text">
+                <string>Select All</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+A</string>
+            </property>
+        </action>
+        <action m_name="actionCut">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/cut_icon.png</normaloff>:/icons/cut_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Cut</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+X</string>
+            </property>
+        </action>
+        <action m_name="actionClearAll">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/cleartext_icon.png</normaloff>:/icons/cleartext_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Clear All</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+Del</string>
+            </property>
+        </action>
+        <action m_name="actionResetFormat">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/restore_icon.png</normaloff>:/icons/restore_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Reset Format</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Space</string>
+            </property>
+        </action>
+        <action m_name="actionZoomIn">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/zoom_in_icon.png</normaloff>:/icons/zoom_in_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Zoom In</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+=</string>
+            </property>
+        </action>
+        <action m_name="actionZoomOut">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/zoom_out_icon.png</normaloff>:/icons/zoom_out_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Zoom Out</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+-</string>
+            </property>
+        </action>
+        <action m_name="actionSearchText">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/searchbar_icon.png</normaloff>:/icons/searchbar_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Search Text</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+S, Ctrl+T</string>
+            </property>
+        </action>
+        <action m_name="actionClearSearch">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Clear Search</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+C, Ctrl+S</string>
+            </property>
+        </action>
+        <action m_name="actionHighlight">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/highlight_icon.png</normaloff>:/icons/highlight_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Highlight</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+H</string>
+            </property>
+        </action>
+        <action m_name="actionCodeBlock">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/code_icon.png</normaloff>:/icons/code_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Code Block</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+L</string>
+            </property>
+        </action>
+        <action m_name="actionBulletedList">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/bullets_icon.png</normaloff>:/icons/bullets_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Bulleted List</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+B</string>
+            </property>
+        </action>
+        <action m_name="actionOrderedList">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/numbers_icon.png</normaloff>:/icons/numbers_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Ordered List</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+Shift+O</string>
+            </property>
+        </action>
+        <action m_name="actionSaveSummary">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Save Summary</string>
+            </property>
+        </action>
+        <action m_name="actionFullscreen">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/fullscreen_icon.png</normaloff>:/icons/fullscreen_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Fullscreen</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+F, Ctrl+S</string>
+            </property>
+        </action>
+        <action m_name="actionExportHtml">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/html_icon.png</normaloff>:/icons/html_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Export to HTML</string>
+            </property>
+        </action>
+        <action m_name="actionSentenceCase">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/sentencecase_icon.png</normaloff>:/icons/sentencecase_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>Sentence case.</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+S, Ctrl+C</string>
+            </property>
+        </action>
+        <action m_name="actionUpperCase">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/uppercase_icon.png</normaloff>:/icons/uppercase_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>UPPERCASE</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+U, Ctrl+C</string>
+            </property>
+        </action>
+        <action m_name="actionLowerCase">
+            <property m_name="icon">
+                <iconset resource="../resources/images.qrc">
+                    <normaloff>:/icons/lowercase_icon.png</normaloff>:/icons/lowercase_icon.png
+                </iconset>
+            </property>
+            <property m_name="text">
+                <string>lowercase</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+L, Ctrl+C</string>
+            </property>
+        </action>
+        <action m_name="actionCapitalCase">
+            <property m_name="text">
+                <string>Capitalize Each Word</string>
+            </property>
+        </action>
+        <action m_name="actionSelectCurrentLine">
+            <property m_name="text">
+                <string>Select Current Line</string>
+            </property>
+            <property m_name="shortcut">
+                <string/>
+            </property>
+        </action>
+        <action m_name="actionDuplicateCurrentLine">
+            <property m_name="text">
+                <string>Duplicate Current Line</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+D, Ctrl+L</string>
+            </property>
+        </action>
+        <action m_name="actionDeleteCurrentLine">
+            <property m_name="text">
+                <string>Delete Current Line</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+D, Ctrl+D</string>
+            </property>
+        </action>
+        <action m_name="actionDateNormal">
+            <property m_name="text">
+                <string>Date Normal</string>
+            </property>
+        </action>
+        <action m_name="actionDateShort">
+            <property m_name="text">
+                <string>Date Short (dd/mm/yyyy)</string>
+            </property>
+        </action>
+        <action m_name="actionTableRow">
+            <property m_name="text">
+                <string>Table Row</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+R, Ctrl+R</string>
+            </property>
+        </action>
+        <action m_name="actionTableColumn">
+            <property m_name="text">
+                <string>Table Column</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+C, Ctrl+C</string>
+            </property>
+        </action>
+        <action m_name="actionFind">
+            <property m_name="text">
+                <string>Find</string>
+            </property>
+            <property m_name="shortcut">
+                <string>Ctrl+F</string>
+            </property>
+        </action>
     </widget>
-    <addaction name="actionInsertLine"/>
-    <addaction name="actionInsertLink"/>
-    <addaction name="actionInsertImage"/>
-    <addaction name="actionInsertTable"/>
-    <addaction name="separator"/>
-    <addaction name="actionTableRow"/>
-    <addaction name="actionTableColumn"/>
-    <addaction name="separator"/>
-    <addaction name="menuDateTime"/>
-   </widget>
-   <widget class="QMenu" name="menuFormat">
-    <property name="title">
-     <string>Format</string>
-    </property>
-    <widget class="QMenu" name="menuChangeCase">
-     <property name="title">
-      <string>Change Case</string>
-     </property>
-     <addaction name="actionSentenceCase"/>
-     <addaction name="actionUpperCase"/>
-     <addaction name="actionLowerCase"/>
-     <addaction name="actionCapitalCase"/>
-    </widget>
-    <addaction name="actionBold"/>
-    <addaction name="actionItalic"/>
-    <addaction name="actionUnderline"/>
-    <addaction name="actionThrough"/>
-    <addaction name="actionHighlight"/>
-    <addaction name="actionCodeBlock"/>
-    <addaction name="separator"/>
-    <addaction name="actionBulletedList"/>
-    <addaction name="actionOrderedList"/>
-    <addaction name="separator"/>
-    <addaction name="actionIncFontSize"/>
-    <addaction name="actionDecFontSize"/>
-    <addaction name="separator"/>
-    <addaction name="actionIncIndent"/>
-    <addaction name="actionDecIndent"/>
-    <addaction name="separator"/>
-    <addaction name="actionSuperscript"/>
-    <addaction name="actionSubscript"/>
-    <addaction name="separator"/>
-    <addaction name="menuChangeCase"/>
-    <addaction name="separator"/>
-    <addaction name="actionResetFormat"/>
-   </widget>
-   <widget class="QMenu" name="menuSearch">
-    <property name="title">
-     <string>Search</string>
-    </property>
-    <addaction name="actionSearchText"/>
-    <addaction name="actionClearSearch"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
-   <addaction name="menuView"/>
-   <addaction name="menuInssert"/>
-   <addaction name="menuFormat"/>
-   <addaction name="menuSearch"/>
-  </widget>
-  <action name="actionUndo">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/undo_icon.png</normaloff>:/icons/undo_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Undo</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Z</string>
-   </property>
-  </action>
-  <action name="actionRedo">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png</iconset>
-   </property>
-   <property name="text">
-    <string>Redo</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Y</string>
-   </property>
-  </action>
-  <action name="actionBold">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/bold_icon.png</normaloff>:/icons/bold_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Bold</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+B</string>
-   </property>
-  </action>
-  <action name="actionItalic">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/italic_icon.png</normaloff>:/icons/italic_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Italic</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+I</string>
-   </property>
-  </action>
-  <action name="actionUnderline">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/underline_icon.png</normaloff>:/icons/underline_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Underline</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+U</string>
-   </property>
-  </action>
-  <action name="actionThrough">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/strikethrough_icon.png</normaloff>:/icons/strikethrough_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Through</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+T</string>
-   </property>
-  </action>
-  <action name="actionIncFontSize">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/increasefont_icon.png</normaloff>:/icons/increasefont_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>+ Font Size</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+=</string>
-   </property>
-  </action>
-  <action name="actionDecFontSize">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/decreasefont_icon.png</normaloff>:/icons/decreasefont_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>- Font Size</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+-</string>
-   </property>
-  </action>
-  <action name="actionIncIndent">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/increaseindent_icon.png</normaloff>:/icons/increaseindent_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>+ Indent</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+M</string>
-   </property>
-  </action>
-  <action name="actionDecIndent">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/decreaseindent_icon.png</normaloff>:/icons/decreaseindent_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>- Indent</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+M</string>
-   </property>
-  </action>
-  <action name="actionSuperscript">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/superscript_icon.png</normaloff>:/icons/superscript_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Superscript</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Up</string>
-   </property>
-  </action>
-  <action name="actionSubscript">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/subscript_icon.png</normaloff>:/icons/subscript_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Subscript</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Down</string>
-   </property>
-  </action>
-  <action name="actionCopyFormatting">
-   <property name="text">
-    <string>Copy Format</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+C</string>
-   </property>
-  </action>
-  <action name="actionHideSearchBar">
-   <property name="text">
-    <string>Hide Search Bar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H, Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionHideListWidget">
-   <property name="text">
-    <string>Hide List Widget</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H, Ctrl+L</string>
-   </property>
-  </action>
-  <action name="actionHideLeftPane">
-   <property name="text">
-    <string>Hide Left Pane</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+L, Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionHideTopToolbar">
-   <property name="text">
-    <string>Hide Top Toolbar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H, Ctrl+T</string>
-   </property>
-  </action>
-  <action name="actionHideRightToolbar">
-   <property name="text">
-    <string>Hide Right Toolbar</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H, Ctrl+R</string>
-   </property>
-  </action>
-  <action name="actionHideRightPane">
-   <property name="text">
-    <string>Hide Right Pane</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R, Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionInsertLink">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/link_icon.png</normaloff>:/icons/link_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Link</string>
-   </property>
-  </action>
-  <action name="actionInsertImage">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/image_icon.png</normaloff>:/icons/image_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Image</string>
-   </property>
-  </action>
-  <action name="actionInsertTable">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/table_icon.png</normaloff>:/icons/table_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Table</string>
-   </property>
-  </action>
-  <action name="actionMaximize">
-   <property name="text">
-    <string>Maximize</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+M, Ctrl+X</string>
-   </property>
-  </action>
-  <action name="actionMinimize">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/minimize_icon.png</normaloff>:/icons/minimize_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Minimize</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+M, Ctrl+N</string>
-   </property>
-  </action>
-  <action name="actionClose">
-   <property name="text">
-    <string>Close</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
-   </property>
-  </action>
-  <action name="actionInsertLine">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/hr_icon.png</normaloff>:/icons/hr_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Line</string>
-   </property>
-  </action>
-  <action name="actionPrint">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/pdf_icon.png</normaloff>:/icons/pdf_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Print to PDF</string>
-   </property>
-  </action>
-  <action name="actionPrint_to_PDF">
-   <property name="text">
-    <string>Print to PDF</string>
-   </property>
-  </action>
-  <action name="actionPrint_to_HTML">
-   <property name="text">
-    <string>Print to HTML</string>
-   </property>
-  </action>
-  <action name="actionCopy">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/copy_icon.png</normaloff>:/icons/copy_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Copy</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionPaste">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/paste_icon.png</normaloff>:/icons/paste_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Paste</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+V</string>
-   </property>
-  </action>
-  <action name="actionPasteMatchFormat">
-   <property name="text">
-    <string>Paste and Match Format</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+V</string>
-   </property>
-  </action>
-  <action name="actionSelectAll">
-   <property name="text">
-    <string>Select All</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+A</string>
-   </property>
-  </action>
-  <action name="actionCut">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/cut_icon.png</normaloff>:/icons/cut_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Cut</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
-   </property>
-  </action>
-  <action name="actionClearAll">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/cleartext_icon.png</normaloff>:/icons/cleartext_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Clear All</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Del</string>
-   </property>
-  </action>
-  <action name="actionResetFormat">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/restore_icon.png</normaloff>:/icons/restore_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Reset Format</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Space</string>
-   </property>
-  </action>
-  <action name="actionZoomIn">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/zoom_in_icon.png</normaloff>:/icons/zoom_in_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Zoom In</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+=</string>
-   </property>
-  </action>
-  <action name="actionZoomOut">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/zoom_out_icon.png</normaloff>:/icons/zoom_out_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Zoom Out</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+-</string>
-   </property>
-  </action>
-  <action name="actionSearchText">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/searchbar_icon.png</normaloff>:/icons/searchbar_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Search Text</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S, Ctrl+T</string>
-   </property>
-  </action>
-  <action name="actionClearSearch">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/clear_icon.png</normaloff>:/icons/clear_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Clear Search</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C, Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionHighlight">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/highlight_icon.png</normaloff>:/icons/highlight_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Highlight</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+H</string>
-   </property>
-  </action>
-  <action name="actionCodeBlock">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/code_icon.png</normaloff>:/icons/code_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Code Block</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+L</string>
-   </property>
-  </action>
-  <action name="actionBulletedList">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/bullets_icon.png</normaloff>:/icons/bullets_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Bulleted List</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+B</string>
-   </property>
-  </action>
-  <action name="actionOrderedList">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/numbers_icon.png</normaloff>:/icons/numbers_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Ordered List</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+O</string>
-   </property>
-  </action>
-  <action name="actionSaveSummary">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/save_icon.png</normaloff>:/icons/save_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Save Summary</string>
-   </property>
-  </action>
-  <action name="actionFullscreen">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/fullscreen_icon.png</normaloff>:/icons/fullscreen_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Fullscreen</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+F, Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionExportHtml">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/html_icon.png</normaloff>:/icons/html_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Export to HTML</string>
-   </property>
-  </action>
-  <action name="actionSentenceCase">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/sentencecase_icon.png</normaloff>:/icons/sentencecase_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Sentence case.</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S, Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionUpperCase">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/uppercase_icon.png</normaloff>:/icons/uppercase_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>UPPERCASE</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+U, Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionLowerCase">
-   <property name="icon">
-    <iconset resource="../resources/images.qrc">
-     <normaloff>:/icons/lowercase_icon.png</normaloff>:/icons/lowercase_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>lowercase</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+L, Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionCapitalCase">
-   <property name="text">
-    <string>Capitalize Each Word</string>
-   </property>
-  </action>
-  <action name="actionSelectCurrentLine">
-   <property name="text">
-    <string>Select Current Line</string>
-   </property>
-   <property name="shortcut">
-    <string/>
-   </property>
-  </action>
-  <action name="actionDuplicateCurrentLine">
-   <property name="text">
-    <string>Duplicate Current Line</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+D, Ctrl+L</string>
-   </property>
-  </action>
-  <action name="actionDeleteCurrentLine">
-   <property name="text">
-    <string>Delete Current Line</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+D, Ctrl+D</string>
-   </property>
-  </action>
-  <action name="actionDateNormal">
-   <property name="text">
-    <string>Date Normal</string>
-   </property>
-  </action>
-  <action name="actionDateShort">
-   <property name="text">
-    <string>Date Short (dd/mm/yyyy)</string>
-   </property>
-  </action>
-  <action name="actionTableRow">
-   <property name="text">
-    <string>Table Row</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R, Ctrl+R</string>
-   </property>
-  </action>
-  <action name="actionTableColumn">
-   <property name="text">
-    <string>Table Column</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C, Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionFind">
-   <property name="text">
-    <string>Find</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+F</string>
-   </property>
-  </action>
- </widget>
- <resources>
-  <include location="../resources/images.qrc"/>
- </resources>
- <connections/>
+    <resources>
+        <include location="../resources/images.qrc"/>
+    </resources>
+    <connections/>
 </ui>

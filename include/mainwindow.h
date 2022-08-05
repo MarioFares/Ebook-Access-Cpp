@@ -3,148 +3,300 @@
 
 #include <QFile>
 #include <QList>
+#include <QLabel>
 #include <QPointer>
+#include <QSpinBox>
 #include <QComboBox>
+#include <QSplitter>
+#include <QBoxLayout>
+#include <QToolButton>
 #include <QMainWindow>
+#include <QPushButton>
 #include <QApplication>
 #include <QListWidgetItem>
 #include <QSystemTrayIcon>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+	explicit MainWindow(QWidget* parent = nullptr);
 
 private slots:
-    void setupConnections();
 
-    void closeEvent(QCloseEvent *event);
+	void setupInterface();
 
-    void showBookDetailsWindow(const QString &name = "");
+	void setupMenus();
 
-    void showSummary(const QString &name = "");
+	void setupActions();
 
-    void showSettings();
+	void setupConnections();
 
-    void showLinkManager();
+	void closeEvent(QCloseEvent* event) override;
 
-    void refreshComboBox(QComboBox *comboBox);
+	static void showBookDetailsWindow(const QString& name = "");
 
-    void refreshFolders();
+	static void showSummary(const QString& name = "");
 
-    void refreshAuthors();
+	void showSettings();
 
-    void refreshGenres();
+	static void showLinkManager();
 
-    void refreshSearches();
+	static void refreshComboBox(QComboBox* comboBox);
 
-    void openSummaryWindow();
+	void refreshFolders();
 
-    double changeBookSizeUnit(double size, const QString &unit);
+	void refreshAuthors();
 
-    void showContextMenu(const QPoint&);
+	void refreshGenres();
 
-    void showSearchBoxContextMenu(const QPoint &pos);
+	void refreshSearches();
 
-    void trayClicked(QSystemTrayIcon::ActivationReason r);
+	void openSummaryWindow();
 
-    void deleteListItem();
+	double changeBookSizeUnit(double size, const QString& unit);
 
-    void openFolder();
+	void showContextMenu(const QPoint&);
 
-    void showQuote();
+	void showSearchBoxContextMenu(const QPoint& pos);
 
-    void showAddBooksDialog();
+	void trayClicked(QSystemTrayIcon::ActivationReason r);
 
-    void searchString();
+	void deleteListItem();
 
-    void clearCriteria();
+	void openFolder();
 
-    void clearDetails();
+	void showQuote();
 
-    void sortSearch();
+	void showAddBooksDialog();
 
-    void resetEbooks();
+	void searchString();
 
-    void hideSearchBar();
+	void clearCriteria();
 
-    void hideDetailsSection();
+	void clearDetails();
 
-    void showAddBookDialog();
+	void sortSearch();
 
-    void clearSearch();
+	void resetEbooks();
 
-    void searchCriteria();
+	void hideSearchBar();
 
-    void showEbookDetails(QListWidgetItem *item);
+	void hideDetailsSection();
 
-    void restoreDetails();
+	void showAddBookDialog();
 
-    void updateDetails();
+	void clearSearch();
 
-    void saveCriteria();
+	void searchCriteria();
 
-    void loadSearch();
+	void showEbookDetails(QListWidgetItem* item);
 
-    void showCleanEbooksDialog();
+	void restoreDetails();
 
-    void chooseRandomBook();
+	void updateDetails();
 
-    void openEbook(QListWidgetItem *item);
+	void saveCriteria();
 
-    void toggleSizeCriteria();
+	void loadSearch();
 
-    void hideRightFrame();
+	void showCleanEbooksDialog();
 
-    void hideUtilities();
+	void chooseRandomBook();
 
-    void hideLeftFrame();
+	void openEbook(QListWidgetItem* item);
 
-    void extSelectionSetup(const QString &title, const QString &prompt, QWidget *widget);
+	void toggleSizeCriteria();
 
-    void selectExtensions();
+	void hideRightFrame();
 
-    void selectFolders();
+	void hideUtilities();
 
-    void selectAuthors();
+	void hideLeftFrame();
 
-    void selectGenres();
+	void extSelectionSetup(const QString& title, const QString& prompt, QWidget* widget);
 
-    void selectTags();
+	void selectExtensions();
 
-    void toggleSizeUnit();
+	void selectFolders();
 
-    void resetSummaries();
+	void selectAuthors();
 
-    void resetTags();
+	void selectGenres();
 
-    void resetSearches();
+	void selectTags();
 
-    void resetDb();
+	void toggleSizeUnit();
 
-    void toggleWindowOnTop();
+	void resetSummaries();
 
-    void showDbViewer();
+	void resetTags();
 
-    void genEbooksReport();
+	void resetSearches();
 
-    void hideStatusBar();
+	void resetDb();
 
-    void editListItem(QListWidgetItem *item);
+	void toggleWindowOnTop();
+
+	static void showDbViewer();
+
+	void genEbooksReport();
+
+	void hideStatusBar();
+
+	void editListItem(QListWidgetItem* item);
 
 private:
-    Ui::MainWindow *ui;
-    Qt::SortOrder SORT;
-    QHash<QString, quint32> sizeConvFactors;
-    QHash<QString, QString> sizeUnits;
-    QSystemTrayIcon *trayIcon;
+	Qt::SortOrder m_SORT;
+	QHash<QString, quint32> m_sizeConvFactors;
+	QHash<QString, QString> m_sizeUnits;
+	QSystemTrayIcon* m_trayIcon;
 
+	// Widgets
+	QAction* m_actionAddBook;
+	QAction* m_actionResetEbooks;
+	QAction* m_actionResetDatabase;
+	QAction* m_actionClearEntries;
+	QAction* m_actionCleanEbooks;
+	QAction* m_actionSearchFiles;
+	QAction* m_actionSearchText;
+	QAction* m_actionClearSearch;
+	QAction* m_actionEbooksReport;
+	QAction* m_actionUsageReport;
+	QAction* m_actionApplicationSettings;
+	QAction* m_actionFullscreen;
+	QAction* m_actionMax;
+	QAction* m_actionMin;
+	QAction* m_actionClose;
+	QAction* m_actionSortSearch;
+	QAction* m_actionAddBooks;
+	QAction* m_actionHideSearchBar;
+	QAction* m_actionHideDetailsSection;
+	QAction* m_actionChooseRandomBook;
+	QAction* m_actionHideRightFrame;
+	QAction* m_actionHideUtilities;
+	QAction* m_actionHideLeftFrame;
+	QAction* m_actionMinimizeTray;
+	QAction* m_actionResetSearches;
+	QAction* m_actionResetSummaries;
+	QAction* m_actionResetTags;
+	QAction* m_actionWindowTop;
+	QAction* m_actionSummaries;
+	QAction* m_actionLinkManager;
+	QAction* m_actionDataViewer;
+	QAction* m_actionOpenDB;
+	QAction* m_actionEbookReportsDir;
+	QAction* m_actionUsageReportsDir;
+	QAction* m_actionInstallationDir;
+	QAction* m_actionHideStatusBar;
+	QAction* m_actionBookDetails;
+	QWidget* m_centralWidget;
+	QFrame* m_frameMain;
+	QSplitter* m_splitter;
+	QFrame* m_frameMainLeft;
+	QFrame* m_frameSearchCriteria;
+	QLabel* m_labelGenreCriteria;
+	QSpinBox* m_spinBoxToPagesCriteria;
+	QLabel* m_labelPagesToCriteria;
+	QLabel* m_labelSizeToCriteria;
+	QLabel* m_labelAuthorCriteria;
+	QLabel* m_labelSearchCriteria;
+	QLineEdit* m_textExts;
+	QSpinBox* m_spinBoxFromSizeCriteria;
+	QLabel* m_labelGroupsCriteria;
+	QLabel* m_labelFolderCriteria;
+	QComboBox* m_comboBoxSearchLoad;
+	QLineEdit* m_textTagsCriteria;
+	QSpinBox* m_spinBoxToSizeCriteria;
+	QSpinBox* m_spinBoxFromPagesCriteria;
+	QComboBox* m_comboBoxFolderCriteria;
+	QComboBox* m_comboBoxGenreCriteria;
+	QComboBox* m_comboBoxAuthorCriteria;
+	QLabel* m_labelSizeCriteria;
+	QLabel* m_labelPagesCriteria;
+	QLabel* m_labelExtensionCriteria;
+	QToolButton* m_buttonSearchCriteria;
+	QToolButton* m_buttonAuthor;
+	QToolButton* m_buttonClearCriteria;
+	QToolButton* m_buttonExtensions;
+	QToolButton* m_buttonFolder;
+	QToolButton* m_buttonGenre;
+	QToolButton* m_buttonSaveCriteria;
+	QToolButton* m_buttonSearchLoad;
+	QToolButton* m_buttonSizeCriteria;
+	QToolButton* m_buttonTags;
+	QFrame* m_frameBottomButtons;
+	QFrame* m_frameAddButtons;
+	QToolButton* m_buttonAddBook;
+	QToolButton* m_buttonAddBooks;
+	QFrame* m_frameInfoButtons;
+	QToolButton* m_buttonSummaries;
+	QToolButton* m_buttonLinkManager;
+	QToolButton* m_buttonDbViewer;
+	QFrame* m_frameMainRight;
+	QFrame* m_frameSearchToolBar;
+	QLabel* m_labelSearchBar;
+	QLineEdit* m_textSearchBar;
+	QToolButton* m_buttonSearchString;
+	QToolButton* m_buttonClearSearch;
+	QToolButton* m_buttonSortSearch;
+	QListWidget* m_ebooksListWidget;
+	QFrame* m_frameDetails;
+	QLabel* m_labelDetailsSize;
+	QLineEdit* m_textDetailsGenre;
+	QFrame* m_frameSizeDetails;
+	QLineEdit* m_textDetailsSize;
+	QPushButton* m_buttonSizeUnit;
+	QLineEdit* m_textDetailsTags;
+	QLabel* m_labelDetailsGroups;
+	QLabel* m_labelDetailsName;
+	QLineEdit* m_textDetailsAuthor;
+	QLineEdit* m_textDetailsFolder;
+	QLineEdit* m_textDetailsExt;
+	QLabel* m_labelDetailsExt;
+	QLabel* m_labelDetailsPages;
+	QLabel* m_labelDetailsGenre;
+	QLabel* m_labelDetailsFolder;
+	QLabel* m_labelDetailsAuthor;
+	QLineEdit* m_textDetailsName;
+	QLineEdit* m_textDetailsPages;
+	QPushButton* m_buttonDetailsRestore;
+	QPushButton* m_buttonDetailsUpdate;
+	QPushButton* m_buttonDetailsClear;
+	QMenuBar* m_menubar;
+	QMenu* m_menuFile;
+	QMenu* m_menuGoTo;
+	QMenu* m_menuAdd;
+	QMenu* m_menuReset;
+	QMenu* m_menuClean;
+	QMenu* m_menuSearch;
+	QMenu* m_menuGenerate;
+	QMenu* m_menuSettings;
+	QMenu* m_menuView;
+	QMenu* m_menuTools;
+	QStatusBar* m_statusBar;
+
+	// Layouts
+	QHBoxLayout* m_horLayCentral;
+	QHBoxLayout* m_horLayMain;
+	QVBoxLayout* m_vertLayMainLeft;
+	QGridLayout* m_gridLaySearch;
+	QGridLayout* m_gridLayCriteria;
+	QHBoxLayout* m_horLayBottomButtons;
+	QHBoxLayout* m_horLayAddButtons;
+	QHBoxLayout* m_horLayToolButtons;
+	QVBoxLayout* m_vertLayMainRight;
+	QHBoxLayout* m_horLaySearchBar;
+	QGridLayout* m_gridLayDetails;
+	QVBoxLayout* m_vertLayDetails;
+	QGridLayout* m_gridLayDetailsFields;
+	QHBoxLayout* m_horLayDetailsSize;
+	QHBoxLayout* m_horLayDetailsButtons;
+
+	// Spacers
+	QSpacerItem* m_horSpacerButtonsLeft;
+	QSpacerItem* m_horSpacerButtonsRight;
 };
+
 #endif // MAINWINDOW_H

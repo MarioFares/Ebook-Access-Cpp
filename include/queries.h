@@ -1,17 +1,19 @@
 #ifndef QUERIES_H
 #define QUERIES_H
 
-#include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QSqlDatabase>
 
 /*
  * All page must be of type quint32 = uint
  * All sizes must be of type quint64 = unsigned long long
  */
 
-namespace queries {
+namespace queries
+{
 
 extern QSqlDatabase db;
+
 extern QSqlQuery query;
 
 void connectToDatabase();
@@ -45,20 +47,17 @@ void resetLinksTable();
 void resetCollectionsTable();
 
 // Select Queries
+void selectEbooksTable();
 
-void selectEbooksTable ();
+void selectLinksTable();
 
-void selectLinksTable ();
+void selectLinkCollectionsTable();
 
-void selectLinkCollectionsTable ();
+void selectSearchesTable();
 
-void selectSearchesTable ();
+void selectSessionLogTable();
 
-void selectSessionLogTable ();
-
-void selectTagsTable ();
-
-void selectAllTable(const QString &tableName);
+void selectTagsTable();
 
 void selectFoldersQuery();
 
@@ -91,7 +90,7 @@ void selectAllBasedonName(QString name);
 void selectSummaryBasedonName(QString name);
 
 void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-                                      quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize);
+							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize);
 
 int selectCollectionId(QString collectionName);
 
@@ -103,19 +102,21 @@ void selectLinkRecord(QString name);
 
 // Insert Queries
 void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
-                      quint32 pages, QString tags, QString genre, QString author);
+					  quint32 pages, QString tags, QString genre, QString author);
 
 void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
-                              QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages, quint32 toPages);
+					   QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages,
+					   quint32 toPages);
 
 void insertLinkCollection(QString collectionName);
 
 void insertLink(int collectionId, QString linkName, QString linkPath);
 
 void insertTags(QString tags, QString bookName);
+
 // Update Queries
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-                            QString author, quint32 pages, QString tags, QString path);
+					 QString author, quint32 pages, QString tags, QString path);
 
 void updateBookName(QString oldName, QString newName);
 

@@ -1,33 +1,47 @@
 #ifndef INSERTLINKDIALOG_H
 #define INSERTLINKDIALOG_H
 
+#include <QLabel>
 #include <QDialog>
-
-namespace Ui {
-class insertLinkDialog;
-}
+#include <QLineEdit>
+#include <QBoxLayout>
+#include <QPushButton>
 
 class InsertLinkDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit InsertLinkDialog(QWidget *parent = nullptr);
-    ~InsertLinkDialog();
+	explicit InsertLinkDialog(QWidget* parent = nullptr);
 
-    QString title;
+	QString m_title;
+	QString m_link;
 
-    QString  link;
-
-    void setDataOnOpen();
+	void setDataOnOpen();
 
 private slots:
-    void setupConnections();
 
-    void getInput();
+	void setupInterface();
+
+	void setupConnections();
+
+	void getInput();
 
 private:
-    Ui::insertLinkDialog *ui;
+	// Widgets
+	QLabel* m_labelLink;
+	QLabel* m_labelTitle;
+	QLineEdit* m_textLink;
+	QLineEdit* m_textTitle;
+	QPushButton* m_buttonOk;
+	QPushButton* m_buttonCancel;
+
+	// Layouts
+	QHBoxLayout* m_horLayButtons;
+	QGridLayout* m_gridLay;
+
+	// Spacers
+	QSpacerItem* m_horSpacerButtonsLeft;
 };
 
 #endif // INSERTLINKDIALOG_H

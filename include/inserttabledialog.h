@@ -1,32 +1,42 @@
 #ifndef INSERTTABLEDIALOG_H
 #define INSERTTABLEDIALOG_H
 
+#include <QLabel>
 #include <QDialog>
-
-namespace Ui {
-class insertTableDialog;
-}
+#include <QSpinBox>
+#include <QBoxLayout>
+#include <QPushButton>
 
 class InsertTableDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit InsertTableDialog(QWidget *parent = nullptr);
+	explicit InsertTableDialog(QWidget* parent = nullptr);
 
-    int columnCount;
-
-    int rowCount;
-
-    ~InsertTableDialog();
+	int m_columnCount;
+	int m_rowCount;
 
 private slots:
-    void setupConnections();
 
-    void getTableDims();
+	void setupInterface();
+
+	void setupConnections();
+
+	void getTableDims();
 
 private:
-    Ui::insertTableDialog *ui;
+	// Widgets
+	QLabel* m_labelColumns;
+	QLabel* m_labelRows;
+	QSpinBox* m_spinBoxRows;
+	QSpinBox* m_spinBoxColumns;
+	QPushButton* m_buttonOk;
+	QPushButton* m_buttonCancel;
+
+	// Layouts
+	QHBoxLayout* m_horLayButtons;
+	QGridLayout* m_gridLayMain;
 };
 
 #endif // INSERTTABLEDIALOG_H

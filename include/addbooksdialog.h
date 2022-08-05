@@ -1,38 +1,65 @@
 #ifndef ADDBOOKSDIALOG_H
 #define ADDBOOKSDIALOG_H
 
+#include <QLabel>
+#include <QLayout>
 #include <QDialog>
 #include <QFileInfo>
-
-
-namespace Ui {
-class addBooksDialog;
-}
+#include <QCheckBox>
+#include <QLineEdit>
+#include <QProgressBar>
 
 class AddBooksDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit AddBooksDialog(QWidget *parent = nullptr);
-    ~AddBooksDialog();
+	explicit AddBooksDialog(QWidget* parent = nullptr);
 
 private slots:
-    void setupConnections();
 
-    void insertBook(const QFileInfo &entry, const QString &tags, const QString &genre, const QString &author);
+	void setupInterface();
 
-    void setupEntries(const QString &dir, bool recursive);
+	void setupConnections();
 
-    void iterateInsertEntries(const QVector<QFileInfo> &entries, const QVector<QString> &exts,
-                              const QString &tags, const QString &genres, const QString &authors);
+	static void insertBook(const QFileInfo& entry, const QString& tags, const QString& genre, const QString& author);
 
-    void browseDirs();
+	void setupEntries(const QString& dir, bool recursive);
 
-    void addDir();
+	void iterateInsertEntries(const QVector<QFileInfo>& entries, const QVector<QString>& exts,
+							  const QString& tags, const QString& genres, const QString& authors);
+
+	void browseDirs();
+
+	void addDir();
 
 private:
-    Ui::addBooksDialog *ui;
+	// Widgets
+	QPushButton* m_buttonAdd;
+	QCheckBox* m_checkBoxRecursive;
+	QLineEdit* m_textFolderPath;
+	QLabel* m_labelAddBooks;
+	QPushButton* m_buttonClose;
+	QPushButton* m_buttonBrowseFolders;
+	QProgressBar* m_progressBar;
+	QLabel* m_labelFolder;
+
+	// Layouts
+	QHBoxLayout* m_horLayTitle;
+	QHBoxLayout* m_horLayFolder;
+	QHBoxLayout* m_horLayCheckBox;
+	QHBoxLayout* m_horLayProgressBar;
+	QHBoxLayout* m_horLayButtons;
+	QVBoxLayout* m_vertLayMain;
+
+	// Spacers
+	QSpacerItem* m_horSpacerTitleLeft;
+	QSpacerItem* m_horSpacerTitleRight;
+	QSpacerItem* m_horSpacerCheckBoxRight;
+	QSpacerItem* m_horSpacerProgressBarLeft;
+	QSpacerItem* m_horSpacerProgressBarRight;
+	QSpacerItem* m_horSpacerButtonsLeft;
+	QSpacerItem* m_horSpacerButtonsRight;
 
 };
 

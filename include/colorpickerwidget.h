@@ -1,58 +1,65 @@
 #ifndef COLORPICKERWIDGET_H
 #define COLORPICKERWIDGET_H
 
+#include <QFrame>
 #include <QDialog>
+#include <QBoxLayout>
 
 class QGridLayout;
-typedef QList<QPair<QColor,QColor>> GradientList;
+
+typedef QList<QPair<QColor, QColor>> GradientList;
 
 class ColorPickerWidget : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit ColorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
+	explicit ColorPickerWidget(QWidget* parent = nullptr, QColor defaultColor = Qt::black);
 
-    QColor getCurrentColor();
+	QColor getCurrentColor();
 
-    bool colorSelected();
+	bool colorSelected() const;
 
-    QColor defaultColor;
-
-
+	QColor m_defaultColor;
 
 private slots:
-    QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
 
-    GradientList initialialzeColorGradients();
+	static QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
 
-    void createColorsButtons();
+	static GradientList initialialzeColorGradients();
 
-    void setButtonColors(GradientList gradientList);
+	void createColorsButtons();
 
-    void setCurrentColor(QColor color);
+	void setButtonColors(GradientList gradientList);
 
-    void openColorDialog();
+	void setCurrentColor(QColor color);
 
+	void openColorDialog();
+
+	void setupConnections();
+
+	void setupInterface();
 
 private:
-    void setupConnections();
+	int m_rows;
+	int m_columns;
+	QColor m_currentColor;
+	bool m_isColorSelected;
 
-    void setupUi();
+	// Widgets
+	QPushButton* m_defaultColorButton;
+	QPushButton* m_moreColorsButton;
+	QFrame* m_mainFrame;
 
-    int rows;
+	// Layouts
+	QVBoxLayout* m_vertLayMain;
+	QGridLayout* m_colorGridLayout;
+	QHBoxLayout* m_horLayDefaultButton;
+	QHBoxLayout* m_horLayMoreColors;
 
-    int columns;
-
-    QGridLayout* colorGridLayout;
-
-    QColor currentColor;
-
-    QPushButton *defaultColorButton;
-
-    QPushButton *moreColorsButton;
-
-    bool isColorSelected;
+	// Spacers
+	QSpacerItem* m_horSpacerDefaultButtonRight;
+	QSpacerItem* m_horSpacerMoreColorsRight;
 };
 
 #endif // COLORPICKERWIDGET_H

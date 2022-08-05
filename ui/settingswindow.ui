@@ -1,275 +1,562 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SettingsWindow</class>
- <widget class="QMainWindow" name="SettingsWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>800</width>
-    <height>359</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="handleWidth">
-       <number>0</number>
-      </property>
-      <widget class="QListWidget" name="listWidget">
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <item>
-        <property name="text">
-         <string>Startup</string>
+    <class>SettingsWindow</class>
+    <widget class="QMainWindow" m_name="SettingsWindow">
+        <property m_name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>800</width>
+                <height>359</height>
+            </rect>
         </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Interface</string>
+        <property m_name="windowTitle">
+            <string>MainWindow</string>
         </property>
-       </item>
-      </widget>
-      <widget class="QStackedWidget" name="stackedWidget">
-       <property name="styleSheet">
-        <string notr="true">#stackedWidget {
-margin-left: 5px;
-}</string>
-       </property>
-       <property name="lineWidth">
-        <number>0</number>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="pageInterface">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QScrollArea" name="scrollArea">
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>-277</y>
-              <width>602</width>
-              <height>594</height>
-             </rect>
-            </property>
-            <layout class="QGridLayout" name="gridLayout">
-             <property name="horizontalSpacing">
-              <number>6</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>13</number>
-             </property>
-             <item row="10" column="0">
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>Background Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="lineEdit_2"/>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Family</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QComboBox" name="comboBox"/>
-             </item>
-             <item row="11" column="1">
-              <widget class="QComboBox" name="comboBox_4"/>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_12">
-               <property name="text">
-                <string>Background</string>
-               </property>
-              </widget>
-             </item>
-             <item row="13" column="1">
-              <widget class="QComboBox" name="comboBox_6"/>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_13">
-               <property name="text">
-                <string>Widgets Font</string>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="1">
-              <widget class="QComboBox" name="comboBox_5"/>
-             </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_15">
-               <property name="text">
-                <string>Menubar</string>
-               </property>
-              </widget>
-             </item>
-             <item row="16" column="1">
-              <widget class="QComboBox" name="comboBox_8"/>
-             </item>
-             <item row="5" column="1">
-              <widget class="QLineEdit" name="lineEdit_4"/>
-             </item>
-             <item row="13" column="0">
-              <widget class="QLabel" name="label_10">
-               <property name="text">
-                <string>Item Font Family</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QComboBox" name="comboBox_2"/>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_14">
-               <property name="text">
-                <string>Border</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="1">
-              <widget class="QComboBox" name="comboBox_3"/>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>Radius</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>Size</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLineEdit" name="lineEdit_3"/>
-             </item>
-             <item row="11" column="0">
-              <widget class="QLabel" name="label_8">
-               <property name="text">
-                <string>Item Background Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEdit"/>
-             </item>
-             <item row="14" column="0">
-              <widget class="QLabel" name="label_11">
-               <property name="text">
-                <string>Statusbar</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="16" column="0">
-              <widget class="QLabel" name="label_17">
-               <property name="text">
-                <string>Font Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="0">
-              <widget class="QLabel" name="label_9">
-               <property name="text">
-                <string>Item Font Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="15" column="0">
-              <widget class="QLabel" name="label_16">
-               <property name="text">
-                <string>Background Color</string>
-               </property>
-              </widget>
-             </item>
-             <item row="15" column="1">
-              <widget class="QComboBox" name="comboBox_7"/>
-             </item>
+        <widget class="QWidget" m_name="centralwidget">
+            <layout class="QVBoxLayout" m_name="verticalLayout">
+                <item>
+                    <widget class="QSplitter" m_name="splitter">
+                        <property m_name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property m_name="handleWidth">
+                            <number>0</number>
+                        </property>
+                        <widget class="QListWidget" m_name="listWidget">
+                            <property m_name="maximumSize">
+                                <size>
+                                    <width>150</width>
+                                    <height>16777215</height>
+                                </size>
+                            </property>
+                            <item>
+                                <property m_name="text">
+                                    <string>Startup</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property m_name="text">
+                                    <string>Interface</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property m_name="text">
+                                    <string>Database</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property m_name="text">
+                                    <string>Monitor</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property m_name="text">
+                                    <string>Tools</string>
+                                </property>
+                            </item>
+                        </widget>
+                        <widget class="QStackedWidget" m_name="stackedWidget">
+                            <property m_name="styleSheet">
+                                <string notr="true">#stackedWidget {
+                                    margin-left: 5px;
+                                    }
+                                </string>
+                            </property>
+                            <property m_name="lineWidth">
+                                <number>0</number>
+                            </property>
+                            <property m_name="currentIndex">
+                                <number>1</number>
+                            </property>
+                            <widget class="QWidget" m_name="pageStartup">
+                                <layout class="QVBoxLayout" m_name="verticalLayout_3">
+                                    <item>
+                                        <widget class="QScrollArea" m_name="scrollArea_2">
+                                            <property m_name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" m_name="scrollAreaWidgetContents_2">
+                                                <property m_name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>607</width>
+                                                        <height>299</height>
+                                                    </rect>
+                                                </property>
+                                                <layout class="QGridLayout" m_name="gridLayout_2">
+                                                    <property m_name="horizontalSpacing">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property m_name="verticalSpacing">
+                                                        <number>13</number>
+                                                    </property>
+                                                    <item row="1" column="0">
+                                                        <widget class="QLabel" m_name="label_19">
+                                                            <property m_name="text">
+                                                                <string>Run Monitor Folders &amp; Files</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="0" column="0">
+                                                        <widget class="QLabel" m_name="label_18">
+                                                            <property m_name="text">
+                                                                <string>Quote of the Day</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="0">
+                                                        <widget class="QLabel" m_name="label_20">
+                                                            <property m_name="text">
+                                                                <string>Run Clean Files</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                            <widget class="QWidget" m_name="pageInterface">
+                                <layout class="QVBoxLayout" m_name="verticalLayout_2">
+                                    <property m_name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property m_name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property m_name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QScrollArea" m_name="scrollArea">
+                                            <property m_name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" m_name="scrollAreaWidgetContents">
+                                                <property m_name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>602</width>
+                                                        <height>661</height>
+                                                    </rect>
+                                                </property>
+                                                <layout class="QGridLayout" m_name="gridLayout">
+                                                    <property m_name="horizontalSpacing">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property m_name="verticalSpacing">
+                                                        <number>13</number>
+                                                    </property>
+                                                    <item row="7" column="0">
+                                                        <widget class="QLabel" m_name="label_14">
+                                                            <property m_name="font">
+                                                                <font>
+                                                                    <pointsize>12</pointsize>
+                                                                    <bold>true</bold>
+                                                                    <underline>false</underline>
+                                                                </font>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>Border</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="12" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_4"/>
+                                                    </item>
+                                                    <item row="14" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_6"/>
+                                                    </item>
+                                                    <item row="9" column="0">
+                                                        <widget class="QLabel" m_name="label_6">
+                                                            <property m_name="text">
+                                                                <string>Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="4" column="0">
+                                                        <widget class="QLabel" m_name="label_2">
+                                                            <property m_name="text">
+                                                                <string>Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="17" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_8"/>
+                                                    </item>
+                                                    <item row="9" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_2"/>
+                                                    </item>
+                                                    <item row="3" column="0">
+                                                        <widget class="QLabel" m_name="label_13">
+                                                            <property m_name="font">
+                                                                <font>
+                                                                    <pointsize>12</pointsize>
+                                                                    <bold>true</bold>
+                                                                    <underline>false</underline>
+                                                                </font>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>Widgets Font</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="4" column="1" colspan="2">
+                                                        <widget class="QLineEdit" m_name="lineEdit_2"/>
+                                                    </item>
+                                                    <item row="16" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_7"/>
+                                                    </item>
+                                                    <item row="6" column="0">
+                                                        <widget class="QLabel" m_name="label_4">
+                                                            <property m_name="text">
+                                                                <string>Size</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="0">
+                                                        <widget class="QLabel" m_name="label_28">
+                                                            <property m_name="text">
+                                                                <string>Image</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="13" column="0">
+                                                        <widget class="QLabel" m_name="label_9">
+                                                            <property m_name="text">
+                                                                <string>Item Font Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="1" column="1" colspan="2">
+                                                        <widget class="QLineEdit" m_name="lineEdit"/>
+                                                    </item>
+                                                    <item row="5" column="1" colspan="2">
+                                                        <widget class="QLineEdit" m_name="lineEdit_3"/>
+                                                    </item>
+                                                    <item row="11" column="0">
+                                                        <widget class="QLabel" m_name="label_7">
+                                                            <property m_name="text">
+                                                                <string>Background Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="17" column="0">
+                                                        <widget class="QLabel" m_name="label_17">
+                                                            <property m_name="text">
+                                                                <string>Font Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="1">
+                                                        <widget class="QLineEdit" m_name="lineEdit_5"/>
+                                                    </item>
+                                                    <item row="14" column="0">
+                                                        <widget class="QLabel" m_name="label_10">
+                                                            <property m_name="text">
+                                                                <string>Item Font Family</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="13" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_5"/>
+                                                    </item>
+                                                    <item row="6" column="1" colspan="2">
+                                                        <widget class="QLineEdit" m_name="lineEdit_4"/>
+                                                    </item>
+                                                    <item row="5" column="0">
+                                                        <widget class="QLabel" m_name="label_3">
+                                                            <property m_name="text">
+                                                                <string>Family</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="2">
+                                                        <widget class="QPushButton" m_name="pushButton">
+                                                            <property m_name="maximumSize">
+                                                                <size>
+                                                                    <width>30</width>
+                                                                    <height>16777215</height>
+                                                                </size>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>...</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="12" column="0">
+                                                        <widget class="QLabel" m_name="label_8">
+                                                            <property m_name="text">
+                                                                <string>Item Background Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="0" column="0">
+                                                        <widget class="QLabel" m_name="label_12">
+                                                            <property m_name="font">
+                                                                <font>
+                                                                    <pointsize>12</pointsize>
+                                                                    <bold>true</bold>
+                                                                    <underline>false</underline>
+                                                                </font>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>Background</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="10" column="0">
+                                                        <widget class="QLabel" m_name="label_15">
+                                                            <property m_name="font">
+                                                                <font>
+                                                                    <pointsize>12</pointsize>
+                                                                    <bold>true</bold>
+                                                                    <underline>false</underline>
+                                                                </font>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>Menubar</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="15" column="0">
+                                                        <widget class="QLabel" m_name="label_11">
+                                                            <property m_name="font">
+                                                                <font>
+                                                                    <pointsize>12</pointsize>
+                                                                    <bold>true</bold>
+                                                                    <underline>false</underline>
+                                                                </font>
+                                                            </property>
+                                                            <property m_name="text">
+                                                                <string>Statusbar</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="16" column="0">
+                                                        <widget class="QLabel" m_name="label_16">
+                                                            <property m_name="text">
+                                                                <string>Background Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="1" column="0">
+                                                        <widget class="QLabel" m_name="label">
+                                                            <property m_name="text">
+                                                                <string>Color</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="8" column="0">
+                                                        <widget class="QLabel" m_name="label_5">
+                                                            <property m_name="text">
+                                                                <string>Radius</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="11" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox_3"/>
+                                                    </item>
+                                                    <item row="8" column="1" colspan="2">
+                                                        <widget class="QComboBox" m_name="comboBox"/>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                            <widget class="QWidget" m_name="pageDatabase">
+                                <layout class="QVBoxLayout" m_name="verticalLayout_4">
+                                    <item>
+                                        <widget class="QScrollArea" m_name="scrollArea_3">
+                                            <property m_name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" m_name="scrollAreaWidgetContents_3">
+                                                <property m_name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>607</width>
+                                                        <height>299</height>
+                                                    </rect>
+                                                </property>
+                                                <layout class="QGridLayout" m_name="gridLayout_3">
+                                                    <property m_name="horizontalSpacing">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property m_name="verticalSpacing">
+                                                        <number>13</number>
+                                                    </property>
+                                                    <item row="2" column="0">
+                                                        <widget class="QLabel" m_name="label_23">
+                                                            <property m_name="text">
+                                                                <string>Reset Data</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="1" column="0">
+                                                        <widget class="QLabel" m_name="label_21">
+                                                            <property m_name="text">
+                                                                <string>Case Sensitive Search</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="0" column="0">
+                                                        <widget class="QLabel" m_name="label_22">
+                                                            <property m_name="text">
+                                                                <string>Optimize Database</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="3" column="0">
+                                                        <widget class="QLabel" m_name="label_24">
+                                                            <property m_name="text">
+                                                                <string>Database Path</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                            <widget class="QWidget" m_name="pageMonitor">
+                                <layout class="QVBoxLayout" m_name="verticalLayout_5">
+                                    <item>
+                                        <widget class="QScrollArea" m_name="scrollArea_4">
+                                            <property m_name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" m_name="scrollAreaWidgetContents_4">
+                                                <property m_name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>607</width>
+                                                        <height>299</height>
+                                                    </rect>
+                                                </property>
+                                                <layout class="QGridLayout" m_name="gridLayout_4">
+                                                    <property m_name="horizontalSpacing">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property m_name="verticalSpacing">
+                                                        <number>13</number>
+                                                    </property>
+                                                    <item row="1" column="0">
+                                                        <widget class="QLabel" m_name="label_25">
+                                                            <property m_name="text">
+                                                                <string>List of Folders</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="0" column="0">
+                                                        <widget class="QLabel" m_name="label_26">
+                                                            <property m_name="text">
+                                                                <string>Monitor Folders</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="0">
+                                                        <widget class="QLabel" m_name="label_27">
+                                                            <property m_name="text">
+                                                                <string>Run Clean Files</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                            <widget class="QWidget" m_name="pageTools">
+                                <layout class="QVBoxLayout" m_name="verticalLayout_6">
+                                    <item>
+                                        <widget class="QScrollArea" m_name="scrollArea_5">
+                                            <property m_name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" m_name="scrollAreaWidgetContents_6">
+                                                <property m_name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>607</width>
+                                                        <height>299</height>
+                                                    </rect>
+                                                </property>
+                                                <layout class="QGridLayout" m_name="gridLayout_6">
+                                                    <property m_name="horizontalSpacing">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property m_name="verticalSpacing">
+                                                        <number>13</number>
+                                                    </property>
+                                                    <item row="0" column="0">
+                                                        <widget class="QLabel" m_name="label_32">
+                                                            <property m_name="text">
+                                                                <string>Summaries</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="2" column="0">
+                                                        <widget class="QLabel" m_name="label_33">
+                                                            <property m_name="text">
+                                                                <string>Data Viewer</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="1" column="0">
+                                                        <widget class="QLabel" m_name="label_31">
+                                                            <property m_name="text">
+                                                                <string>Link Manager</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item row="3" column="0">
+                                                        <widget class="QLabel" m_name="label_34">
+                                                            <property m_name="text">
+                                                                <string>MetaData</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                            <widget class="QWidget" m_name="page_2">
+                                <layout class="QHBoxLayout" m_name="horizontalLayout_2">
+                                    <property m_name="leftMargin">
+                                        <number>7</number>
+                                    </property>
+                                    <property m_name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property m_name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property m_name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                </layout>
+                            </widget>
+                        </widget>
+                    </widget>
+                </item>
             </layout>
-           </widget>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="pageStartup"/>
-       <widget class="QWidget" name="page">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <property name="leftMargin">
-          <number>7</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-        </layout>
-       </widget>
-      </widget>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
- </widget>
- <resources/>
- <connections/>
+        </widget>
+        <widget class="QStatusBar" m_name="statusbar"/>
+    </widget>
+    <resources/>
+    <connections/>
 </ui>

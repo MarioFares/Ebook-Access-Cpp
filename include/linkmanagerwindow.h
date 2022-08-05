@@ -1,99 +1,176 @@
 #ifndef LINKMANAGERWINDOW_H
 #define LINKMANAGERWINDOW_H
 
+#include <QLabel>
+#include <QAction>
+#include <QSplitter>
+#include <QToolButton>
 #include <QMainWindow>
+#include <QPushButton>
+#include <QPlainTextEdit>
 #include <QListWidgetItem>
-
-namespace Ui {
-class LinkManagerWindow;
-}
 
 class LinkManagerWindow : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit LinkManagerWindow(QWidget *parent = nullptr);
-    ~LinkManagerWindow();
+	explicit LinkManagerWindow(QWidget* parent = nullptr);
 
 private slots:
-    void setupConnections();
 
-    void refreshCollections(const QString &searchString);
+	void setupInterface();
 
-    void refreshLinks(const QString &collectionName, const QString &searchString);
+	void setupActions();
 
-    void showLinksContextMenu(const QPoint &pos);
+	void setupMenus();
 
-    void showCollectionsContextMenu(const QPoint &pos);
+	void setupConnections();
 
-    void deleteLink(const QString &name);
+	void refreshCollections(const QString& searchString);
 
-    void deleteCollection(const QString &name);
+	void refreshLinks(const QString& collectionName, const QString& searchString);
 
-    void editLinkDetails(const QString &name);
+	void showLinksContextMenu(const QPoint& pos);
 
-    void renameCollection(const QString &name);
+	void showCollectionsContextMenu(const QPoint& pos);
 
-    void copyLink(const QString &name);
+	void deleteLink(const QString& name);
 
-    void openAllLinks();
+	void deleteCollection(const QString& name);
 
-    void addCollection();
+	void editLinkDetails(const QString& name);
 
-    void addLink();
+	void renameCollection(const QString& name);
 
-    void searchLinks(const QString &arg1);
+	void copyLink(const QString& name);
 
-    void collectionClicked(QListWidgetItem *item);
+	void openAllLinks();
 
-    void openLink(QListWidgetItem *item);
+	void addCollection();
 
-    void linkClicked(QListWidgetItem *item);
+	void addLink();
 
-    void clearDetails();
+	void searchLinks(const QString& arg1);
 
-    void restoreDetails();
+	void collectionClicked(QListWidgetItem* item);
 
-    void updateDetails();
+	static void openLink(QListWidgetItem* item);
 
-    void linkSelectionChanged();
+	void linkClicked(QListWidgetItem* item);
 
-    void clearCollections();
+	void clearDetails();
 
-    void sortCollections();
+	void restoreDetails();
 
-    void clearLinks();
+	void updateDetails();
 
-    void sortLinks();
+	void linkSelectionChanged();
 
-    void hideLeftPanel();
+	void clearCollections();
 
-    void hideRightPanel();
+	void sortCollections();
 
-    void hideSearchBars();
+	void clearLinks();
 
-    void resetLinks();
+	void sortLinks();
 
-    void resetCollections();
+	void hideLeftPanel();
 
-    void actionEditLink();
+	void hideRightPanel();
 
-    void actionDeleteCollection();
+	void hideSearchBars();
 
-    void actionRenameCollection();
+	static void resetLinks();
 
-    void actionOpenAllLinks();
+	static void resetCollections();
 
-    void actionDeleteLink();
+	void actionEditLink();
 
-    void hideStatusBar();
+	void actionDeleteCollection();
+
+	void actionRenameCollection();
+
+	void actionOpenAllLinks();
+
+	void actionDeleteLink();
+
+	void hideStatusBar();
 
 private:
-    Ui::LinkManagerWindow *ui;
+	Qt::SortOrder m_LINKS_SORT;
+	Qt::SortOrder m_COLL_SORT;
 
-    Qt::SortOrder LINKS_SORT;
-    Qt::SortOrder COLL_SORT;
+	// Widgets
+	QAction* m_actionMaximize;
+	QAction* m_actionMinimize;
+	QAction* m_actionFullscreen;
+	QAction* m_actionHideLeftPanel;
+	QAction* m_actionHideRightPanel;
+	QAction* m_actionHideSearchBars;
+	QAction* m_actionClose;
+	QAction* m_actionDeleteLink;
+	QAction* m_actionAddLink;
+	QAction* m_actionResetCollections;
+	QAction* m_actionResetLinks;
+	QAction* m_actionResetAll;
+	QAction* m_actionAddCollection;
+	QAction* m_actionDeleteCollection;
+	QAction* m_actionOpenAllLinks;
+	QAction* m_actionRenameCollection;
+	QAction* m_actionEditLink;
+	QAction* m_actionHideStatusBar;
+	QWidget* m_centralWidget;
+	QFrame* m_frameLeft;
+	QFrame* m_frameCollectionsSearch;
+	QLabel* m_labelCollectionSearch;
+	QLineEdit* m_textCollections;
+	QSplitter* m_splitter;
+	QToolButton* m_buttonSearchCollections;
+	QToolButton* m_buttonClearCollections;
+	QToolButton* m_buttonSortCollections;
+	QToolButton* m_buttonAddCollection;
+	QListWidget* m_listWidgetCollections;
+	QFrame* m_frameRight;
+	QFrame* m_frameLinksSearch;
+	QLabel* m_labelLinkSearch;
+	QLineEdit* m_textLinks;
+	QToolButton* m_buttonSearchLinks;
+	QToolButton* m_buttonClearLinks;
+	QToolButton* m_buttonSortLinks;
+	QToolButton* m_buttonAddLink;
+	QListWidget* m_listWidgetLinks;
+	QFrame* m_frameLinkDetails;
+	QLineEdit* m_textDetailsTitle;
+	QLabel* m_labelDetailsTitle;
+	QLineEdit* m_textDetailsUrl;
+	QLabel* m_labelDetailsUrl;
+	QLabel* m_labelDetailsComments;
+	QPlainTextEdit* m_plainTextDetailsComments;
+	QPushButton* m_buttonDetailsRestore;
+	QPushButton* m_buttonDetailsUpdate;
+	QPushButton* m_buttonDetailsClear;
+	QStatusBar* m_statusBar;
+	QMenuBar* m_menuBar;
+	QMenu* m_menuFile;
+	QMenu* m_menuView;
+	QMenu* m_menuLinks;
+	QMenu* m_menuReset;
+	QMenu* m_menuCollections;
+
+	// Layouts
+	QVBoxLayout* m_vertLayLeft;
+	QHBoxLayout* m_horLayCollectionsSearch;
+	QVBoxLayout* m_vertLayRight;
+	QHBoxLayout* m_horLayLinksSearch;
+	QVBoxLayout* m_vertLayDetails;
+	QGridLayout* m_gridLayDetails;
+	QHBoxLayout* m_horLayBotButtons;
+	QHBoxLayout* m_horLayMain;
+
+	// Spacers
+	QSpacerItem* m_horSpacerBotButtonsLeft;
+	QSpacerItem* m_horSpacerBotButtonsRight;
 };
 
 #endif // LINKMANAGERWINDOW_H

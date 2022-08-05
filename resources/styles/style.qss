@@ -124,11 +124,13 @@ QSpinBox:hover {
     padding: 4px;
 }
  QMenu::separator {
-     background-color: white;
+     background-color: grey;
      height: 1px
 }
  QPushButton {
      background-color: #2D2D30;
+     padding-left: 5px;
+     padding-right: 5px;
      color: white;
      border-radius: 5px;
      font: 10pt "Segoe UI";

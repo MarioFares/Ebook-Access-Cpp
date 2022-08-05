@@ -1,49 +1,91 @@
 #include "include/quotedialog.h"
-#include "ui_quotedialog.h"
 
 #include <QFile>
 #include <QRandomGenerator>
 #include <QRegularExpression>
 
-QuoteDialog::QuoteDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::quoteDialog)
+QuoteDialog::QuoteDialog(QWidget* parent)
+		:
+		QDialog(parent)
 {
-    ui->setupUi(this);
+	QFile file(":/txt/quotes.txt");
+	file.open(QFile::ReadOnly);
+	QString quotes = file.readAll();
+	m_quotesList = quotes.split(QRegularExpression("\n|\r\n|\r"));
+	m_quotesList.removeAll(QString());
 
-    QFile file(":/txt/quotes.txt");
-    file.open(QFile::ReadOnly);
-    QString quotes = file.readAll();
-    this->quotesList = quotes.split(QRegularExpression("\n|\r\n|\r"));
-    this->quotesList.removeAll(QString());
+	std::shuffle(m_quotesList.begin(), m_quotesList.end(), std::random_device());
+	m_currIndex = 0;
 
-    std::shuffle(quotesList.begin(), quotesList.end(), std::random_device());
-    ui->label->setText(this->quotesList[0]);
-
-    this->currIndex = 0;
-    setupConnections();
+	setupInterface();
+	setupConnections();
 }
 
-QuoteDialog::~QuoteDialog()
+void QuoteDialog::setupInterface()
 {
-    delete ui;
+	// Window
+	setWindowTitle("Quote of the Day");
+	setFixedSize(475, 210);
+
+	// Widgets
+	m_labelQuote = new QLabel(m_quotesList[0]);
+	m_labelQuote->setAlignment(Qt::AlignCenter);
+	m_labelQuote->setWordWrap(true);
+	QFont font;
+	font.setBold(true);
+	font.setItalic(true);
+	font.setPointSize(10);
+	m_labelQuote->setFont(font);
+
+	m_buttonPrevious = new QPushButton("Previous");
+	m_buttonPrevious->setFlat(true);
+	m_buttonPrevious->setCursor(Qt::PointingHandCursor);
+	m_buttonPrevious->setMinimumSize(80, 25);
+
+	m_buttonNext = new QPushButton("Next");
+	m_buttonNext->setFlat(true);
+	m_buttonNext->setCursor(Qt::PointingHandCursor);
+	m_buttonNext->setMinimumSize(80, 25);
+
+	// Layouts
+	m_horLayQuote = new QHBoxLayout();
+	m_horSpacerQuoteLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+	m_horSpacerQuoteRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+	m_horLayQuote->addSpacerItem(m_horSpacerQuoteLeft);
+	m_horLayQuote->addWidget(m_labelQuote);
+	m_horLayQuote->addSpacerItem(m_horSpacerQuoteRight);
+
+	m_horLayButtons = new QHBoxLayout();
+	m_horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+	m_horSpacerButtonsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+	m_horLayButtons->addSpacerItem(m_horSpacerButtonsLeft);
+	m_horLayButtons->addWidget(m_buttonPrevious);
+	m_horLayButtons->addWidget(m_buttonNext);
+	m_horLayButtons->addSpacerItem(m_horSpacerButtonsRight);
+
+	m_vertLayMain = new QVBoxLayout();
+	m_vertLayMain->addLayout(m_horLayQuote);
+	m_vertLayMain->addLayout(m_horLayButtons);
+	m_vertLayMain->setSpacing(10);
+
+	setLayout(m_vertLayMain);
 }
 
 void QuoteDialog::setupConnections()
 {
-    connect(ui->buttonNext, &QPushButton::clicked, this, &QuoteDialog::nextQuote);
-    connect(ui->buttonPrevious, &QPushButton::clicked, this, &QuoteDialog::prevQuote);
+	connect(m_buttonNext, &QPushButton::clicked, this, &QuoteDialog::nextQuote);
+	connect(m_buttonPrevious, &QPushButton::clicked, this, &QuoteDialog::prevQuote);
 }
 
 void QuoteDialog::nextQuote()
 {
-    this->currIndex < this->quotesList.count() - 1 ? this->currIndex++ : this->quotesList.count();
-    ui->label->setText(this->quotesList[this->currIndex]);
+	m_currIndex < m_quotesList.count() - 1 ? m_currIndex++ : m_quotesList.count();
+	m_labelQuote->setText(m_quotesList[m_currIndex]);
 }
 
 void QuoteDialog::prevQuote()
 {
-    this->currIndex > 0 ? this->currIndex-- : 0;
-    ui->label->setText(this->quotesList[this->currIndex]);
+	m_currIndex > 0 ? m_currIndex-- : 0;
+	m_labelQuote->setText(m_quotesList[m_currIndex]);
 }
 

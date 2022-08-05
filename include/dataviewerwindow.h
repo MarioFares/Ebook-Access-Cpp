@@ -1,58 +1,83 @@
 #ifndef DATAVIEWERWINDOW_H
 #define DATAVIEWERWINDOW_H
 
+#include <QComboBox>
+#include <QBoxLayout>
 #include <QMainWindow>
 #include <QHeaderView>
-
-namespace Ui {
-class DataViewerWindow;
-}
+#include <QToolButton>
+#include <QTableWidget>
 
 class DataViewerWindow : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit DataViewerWindow(QWidget *parent = nullptr);
-    ~DataViewerWindow();
-
+	explicit DataViewerWindow(QWidget* parent = nullptr);
 
 private slots:
-    void setupConnections();
 
-    void closeEvent(QCloseEvent *event);
+	void setupInterface();
 
-    void populateTable();
+	void setupConnections();
 
-    void tableSelected(int index);
+	void closeEvent(QCloseEvent* event) override;
 
-    void toggleColors();
+	void populateTable();
 
-    void toggleGrid();
+	void tableSelected(int index);
 
-    void toggleFitColumns();
+	void toggleColors();
 
-    void showCellText();
+	void toggleGrid();
 
-    void showTableContextMenu(const QPoint &pos);
+	void toggleFitColumns();
 
-    void hideColumn(int index);
+	void showCellText();
 
-    void showColumn(int index);
+	void showTableContextMenu(const QPoint& pos);
 
-    void showAllColumns();
+	void hideColumn(int index);
 
-    void setupGridMenu();
+	void showColumn(int index);
 
-    void setFontColor();
+	void showAllColumns();
 
-    void setBackColor();
+	void setupGridMenu();
 
+	void setFontColor();
+
+	void setBackColor();
 
 private:
-    Ui::DataViewerWindow *ui;
-    QHeaderView::ResizeMode columnsResizeMode;
-    QHash<int, QString> hiddenColumns;
+	QHeaderView::ResizeMode m_columnsResizeMode;
+	QHash<int, QString> m_hiddenColumns;
+
+	// Widgets
+	QWidget* m_centralWidget;
+	QFrame* m_frameSearch;
+	QComboBox* m_comboBoxTables;
+	QToolButton* m_buttonRefresh;
+	QToolButton* m_buttonToggleColors;
+	QToolButton* m_buttonToggleGrid;
+	QToolButton* m_buttonToggleFitColumns;
+	QToolButton* m_buttonFontColor;
+	QToolButton* m_buttonBackColor;
+	QToolButton* m_buttonGridStyle;
+	QTableWidget* m_tableWidget;
+	QMenuBar* m_menubar;
+	QStatusBar* m_statusbar;
+
+	// Layouts
+	QVBoxLayout* m_vertLayMain;
+	QHBoxLayout* m_horLayComboBox;
+	QHBoxLayout* m_horLayButtons;
+
+	// Spacers
+	QSpacerItem* m_horSpacerComboBoxLeft;
+	QSpacerItem* m_horSpacerComboBoxRight;
+	QSpacerItem* m_horSpacerButtonsLeft;
+	QSpacerItem* m_horSpacerButtonsRight;
 };
 
 #endif // DATAVIEWERWINDOW_H
