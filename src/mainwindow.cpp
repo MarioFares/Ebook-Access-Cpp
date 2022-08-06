@@ -1608,7 +1608,7 @@ void MainWindow::genEbooksReport()
 	file.write("  </thead>");
 	file.write("  <tbody>");
 
-	queries::query.exec("SELECT m_name, author, genre, path, ext, pages, folder, tags, time_added FROM ebooks");
+	queries::query.exec("SELECT name, author, genre, path, ext, pages, folder, tags, time_added FROM ebooks");
 	qint32 fieldCount = queries::query.record().count();
 	while (queries::query.next())
 	{

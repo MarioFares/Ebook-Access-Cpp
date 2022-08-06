@@ -538,7 +538,7 @@ void LinkManagerWindow::copyLink(const QString& name)
 
 void LinkManagerWindow::renameCollection(const QString& name)
 {
-	GetNameDialog dialog(this, "Collection Name", "Please provide a m_name for the collection you want to create:");
+	GetNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
 
 	dialog.m_name = name;
 	dialog.setDataOnOpen();
@@ -579,7 +579,7 @@ void LinkManagerWindow::refreshLinks(const QString& collectionName, const QStrin
 
 void LinkManagerWindow::addCollection()
 {
-	GetNameDialog dialog(this, "Collection Name", "Please provide a m_name for the collection you want to create:");
+	GetNameDialog dialog(this, "Collection Name", "Please provide a name for the collection you want to create:");
 	common::openDialog(&dialog, ":/styles/style.qss");
 
 	if (!dialog.m_name.isEmpty())

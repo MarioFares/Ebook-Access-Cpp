@@ -301,7 +301,7 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 	queries::selectAllBasedonName(name);
 	while (queries::query.next())
 	{
-		m_textName->setText(queries::query.value("m_name").toString());
+		m_textName->setText(queries::query.value("name").toString());
 		m_textAuthor->setText(queries::query.value("author").toString());
 		m_textGenre->setText(queries::query.value("genre").toString());
 		m_textPages->setText(queries::query.value("pages").toString());
@@ -316,7 +316,7 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 		m_textPath->setCursorPosition(0);
 		m_textFolder->setCursorPosition(0);
 
-		setWindowTitle("MetaData - " + queries::query.value("m_name").toString());
+		setWindowTitle("MetaData - " + queries::query.value("name").toString());
 	}
 	QString tags = queries::selectTagsBasedOnName(name);
 	m_textTags->setText(tags);
