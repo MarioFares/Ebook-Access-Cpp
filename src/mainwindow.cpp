@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	setupInterface();
 	setupConnections();
 	setupTabOrder();
+	setupShortcuts();
 }
 
 void MainWindow::setupInterface()
@@ -618,7 +619,7 @@ void MainWindow::setupActions()
 	m_actionHideRightFrame = new QAction("Hide Right Frame", this);
 	m_actionHideUtilities = new QAction("Hide Utilities Section", this);
 	m_actionHideLeftFrame = new QAction("Hide Left Frame", this);
-	m_actionHideStatusBar = new QAction("Hide Status Bar", this);
+	m_actionHideStatusBar = new QAction("Hide Status Strip", this);
 
 	// Add Menu
 	m_actionAddBook = new QAction("Add Books", this);
@@ -633,7 +634,7 @@ void MainWindow::setupActions()
 	m_actionResetSummaries = new QAction("Reset Summaries", this);
 	m_actionResetDatabase = new QAction("Reset Database", this);
 	m_actionResetDatabase->setIcon(QIcon(":/icons/reset_database_icon.png"));
-	m_actionClearEntries = new QAction("Clear Entries", this);
+	m_actionClearEntries = new QAction("Clear Criteria", this);
 	m_actionClearEntries->setIcon(QIcon(":/icons/clear_icon.png"));
 
 	// Clean Menu
@@ -645,7 +646,7 @@ void MainWindow::setupActions()
 	m_actionSearchFiles->setIcon(QIcon(":/icons/search_icon.png"));
 	m_actionSearchText = new QAction("Search Text", this);
 	m_actionSearchText->setIcon(QIcon(":/icons/searchbar_icon.png"));
-	m_actionSortSearch = new QAction("Sort Search", this);
+	m_actionSortSearch = new QAction("Sort Entries", this);
 	m_actionSortSearch->setIcon(QIcon(":/icons/sort_icon.png"));
 	m_actionClearSearch = new QAction("Clear Search", this);
 	m_actionClearSearch->setIcon(QIcon(":/icons/clear_search_white_icon.png"));
@@ -800,6 +801,7 @@ void MainWindow::setupConnections()
 
 	connect(m_actionBookDetails, &QAction::triggered, [this]
 	{ showBookDetailsWindow(""); });
+	connect(m_actionClearEntries, &QAction::triggered, this, &MainWindow::clearCriteria);
 	connect(m_actionAddBook, &QAction::triggered, this, &MainWindow::showAddBookDialog);
 	connect(m_actionAddBooks, &QAction::triggered, this, &MainWindow::showAddBooksDialog);
 	connect(m_actionSearchFiles, &QAction::triggered, this, &MainWindow::searchCriteria);
@@ -894,6 +896,51 @@ void MainWindow::setupTabOrder()
 	QWidget::setTabOrder(m_buttonAddBooks, m_buttonSummaries);
 	QWidget::setTabOrder(m_buttonSummaries, m_buttonDbViewer);
 	QWidget::setTabOrder(m_buttonDbViewer, m_buttonLinkManager);
+}
+
+void MainWindow::setupShortcuts()
+{
+	// File Menu
+	m_actionClose->setShortcut(QKeySequence("Ctrl+Q"));
+
+	// View Menu
+	m_actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
+	m_actionMax->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
+	m_actionMin->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
+	m_actionHideSearchBar->setShortcut(QKeySequence("Ctrl+S, Ctrl+B"));
+	m_actionHideDetailsSection->setShortcut(QKeySequence("Ctrl+D, Ctrl+S"));
+	m_actionHideRightFrame->setShortcut(QKeySequence("Ctrl+R, Ctrl+F"));
+	m_actionHideUtilities->setShortcut(QKeySequence("Ctrl+U, Ctrl+S"));
+	m_actionHideLeftFrame->setShortcut(QKeySequence("Ctrl+L, Ctrl+F"));
+	m_actionHideStatusBar->setShortcut(QKeySequence("Ctrl+S, Ctrl+S"));
+
+	// Add Menu
+	m_actionAddBook->setShortcut(QKeySequence("Ctrl+A, Ctrl+B"));
+	m_actionAddBooks->setShortcut(QKeySequence("Ctrl+A, Ctrl+M"));
+
+	// Reset Menu
+	m_actionClearEntries->setShortcut(QKeySequence("Ctrl+Shift+Del"));
+
+	// Search Menu
+	m_actionSearchText->setShortcut(QKeySequence("Ctrl+S, Ctrl+T"));
+	m_actionSearchFiles->setShortcut(QKeySequence("Ctrl+S, Ctrl+C"));
+
+	m_actionSortSearch->setShortcut(QKeySequence("Ctrl+S, Ctrl+E"));
+	m_actionClearSearch->setShortcut(QKeySequence("Shift+Alt+Del"));
+
+	// Tools Menu
+	m_actionSummaries->setShortcut(QKeySequence("Ctrl+O, Ctrl+S"));
+	m_actionLinkManager->setShortcut(QKeySequence("Ctrl+O, Ctrl+L"));
+	m_actionDataViewer->setShortcut(QKeySequence("Ctrl+O, Ctrl+D"));
+	m_actionBookDetails->setShortcut(QKeySequence("Ctrl+O, Ctrl+M"));
+
+	// Generate Menu
+	m_actionEbooksReport->setShortcut(QKeySequence("Ctrl+E, Ctrl+R"));
+	m_actionUsageReport->setShortcut(QKeySequence("Ctrl+U, Ctrl+R"));
+	m_actionChooseRandomBook->setShortcut(QKeySequence("Ctrl+Shift+R"));
+
+	// Settings Menu
+	m_actionApplicationSettings->setShortcut(QKeySequence("Ctrl+A, Ctrl+S"));
 }
 
 void MainWindow::showQuote()

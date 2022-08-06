@@ -40,6 +40,8 @@ private slots:
 
 	void setupTabOrder();
 
+	void setupShortcuts();
+
 	void closeEvent(QCloseEvent* event) override;
 
 	void toggleBold();

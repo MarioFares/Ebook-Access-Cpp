@@ -23,8 +23,6 @@ private slots:
 
 	void setupTabOrder();
 
-
-
 	void clearInputs();
 
 	void browseFile();

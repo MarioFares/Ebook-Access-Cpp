@@ -26,6 +26,7 @@ LinkManagerWindow::LinkManagerWindow(QWidget* parent) : QMainWindow(parent)
 	setupInterface();
 	setupConnections();
 	setupTabOrder();
+	setupShortcuts();
 }
 
 void LinkManagerWindow::setupInterface()
@@ -265,6 +266,7 @@ void LinkManagerWindow::setupActions()
 {
 	// File Menu
 	m_actionClose = new QAction("Close", this);
+
 	// View Menu
 	m_actionFullscreen = new QAction("Fullscreen", this);
 	m_actionMaximize = new QAction("Maximize", this);
@@ -273,14 +275,17 @@ void LinkManagerWindow::setupActions()
 	m_actionHideRightPanel = new QAction("Hide Right Panel", this);
 	m_actionHideSearchBars = new QAction("Hide Search Bars", this);
 	m_actionHideStatusBar = new QAction("Hide Status Bar", this);
+
 	// Reset Menu
 	m_actionResetLinks = new QAction("Reset Links", this);
 	m_actionResetCollections = new QAction("Reset Collections", this);
 	m_actionResetAll = new QAction("Reset All", this);
+
 	// Links Menu
 	m_actionAddLink = new QAction("Add Link", this);
 	m_actionDeleteLink = new QAction("Delete Link", this);
 	m_actionEditLink = new QAction("Edit Link", this);
+
 	// Collections Menu
 	m_actionAddCollection = new QAction("Add Collection", this);
 	m_actionDeleteCollection = new QAction("Delete Collection", this);
@@ -401,6 +406,32 @@ void LinkManagerWindow::setupTabOrder()
 	QWidget::setTabOrder(m_plainTextDetailsComments, m_buttonDetailsUpdate);
 	QWidget::setTabOrder(m_buttonDetailsUpdate, m_buttonDetailsRestore);
 	QWidget::setTabOrder(m_buttonDetailsRestore, m_buttonDetailsClear);
+}
+
+void LinkManagerWindow::setupShortcuts()
+{
+	// File Menu
+	m_actionClose->setShortcut(QKeySequence("Ctrl+Q"));
+
+	// View Menu
+	m_actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
+	m_actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
+	m_actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
+	m_actionHideLeftPanel->setShortcut(QKeySequence("Ctrl+L, Ctrl+P"));
+	m_actionHideRightPanel->setShortcut(QKeySequence("Ctrl+R, Ctrl+P"));
+	m_actionHideSearchBars->setShortcut(QKeySequence("Ctrl+H, Ctrl+S"));
+	m_actionHideStatusBar->setShortcut(QKeySequence("Ctrl+S, Ctrl+S"));
+
+	// Links Menu
+	m_actionAddLink->setShortcut(QKeySequence("Ctrl+A, Ctrl+L"));
+	m_actionEditLink->setShortcut(QKeySequence("Ctrl+E, Ctrl+L"));
+	m_actionDeleteLink->setShortcut(QKeySequence("Ctrl+D, Ctrl+L"));
+
+	// Collections Menu
+	m_actionAddCollection->setShortcut(QKeySequence("Ctrl+A, Ctrl+C"));
+	m_actionDeleteCollection->setShortcut(QKeySequence("Ctrl+D, Ctrl+C"));
+	m_actionRenameCollection->setShortcut(QKeySequence("Ctrl+R, Ctrl+C"));
+	m_actionOpenAllLinks->setShortcut(QKeySequence("Ctrl+O, Ctrl+A"));
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint& pos)

@@ -29,6 +29,7 @@ SummaryWindow::SummaryWindow(QWidget* parent) : QMainWindow(parent)
 	setupInterface();
 	setupConnections();
 	setupTabOrder();
+	setupShortcuts();
 }
 
 void SummaryWindow::setupInterface()
@@ -783,6 +784,63 @@ void SummaryWindow::setupTabOrder()
 	QWidget::setTabOrder(m_buttonIncFontSize, m_buttonDecFontSize);
 	QWidget::setTabOrder(m_buttonDecFontSize, m_buttonIncIndent);
 	QWidget::setTabOrder(m_buttonIncIndent, m_buttonDecIndent);
+}
+
+void SummaryWindow::setupShortcuts()
+{
+	// File Menu
+	m_actionClose->setShortcut(QKeySequence("Ctrl+Q"));
+
+	// Edit Menu
+	m_actionUndo->setShortcut(QKeySequence("Ctrl+Z"));
+	m_actionRedo->setShortcut(QKeySequence("Ctrl+Y"));
+	m_actionCut->setShortcut(QKeySequence("Ctrl+C"));
+	m_actionCopy->setShortcut(QKeySequence("Ctrl+X"));
+	m_actionCopyFormatting->setShortcut(QKeySequence("Ctrl+Shift+C"));
+	m_actionPaste->setShortcut(QKeySequence("Ctrl+V"));
+	m_actionPasteMatchFormat->setShortcut(QKeySequence("Ctrl+Shift+V"));
+	m_actionSelectAll->setShortcut(QKeySequence("Ctrl+A"));
+	m_actionClearAll->setShortcut(QKeySequence("Ctrl+Shift+Del"));
+	m_actionDeleteCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+D"));
+	m_actionDuplicateCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+L"));
+	m_actionFind->setShortcut(QKeySequence("Ctrl+Shift+F"));
+
+	// View Menu
+	m_actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
+	m_actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
+	m_actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
+	m_actionZoomIn->setShortcut(QKeySequence("Ctrl+="));
+	m_actionZoomOut->setShortcut(QKeySequence("Ctrl+-"));
+	m_actionHideSearchBar->setShortcut(QKeySequence("Ctrl+H, Ctrl+S"));
+	m_actionHideLeftPane->setShortcut(QKeySequence("Ctrl+L, Ctrl+P"));
+	m_actionHideTopToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+T"));
+	m_actionHideRightToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+R"));
+	m_actionHideRightPane->setShortcut(QKeySequence("Ctrl+R, Ctrl+P"));
+
+	// Insert Menu
+	m_actionTableRow->setShortcut(QKeySequence("Ctrl+R, Ctrl+R"));
+	m_actionTableColumn->setShortcut(QKeySequence("Ctrl+C, Ctrl+C"));
+
+	// Format Menu
+	m_actionBold->setShortcut(QKeySequence("Ctrl+B"));
+	m_actionItalic->setShortcut(QKeySequence("Ctrl+I"));
+	m_actionUnderline->setShortcut(QKeySequence("Ctrl+U"));
+	m_actionThrough->setShortcut(QKeySequence("Ctrl+T"));
+	m_actionHighlight->setShortcut(QKeySequence("Ctrl+Shift+H"));
+	m_actionCodeBlock->setShortcut(QKeySequence("Ctrl+Shift+L"));
+	m_actionBulletedList->setShortcut(QKeySequence("Ctrl+Shift+B"));
+	m_actionOrderedList->setShortcut(QKeySequence("Ctrl+Shift+O"));
+	m_actionIncFontSize->setShortcut(QKeySequence("Ctrl+Shift+="));
+	m_actionDecFontSize->setShortcut(QKeySequence("Ctrl+Shift+-"));
+	m_actionIncIndent->setShortcut(QKeySequence("Ctrl+Shift+["));
+	m_actionDecIndent->setShortcut(QKeySequence("Ctrl+Shift+]"));
+	m_actionSuperscript->setShortcut(QKeySequence("Ctrl+Shift+Up"));
+	m_actionSubscript->setShortcut(QKeySequence("Ctrl+Shift+Down"));
+	m_actionResetFormat->setShortcut(QKeySequence("Ctrl+Space"));
+
+	// Search Menu
+	m_actionSearchText->setShortcut(QKeySequence("Ctrl+S, Ctrl+T"));
+	m_actionClearSearch->setShortcut(QKeySequence("Ctrl+C, Ctrl+S"));
 }
 
 void SummaryWindow::closeEvent(QCloseEvent* event)

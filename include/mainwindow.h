@@ -35,6 +35,8 @@ private slots:
 
 	void setupTabOrder();
 
+	void setupShortcuts();
+
 	void closeEvent(QCloseEvent* event) override;
 
 	static void showBookDetailsWindow(const QString& name = "");
