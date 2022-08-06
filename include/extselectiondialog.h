@@ -23,6 +23,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void fillListWidget(QVector<QString> extVector);
 
 	static void setItemState(QListWidgetItem* item);

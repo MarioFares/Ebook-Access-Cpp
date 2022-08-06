@@ -25,8 +25,7 @@
 #include <QDesktopServices>
 #include <QOperatingSystemVersion>
 
-MainWindow::MainWindow(QWidget* parent)
-		:QMainWindow(parent)
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
 	// Setup DB
 	queries::connectToDatabase();
@@ -63,6 +62,7 @@ MainWindow::MainWindow(QWidget* parent)
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void MainWindow::setupInterface()
@@ -852,6 +852,48 @@ void MainWindow::setupConnections()
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile("./"));
 	});
+}
+
+void MainWindow::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textSearchBar, m_ebooksListWidget);
+	QWidget::setTabOrder(m_ebooksListWidget, m_textDetailsName);
+	QWidget::setTabOrder(m_textDetailsName, m_textDetailsAuthor);
+	QWidget::setTabOrder(m_textDetailsAuthor, m_textDetailsGenre);
+	QWidget::setTabOrder(m_textDetailsGenre, m_textDetailsFolder);
+	QWidget::setTabOrder(m_textDetailsFolder, m_textDetailsExt);
+	QWidget::setTabOrder(m_textDetailsExt, m_textDetailsPages);
+	QWidget::setTabOrder(m_textDetailsPages, m_textDetailsSize);
+	QWidget::setTabOrder(m_textDetailsSize, m_buttonSizeUnit);
+	QWidget::setTabOrder(m_buttonSizeUnit, m_textDetailsTags);
+	QWidget::setTabOrder(m_textDetailsTags, m_buttonDetailsUpdate);
+	QWidget::setTabOrder(m_buttonDetailsUpdate, m_buttonDetailsRestore);
+	QWidget::setTabOrder(m_buttonDetailsRestore, m_buttonDetailsClear);
+	QWidget::setTabOrder(m_buttonDetailsClear, m_comboBoxFolderCriteria);
+	QWidget::setTabOrder(m_comboBoxFolderCriteria, m_buttonFolder);
+	QWidget::setTabOrder(m_buttonFolder, m_comboBoxAuthorCriteria);
+	QWidget::setTabOrder(m_comboBoxAuthorCriteria, m_buttonAuthor);
+	QWidget::setTabOrder(m_buttonAuthor, m_comboBoxGenreCriteria);
+	QWidget::setTabOrder(m_comboBoxGenreCriteria, m_buttonGenre);
+	QWidget::setTabOrder(m_buttonGenre, m_textTagsCriteria);
+	QWidget::setTabOrder(m_textTagsCriteria, m_buttonTags);
+	QWidget::setTabOrder(m_buttonTags, m_textExts);
+	QWidget::setTabOrder(m_textExts, m_buttonExtensions);
+	QWidget::setTabOrder(m_buttonExtensions, m_spinBoxFromSizeCriteria);
+	QWidget::setTabOrder(m_spinBoxFromSizeCriteria, m_spinBoxToSizeCriteria);
+	QWidget::setTabOrder(m_spinBoxToSizeCriteria, m_buttonSizeCriteria);
+	QWidget::setTabOrder(m_buttonSizeCriteria, m_spinBoxFromPagesCriteria);
+	QWidget::setTabOrder(m_spinBoxFromPagesCriteria, m_spinBoxToPagesCriteria);
+	QWidget::setTabOrder(m_spinBoxToPagesCriteria, m_buttonSearchCriteria);
+	QWidget::setTabOrder(m_buttonSearchCriteria, m_buttonClearCriteria);
+	QWidget::setTabOrder(m_buttonClearCriteria, m_buttonSaveCriteria);
+	QWidget::setTabOrder(m_buttonSaveCriteria, m_comboBoxSearchLoad);
+	QWidget::setTabOrder(m_comboBoxSearchLoad, m_buttonSearchLoad);
+	QWidget::setTabOrder(m_buttonSearchLoad, m_buttonAddBook);
+	QWidget::setTabOrder(m_buttonAddBook, m_buttonAddBooks);
+	QWidget::setTabOrder(m_buttonAddBooks, m_buttonSummaries);
+	QWidget::setTabOrder(m_buttonSummaries, m_buttonDbViewer);
+	QWidget::setTabOrder(m_buttonDbViewer, m_buttonLinkManager);
 }
 
 void MainWindow::showQuote()

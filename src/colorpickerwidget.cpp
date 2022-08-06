@@ -9,8 +9,7 @@
 #include <QApplication>
 #include <QColorDialog>
 
-ColorPickerWidget::ColorPickerWidget(QWidget* parent, QColor defaultColor)
-		:QDialog(parent)
+ColorPickerWidget::ColorPickerWidget(QWidget* parent, QColor defaultColor) : QDialog(parent)
 {
 	m_defaultColor = defaultColor;
 	m_currentColor = defaultColor;

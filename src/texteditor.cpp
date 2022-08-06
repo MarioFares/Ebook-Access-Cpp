@@ -6,8 +6,7 @@
 #include <QTextBlock>
 #include <QTextBrowser>
 
-TextEditor::TextEditor(QWidget* parent)
-		:QTextBrowser(parent)
+TextEditor::TextEditor(QWidget* parent) : QTextBrowser(parent)
 {
 	m_charPairs['('] = ')';
 	m_charPairs['"'] = '"';

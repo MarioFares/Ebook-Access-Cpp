@@ -22,6 +22,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	static void insertBook(const QFileInfo& entry, const QString& tags, const QString& genre, const QString& author);
 
 	void setupEntries(const QString& dir, bool recursive);

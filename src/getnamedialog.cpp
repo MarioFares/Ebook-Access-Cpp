@@ -3,15 +3,14 @@
 
 #include <QPushButton>
 
-GetNameDialog::GetNameDialog(QWidget* parent, QString title, QString prompt)
-		:
-		QDialog(parent)
+GetNameDialog::GetNameDialog(QWidget* parent, QString title, QString prompt) : QDialog(parent)
 {
 	m_title = title;
 	m_prompt = prompt;
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void GetNameDialog::setupInterface()
@@ -68,6 +67,12 @@ void GetNameDialog::setupConnections()
 {
 	connect(m_buttonCancel, &QPushButton::clicked, this, &GetNameDialog::close);
 	connect(m_buttonOk, &QPushButton::clicked, this, &GetNameDialog::setName);
+}
+
+void GetNameDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textName, m_buttonOk);
+	QWidget::setTabOrder(m_buttonOk, m_buttonCancel);
 }
 
 void GetNameDialog::setName()

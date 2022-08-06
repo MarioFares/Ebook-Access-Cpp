@@ -4,13 +4,13 @@
 
 #include <QDesktopServices>
 
-BookMetadataWindow::BookMetadataWindow(QWidget* parent)
-		:QMainWindow(parent)
+BookMetadataWindow::BookMetadataWindow(QWidget* parent) : QMainWindow(parent)
 {
 	queries::connectToDatabase();
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void BookMetadataWindow::setupInterface()
@@ -269,6 +269,31 @@ void BookMetadataWindow::setupConnections()
 {
 	connect(m_bookSearchWidget, &BookSearchWidget::itemClicked, this, &BookMetadataWindow::showBookDetails);
 	connect(m_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &BookMetadataWindow::showBookDetails);
+}
+
+void BookMetadataWindow::setupTabOrder()
+{
+	QWidget::setTabOrder(m_bookSearchWidget, m_textName);
+	QWidget::setTabOrder(m_textName, m_textAuthor);
+	QWidget::setTabOrder(m_textAuthor, m_textGenre);
+	QWidget::setTabOrder(m_textGenre, m_textFolder);
+	QWidget::setTabOrder(m_textFolder, m_textPages);
+	QWidget::setTabOrder(m_textPages, m_textSize);
+	QWidget::setTabOrder(m_textSize, m_textTags);
+	QWidget::setTabOrder(m_textTags, m_textPath);
+	QWidget::setTabOrder(m_textPath, m_textExt);
+	QWidget::setTabOrder(m_textExt, m_textDateAdded);
+	QWidget::setTabOrder(m_textDateAdded, m_textDateModified);
+	QWidget::setTabOrder(m_textDateModified, m_textPublisher);
+	QWidget::setTabOrder(m_textPublisher, m_textDatePublished);
+	QWidget::setTabOrder(m_textDatePublished, m_textSeries);
+	QWidget::setTabOrder(m_textSeries, m_comboBoxRating);
+	QWidget::setTabOrder(m_comboBoxRating, m_comboBoxStatus);
+	QWidget::setTabOrder(m_comboBoxStatus, m_textEditComments);
+	QWidget::setTabOrder(m_textEditComments, m_buttonUpdate);
+	QWidget::setTabOrder(m_buttonUpdate, m_buttonPrev);
+	QWidget::setTabOrder(m_buttonPrev, m_buttonNext);
+	QWidget::setTabOrder(m_buttonNext, m_buttonCancel);
 }
 
 void BookMetadataWindow::showBookDetails(const QString& name)

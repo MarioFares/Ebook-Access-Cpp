@@ -1,14 +1,13 @@
 #include "include/insertlinkdialog.h"
 
-InsertLinkDialog::InsertLinkDialog(QWidget* parent)
-		:
-		QDialog(parent)
+InsertLinkDialog::InsertLinkDialog(QWidget* parent) : QDialog(parent)
 {
 	m_title = "";
 	m_link = "";
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void InsertLinkDialog::setupInterface()
@@ -55,6 +54,13 @@ void InsertLinkDialog::setupConnections()
 {
 	connect(m_buttonCancel, &QPushButton::clicked, this, &InsertLinkDialog::close);
 	connect(m_buttonOk, &QPushButton::clicked, this, &InsertLinkDialog::getInput);
+}
+
+void InsertLinkDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textTitle, m_textLink);
+	QWidget::setTabOrder(m_textLink, m_buttonOk);
+	QWidget::setTabOrder(m_buttonOk, m_buttonCancel);
 }
 
 void InsertLinkDialog::getInput()

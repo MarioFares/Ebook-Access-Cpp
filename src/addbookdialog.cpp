@@ -4,11 +4,11 @@
 
 #include <QFileDialog>
 
-AddBookDialog::AddBookDialog(QWidget* parent)
-		:QDialog(parent)
+AddBookDialog::AddBookDialog(QWidget* parent) : QDialog(parent)
 {
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void AddBookDialog::setupInterface()
@@ -115,6 +115,22 @@ void AddBookDialog::setupConnections()
 	connect(m_buttonBrowse, &QPushButton::clicked, this, &AddBookDialog::browseFile);
 	connect(m_buttonCancel, &QPushButton::clicked, this, &AddBookDialog::close);
 	connect(m_buttonAdd, &QPushButton::clicked, this, &AddBookDialog::addFile);
+}
+
+void AddBookDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textName, m_textFolder);
+	QWidget::setTabOrder(m_textFolder, m_textPath);
+	QWidget::setTabOrder(m_textPath, m_buttonBrowse);
+	QWidget::setTabOrder(m_buttonBrowse, m_textExtension);
+	QWidget::setTabOrder(m_textExtension, m_textAuthor);
+	QWidget::setTabOrder(m_textAuthor, m_textGenre);
+	QWidget::setTabOrder(m_textGenre, m_textSize);
+	QWidget::setTabOrder(m_textSize, m_textPages);
+	QWidget::setTabOrder(m_textPages, m_textTags);
+	QWidget::setTabOrder(m_textTags, m_buttonAdd);
+	QWidget::setTabOrder(m_buttonAdd, m_buttonClear);
+	QWidget::setTabOrder(m_buttonClear, m_buttonCancel);
 }
 
 void AddBookDialog::clearInputs()

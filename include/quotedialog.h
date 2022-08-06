@@ -19,6 +19,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void nextQuote();
 
 	void prevQuote();

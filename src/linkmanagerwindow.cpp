@@ -16,9 +16,7 @@
 #include <QListWidgetItem>
 #include <QDesktopServices>
 
-LinkManagerWindow::LinkManagerWindow(QWidget* parent)
-		:
-		QMainWindow(parent)
+LinkManagerWindow::LinkManagerWindow(QWidget* parent) : QMainWindow(parent)
 {
 	queries::connectToDatabase();
 
@@ -27,6 +25,7 @@ LinkManagerWindow::LinkManagerWindow(QWidget* parent)
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void LinkManagerWindow::setupInterface()
@@ -381,6 +380,27 @@ void LinkManagerWindow::setupConnections()
 	connect(m_actionAddCollection, &QAction::triggered, this, &LinkManagerWindow::addCollection);
 	connect(m_actionAddLink, &QAction::triggered, this, &LinkManagerWindow::addLink);
 	connect(m_actionHideStatusBar, &QAction::triggered, this, &LinkManagerWindow::hideStatusBar);
+}
+
+void LinkManagerWindow::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textCollections, m_buttonSearchCollections);
+	QWidget::setTabOrder(m_buttonSearchCollections, m_buttonClearCollections);
+	QWidget::setTabOrder(m_buttonClearCollections, m_buttonSortCollections);
+	QWidget::setTabOrder(m_buttonSortCollections, m_buttonAddCollection);
+	QWidget::setTabOrder(m_buttonAddCollection, m_listWidgetCollections);
+	QWidget::setTabOrder(m_listWidgetCollections, m_textLinks);
+	QWidget::setTabOrder(m_textLinks, m_buttonSearchLinks);
+	QWidget::setTabOrder(m_buttonSearchLinks, m_buttonClearLinks);
+	QWidget::setTabOrder(m_buttonClearLinks, m_buttonSortLinks);
+	QWidget::setTabOrder(m_buttonSortLinks, m_buttonAddLink);
+	QWidget::setTabOrder(m_buttonAddLink, m_listWidgetLinks);
+	QWidget::setTabOrder(m_listWidgetLinks, m_textDetailsTitle);
+	QWidget::setTabOrder(m_textDetailsTitle, m_textDetailsUrl);
+	QWidget::setTabOrder(m_textDetailsUrl, m_plainTextDetailsComments);
+	QWidget::setTabOrder(m_plainTextDetailsComments, m_buttonDetailsUpdate);
+	QWidget::setTabOrder(m_buttonDetailsUpdate, m_buttonDetailsRestore);
+	QWidget::setTabOrder(m_buttonDetailsRestore, m_buttonDetailsClear);
 }
 
 void LinkManagerWindow::showLinksContextMenu(const QPoint& pos)

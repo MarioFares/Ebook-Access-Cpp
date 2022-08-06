@@ -2,11 +2,11 @@
 
 #include <QVector>
 #include <QLineEdit>
-#include <QListWidgetItem>
 #include <QPushButton>
+#include <QListWidgetItem>
 
 ExtSelectionDialog::ExtSelectionDialog(QWidget* parent, QVector<QString> extVector, QString title, QString label)
-		:QDialog(parent)
+		: QDialog(parent)
 {
 	m_inputVector = extVector;
 	m_title = title;
@@ -14,6 +14,7 @@ ExtSelectionDialog::ExtSelectionDialog(QWidget* parent, QVector<QString> extVect
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void ExtSelectionDialog::setupInterface()
@@ -93,6 +94,14 @@ void ExtSelectionDialog::setupConnections()
 		setExtVector();
 		close();
 	});
+}
+
+void ExtSelectionDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textSearch, m_listWidget);
+	QWidget::setTabOrder(m_listWidget, m_buttonDeselectAll);
+	QWidget::setTabOrder(m_buttonDeselectAll, m_buttonSelectAll);
+	QWidget::setTabOrder(m_buttonSelectAll, m_buttonContinue);
 }
 
 void ExtSelectionDialog::fillListWidget(QVector<QString> extVector)

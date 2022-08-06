@@ -38,6 +38,8 @@ private slots:
 
 	void setupMenus();
 
+	void setupTabOrder();
+
 	void closeEvent(QCloseEvent* event) override;
 
 	void toggleBold();

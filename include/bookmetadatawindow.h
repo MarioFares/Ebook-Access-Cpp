@@ -26,6 +26,8 @@ private:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	QWidget* m_centralwidget;
 	BookSearchWidget* m_bookSearchWidget;
 	QSplitter* m_rightSplitter;

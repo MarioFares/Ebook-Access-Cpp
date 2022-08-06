@@ -24,6 +24,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void applyFields();
 
 private:

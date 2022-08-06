@@ -1,8 +1,6 @@
 #include "include/yesnodialog.h"
 
-YesNoDialog::YesNoDialog(QWidget* parent, QString windowTitle, QString title, QString prompt)
-		:
-		QDialog(parent)
+YesNoDialog::YesNoDialog(QWidget* parent, QString windowTitle, QString title, QString prompt) : QDialog(parent)
 {
 	m_windowTitle = windowTitle;
 	m_title = title;
@@ -11,6 +9,7 @@ YesNoDialog::YesNoDialog(QWidget* parent, QString windowTitle, QString title, QS
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void YesNoDialog::setupInterface()
@@ -59,6 +58,11 @@ void YesNoDialog::setupConnections()
 {
 	connect(m_buttonYes, &QPushButton::clicked, this, &YesNoDialog::setResult);
 	connect(m_buttonNo, &QPushButton::clicked, this, &YesNoDialog::setResult);
+}
+
+void YesNoDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_buttonYes, m_buttonNo);
 }
 
 void YesNoDialog::setResult()

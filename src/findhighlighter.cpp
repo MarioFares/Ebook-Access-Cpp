@@ -2,8 +2,7 @@
 
 #include <QTextDocument>
 
-FindHighlighter::FindHighlighter(QTextDocument* parent)
-		:QSyntaxHighlighter(parent)
+FindHighlighter::FindHighlighter(QTextDocument* parent) : QSyntaxHighlighter(parent)
 {
 	m_defaultHighlightingRule.format.setBackground(Qt::yellow);
 	m_activeHighlightingRule.format.setBackground(QColor(255, 165, 0));

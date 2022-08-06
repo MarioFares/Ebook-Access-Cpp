@@ -5,11 +5,11 @@
 #include <QBoxLayout>
 #include <QPushButton>
 
-CleanBooksDialog::CleanBooksDialog(QWidget* parent)
-		:QDialog(parent)
+CleanBooksDialog::CleanBooksDialog(QWidget* parent) : QDialog(parent)
 {
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void CleanBooksDialog::setupInterface()
@@ -55,6 +55,11 @@ void CleanBooksDialog::setupInterface()
 void CleanBooksDialog::setupConnections()
 {
 	connect(m_buttonBegin, &QPushButton::clicked, this, &CleanBooksDialog::beginClean);
+}
+
+void CleanBooksDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_buttonBegin, m_listWidget);
 }
 
 void CleanBooksDialog::beginClean()

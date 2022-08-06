@@ -21,6 +21,10 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
+
+
 	void clearInputs();
 
 	void browseFile();

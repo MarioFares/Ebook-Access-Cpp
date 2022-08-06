@@ -22,13 +22,13 @@
 #include <QDesktopServices>
 #include <QtPrintSupport/QPrinter>
 
-SummaryWindow::SummaryWindow(QWidget* parent)
-		:QMainWindow(parent)
+SummaryWindow::SummaryWindow(QWidget* parent) : QMainWindow(parent)
 {
 	queries::connectToDatabase();
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void SummaryWindow::setupInterface()
@@ -752,7 +752,37 @@ void SummaryWindow::setupConnections()
 	connect(m_actionInsertLink, &QAction::triggered, this, &SummaryWindow::insertLink);
 	connect(m_actionInsertImage, &QAction::triggered, this, &SummaryWindow::insertImage);
 	connect(m_actionInsertTable, &QAction::triggered, this, &SummaryWindow::insertTable);
+}
 
+void SummaryWindow::setupTabOrder()
+{
+	QWidget::setTabOrder(m_bookSearchWidget, m_textEditor);
+	QWidget::setTabOrder(m_textEditor, m_fontComboBox);
+	QWidget::setTabOrder(m_fontComboBox, m_spinBoxFontSize);
+	QWidget::setTabOrder(m_spinBoxFontSize, m_buttonEditorFontColor);
+	QWidget::setTabOrder(m_buttonEditorFontColor, m_buttonEditorBackColor);
+	QWidget::setTabOrder(m_buttonEditorBackColor, m_buttonBold);
+	QWidget::setTabOrder(m_buttonBold, m_buttonItalic);
+	QWidget::setTabOrder(m_buttonItalic, m_buttonUnderline);
+	QWidget::setTabOrder(m_buttonUnderline, m_buttonThrough);
+	QWidget::setTabOrder(m_buttonThrough, m_buttonHighlight);
+	QWidget::setTabOrder(m_buttonHighlight, m_buttonCodeBlock);
+	QWidget::setTabOrder(m_buttonCodeBlock, m_buttonBulletedList);
+	QWidget::setTabOrder(m_buttonBulletedList, m_buttonOrderedList);
+	QWidget::setTabOrder(m_buttonOrderedList, m_comboBoxAlignment);
+	QWidget::setTabOrder(m_comboBoxAlignment, m_buttonInsertTable);
+	QWidget::setTabOrder(m_buttonInsertTable, m_buttonInsertImage);
+	QWidget::setTabOrder(m_buttonInsertImage, m_buttonInsertLine);
+	QWidget::setTabOrder(m_buttonInsertLine, m_buttonInsertLink);
+	QWidget::setTabOrder(m_buttonInsertLink, m_buttonUndo);
+	QWidget::setTabOrder(m_buttonUndo, m_buttonRedo);
+	QWidget::setTabOrder(m_buttonRedo, m_buttonClearAll);
+	QWidget::setTabOrder(m_buttonClearAll, m_buttonSuperscript);
+	QWidget::setTabOrder(m_buttonSuperscript, m_buttonSubscript);
+	QWidget::setTabOrder(m_buttonSubscript, m_buttonIncFontSize);
+	QWidget::setTabOrder(m_buttonIncFontSize, m_buttonDecFontSize);
+	QWidget::setTabOrder(m_buttonDecFontSize, m_buttonIncIndent);
+	QWidget::setTabOrder(m_buttonIncIndent, m_buttonDecIndent);
 }
 
 void SummaryWindow::closeEvent(QCloseEvent* event)

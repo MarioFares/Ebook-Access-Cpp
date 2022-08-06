@@ -21,6 +21,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void closeEvent(QCloseEvent* event) override;
 
 	void populateTable();

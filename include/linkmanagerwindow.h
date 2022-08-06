@@ -27,6 +27,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void refreshCollections(const QString& searchString);
 
 	void refreshLinks(const QString& collectionName, const QString& searchString);

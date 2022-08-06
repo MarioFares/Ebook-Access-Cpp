@@ -5,8 +5,7 @@
 #include <QBoxLayout>
 #include <QDesktopServices>
 
-BookSearchWidget::BookSearchWidget(QWidget* parent)
-		:QWidget(parent)
+BookSearchWidget::BookSearchWidget(QWidget* parent) : QWidget(parent)
 {
 	setupInterface();
 	setupConnections();

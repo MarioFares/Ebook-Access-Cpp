@@ -20,6 +20,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void beginClean();
 
 private:

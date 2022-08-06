@@ -25,6 +25,8 @@ private slots:
 
 	void setupConnections();
 
+	void setupTabOrder();
+
 	void getInput();
 
 private:

@@ -4,9 +4,7 @@
 #include <QRandomGenerator>
 #include <QRegularExpression>
 
-QuoteDialog::QuoteDialog(QWidget* parent)
-		:
-		QDialog(parent)
+QuoteDialog::QuoteDialog(QWidget* parent) : QDialog(parent)
 {
 	QFile file(":/txt/quotes.txt");
 	file.open(QFile::ReadOnly);
@@ -19,6 +17,7 @@ QuoteDialog::QuoteDialog(QWidget* parent)
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void QuoteDialog::setupInterface()
@@ -77,6 +76,11 @@ void QuoteDialog::setupConnections()
 	connect(m_buttonPrevious, &QPushButton::clicked, this, &QuoteDialog::prevQuote);
 }
 
+void QuoteDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_buttonPrevious, m_buttonNext);
+}
+
 void QuoteDialog::nextQuote()
 {
 	m_currIndex < m_quotesList.count() - 1 ? m_currIndex++ : m_quotesList.count();
@@ -88,4 +92,3 @@ void QuoteDialog::prevQuote()
 	m_currIndex > 0 ? m_currIndex-- : 0;
 	m_labelQuote->setText(m_quotesList[m_currIndex]);
 }
-

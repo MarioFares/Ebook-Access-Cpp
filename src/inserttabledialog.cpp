@@ -1,14 +1,13 @@
 #include "include/inserttabledialog.h"
 
-InsertTableDialog::InsertTableDialog(QWidget* parent)
-		:
-		QDialog(parent)
+InsertTableDialog::InsertTableDialog(QWidget* parent) : QDialog(parent)
 {
 	m_columnCount = 1;
 	m_rowCount = 1;
 
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void InsertTableDialog::setupInterface()
@@ -58,6 +57,13 @@ void InsertTableDialog::setupConnections()
 {
 	connect(m_buttonCancel, &QPushButton::clicked, this, &InsertTableDialog::close);
 	connect(m_buttonOk, &QPushButton::clicked, this, &InsertTableDialog::getTableDims);
+}
+
+void InsertTableDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_spinBoxRows, m_spinBoxColumns);
+	QWidget::setTabOrder(m_spinBoxColumns, m_buttonOk);
+	QWidget::setTabOrder(m_buttonOk, m_buttonCancel);
 }
 
 void InsertTableDialog::getTableDims()

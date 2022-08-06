@@ -11,13 +11,12 @@
 #include <QCloseEvent>
 #include <QSpacerItem>
 
-DataViewerWindow::DataViewerWindow(QWidget* parent)
-		:
-		QMainWindow(parent)
+DataViewerWindow::DataViewerWindow(QWidget* parent) : QMainWindow(parent)
 {
 	m_columnsResizeMode = QHeaderView::Stretch;
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void DataViewerWindow::setupInterface()
@@ -157,6 +156,18 @@ void DataViewerWindow::setupConnections()
 	connect(m_tableWidget, &QTableWidget::currentCellChanged, this, &DataViewerWindow::showCellText);
 	connect(m_tableWidget, &QTableWidget::customContextMenuRequested, this, &DataViewerWindow::showTableContextMenu);
 	connect(m_buttonGridStyle, &QToolButton::clicked, this, &DataViewerWindow::setupGridMenu);
+}
+
+void DataViewerWindow::setupTabOrder()
+{
+	QWidget::setTabOrder(m_comboBoxTables, m_buttonRefresh);
+	QWidget::setTabOrder(m_buttonRefresh, m_buttonToggleColors);
+	QWidget::setTabOrder(m_buttonToggleColors, m_buttonToggleGrid);
+	QWidget::setTabOrder(m_buttonToggleGrid, m_buttonToggleFitColumns);
+	QWidget::setTabOrder(m_buttonToggleFitColumns, m_buttonFontColor);
+	QWidget::setTabOrder(m_buttonFontColor, m_buttonBackColor);
+	QWidget::setTabOrder(m_buttonBackColor, m_buttonGridStyle);
+	QWidget::setTabOrder(m_buttonGridStyle, m_tableWidget);
 }
 
 void DataViewerWindow::setupGridMenu()
@@ -418,4 +429,3 @@ void DataViewerWindow::setBackColor()
 		m_buttonBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
 	}
 }
-

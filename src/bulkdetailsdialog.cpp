@@ -2,14 +2,14 @@
 
 #include <QPushButton>
 
-BulkDetailsDialog::BulkDetailsDialog(QWidget* parent)
-		:QDialog(parent)
+BulkDetailsDialog::BulkDetailsDialog(QWidget* parent) : QDialog(parent)
 {
 	m_author = "";
 	m_genre = "";
 	m_tags = "";
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void BulkDetailsDialog::setupInterface()
@@ -92,6 +92,17 @@ void BulkDetailsDialog::setupConnections()
 	connect(m_checkBoxAuthor, &QCheckBox::stateChanged, m_textAuthor, &QLineEdit::setEnabled);
 	connect(m_checkBoxGenre, &QCheckBox::stateChanged, m_textGenre, &QLineEdit::setEnabled);
 	connect(m_checkBoxTags, &QCheckBox::stateChanged, m_textTags, &QLineEdit::setEnabled);
+}
+
+void BulkDetailsDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_checkBoxAuthor, m_textAuthor);
+	QWidget::setTabOrder(m_textAuthor, m_checkBoxGenre);
+	QWidget::setTabOrder(m_checkBoxGenre, m_textGenre);
+	QWidget::setTabOrder(m_textGenre, m_checkBoxTags);
+	QWidget::setTabOrder(m_checkBoxTags, m_textTags);
+	QWidget::setTabOrder(m_textTags, m_buttonApply);
+	QWidget::setTabOrder(m_buttonApply, m_buttonCancel);
 }
 
 void BulkDetailsDialog::applyFields()

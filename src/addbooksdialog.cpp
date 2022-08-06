@@ -10,11 +10,11 @@
 #include <QDirIterator>
 #include <QProgressBar>
 
-AddBooksDialog::AddBooksDialog(QWidget* parent)
-		:QDialog(parent)
+AddBooksDialog::AddBooksDialog(QWidget* parent) : QDialog(parent)
 {
 	setupInterface();
 	setupConnections();
+	setupTabOrder();
 }
 
 void AddBooksDialog::setupInterface()
@@ -95,12 +95,6 @@ void AddBooksDialog::setupInterface()
 	m_vertLayMain->addLayout(m_horLayButtons);
 
 	setLayout(m_vertLayMain);
-
-	// Tab Order
-	QWidget::setTabOrder(m_textFolderPath, m_buttonBrowseFolders);
-	QWidget::setTabOrder(m_buttonBrowseFolders, m_checkBoxRecursive);
-	QWidget::setTabOrder(m_checkBoxRecursive, m_buttonAdd);
-	QWidget::setTabOrder(m_buttonAdd, m_buttonClose);
 }
 
 void AddBooksDialog::setupConnections()
@@ -108,6 +102,14 @@ void AddBooksDialog::setupConnections()
 	connect(m_buttonClose, &QPushButton::clicked, this, &AddBooksDialog::close);
 	connect(m_buttonBrowseFolders, &QPushButton::clicked, this, &AddBooksDialog::browseDirs);
 	connect(m_buttonAdd, &QPushButton::clicked, this, &AddBooksDialog::addDir);
+}
+
+void AddBooksDialog::setupTabOrder()
+{
+	QWidget::setTabOrder(m_textFolderPath, m_buttonBrowseFolders);
+	QWidget::setTabOrder(m_buttonBrowseFolders, m_checkBoxRecursive);
+	QWidget::setTabOrder(m_checkBoxRecursive, m_buttonAdd);
+	QWidget::setTabOrder(m_buttonAdd, m_buttonClose);
 }
 
 void AddBooksDialog::browseDirs()
