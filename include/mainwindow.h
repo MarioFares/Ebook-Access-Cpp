@@ -170,8 +170,8 @@ private:
 	QAction* m_actionUsageReport;
 	QAction* m_actionApplicationSettings;
 	QAction* m_actionFullscreen;
-	QAction* m_actionMax;
-	QAction* m_actionMin;
+	QAction* m_actionMaximize;
+	QAction* m_actionMinimize;
 	QAction* m_actionClose;
 	QAction* m_actionSortSearch;
 	QAction* m_actionAddBooks;

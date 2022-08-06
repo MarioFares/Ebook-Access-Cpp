@@ -609,9 +609,9 @@ void MainWindow::setupActions()
 	// View Menu
 	m_actionFullscreen = new QAction("Fullscreen", this);
 	m_actionFullscreen->setIcon(QIcon(":/icons/fullscreen_icon.png"));
-	m_actionMax = new QAction("Maximize", this);
-	m_actionMin = new QAction("Minimize", this);
-	m_actionMin->setIcon(QIcon(":/icons/minimize_icon.png"));
+	m_actionMaximize = new QAction("Maximize", this);
+	m_actionMinimize = new QAction("Minimize", this);
+	m_actionMinimize->setIcon(QIcon(":/icons/minimize_icon.png"));
 	m_actionWindowTop = new QAction("Window on Top", this);
 	m_actionMinimizeTray = new QAction("Minimize to Tray", this);
 	m_actionHideSearchBar = new QAction("Hide Search Bar", this);
@@ -725,8 +725,8 @@ void MainWindow::setupMenus()
 	m_menuGenerate->addAction(m_actionChooseRandomBook);
 	m_menuSettings->addAction(m_actionApplicationSettings);
 	m_menuView->addAction(m_actionFullscreen);
-	m_menuView->addAction(m_actionMax);
-	m_menuView->addAction(m_actionMin);
+	m_menuView->addAction(m_actionMaximize);
+	m_menuView->addAction(m_actionMinimize);
 	m_menuView->addAction(m_actionWindowTop);
 	m_menuView->addAction(m_actionMinimizeTray);
 	m_menuView->addSeparator();
@@ -828,8 +828,8 @@ void MainWindow::setupConnections()
 	connect(m_actionEbooksReport, &QAction::triggered, this, &MainWindow::genEbooksReport);
 	connect(m_actionHideStatusBar, &QAction::triggered, this, &MainWindow::hideStatusBar);
 	connect(m_actionClearSearch, &QAction::triggered, this, &MainWindow::clearSearch);
-	connect(m_actionMin, &QAction::triggered, this, &MainWindow::showMinimized);
-	connect(m_actionMax, &QAction::triggered, [this]
+	connect(m_actionMinimize, &QAction::triggered, this, &MainWindow::showMinimized);
+	connect(m_actionMaximize, &QAction::triggered, [this]
 	{ common::toggleMaximized(this); });
 	connect(m_actionClose, &QAction::triggered, this, &MainWindow::close);
 	connect(m_actionSummaries, &QAction::triggered, [this]
@@ -905,8 +905,8 @@ void MainWindow::setupShortcuts()
 
 	// View Menu
 	m_actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
-	m_actionMax->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
-	m_actionMin->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
+	m_actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
+	m_actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
 	m_actionHideSearchBar->setShortcut(QKeySequence("Ctrl+S, Ctrl+B"));
 	m_actionHideDetailsSection->setShortcut(QKeySequence("Ctrl+D, Ctrl+S"));
 	m_actionHideRightFrame->setShortcut(QKeySequence("Ctrl+R, Ctrl+F"));
