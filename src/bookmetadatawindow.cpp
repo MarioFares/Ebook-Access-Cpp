@@ -117,7 +117,6 @@ void BookMetadataWindow::setupInterface()
 	m_labelPublisher->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
 	m_textName = new QLineEdit();
-	m_textName->setObjectName(QString::fromUtf8("textName"));
 	m_textName->setMinimumSize(QSize(0, 23));
 
 	m_labelStatus = new QLabel("Status");
@@ -154,10 +153,11 @@ void BookMetadataWindow::setupInterface()
 	m_frameComments->setStyleSheet(QString::fromUtf8("#frameComments{ border:none;}"));
 
 	m_labelComments = new QLabel("Notes/Comments");
-	m_labelComments->setObjectName(QString::fromUtf8("labelComments"));
 
 	m_textEditComments = new QPlainTextEdit();
-	m_textEditComments->setObjectName(QString::fromUtf8("textEditComments"));
+	QPalette p = m_textEditComments->palette();
+	p.setColor(QPalette::Text, Qt::white);
+	m_textEditComments->setPalette(p);
 
 	m_graphicsView = new QGraphicsView();
 
