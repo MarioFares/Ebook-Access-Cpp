@@ -161,17 +161,25 @@ void AddBooksDialog::setupEntries(const QString& dir, bool recursive)
 	QString tags = dialog.m_tags;
 	QString genres = dialog.m_genre.isEmpty() ? "N/A" : dialog.m_genre;
 	QString authors = dialog.m_author.isEmpty() ? "N/A" : dialog.m_author;
+	QString publisher = dialog.m_publisher.isEmpty() ? "N/A" : dialog.m_publisher;
+	QString datePublished = dialog.m_datePublished.isEmpty() ? "N/A" : dialog.m_datePublished;
+	QString series = dialog.m_series.isEmpty() ? "N/A" : dialog.m_series;
+	quint32 rating = dialog.m_rating;
+	quint32 status = dialog.m_status;
 
 	// Let the user select desired extensions
 	ExtSelectionDialog* extDialog = new ExtSelectionDialog(this, extVector, "Extensions", "Select Extensions");
 	common::openDialog(extDialog, ":/styles/style.qss");
 
 	QVector<QString> selectedExts = extDialog->getExtVector();
-	iterateInsertEntries(entriesVector, selectedExts, tags, genres, authors);
+	iterateInsertEntries(entriesVector, selectedExts, tags, genres, authors, publisher, datePublished, series, rating,
+			status);
 }
 
 void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo>& entriesVector, const QVector<QString>& selectedExts,
-										  const QString& tags, const QString& genres, const QString& authors)
+										  const QString& tags, const QString& genres, const QString& authors,
+										  const QString& publisher, const QString& datePublished, const QString& series,
+										  quint32 rating, quint32 status)
 {
 	queries::db.transaction();
 	size_t count = entriesVector.size();
@@ -184,7 +192,7 @@ void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo>& entriesVecto
 		counter++;
 		if (selectedExts.contains(ext))
 		{
-			insertBook(entry, tags, genres, authors);
+			insertBook(entry, tags, genres, authors, publisher, datePublished, series, rating, status);
 		}
 	}
 
@@ -193,7 +201,8 @@ void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo>& entriesVecto
 }
 
 void AddBooksDialog::insertBook(const QFileInfo& entry, const QString& tags, const QString& genre,
-								const QString& author)
+								const QString& author, const QString& publisher, const QString& datePublished,
+								const QString& series, quint32 rating, quint32 status)
 {
 	QString name = entry.completeBaseName();
 	QString path = entry.absoluteFilePath();
@@ -201,5 +210,6 @@ void AddBooksDialog::insertBook(const QFileInfo& entry, const QString& tags, con
 	QString folder = entry.dir().dirName();
 	quint64 size = entry.size();
 	quint32 pages = common::getPageCount(path);
-	queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author);
+	queries::insertBooksQuery(name, path, folder, ext, size, pages, tags, genre, author, publisher, datePublished,
+			series, rating, status);
 }

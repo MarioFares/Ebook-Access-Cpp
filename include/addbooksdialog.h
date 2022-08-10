@@ -24,12 +24,16 @@ private slots:
 
 	void setupTabOrder();
 
-	static void insertBook(const QFileInfo& entry, const QString& tags, const QString& genre, const QString& author);
+	static void insertBook(const QFileInfo& entry, const QString& tags, const QString& genre, const QString& author,
+						   const QString& publisher, const QString& datePublished, const QString& series,
+						   quint32 rating, quint32 status);
 
 	void setupEntries(const QString& dir, bool recursive);
 
 	void iterateInsertEntries(const QVector<QFileInfo>& entries, const QVector<QString>& exts,
-							  const QString& tags, const QString& genres, const QString& authors);
+							  const QString& tags, const QString& genres, const QString& authors,
+							  const QString& publisher, const QString& datePublished, const QString& series,
+							  quint32 rating, quint32 status);
 
 	void browseDirs();
 
