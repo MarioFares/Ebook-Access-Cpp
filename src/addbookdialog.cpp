@@ -14,7 +14,7 @@ AddBookDialog::AddBookDialog(QWidget* parent) : QDialog(parent)
 void AddBookDialog::setupInterface()
 {
 	// Window
-	resize(658, 355);
+	resize(700, 520);
 	setWindowTitle("Add Book");
 
 	// Widgets
@@ -39,9 +39,17 @@ void AddBookDialog::setupInterface()
 	m_textName = new QLineEdit();
 	m_textAuthor = new QLineEdit();
 	m_textPages = new QLineEdit();
+	m_textPublisher = new QLineEdit();
+	m_textDatePublished = new QLineEdit();
+	m_textSeries = new QLineEdit();
+	m_comboBoxRating = new RatingComboBox();
+	m_comboBoxRating->setFixedWidth(170);
+	m_comboBoxStatus = new StatusComboBox();
+	m_comboBoxStatus->setFixedWidth(170);
 
 	m_buttonBrowse = new QPushButton("...");
 	m_buttonBrowse->setMinimumSize(40, 0);
+	m_buttonBrowse->setMaximumSize(40, 20);
 	m_buttonBrowse->setCursor(QCursor(Qt::PointingHandCursor));
 
 	m_labelAuthor = new QLabel("Author");
@@ -53,6 +61,11 @@ void AddBookDialog::setupInterface()
 	m_labelFolder = new QLabel("Folder");
 	m_labelName = new QLabel("Name");
 	m_labelExtension = new QLabel("Ext");
+	m_labelPublisher = new QLabel("Publisher");
+	m_labelDatePublished = new QLabel("Published");
+	m_labelSeries = new QLabel("Series");
+	m_labelRating = new QLabel("Rating");
+	m_labelStatus = new QLabel("Status");
 
 	m_buttonAdd = new QPushButton("Add");
 	m_buttonAdd->setMinimumSize(80, 0);
@@ -67,30 +80,47 @@ void AddBookDialog::setupInterface()
 	m_buttonCancel->setCursor(QCursor(Qt::PointingHandCursor));
 
 	// Layouts
+	m_horLayStatus = new QHBoxLayout();
+	m_horLayStatus->setContentsMargins(5, 0, 0, 0);
+	m_horLayStatus->setSpacing(10);
+	m_horLayStatus->addWidget(m_labelStatus);
+	m_horLayStatus->addWidget(m_comboBoxStatus);
+
 	m_gridLay = new QGridLayout(m_frame);
-	m_gridLay->addWidget(m_textSize, 6, 1, 1, 1);
-	m_gridLay->addWidget(m_textTags, 8, 1, 1, 1);
-	m_gridLay->addWidget(m_textExtension, 3, 1, 1, 1);
-	m_gridLay->addWidget(m_textFolder, 1, 1, 1, 1);
-	m_gridLay->addWidget(m_textGenre, 5, 1, 1, 1);
-	m_gridLay->addWidget(m_labelAuthor, 4, 0, 1, 1);
-	m_gridLay->addWidget(m_labelPages, 7, 0, 1, 1);
-	m_gridLay->addWidget(m_textPath, 2, 1, 1, 1);
-	m_gridLay->addWidget(m_textName, 0, 1, 1, 1);
-	m_gridLay->addWidget(m_labelPath, 2, 0, 1, 1);
-	m_gridLay->addWidget(m_labelSize, 6, 0, 1, 1);
-	m_gridLay->addWidget(m_labelTags, 8, 0, 1, 1);
-	m_gridLay->addWidget(m_labelGenre, 5, 0, 1, 1);
-	m_gridLay->addWidget(m_textPages, 7, 1, 1, 1);
-	m_gridLay->addWidget(m_buttonBrowse, 2, 2, 1, 1);
-	m_gridLay->addWidget(m_labelFolder, 1, 0, 1, 1);
-	m_gridLay->addWidget(m_textAuthor, 4, 1, 1, 1);
+	m_gridLay->setHorizontalSpacing(4);
+	m_gridLay->setVerticalSpacing(10);
 	m_gridLay->addWidget(m_labelName, 0, 0, 1, 1);
+	m_gridLay->addWidget(m_textName, 0, 1, 1, 4);
+	m_gridLay->addWidget(m_labelFolder, 1, 0, 1, 1);
+	m_gridLay->addWidget(m_textFolder, 1, 1, 1, 4);
+	m_gridLay->addWidget(m_textPath, 2, 1, 1, 4);
+	m_gridLay->addWidget(m_buttonBrowse, 2, 5, 1, 1);
+	m_gridLay->addWidget(m_labelPath, 2, 0, 1, 1);
 	m_gridLay->addWidget(m_labelExtension, 3, 0, 1, 1);
+	m_gridLay->addWidget(m_textExtension, 3, 1, 1, 4);
+	m_gridLay->addWidget(m_labelAuthor, 4, 0, 1, 1);
+	m_gridLay->addWidget(m_textAuthor, 4, 1, 1, 4);
+	m_gridLay->addWidget(m_labelGenre, 5, 0, 1, 1);
+	m_gridLay->addWidget(m_textGenre, 5, 1, 1, 4);
+	m_gridLay->addWidget(m_labelSize, 6, 0, 1, 1);
+	m_gridLay->addWidget(m_textSize, 6, 1, 1, 4);
+	m_gridLay->addWidget(m_labelPages, 7, 0, 1, 1);
+	m_gridLay->addWidget(m_textPages, 7, 1, 1, 4);
+	m_gridLay->addWidget(m_labelTags, 8, 0, 1, 1);
+	m_gridLay->addWidget(m_textTags, 8, 1, 1, 4);
+	m_gridLay->addWidget(m_labelPublisher, 9, 0, 1, 1);
+	m_gridLay->addWidget(m_textPublisher, 9, 1, 1, 4);
+	m_gridLay->addWidget(m_labelDatePublished, 10, 0, 1, 1);
+	m_gridLay->addWidget(m_textDatePublished, 10, 1, 1, 4);
+	m_gridLay->addWidget(m_labelSeries, 11, 0, 1, 1);
+	m_gridLay->addWidget(m_textSeries, 11, 1, 1, 4);
+	m_gridLay->addWidget(m_labelRating, 12, 0, 1, 1);
+	m_gridLay->addWidget(m_comboBoxRating, 12, 1, 1, 1);
+	m_gridLay->addLayout(m_horLayStatus, 12, 2, 1, 1);
 
 	m_horLayButtons = new QHBoxLayout();
 	m_horLayButtons->setSpacing(6);
-	m_horLayButtons->setContentsMargins(0, -1, 0, -1);
+	m_horLayButtons->setContentsMargins(0, 10, 0, 5);
 	m_horSpacerButtonsLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 	m_horSpacerButtonsRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 

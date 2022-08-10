@@ -1,6 +1,9 @@
 #ifndef ADDBOOKDIALOG_H
 #define ADDBOOKDIALOG_H
 
+#include "include/ratingcombobox.h"
+#include "include/statuscombobox.h"
+
 #include <QDialog>
 #include <QLabel>
 #include <QFrame>
@@ -55,10 +58,21 @@ private:
 	QPushButton* m_buttonAdd;
 	QPushButton* m_buttonClear;
 	QPushButton* m_buttonCancel;
+	QLabel* m_labelPublisher;
+	QLineEdit* m_textPublisher;
+	QLabel* m_labelDatePublished;
+	QLineEdit* m_textDatePublished;
+	QLabel* m_labelSeries;
+	QLineEdit* m_textSeries;
+	QLabel* m_labelRating;
+	RatingComboBox* m_comboBoxRating;
+	QLabel* m_labelStatus;
+	StatusComboBox* m_comboBoxStatus;
 
 	// Layouts
 	QGridLayout* m_gridLay;
 	QHBoxLayout* m_horLayButtons;
+	QHBoxLayout* m_horLayStatus;
 	QVBoxLayout* m_vertLayMain;
 
 	// Spacers
