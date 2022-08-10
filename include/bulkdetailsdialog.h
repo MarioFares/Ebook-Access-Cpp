@@ -1,6 +1,9 @@
 #ifndef BULKDETAILSDIALOG_H
 #define BULKDETAILSDIALOG_H
 
+#include "include/ratingcombobox.h"
+#include "include/statuscombobox.h"
+
 #include <QDialog>
 #include <QBoxLayout>
 #include <QLabel>
@@ -17,6 +20,11 @@ public:
 	QString m_author;
 	QString m_genre;
 	QString m_tags;
+	QString m_publisher;
+	QString m_datePublished;
+	QString m_series;
+	quint32 m_rating;
+	quint32 m_status;
 
 private slots:
 
@@ -31,15 +39,30 @@ private slots:
 private:
 	// Widgets
 	QLabel* m_labelPrompt;
-	QCheckBox* m_checkBoxGenre;
-	QLabel* m_labelTags;
-	QCheckBox* m_checkBoxAuthor;
-	QCheckBox* m_checkBoxTags;
-	QLabel* m_labelAuthor;
 	QLabel* m_labelGenre;
-	QLineEdit* m_textAuthor;
+	QCheckBox* m_checkBoxGenre;
 	QLineEdit* m_textGenre;
+	QLabel* m_labelTags;
+	QCheckBox* m_checkBoxTags;
 	QLineEdit* m_textTags;
+	QLabel* m_labelAuthor;
+	QCheckBox* m_checkBoxAuthor;
+	QLineEdit* m_textAuthor;
+	QLabel* m_labelPublisher;
+	QCheckBox* m_checkBoxPublisher;
+	QLineEdit* m_textPublisher;
+	QLabel* m_labelDatePublished;
+	QCheckBox* m_checkBoxDatePublished;
+	QLineEdit* m_textDatePublished;
+	QLabel* m_labelSeries;
+	QCheckBox* m_checkBoxSeries;
+	QLineEdit* m_textSeries;
+	QLabel* m_labelStatus;
+	QCheckBox* m_checkBoxStatus;
+	StatusComboBox* m_comboBoxStatus;
+	QLabel* m_labelRating;
+	QCheckBox* m_checkBoxRating;
+	RatingComboBox* m_comboBoxRating;
 	QPushButton* m_buttonApply;
 	QPushButton* m_buttonCancel;
 
