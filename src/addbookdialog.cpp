@@ -213,12 +213,17 @@ void AddBookDialog::addFile()
 	quint64 size = m_textSize->text().toULongLong();
 	QString ext = m_textExtension->text();
 	QString tags = m_textTags->text();
+	QString publisher = m_textPublisher->text();
+	QString datePublished = m_textDatePublished->text();
+	QString series = m_textSeries->text();
+	quint32 rating = m_comboBoxRating->currentIndex();
+	quint32 status = m_comboBoxStatus->currentIndex();
 
 	QFileInfo file(path);
 	if (file.exists() && file.isFile())
 	{
 		queries::insertBooksQuery(name, path, folder, ext, size,
-				pages, tags, genre, author);
+				pages, tags, genre, author, publisher, datePublished, series, rating, status);
 		common::showMsgBox("Success!", "Ebook successfully added.",
 				":/styles/style.qss", QMessageBox::Information,
 				":/icons/books_icon.png");
