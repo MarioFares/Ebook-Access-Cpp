@@ -302,6 +302,11 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 		m_textFolder->setText(queries::query.value("folder").toString());
 		m_textDateAdded->setText(queries::query.value("time_added").toString());
 		m_textDateModified->setText(queries::query.value("last_modified").toString());
+		m_textPublisher->setText(queries::query.value("publisher").toString());
+		m_textDatePublished->setText(queries::query.value("date_published").toString());
+		m_textSeries->setText(queries::query.value("series").toString());
+		m_comboBoxRating->setCurrentIndex(queries::query.value("rating").toInt());
+		m_comboBoxStatus->setCurrentIndex(queries::query.value("status").toInt());
 
 		m_textName->setCursorPosition(0);
 		m_textPath->setCursorPosition(0);
