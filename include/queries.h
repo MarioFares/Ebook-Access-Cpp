@@ -102,7 +102,9 @@ void selectLinkRecord(QString name);
 
 // Insert Queries
 void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
-					  quint32 pages, QString tags, QString genre, QString author);
+					  quint32 pages = 0, QString tags = "N/A", QString genre = "N/A", QString author = "N/A",
+					  QString publisher = "N/A", QString published = "N/A",
+					  QString series = "N/A", quint32 rating = 0, quint32 status = 0);
 
 void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
 					   QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages,

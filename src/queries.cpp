@@ -364,10 +364,11 @@ void selectLinkRecord(QString name)
 
 // Insert
 void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
-					  quint32 pages, QString tags, QString genre, QString author)
+					  quint32 pages, QString tags, QString genre, QString author, QString publisher, QString published,
+					  QString series, quint32 rating, quint32 status)
 {
-	query.prepare("INSERT INTO ebooks (name, path, folder, ext, size, pages, genre, author) "
-				  "VALUES (:name,:path,:folder,:ext,:size, :pages, :genre, :author)");
+	query.prepare("INSERT INTO ebooks (name, path, folder, ext, size, pages, genre, author, publisher, date_published, series, rating, status) "
+				  "VALUES (:name,:path,:folder,:ext,:size, :pages, :genre, :author, :publisher, :published, :series, :rating, :status)");
 	query.bindValue(":name", name);
 	query.bindValue(":path", path);
 	query.bindValue(":folder", folder);
@@ -376,6 +377,11 @@ void insertBooksQuery(QString name, QString path, QString folder, QString ext, q
 	query.bindValue(":pages", QVariant::fromValue(pages));
 	query.bindValue(":genre", genre);
 	query.bindValue(":author", author);
+	query.bindValue(":publisher", publisher);
+	query.bindValue(":published", published);
+	query.bindValue(":series", series);
+	query.bindValue(":rating", rating);
+	query.bindValue(":status", status);
 	query.exec();
 
 	insertTags(tags, name);
