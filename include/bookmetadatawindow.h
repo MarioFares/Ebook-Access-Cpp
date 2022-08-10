@@ -1,6 +1,8 @@
 #ifndef BOOKDETAILSWINDOW_H
 #define BOOKDETAILSWINDOW_H
 
+#include "include/statuscombobox.h"
+#include "include/ratingcombobox.h"
 #include "include/booksearchwidget.h"
 
 #include <QLabel>
@@ -42,7 +44,7 @@ private:
 	QLineEdit* m_textExt;
 	QLabel* m_labelDateAdded;
 	QLineEdit* m_textAuthor;
-	QComboBox* m_comboBoxRating;
+	RatingComboBox* m_comboBoxRating;
 	QLabel* m_labelExt;
 	QLabel* m_labelFolder;
 	QLineEdit* m_textFolder;
@@ -58,7 +60,7 @@ private:
 	QLabel* m_labelPublisher;
 	QLineEdit* m_textName;
 	QLabel* m_labelStatus;
-	QComboBox* m_comboBoxStatus;
+	StatusComboBox* m_comboBoxStatus;
 	QLineEdit* m_textPath;
 	QLineEdit* m_textSize;
 	QLabel* m_labelTags;

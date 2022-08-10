@@ -1,4 +1,6 @@
 #include "include/queries.h"
+#include "include/statuscombobox.h"
+#include "include/ratingcombobox.h"
 #include "include/booksearchwidget.h"
 #include "include/bookmetadatawindow.h"
 
@@ -66,14 +68,7 @@ void BookMetadataWindow::setupInterface()
 	m_textAuthor = new QLineEdit();
 	m_textAuthor->setMinimumSize(QSize(0, 23));
 
-	m_comboBoxRating = new QComboBox();
-	m_comboBoxRating->addItem(QString());
-	m_comboBoxRating->addItem(QString("\360\237\237\211"));
-	m_comboBoxRating->addItem(QString("\360\237\237\211\360\237\237\211"));
-	m_comboBoxRating->addItem(QString("\360\237\237\211\360\237\237\211\360\237\237\211"));
-	m_comboBoxRating->addItem(QString("\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211"));
-	m_comboBoxRating->addItem(
-			QString("\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211"));
+	m_comboBoxRating = new RatingComboBox();
 	m_comboBoxRating->setMinimumSize(QSize(170, 23));
 	m_comboBoxRating->setMaximumSize(QSize(170, 23));
 
@@ -124,11 +119,7 @@ void BookMetadataWindow::setupInterface()
 	m_labelStatus->setMaximumSize(QSize(70, 180));
 	m_labelStatus->setAlignment(Qt::AlignCenter);
 
-	m_comboBoxStatus = new QComboBox();
-	m_comboBoxStatus->addItem(QString(""));
-	m_comboBoxStatus->addItem(QString("Prospective"));
-	m_comboBoxStatus->addItem(QString("Pending"));
-	m_comboBoxStatus->addItem(QString("Complete"));
+	m_comboBoxStatus = new StatusComboBox();
 	m_comboBoxStatus->setMinimumSize(QSize(170, 23));
 	m_comboBoxStatus->setMaximumSize(QSize(170, 180));
 
@@ -196,36 +187,36 @@ void BookMetadataWindow::setupInterface()
 	m_gridLayData->setContentsMargins(10, 0, 10, 20);
 
 	m_gridLayData->addWidget(m_labelName, 0, 0, 1, 1);
-	m_gridLayData->addWidget(m_textGenre, 2, 1, 1, 4);
-	m_gridLayData->addWidget(m_labelDatePublished, 12, 0, 1, 1);
-	m_gridLayData->addWidget(m_textPublisher, 11, 1, 1, 4);
-	m_gridLayData->addWidget(m_textDatePublished, 12, 1, 1, 4);
-	m_gridLayData->addWidget(m_labelPath, 7, 0, 1, 1);
-	m_gridLayData->addWidget(m_textExt, 8, 1, 1, 4);
-	m_gridLayData->addWidget(m_labelDateAdded, 9, 0, 1, 1);
+	m_gridLayData->addWidget(m_textName, 0, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelAuthor, 1, 0, 1, 1);
 	m_gridLayData->addWidget(m_textAuthor, 1, 1, 1, 4);
-	m_gridLayData->addWidget(m_comboBoxRating, 14, 1, 1, 1);
-	m_gridLayData->addWidget(m_labelExt, 8, 0, 1, 1);
+	m_gridLayData->addWidget(m_labelGenre, 2, 0, 1, 1);
+	m_gridLayData->addWidget(m_textGenre, 2, 1, 1, 4);
 	m_gridLayData->addWidget(m_labelFolder, 3, 0, 1, 1);
 	m_gridLayData->addWidget(m_textFolder, 3, 1, 1, 4);
 	m_gridLayData->addWidget(m_labelPages, 4, 0, 1, 1);
-	m_gridLayData->addWidget(m_textSeries, 13, 1, 1, 4);
-	m_gridLayData->addWidget(m_labelSeries, 13, 0, 1, 1);
-	m_gridLayData->addWidget(m_textDateAdded, 9, 1, 1, 4);
-	m_gridLayData->addWidget(m_labelRating, 14, 0, 1, 1);
 	m_gridLayData->addWidget(m_textPages, 4, 1, 1, 4);
 	m_gridLayData->addWidget(m_labelSize, 5, 0, 1, 1);
-	m_gridLayData->addWidget(m_labelAuthor, 1, 0, 1, 1);
-	m_gridLayData->addWidget(m_labelGenre, 2, 0, 1, 1);
-	m_gridLayData->addWidget(m_labelPublisher, 11, 0, 1, 1);
-	m_gridLayData->addWidget(m_textName, 0, 1, 1, 4);
-	m_gridLayData->addLayout(m_horLayStatus, 14, 2, 1, 1);
-	m_gridLayData->addWidget(m_textPath, 7, 1, 1, 4);
 	m_gridLayData->addWidget(m_textSize, 5, 1, 1, 4);
 	m_gridLayData->addWidget(m_labelTags, 6, 0, 1, 1);
 	m_gridLayData->addWidget(m_textTags, 6, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelPath, 7, 0, 1, 1);
+	m_gridLayData->addWidget(m_textPath, 7, 1, 1, 4);
+	m_gridLayData->addWidget(m_textExt, 8, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelExt, 8, 0, 1, 1);
+	m_gridLayData->addWidget(m_labelDateAdded, 9, 0, 1, 1);
+	m_gridLayData->addWidget(m_textDateAdded, 9, 1, 1, 4);
 	m_gridLayData->addWidget(m_labelModified, 10, 0, 1, 1);
+	m_gridLayData->addWidget(m_labelPublisher, 11, 0, 1, 1);
+	m_gridLayData->addWidget(m_textPublisher, 11, 1, 1, 4);
 	m_gridLayData->addWidget(m_textDateModified, 10, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelDatePublished, 12, 0, 1, 1);
+	m_gridLayData->addWidget(m_textDatePublished, 12, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelSeries, 13, 0, 1, 1);
+	m_gridLayData->addWidget(m_textSeries, 13, 1, 1, 4);
+	m_gridLayData->addWidget(m_labelRating, 14, 0, 1, 1);
+	m_gridLayData->addWidget(m_comboBoxRating, 14, 1, 1, 1);
+	m_gridLayData->addLayout(m_horLayStatus, 14, 2, 1, 1);
 
 	m_vertLayComments = new QVBoxLayout(m_frameComments);
 	m_vertLayComments->setSpacing(2);
