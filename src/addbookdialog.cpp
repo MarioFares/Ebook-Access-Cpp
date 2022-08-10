@@ -158,7 +158,12 @@ void AddBookDialog::setupTabOrder()
 	QWidget::setTabOrder(m_textGenre, m_textSize);
 	QWidget::setTabOrder(m_textSize, m_textPages);
 	QWidget::setTabOrder(m_textPages, m_textTags);
-	QWidget::setTabOrder(m_textTags, m_buttonAdd);
+	QWidget::setTabOrder(m_textTags, m_textPublisher);
+	QWidget::setTabOrder(m_textPublisher, m_textDatePublished);
+	QWidget::setTabOrder(m_textDatePublished, m_textSeries);
+	QWidget::setTabOrder(m_textSeries, m_comboBoxRating);
+	QWidget::setTabOrder(m_comboBoxRating, m_comboBoxStatus);
+	QWidget::setTabOrder(m_comboBoxStatus, m_buttonAdd);
 	QWidget::setTabOrder(m_buttonAdd, m_buttonClear);
 	QWidget::setTabOrder(m_buttonClear, m_buttonCancel);
 }
@@ -174,6 +179,11 @@ void AddBookDialog::clearInputs()
 	m_textExtension->clear();
 	m_textPath->clear();
 	m_textPages->clear();
+	m_textPublisher->clear();
+	m_textDatePublished->clear();
+	m_textSeries->clear();
+	m_comboBoxStatus->setCurrentIndex(0);
+	m_comboBoxRating->setCurrentIndex(0);
 }
 
 void AddBookDialog::browseFile()
