@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "include/ratingcombobox.h"
+#include "include/statuscombobox.h"
+
 #include <QFile>
 #include <QList>
 #include <QLabel>
@@ -9,6 +12,7 @@
 #include <QComboBox>
 #include <QSplitter>
 #include <QBoxLayout>
+#include <QScrollArea>
 #include <QToolButton>
 #include <QMainWindow>
 #include <QPushButton>
@@ -55,7 +59,23 @@ private slots:
 
 	void refreshGenres();
 
+	void refreshTags();
+
+	void refreshExtensions();
+
+	void refreshPublishers();
+
+	void refreshDatePublished();
+
+	void refreshSeries();
+
+	void refreshStatus();
+
+	void refreshRatings();
+
 	void refreshSearches();
+
+	void refreshAll();
 
 	void openSummaryWindow();
 
@@ -64,8 +84,6 @@ private slots:
 	void showContextMenu(const QPoint&);
 
 	void showSearchBoxContextMenu(const QPoint& pos);
-
-	void trayClicked(QSystemTrayIcon::ActivationReason r);
 
 	void deleteListItem();
 
@@ -94,6 +112,8 @@ private slots:
 	void clearSearch();
 
 	void searchCriteria();
+
+	QString convertValuesToIndices(QString values, std::function<QString(QString)> func);
 
 	void showEbookDetails(QListWidgetItem* item);
 
@@ -130,6 +150,16 @@ private slots:
 	void selectGenres();
 
 	void selectTags();
+
+	void selectPublishers();
+
+	void selectDatePublished();
+
+	void selectSeries();
+
+	void selectStatus();
+
+	void selectRatings();
 
 	void toggleSizeUnit();
 
@@ -206,12 +236,12 @@ private:
 	QLabel* m_labelSizeToCriteria;
 	QLabel* m_labelAuthorCriteria;
 	QLabel* m_labelSearchCriteria;
-	QLineEdit* m_textExts;
+	QComboBox* m_comboBoxExtensionsCriteria;
 	QSpinBox* m_spinBoxFromSizeCriteria;
-	QLabel* m_labelGroupsCriteria;
+	QLabel* m_labelTagsCriteria;
 	QLabel* m_labelFolderCriteria;
 	QComboBox* m_comboBoxSearchLoad;
-	QLineEdit* m_textTagsCriteria;
+	QComboBox* m_comboBoxTagsCriteria;
 	QSpinBox* m_spinBoxToSizeCriteria;
 	QSpinBox* m_spinBoxFromPagesCriteria;
 	QComboBox* m_comboBoxFolderCriteria;
@@ -253,7 +283,7 @@ private:
 	QLineEdit* m_textDetailsSize;
 	QPushButton* m_buttonSizeUnit;
 	QLineEdit* m_textDetailsTags;
-	QLabel* m_labelDetailsGroups;
+	QLabel* m_labelDetailsTags;
 	QLabel* m_labelDetailsName;
 	QLineEdit* m_textDetailsAuthor;
 	QLineEdit* m_textDetailsFolder;
@@ -265,6 +295,17 @@ private:
 	QLabel* m_labelDetailsAuthor;
 	QLineEdit* m_textDetailsName;
 	QLineEdit* m_textDetailsPages;
+	QLabel* m_labelDetailsPublisher;
+	QLineEdit* m_textDetailsPublisher;
+	QLabel* m_labelDetailsDatePublished;
+	QLineEdit* m_textDetailsDatePublished;
+	QLabel* m_labelDetailsSeries;
+	QLineEdit* m_textDetailsSeries;
+	QLabel* m_labelDetailsRating;
+	RatingComboBox* m_comboBoxDetailsRating;
+	QLabel* m_labelDetailsStatus;
+	StatusComboBox* m_comboBoxDetailsStatus;
+
 	QPushButton* m_buttonDetailsRestore;
 	QPushButton* m_buttonDetailsUpdate;
 	QPushButton* m_buttonDetailsClear;
@@ -280,12 +321,31 @@ private:
 	QMenu* m_menuView;
 	QMenu* m_menuTools;
 	QStatusBar* m_statusBar;
+	QFrame* m_frameGridLayCriteria;
+	QScrollArea* m_scrollAreaCriteria;
+	QLabel* m_labelSeriesCriteria;
+	QComboBox* m_comboBoxSeriesCriteria;
+	QLabel* m_labelPublisherCriteria;
+	QComboBox* m_comboBoxPublisherCriteria;
+	QLabel* m_labelDatePublishedCriteria;
+	QComboBox* m_comboBoxDatePublishedCriteria;
+	QLabel* m_labelRatingCriteria;
+	QComboBox* m_comboBoxRatingCriteria;
+	QLabel* m_labelStatusCriteria;
+	QComboBox* m_comboBoxStatusCriteria;
+	QToolButton* m_buttonPublisher;
+	QToolButton* m_buttonDatePublished;
+	QToolButton* m_buttonSeries;
+	QToolButton* m_buttonRating;
+	QToolButton* m_buttonStatus;
+	QFrame* m_frameDetailsFields;
+	QScrollArea* m_scrollAreaDetailsFields;
 
 	// Layouts
 	QHBoxLayout* m_horLayCentral;
 	QHBoxLayout* m_horLayMain;
 	QVBoxLayout* m_vertLayMainLeft;
-	QGridLayout* m_gridLaySearch;
+	QHBoxLayout* m_horLayCriteria;
 	QGridLayout* m_gridLayCriteria;
 	QHBoxLayout* m_horLayBottomButtons;
 	QHBoxLayout* m_horLayAddButtons;
@@ -297,10 +357,12 @@ private:
 	QGridLayout* m_gridLayDetailsFields;
 	QHBoxLayout* m_horLayDetailsSize;
 	QHBoxLayout* m_horLayDetailsButtons;
+	QVBoxLayout* m_vertLaySearchCriteria;
 
 	// Spacers
 	QSpacerItem* m_horSpacerButtonsLeft;
 	QSpacerItem* m_horSpacerButtonsRight;
+	QSpacerItem* m_vertSpacerSearchCriteriaTop;
 };
 
 #endif // MAINWINDOW_H

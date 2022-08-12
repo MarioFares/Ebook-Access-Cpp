@@ -53,12 +53,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 
 	// Setup Tray Icon
 	m_trayIcon = new QSystemTrayIcon(this);
-	m_trayIcon->setIcon(QIcon(":/icons/books_icon.png"));
+	m_trayIcon->setIcon(QIcon(":/icons/icon.ico"));
 	m_trayIcon->setVisible(true);
 	m_trayIcon->setToolTip("Ebook Access\nClick to Open");
 	m_trayIcon->show();
 
-	// QTimer::singleShot(1500, this, SLOT(showQuote()));
+	QTimer::singleShot(1500, this, SLOT(showQuote()));
 
 	setupInterface();
 	setupConnections();
@@ -84,22 +84,15 @@ void MainWindow::setupInterface()
 	m_horLayMain = new QHBoxLayout(m_frameMain);
 	m_splitter = new QSplitter(m_frameMain);
 	m_splitter->setObjectName("splitter");
-	m_splitter->setStyleSheet(QString("QFrame#splitter\n"
-									  "{border:0px;}\n"
-									  "\n"
-									  "QSplitter::handle {\n"
-									  "         background-color: #2D2D30;\n"
-									  "     }"));
+	m_splitter->setStyleSheet(QString("QFrame#splitter {border:0px;}"
+									  "QSplitter::handle { background-color: #2D2D30;}"));
 	m_splitter->setLineWidth(0);
 	m_splitter->setOrientation(Qt::Horizontal);
 	m_splitter->setHandleWidth(2);
 
 	m_frameMainLeft = new QFrame(m_splitter);
 	m_frameMainLeft->setObjectName("frameMainLeft");
-	m_frameMainLeft->setStyleSheet(QString("QFrame#frameMainLeft\n"
-										   "{"
-										   "border: 0px;\n"
-										   "}"));
+	m_frameMainLeft->setStyleSheet(QString("QFrame#frameMainLeft { border: 0px;}"));
 
 	m_vertLayMainLeft = new QVBoxLayout(m_frameMainLeft);
 	m_vertLayMainLeft->setSizeConstraint(QLayout::SetDefaultConstraint);
@@ -110,9 +103,9 @@ void MainWindow::setupInterface()
 	m_frameSearchCriteria->setFrameShape(QFrame::StyledPanel);
 	m_frameSearchCriteria->setFrameShadow(QFrame::Raised);
 
-	m_gridLaySearch = new QGridLayout(m_frameSearchCriteria);
-	m_gridLaySearch->setSizeConstraint(QLayout::SetDefaultConstraint);
-	m_gridLaySearch->setContentsMargins(-1, 9, -1, 9);
+	m_horLayCriteria = new QHBoxLayout(m_frameSearchCriteria);
+	m_horLayCriteria->setSizeConstraint(QLayout::SetDefaultConstraint);
+	m_horLayCriteria->setContentsMargins(-1, 9, -1, 9);
 
 	m_gridLayCriteria = new QGridLayout();
 	m_gridLayCriteria->setHorizontalSpacing(17);
@@ -140,14 +133,15 @@ void MainWindow::setupInterface()
 
 	m_labelSearchCriteria = new QLabel("Search", m_frameSearchCriteria);
 
-	m_textExts = new QLineEdit(m_frameSearchCriteria);
-	m_textExts->setMinimumSize(QSize(0, 23));
+	m_comboBoxExtensionsCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxExtensionsCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxExtensionsCriteria->setEditable(true);
 
 	m_spinBoxFromSizeCriteria = new QSpinBox(m_frameSearchCriteria);
 	m_spinBoxFromSizeCriteria->setMaximumSize(QSize(70, 16777215));
 	m_spinBoxFromSizeCriteria->setMaximum(1023);
 
-	m_labelGroupsCriteria = new QLabel("Tags", m_frameSearchCriteria);
+	m_labelTagsCriteria = new QLabel("Tags", m_frameSearchCriteria);
 
 	m_labelFolderCriteria = new QLabel("Folder", m_frameSearchCriteria);
 
@@ -157,8 +151,9 @@ void MainWindow::setupInterface()
 	m_comboBoxSearchLoad->setMinimumSize(QSize(0, 23));
 	m_comboBoxSearchLoad->setEditable(false);
 
-	m_textTagsCriteria = new QLineEdit(m_frameSearchCriteria);
-	m_textTagsCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxTagsCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxTagsCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxTagsCriteria->setEditable(true);
 
 	m_spinBoxToSizeCriteria = new QSpinBox(m_frameSearchCriteria);
 	m_spinBoxToSizeCriteria->setMaximumSize(QSize(70, 16777215));
@@ -252,38 +247,130 @@ void MainWindow::setupInterface()
 	m_buttonTags->setIcon(QIcon(":/icons/tags_icon.png"));
 	m_buttonTags->setIconSize(QSize(20, 20));
 
+	m_vertLaySearchCriteria = new QVBoxLayout();
+	m_vertLaySearchCriteria->setSpacing(25);
+	m_vertLaySearchCriteria->setContentsMargins(0, 0, 0, 20);
+
+	m_vertSpacerSearchCriteriaTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+	m_scrollAreaCriteria = new QScrollArea(m_frameSearchCriteria);
+	m_scrollAreaCriteria->setObjectName("m_scrollAreaCriteria");
+	m_scrollAreaCriteria->setStyleSheet("QFrame#m_scrollAreaCriteria { border: none; }");
+	m_scrollAreaCriteria->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	m_frameGridLayCriteria = new QFrame(m_scrollAreaCriteria);
+	m_frameGridLayCriteria->setObjectName("m_frameGridLayCriteria");
+	m_frameGridLayCriteria->setStyleSheet("QFrame#m_frameGridLayCriteria { border: none; }");
+
+	m_labelSeriesCriteria = new QLabel("Series", m_frameSearchCriteria);
+
+	m_comboBoxSeriesCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxSeriesCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxSeriesCriteria->setEditable(true);
+
+	m_labelPublisherCriteria = new QLabel("Publisher", m_frameSearchCriteria);
+
+	m_comboBoxPublisherCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxPublisherCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxPublisherCriteria->setEditable(true);
+
+	m_labelDatePublishedCriteria = new QLabel("Published", m_frameSearchCriteria);
+
+	m_comboBoxDatePublishedCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxDatePublishedCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxDatePublishedCriteria->setEditable(true);
+
+	m_labelRatingCriteria = new QLabel("Rating", m_frameSearchCriteria);
+
+	m_comboBoxRatingCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxRatingCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxRatingCriteria->setEditable(true);
+
+	m_labelStatusCriteria = new QLabel("Status", m_frameSearchCriteria);
+
+	m_comboBoxStatusCriteria = new QComboBox(m_frameSearchCriteria);
+	m_comboBoxStatusCriteria->setMinimumSize(QSize(0, 23));
+	m_comboBoxStatusCriteria->setEditable(true);
+
+	m_buttonPublisher = new QToolButton(m_frameSearchCriteria);
+	m_buttonPublisher->setCursor(Qt::PointingHandCursor);
+	m_buttonPublisher->setIcon(QIcon(":/icons/publisher.png"));
+	m_buttonPublisher->setIconSize(QSize(20, 20));
+
+	m_buttonDatePublished = new QToolButton(m_frameSearchCriteria);
+	m_buttonDatePublished->setCursor(Qt::PointingHandCursor);
+	m_buttonDatePublished->setIcon(QIcon(":/icons/calendar.png"));
+	m_buttonDatePublished->setIconSize(QSize(20, 20));
+
+	m_buttonSeries = new QToolButton(m_frameSearchCriteria);
+	m_buttonSeries->setCursor(Qt::PointingHandCursor);
+	m_buttonSeries->setIcon(QIcon(":/icons/series.png"));
+	m_buttonSeries->setIconSize(QSize(20, 20));
+
+	m_buttonRating = new QToolButton(m_frameSearchCriteria);
+	m_buttonRating->setCursor(Qt::PointingHandCursor);
+	m_buttonRating->setIcon(QIcon(":/icons/rating.png"));
+	m_buttonRating->setIconSize(QSize(20, 20));
+
+	m_buttonStatus = new QToolButton(m_frameSearchCriteria);
+	m_buttonStatus->setCursor(Qt::PointingHandCursor);
+	m_buttonStatus->setIcon(QIcon(":/icons/status.png"));
+	m_buttonStatus->setIconSize(QSize(20, 20));
+
 	// Grid Search Criteria
-	m_gridLayCriteria->addWidget(m_labelGenreCriteria, 2, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_spinBoxToPagesCriteria, 6, 4, 1, 1);
-	m_gridLayCriteria->addWidget(m_labelPagesToCriteria, 6, 2, 1, 2);
-	m_gridLayCriteria->addWidget(m_labelSizeToCriteria, 5, 2, 1, 2);
-	m_gridLayCriteria->addWidget(m_labelAuthorCriteria, 1, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_labelSearchCriteria, 7, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_textExts, 4, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_spinBoxFromSizeCriteria, 5, 1, 1, 1);
-	m_gridLayCriteria->addWidget(m_labelGroupsCriteria, 3, 0, 1, 1);
+	m_vertLaySearchCriteria->addSpacerItem(m_vertSpacerSearchCriteriaTop);
+	m_vertLaySearchCriteria->addWidget(m_buttonSearchCriteria);
+	m_vertLaySearchCriteria->addWidget(m_buttonClearCriteria);
+	m_vertLaySearchCriteria->addWidget(m_buttonSaveCriteria);
+
 	m_gridLayCriteria->addWidget(m_labelFolderCriteria, 0, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_comboBoxSearchLoad, 7, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_textTagsCriteria, 3, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_spinBoxToSizeCriteria, 5, 4, 1, 1);
-	m_gridLayCriteria->addWidget(m_spinBoxFromPagesCriteria, 6, 1, 1, 1);
 	m_gridLayCriteria->addWidget(m_comboBoxFolderCriteria, 0, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_comboBoxGenreCriteria, 2, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_comboBoxAuthorCriteria, 1, 1, 1, 4);
-	m_gridLayCriteria->addWidget(m_labelSizeCriteria, 5, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_labelPagesCriteria, 6, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_labelExtensionCriteria, 4, 0, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonSearchCriteria, 5, 6, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonAuthor, 1, 5, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonClearCriteria, 6, 6, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonExtensions, 4, 5, 1, 1);
 	m_gridLayCriteria->addWidget(m_buttonFolder, 0, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelAuthorCriteria, 1, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxAuthorCriteria, 1, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonAuthor, 1, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelGenreCriteria, 2, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxGenreCriteria, 2, 1, 1, 4);
 	m_gridLayCriteria->addWidget(m_buttonGenre, 2, 5, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonSaveCriteria, 7, 6, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonSearchLoad, 7, 5, 1, 1);
-	m_gridLayCriteria->addWidget(m_buttonSizeCriteria, 5, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelTagsCriteria, 3, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxTagsCriteria, 3, 1, 1, 4);
 	m_gridLayCriteria->addWidget(m_buttonTags, 3, 5, 1, 1);
-	m_gridLaySearch->addLayout(m_gridLayCriteria, 0, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelExtensionCriteria, 4, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxExtensionsCriteria, 4, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonExtensions, 4, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelPublisherCriteria, 5, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxPublisherCriteria, 5, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonPublisher, 5, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelDatePublishedCriteria, 6, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxDatePublishedCriteria, 6, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonDatePublished, 6, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelSeriesCriteria, 7, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxSeriesCriteria, 7, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonSeries, 7, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelRatingCriteria, 8, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxRatingCriteria, 8, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonRating, 8, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelStatusCriteria, 9, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxStatusCriteria, 9, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonStatus, 9, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelSizeCriteria, 10, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_spinBoxFromSizeCriteria, 10, 1, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelSizeToCriteria, 10, 2, 1, 2);
+	m_gridLayCriteria->addWidget(m_spinBoxToSizeCriteria, 10, 4, 1, 1);
+	m_gridLayCriteria->addWidget(m_buttonSizeCriteria, 10, 5, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelPagesCriteria, 11, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_spinBoxFromPagesCriteria, 11, 1, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelPagesToCriteria, 11, 2, 1, 2);
+	m_gridLayCriteria->addWidget(m_spinBoxToPagesCriteria, 11, 4, 1, 1);
+	m_gridLayCriteria->addWidget(m_labelSearchCriteria, 12, 0, 1, 1);
+	m_gridLayCriteria->addWidget(m_comboBoxSearchLoad, 12, 1, 1, 4);
+	m_gridLayCriteria->addWidget(m_buttonSearchLoad, 12, 5, 1, 1);
+
+	m_frameGridLayCriteria->setLayout(m_gridLayCriteria);
+	m_scrollAreaCriteria->setWidget(m_frameGridLayCriteria);
+
+	m_horLayCriteria->addWidget(m_scrollAreaCriteria);
+	m_horLayCriteria->addLayout(m_vertLaySearchCriteria);
 
 	m_vertLayMainLeft->addWidget(m_frameSearchCriteria);
 
@@ -361,10 +448,7 @@ void MainWindow::setupInterface()
 	sizePolicy3.setHeightForWidth(m_frameMainRight->sizePolicy().hasHeightForWidth());
 	m_frameMainRight->setSizePolicy(sizePolicy3);
 	m_frameMainRight->setBaseSize(QSize(0, 0));
-	m_frameMainRight->setStyleSheet(QString("QFrame#frameMainRight\n"
-											"{"
-											"border: 0px;\n"
-											"}"));
+	m_frameMainRight->setStyleSheet(QString("QFrame#frameMainRight {border: 0px; }"));
 
 	m_vertLayMainRight = new QVBoxLayout(m_frameMainRight);
 	m_vertLayMainRight->setSpacing(6);
@@ -374,9 +458,7 @@ void MainWindow::setupInterface()
 	QSizePolicy retain = m_frameSearchToolBar->sizePolicy();
 	retain.setRetainSizeWhenHidden(true);
 	m_frameSearchToolBar->setSizePolicy(retain);
-	m_frameSearchToolBar->setStyleSheet(QString("QFrame {\n"
-												"border: 0px;\n"
-												"}"));
+	m_frameSearchToolBar->setStyleSheet(QString("QFrame { border: 0px; }"));
 
 	m_horLaySearchBar = new QHBoxLayout(m_frameSearchToolBar);
 	m_horLaySearchBar->setSpacing(6);
@@ -439,14 +521,13 @@ void MainWindow::setupInterface()
 	m_labelDetailsSize->setMaximumHeight(24);
 
 	m_textDetailsGenre = new QLineEdit(m_frameDetails);
+	m_textDetailsGenre->setMinimumSize(QSize(0, 23));
 	m_textDetailsGenre->setMaximumHeight(24);
 
 	m_frameSizeDetails = new QFrame(m_frameDetails);
 	m_frameSizeDetails->setMinimumSize(QSize(32, 0));
 	m_frameSizeDetails->setMaximumHeight(24);
-	m_frameSizeDetails->setStyleSheet(QString("QFrame {\n"
-											  "border: 0px;\n"
-											  "}"));
+	m_frameSizeDetails->setStyleSheet(QString("QFrame { border: 0px; }"));
 
 	m_horLayDetailsSize = new QHBoxLayout(m_frameSizeDetails);
 	m_horLayDetailsSize->setSpacing(7);
@@ -454,6 +535,7 @@ void MainWindow::setupInterface()
 
 	m_textDetailsSize = new QLineEdit(m_frameSizeDetails);
 	m_textDetailsSize->setEnabled(false);
+	m_textDetailsSize->setMinimumSize(QSize(0, 23));
 	m_textDetailsSize->setMaximumHeight(24);
 
 	m_buttonSizeUnit = new QPushButton("MB", m_frameSizeDetails);
@@ -466,22 +548,61 @@ void MainWindow::setupInterface()
 
 	m_textDetailsTags = new QLineEdit(m_frameDetails);
 	m_textDetailsTags->setMaximumHeight(24);
+	m_textDetailsTags->setMinimumSize(QSize(0, 23));
 
-	m_labelDetailsGroups = new QLabel("Tags: ", m_frameDetails);
-	m_labelDetailsGroups->setMaximumHeight(24);
+	m_labelDetailsTags = new QLabel("Tags: ", m_frameDetails);
+	m_labelDetailsTags->setMaximumHeight(24);
 
 	m_labelDetailsName = new QLabel("Name: ", m_frameDetails);
 	m_labelDetailsName->setMaximumHeight(24);
 
 	m_textDetailsAuthor = new QLineEdit(m_frameDetails);
 	m_textDetailsAuthor->setMaximumHeight(24);
+	m_textDetailsAuthor->setMinimumSize(QSize(0, 23));
 
 	m_textDetailsFolder = new QLineEdit(m_frameDetails);
 	m_textDetailsFolder->setMaximumHeight(24);
+	m_textDetailsFolder->setMinimumSize(QSize(0, 23));
 
 	m_textDetailsExt = new QLineEdit(m_frameDetails);
 	m_textDetailsExt->setEnabled(false);
 	m_textDetailsExt->setMaximumHeight(24);
+	m_textDetailsExt->setMinimumSize(QSize(0, 23));
+
+	m_textDetailsPublisher = new QLineEdit(m_frameDetails);
+	m_textDetailsPublisher->setMaximumHeight(24);
+	m_textDetailsPublisher->setMinimumSize(QSize(0, 23));
+
+	m_textDetailsDatePublished = new QLineEdit(m_frameDetails);
+	m_textDetailsDatePublished->setMaximumHeight(24);
+	m_textDetailsDatePublished->setMinimumSize(QSize(0, 23));
+
+	m_textDetailsSeries = new QLineEdit(m_frameDetails);
+	m_textDetailsSeries->setMaximumHeight(24);
+	m_textDetailsSeries->setMinimumSize(QSize(0, 23));
+
+	m_comboBoxDetailsRating = new RatingComboBox(m_frameDetails);
+	m_comboBoxDetailsRating->setMaximumHeight(24);
+	m_comboBoxDetailsRating->setMinimumSize(QSize(0, 23));
+
+	m_comboBoxDetailsStatus = new StatusComboBox(m_frameDetails);
+	m_comboBoxDetailsStatus->setMaximumHeight(24);
+	m_comboBoxDetailsStatus->setMinimumSize(QSize(0, 23));
+
+	m_labelDetailsStatus = new QLabel("Status: ", m_frameDetails);
+	m_labelDetailsStatus->setMaximumHeight(24);
+
+	m_labelDetailsRating = new QLabel("Rating: ", m_frameDetails);
+	m_labelDetailsRating->setMaximumHeight(24);
+
+	m_labelDetailsSeries = new QLabel("Series: ", m_frameDetails);
+	m_labelDetailsSeries->setMaximumHeight(24);
+
+	m_labelDetailsDatePublished = new QLabel("Published: ", m_frameDetails);
+	m_labelDetailsDatePublished->setMaximumHeight(24);
+
+	m_labelDetailsPublisher = new QLabel("Publisher: ", m_frameDetails);
+	m_labelDetailsPublisher->setMaximumHeight(24);
 
 	m_labelDetailsExt = new QLabel("Ext: ", m_frameDetails);
 	m_labelDetailsExt->setMaximumHeight(24);
@@ -501,37 +622,54 @@ void MainWindow::setupInterface()
 	m_textDetailsName = new QLineEdit(m_frameDetails);
 	m_textDetailsName->setMaximumHeight(24);
 	m_textDetailsName->setClearButtonEnabled(false);
+	m_textDetailsName->setMinimumSize(QSize(0, 23));
 
 	m_textDetailsPages = new QLineEdit(m_frameDetails);
 	m_textDetailsPages->setMaximumHeight(24);
+	m_textDetailsPages->setMinimumSize(QSize(0, 23));
 
-	m_gridLayDetailsFields->addWidget(m_labelDetailsSize, 2, 2, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsGenre, 2, 1, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_frameSizeDetails, 2, 3, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsTags, 3, 3, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_labelDetailsGroups, 3, 2, 1, 1);
+	m_scrollAreaDetailsFields = new QScrollArea(m_frameDetails);
+	m_scrollAreaDetailsFields->setObjectName("m_scrollAreaDetailsFields");
+	m_scrollAreaDetailsFields->setStyleSheet("QScrollArea#m_scrollAreaDetailsFields { border: none; }");
+	m_scrollAreaDetailsFields->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	m_frameDetailsFields = new QFrame(m_scrollAreaDetailsFields);
+	m_frameDetailsFields->setObjectName("m_gridLayDetailsFields");
+	m_frameDetailsFields->setContentsMargins(0, 0, 0, 0);
+	m_frameDetailsFields->setStyleSheet("QFrame#m_gridLayDetailsFields { border: none ; }");
+
 	m_gridLayDetailsFields->addWidget(m_labelDetailsName, 0, 0, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsAuthor, 1, 1, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsFolder, 3, 1, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsExt, 0, 3, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_labelDetailsExt, 0, 2, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_labelDetailsPages, 1, 2, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_labelDetailsGenre, 2, 0, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_labelDetailsFolder, 3, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsName, 0, 1, 1, 3);
 	m_gridLayDetailsFields->addWidget(m_labelDetailsAuthor, 1, 0, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsName, 0, 1, 1, 1);
-	m_gridLayDetailsFields->addWidget(m_textDetailsPages, 1, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsAuthor, 1, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsExt, 1, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsExt, 1, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsGenre, 2, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsGenre, 2, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsPages, 2, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsPages, 2, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsFolder, 3, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsFolder, 3, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsSize, 3, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_frameSizeDetails, 3, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsTags, 4, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsTags, 4, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsPublisher, 4, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsPublisher, 4, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsDatePublished, 5, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsDatePublished, 5, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsSeries, 5, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textDetailsSeries, 5, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsRating, 6, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_comboBoxDetailsRating, 6, 1, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsStatus, 6, 2, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_comboBoxDetailsStatus, 6, 3, 1, 1);
 
-	m_gridLayDetailsFields->setRowStretch(0, 1);
-	m_gridLayDetailsFields->setRowStretch(1, 1);
-	m_gridLayDetailsFields->setRowStretch(2, 1);
-	m_gridLayDetailsFields->setRowStretch(3, 1);
-	m_gridLayDetailsFields->setRowMinimumHeight(0, 1);
-	m_gridLayDetailsFields->setRowMinimumHeight(1, 1);
-	m_gridLayDetailsFields->setRowMinimumHeight(2, 1);
-	m_gridLayDetailsFields->setRowMinimumHeight(3, 1);
+	m_frameDetailsFields->setLayout(m_gridLayDetailsFields);
+	m_scrollAreaDetailsFields->setWidget(m_frameDetailsFields);
+	m_scrollAreaDetailsFields->setWidgetResizable(true);
 
-	m_vertLayDetails->addLayout(m_gridLayDetailsFields);
+	m_vertLayDetails->addWidget(m_scrollAreaDetailsFields);
 
 	m_horLayDetailsButtons = new QHBoxLayout();
 	m_horSpacerButtonsLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -590,9 +728,7 @@ void MainWindow::setupInterface()
 	setCentralWidget(m_centralWidget);
 
 	// Refresh
-	refreshFolders();
-	refreshAuthors();
-	refreshGenres();
+	refreshAll();
 	refreshSearches();
 }
 
@@ -771,6 +907,12 @@ void MainWindow::setupConnections()
 	connect(m_buttonAuthor, &QToolButton::clicked, this, &MainWindow::selectAuthors);
 	connect(m_buttonGenre, &QToolButton::clicked, this, &MainWindow::selectGenres);
 	connect(m_buttonTags, &QToolButton::clicked, this, &MainWindow::selectTags);
+	connect(m_buttonPublisher, &QToolButton::clicked, this, &MainWindow::selectPublishers);
+	connect(m_buttonDatePublished, &QToolButton::clicked, this, &MainWindow::selectDatePublished);
+	connect(m_buttonSeries, &QToolButton::clicked, this, &MainWindow::selectSeries);
+	connect(m_buttonRating, &QToolButton::clicked, this, &MainWindow::selectRatings);
+	connect(m_buttonStatus, &QToolButton::clicked, this, &MainWindow::selectStatus);
+
 	connect(m_buttonSizeUnit, &QToolButton::clicked, this, &MainWindow::toggleSizeUnit);
 	connect(m_buttonSummaries, &QToolButton::clicked, [this]
 	{ showSummary(""); });
@@ -787,8 +929,6 @@ void MainWindow::setupConnections()
 	});
 
 	connect(m_comboBoxSearchLoad, &QComboBox::currentTextChanged, this, &MainWindow::loadSearch);
-	connect(m_textTagsCriteria, &QLineEdit::returnPressed, this, &MainWindow::searchCriteria);
-	connect(m_textExts, &QLineEdit::returnPressed, this, &MainWindow::searchCriteria);
 	connect(m_textSearchBar, &QLineEdit::returnPressed, this, &MainWindow::searchString);
 	connect(m_textSearchBar, &QLineEdit::textChanged, this, &MainWindow::searchString);
 
@@ -861,14 +1001,19 @@ void MainWindow::setupTabOrder()
 	QWidget::setTabOrder(m_textSearchBar, m_ebooksListWidget);
 	QWidget::setTabOrder(m_ebooksListWidget, m_textDetailsName);
 	QWidget::setTabOrder(m_textDetailsName, m_textDetailsAuthor);
-	QWidget::setTabOrder(m_textDetailsAuthor, m_textDetailsGenre);
-	QWidget::setTabOrder(m_textDetailsGenre, m_textDetailsFolder);
-	QWidget::setTabOrder(m_textDetailsFolder, m_textDetailsExt);
-	QWidget::setTabOrder(m_textDetailsExt, m_textDetailsPages);
-	QWidget::setTabOrder(m_textDetailsPages, m_textDetailsSize);
+	QWidget::setTabOrder(m_textDetailsAuthor, m_textDetailsExt);
+	QWidget::setTabOrder(m_textDetailsExt, m_textDetailsGenre);
+	QWidget::setTabOrder(m_textDetailsGenre, m_textDetailsPages);
+	QWidget::setTabOrder(m_textDetailsPages, m_textDetailsFolder);
+	QWidget::setTabOrder(m_textDetailsFolder, m_textDetailsSize);
 	QWidget::setTabOrder(m_textDetailsSize, m_buttonSizeUnit);
 	QWidget::setTabOrder(m_buttonSizeUnit, m_textDetailsTags);
-	QWidget::setTabOrder(m_textDetailsTags, m_buttonDetailsUpdate);
+	QWidget::setTabOrder(m_textDetailsTags, m_textDetailsPublisher);
+	QWidget::setTabOrder(m_textDetailsPublisher, m_textDetailsDatePublished);
+	QWidget::setTabOrder(m_textDetailsDatePublished, m_textDetailsSeries);
+	QWidget::setTabOrder(m_textDetailsSeries, m_comboBoxDetailsRating);
+	QWidget::setTabOrder(m_comboBoxDetailsRating, m_comboBoxDetailsStatus);
+	QWidget::setTabOrder(m_comboBoxDetailsStatus, m_buttonDetailsUpdate);
 	QWidget::setTabOrder(m_buttonDetailsUpdate, m_buttonDetailsRestore);
 	QWidget::setTabOrder(m_buttonDetailsRestore, m_buttonDetailsClear);
 	QWidget::setTabOrder(m_buttonDetailsClear, m_comboBoxFolderCriteria);
@@ -877,11 +1022,21 @@ void MainWindow::setupTabOrder()
 	QWidget::setTabOrder(m_comboBoxAuthorCriteria, m_buttonAuthor);
 	QWidget::setTabOrder(m_buttonAuthor, m_comboBoxGenreCriteria);
 	QWidget::setTabOrder(m_comboBoxGenreCriteria, m_buttonGenre);
-	QWidget::setTabOrder(m_buttonGenre, m_textTagsCriteria);
-	QWidget::setTabOrder(m_textTagsCriteria, m_buttonTags);
-	QWidget::setTabOrder(m_buttonTags, m_textExts);
-	QWidget::setTabOrder(m_textExts, m_buttonExtensions);
-	QWidget::setTabOrder(m_buttonExtensions, m_spinBoxFromSizeCriteria);
+	QWidget::setTabOrder(m_buttonGenre, m_comboBoxTagsCriteria);
+	QWidget::setTabOrder(m_comboBoxTagsCriteria, m_buttonTags);
+	QWidget::setTabOrder(m_buttonTags, m_comboBoxExtensionsCriteria);
+	QWidget::setTabOrder(m_comboBoxExtensionsCriteria, m_buttonExtensions);
+	QWidget::setTabOrder(m_buttonExtensions, m_comboBoxPublisherCriteria);
+	QWidget::setTabOrder(m_comboBoxPublisherCriteria, m_buttonPublisher);
+	QWidget::setTabOrder(m_buttonPublisher, m_comboBoxDatePublishedCriteria);
+	QWidget::setTabOrder(m_comboBoxDatePublishedCriteria, m_buttonDatePublished);
+	QWidget::setTabOrder(m_buttonDatePublished, m_comboBoxSeriesCriteria);
+	QWidget::setTabOrder(m_comboBoxSeriesCriteria, m_buttonSeries);
+	QWidget::setTabOrder(m_buttonSeries, m_comboBoxRatingCriteria);
+	QWidget::setTabOrder(m_comboBoxRatingCriteria, m_buttonRating);
+	QWidget::setTabOrder(m_buttonRating, m_comboBoxStatusCriteria);
+	QWidget::setTabOrder(m_comboBoxStatusCriteria, m_buttonStatus);
+	QWidget::setTabOrder(m_buttonStatus, m_spinBoxFromSizeCriteria);
 	QWidget::setTabOrder(m_spinBoxFromSizeCriteria, m_spinBoxToSizeCriteria);
 	QWidget::setTabOrder(m_spinBoxToSizeCriteria, m_buttonSizeCriteria);
 	QWidget::setTabOrder(m_buttonSizeCriteria, m_spinBoxFromPagesCriteria);
@@ -947,14 +1102,6 @@ void MainWindow::showQuote()
 {
 	QuoteDialog dialog(this);
 	common::openDialog(&dialog, ":styles/quote.qss");
-}
-
-void MainWindow::trayClicked(QSystemTrayIcon::ActivationReason r)
-{
-	if (r == QSystemTrayIcon::Trigger)
-	{
-		show();
-	}
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)
@@ -1037,10 +1184,88 @@ void MainWindow::refreshGenres()
 	refreshComboBox(m_comboBoxGenreCriteria);
 }
 
+void MainWindow::refreshTags()
+{
+	queries::selectTags();
+	refreshComboBox(m_comboBoxTagsCriteria);
+}
+
+void MainWindow::refreshExtensions()
+{
+	queries::selectExt();
+	refreshComboBox(m_comboBoxExtensionsCriteria);
+}
+
+void MainWindow::refreshPublishers()
+{
+	queries::selectPublisherQuery();
+	refreshComboBox(m_comboBoxPublisherCriteria);
+}
+
+void MainWindow::refreshDatePublished()
+{
+	queries::selectDatePublishedQuery();
+	refreshComboBox(m_comboBoxDatePublishedCriteria);
+}
+
+void MainWindow::refreshSeries()
+{
+	queries::selectSeriesQuery();
+	refreshComboBox(m_comboBoxSeriesCriteria);
+}
+
+void MainWindow::refreshStatus()
+{
+	queries::selectStatusQuery();
+	m_comboBoxStatusCriteria->clear();
+	m_comboBoxStatusCriteria->addItem("");
+	while (queries::query.next())
+	{
+		QString value = StatusComboBox::convertToStatus(queries::query.value(0).toInt());
+		if (value.isEmpty())
+		{
+			continue;
+		}
+		m_comboBoxStatusCriteria->addItem(value);
+	}
+	m_comboBoxStatusCriteria->model()->sort(0, Qt::AscendingOrder);
+}
+
+void MainWindow::refreshRatings()
+{
+	queries::selectRatingsQuery();
+	m_comboBoxRatingCriteria->clear();
+	m_comboBoxRatingCriteria->addItem("");
+	while (queries::query.next())
+	{
+		QString value = RatingComboBox::convertToStars(queries::query.value(0).toInt());
+		if (value.isEmpty())
+		{
+			continue;
+		}
+		m_comboBoxRatingCriteria->addItem(value);
+	}
+	m_comboBoxRatingCriteria->model()->sort(0, Qt::AscendingOrder);
+}
+
 void MainWindow::refreshSearches()
 {
 	queries::selectSearchesQuery();
 	refreshComboBox(m_comboBoxSearchLoad);
+}
+
+void MainWindow::refreshAll()
+{
+	refreshFolders();
+	refreshAuthors();
+	refreshGenres();
+	refreshTags();
+	refreshExtensions();
+	refreshPublishers();
+	refreshDatePublished();
+	refreshSeries();
+	refreshRatings();
+	refreshStatus();
 }
 
 double MainWindow::changeBookSizeUnit(double size, const QString& unit)
@@ -1151,9 +1376,7 @@ void MainWindow::showAddBooksDialog()
 	AddBooksDialog dialog(this);
 	common::openDialog(&dialog, ":/styles/style.qss");
 
-	refreshFolders();
-	refreshAuthors();
-	refreshGenres();
+	refreshAll();
 }
 
 void MainWindow::searchString()
@@ -1183,8 +1406,13 @@ void MainWindow::clearCriteria()
 	m_comboBoxGenreCriteria->setCurrentIndex(0);
 	m_comboBoxAuthorCriteria->setCurrentIndex(0);
 	m_comboBoxFolderCriteria->setCurrentIndex(0);
-	m_textExts->clear();
-	m_textTagsCriteria->clear();
+	m_comboBoxExtensionsCriteria->setCurrentIndex(0);
+	m_comboBoxPublisherCriteria->setCurrentIndex(0);
+	m_comboBoxDatePublishedCriteria->setCurrentIndex(0);
+	m_comboBoxSeriesCriteria->setCurrentIndex(0);
+	m_comboBoxRatingCriteria->setCurrentIndex(0);
+	m_comboBoxStatusCriteria->setCurrentIndex(0);
+	m_comboBoxTagsCriteria->setCurrentIndex(0);
 	m_ebooksListWidget->clear();
 	m_statusBar->clearMessage();
 }
@@ -1199,6 +1427,11 @@ void MainWindow::clearDetails()
 	m_textDetailsSize->clear();
 	m_textDetailsFolder->clear();
 	m_textDetailsPages->clear();
+	m_textDetailsPublisher->clear();
+	m_textDetailsDatePublished->clear();
+	m_textDetailsSeries->clear();
+	m_comboBoxDetailsRating->setCurrentIndex(0);
+	m_comboBoxDetailsStatus->setCurrentIndex(0);
 	m_statusBar->clearMessage();
 }
 
@@ -1211,9 +1444,7 @@ void MainWindow::sortSearch()
 void MainWindow::resetEbooks()
 {
 	queries::resetEbooksTableQuery();
-	refreshFolders();
-	refreshAuthors();
-	refreshGenres();
+	refreshAll();
 	m_ebooksListWidget->clear();
 	m_statusBar->showMessage("Ebooks, summaries, and tags have been deleted.");
 }
@@ -1249,23 +1480,14 @@ void MainWindow::showAddBookDialog()
 {
 	AddBookDialog dialog(this);
 	common::openDialog(&dialog, ":/styles/style.qss");
-	refreshFolders();
-	refreshAuthors();
-	refreshGenres();
+	refreshAll();
 }
 
 void MainWindow::clearSearch()
 {
 	m_textSearchBar->clear();
 	m_ebooksListWidget->clear();
-	m_textDetailsName->clear();
-	m_textDetailsFolder->clear();
-	m_textDetailsGenre->clear();
-	m_textDetailsAuthor->clear();
-	m_textDetailsExt->clear();
-	m_textDetailsPages->clear();
-	m_textDetailsSize->clear();
-	m_textDetailsTags->clear();
+	clearDetails();
 	m_statusBar->clearMessage();
 }
 
@@ -1275,7 +1497,7 @@ void MainWindow::searchCriteria()
 	QString folder = m_comboBoxFolderCriteria->currentText();
 	QString author = m_comboBoxAuthorCriteria->currentText();
 	QString genre = m_comboBoxGenreCriteria->currentText();
-	QString tags = m_textTagsCriteria->text();
+	QString tags = m_comboBoxTagsCriteria->currentText();
 	quint64 sizeTo = m_spinBoxToSizeCriteria->value();
 	quint64 sizeFrom = m_spinBoxFromSizeCriteria->value();
 	QString convUnit = m_buttonSizeCriteria->text();
@@ -1283,8 +1505,19 @@ void MainWindow::searchCriteria()
 	sizeFrom = sizeFrom * m_sizeConvFactors[convUnit];
 	quint32 pagesTo = m_spinBoxToPagesCriteria->value();
 	quint32 pagesFrom = m_spinBoxFromPagesCriteria->value();
-	QString ext = m_textExts->text();
-	queries::selectNameBasedOnCriteria(folder, genre, author, tags, ext, pagesFrom, pagesTo, sizeFrom, sizeTo);
+	QString ext = m_comboBoxExtensionsCriteria->currentText();
+	QString publisher = m_comboBoxPublisherCriteria->currentText();
+	QString published = m_comboBoxDatePublishedCriteria->currentText();
+	QString series = m_comboBoxSeriesCriteria->currentText();
+	// Transform ratings from strings to indices
+	QString ratings = m_comboBoxRatingCriteria->currentText();
+	ratings = convertValuesToIndices(ratings, &RatingComboBox::convertToIndex);
+	// Transform status from strings to indices
+	QString status = m_comboBoxStatusCriteria->currentText();
+	status = convertValuesToIndices(status, &StatusComboBox::convertToIndex);
+
+	queries::selectNameBasedOnCriteria(folder, genre, author, tags, ext, pagesFrom, pagesTo, sizeFrom, sizeTo,
+			publisher, published, series, ratings, status);
 	quint32 count = 0;
 	while (queries::query.next())
 	{
@@ -1295,10 +1528,21 @@ void MainWindow::searchCriteria()
 	m_statusBar->showMessage("Number of ebooks: " + QString::number(count));
 }
 
+QString MainWindow::convertValuesToIndices(QString values, std::function<QString(QString)> func)
+{
+	if (values.isEmpty())
+	{
+		return values;
+	}
+	QStringList valueList = values.split(common::SEP);
+	std::transform(valueList.begin(), valueList.end(), valueList.begin(), func);
+	return valueList.join(common::SEP);
+}
+
 void MainWindow::showEbookDetails(QListWidgetItem* item)
 {
 	QString fileName = item->text();
-	queries::selectAllBasedonName(fileName);
+	queries::selectAllBasedOnName(fileName);
 	queries::query.next();
 	QString author = queries::query.value("author").toString();
 	author = (author == "N/A" ? "" : author);
@@ -1308,6 +1552,14 @@ void MainWindow::showEbookDetails(QListWidgetItem* item)
 	QString pages = queries::query.value("pages").toString();
 	double size = changeBookSizeUnit(queries::query.value("size").toDouble(), m_buttonSizeUnit->text());
 	QString folder = queries::query.value("folder").toString();
+	QString publisher = queries::query.value("publisher").toString();
+	publisher = (publisher == "N/A" ? "" : publisher);
+	QString datePublished = queries::query.value("date_published").toString();
+	datePublished = (datePublished == "N/A" ? "" : datePublished);
+	QString series = queries::query.value("series").toString();
+	series = (series == "N/A" ? "" : series);
+	quint32 rating = queries::query.value("rating").toInt();
+	quint32 status = queries::query.value("status").toInt();
 	QString tags = queries::selectTagsBasedOnName(fileName);
 
 	m_textDetailsName->setText(fileName);
@@ -1320,6 +1572,11 @@ void MainWindow::showEbookDetails(QListWidgetItem* item)
 	m_textDetailsFolder->setText(folder);
 	m_textDetailsFolder->setCursorPosition(0);
 	m_textDetailsTags->setText(tags);
+	m_textDetailsPublisher->setText(publisher);
+	m_textDetailsDatePublished->setText(datePublished);
+	m_textDetailsSeries->setText(series);
+	m_comboBoxDetailsRating->setCurrentIndex(rating);
+	m_comboBoxDetailsStatus->setCurrentIndex(status);
 	m_textDetailsTags->setCursorPosition(0);
 	m_statusBar->showMessage("Current selected ebook: " + fileName);
 }
@@ -1335,42 +1592,48 @@ void MainWindow::restoreDetails()
 
 void MainWindow::updateDetails()
 {
-	if (!m_ebooksListWidget->selectedItems().isEmpty())
+	if (m_ebooksListWidget->selectedItems().isEmpty())
 	{
-		QString oldName = m_ebooksListWidget->currentItem()->text();
-		QString newName = m_textDetailsName->text();
-		QString author = m_textDetailsAuthor->text();
-		QString folder = m_textDetailsFolder->text();
-		QString genre = m_textDetailsGenre->text();
-		QString tags = m_textDetailsTags->text().trimmed();
-		quint32 pages = m_textDetailsPages->text().toUInt();
-
-		queries::selectPathBasedonName(oldName);
-		queries::query.next();
-		QString path = queries::query.value(0).toString();
-
-		if (newName != oldName)
-		{
-			YesNoDialog dialog(this, "Rename File", "Rename File",
-					"Do you wish to rename the file on your hard drive as well?");
-			common::openDialog(&dialog, ":/styles/style.qss");
-			bool result = dialog.getResult();
-			if (result)
-			{
-				QFile file(path);
-				QFileInfo info(file);
-				path = info.absolutePath() + "/" + newName + "." + info.suffix();
-				file.rename(path);
-			}
-		}
-		queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path);
-		m_ebooksListWidget->currentItem()->setText(newName);
-
-		refreshAuthors();
-		refreshFolders();
-		refreshGenres();
-		m_statusBar->showMessage("Details updated successfully.");
+		return;
 	}
+	QString oldName = m_ebooksListWidget->currentItem()->text();
+	QString newName = m_textDetailsName->text();
+	QString author = m_textDetailsAuthor->text();
+	QString folder = m_textDetailsFolder->text();
+	QString genre = m_textDetailsGenre->text();
+	QString publisher = m_textDetailsPublisher->text();
+	QString datePublished = m_textDetailsDatePublished->text();
+	QString series = m_textDetailsSeries->text();
+	quint32 rating = m_comboBoxDetailsRating->currentIndex();
+	quint32 status = m_comboBoxDetailsStatus->currentIndex();
+
+	QString tags = m_textDetailsTags->text().trimmed();
+	quint32 pages = m_textDetailsPages->text().toUInt();
+
+	queries::selectPathBasedonName(oldName);
+	queries::query.next();
+	QString path = queries::query.value(0).toString();
+
+	if (newName != oldName)
+	{
+		YesNoDialog dialog(this, "Rename File", "Rename File",
+				"Do you wish to rename the file on your hard drive as well?");
+		common::openDialog(&dialog, ":/styles/style.qss");
+		bool result = dialog.getResult();
+		if (result)
+		{
+			QFile file(path);
+			QFileInfo info(file);
+			path = info.absolutePath() + "/" + newName + "." + info.suffix();
+			file.rename(path);
+		}
+	}
+	queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path, publisher, datePublished,
+			series, rating, status);
+	m_ebooksListWidget->currentItem()->setText(newName);
+
+	refreshAll();
+	m_statusBar->showMessage("Details updated successfully.");
 }
 
 void MainWindow::saveCriteria()
@@ -1378,20 +1641,26 @@ void MainWindow::saveCriteria()
 	QString folder = m_comboBoxFolderCriteria->currentText();
 	QString author = m_comboBoxAuthorCriteria->currentText();
 	QString genre = m_comboBoxGenreCriteria->currentText();
-	QString tags = m_textTagsCriteria->text();
-	QString ext = m_textExts->text();
+	QString tags = m_comboBoxTagsCriteria->currentText();
+	QString ext = m_comboBoxExtensionsCriteria->currentText();
 	quint32 sizeTo = m_spinBoxToSizeCriteria->value();
 	quint32 sizeFrom = m_spinBoxFromSizeCriteria->value();
 	QString sizeIn = m_buttonSizeCriteria->text();
 	quint32 pagesTo = m_spinBoxToPagesCriteria->value();
 	quint32 pagesFrom = m_spinBoxFromPagesCriteria->value();
+	QString publisher = m_comboBoxPublisherCriteria->currentText();
+	QString datePublished = m_comboBoxDatePublishedCriteria->currentText();
+	QString series = m_comboBoxSeriesCriteria->currentText();
+	QString rating = m_comboBoxRatingCriteria->currentText();
+	QString status = m_comboBoxStatusCriteria->currentText();
 
 	GetNameDialog dialog(this, "Search Name", "Please provide a name for the search you want to save:");
 	common::openDialog(&dialog, ":/styles/style.qss");
 	if (!dialog.m_name.isEmpty())
 	{
 		queries::insertSearchQuery(dialog.m_name, folder, author, genre, tags, ext,
-				sizeFrom, sizeTo, sizeIn, pagesFrom, pagesTo);
+				sizeFrom, sizeTo, sizeIn, pagesFrom, pagesTo,
+				publisher, datePublished, series, rating, status);
 		m_statusBar->showMessage("Search saved successfully.");
 	}
 
@@ -1412,13 +1681,18 @@ void MainWindow::loadSearch()
 	m_comboBoxFolderCriteria->setCurrentText(queries::query.value("folder").toString());
 	m_comboBoxAuthorCriteria->setCurrentText(queries::query.value("author").toString());
 	m_comboBoxGenreCriteria->setCurrentText(queries::query.value("genre").toString());
-	m_textTagsCriteria->setText(queries::query.value("tags").toString());
-	m_textExts->setText(queries::query.value("ext").toString());
+	m_comboBoxTagsCriteria->setCurrentText(queries::query.value("tags").toString());
+	m_comboBoxExtensionsCriteria->setCurrentText(queries::query.value("ext").toString());
 	m_spinBoxFromSizeCriteria->setValue(queries::query.value("size_from").toUInt());
 	m_spinBoxToSizeCriteria->setValue(queries::query.value("size_to").toUInt());
 	m_buttonSizeCriteria->setText(queries::query.value("size_in").toString());
 	m_spinBoxFromPagesCriteria->setValue(queries::query.value("pages_from").toUInt());
 	m_spinBoxToPagesCriteria->setValue(queries::query.value("pages_to").toUInt());
+	m_comboBoxPublisherCriteria->setCurrentText(queries::query.value("publisher").toString());
+	m_comboBoxDatePublishedCriteria->setCurrentText(queries::query.value("date_published").toString());
+	m_comboBoxSeriesCriteria->setCurrentText(queries::query.value("series").toString());
+	m_comboBoxRatingCriteria->setCurrentText(queries::query.value("rating").toString());
+	m_comboBoxStatusCriteria->setCurrentText(queries::query.value("status").toString());
 
 	m_statusBar->showMessage("Search loaded.");
 }
@@ -1493,7 +1767,7 @@ void MainWindow::extSelectionSetup(const QString& title, const QString& prompt, 
 void MainWindow::selectExtensions()
 {
 	queries::selectExt();
-	extSelectionSetup("Extensions", "Select Available Extensions", m_textExts);
+	extSelectionSetup("Extensions", "Select Available Extensions", m_comboBoxExtensionsCriteria);
 }
 
 void MainWindow::selectFolders()
@@ -1512,6 +1786,60 @@ void MainWindow::selectGenres()
 {
 	queries::selectGenreQuery();
 	extSelectionSetup("Genres", "Select Available Genres", m_comboBoxGenreCriteria);
+}
+
+void MainWindow::selectPublishers()
+{
+	queries::selectPublisherQuery();
+	extSelectionSetup("Publishers", "Select Available Publishers", m_comboBoxPublisherCriteria);
+}
+
+void MainWindow::selectDatePublished()
+{
+	queries::selectDatePublishedQuery();
+	extSelectionSetup("Dates Published", "Select Available Dates", m_comboBoxDatePublishedCriteria);
+}
+
+void MainWindow::selectSeries()
+{
+	queries::selectSeriesQuery();
+	extSelectionSetup("Series", "Select Available Series", m_comboBoxSeriesCriteria);
+}
+
+void MainWindow::selectStatus()
+{
+	queries::selectStatusQuery();
+	QVector<QString> results;
+	while (queries::query.next())
+	{
+		results.push_back(StatusComboBox::convertToStatus(queries::query.value(0).toInt()));
+	}
+
+	ExtSelectionDialog* dialog = new ExtSelectionDialog(this, results, "Status", "Select Available Status");
+	common::openDialog(dialog, ":/styles/style.qss");
+
+	results = dialog->getExtVector();
+	QString resultString = results.join(common::SEP);
+
+	m_comboBoxStatusCriteria->setCurrentText(resultString);
+}
+
+void MainWindow::selectRatings()
+{
+	queries::selectRatingsQuery();
+	QVector<QString> results;
+	while (queries::query.next())
+	{
+		results.push_back(RatingComboBox::convertToStars(queries::query.value(0).toInt()));
+	}
+
+	ExtSelectionDialog* dialog = new ExtSelectionDialog(this, results, "Ratings", "Select Available Ratings");
+	common::openDialog(dialog, ":/styles/style.qss");
+
+	results = dialog->getExtVector();
+	QString resultString = results.join(common::SEP);
+
+	m_comboBoxRatingCriteria->setCurrentText(resultString);
 }
 
 void MainWindow::selectTags()
@@ -1536,7 +1864,7 @@ void MainWindow::selectTags()
 
 	tags = dialog->getExtVector();
 	QString tagString = tags.join(common::SEP);
-	m_textTagsCriteria->setText(tagString);
+	m_comboBoxTagsCriteria->setCurrentText(tagString);
 }
 
 void MainWindow::toggleSizeUnit()
