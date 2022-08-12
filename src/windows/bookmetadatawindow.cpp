@@ -1,8 +1,8 @@
 #include "include/queries.h"
-#include "include/statuscombobox.h"
-#include "include/ratingcombobox.h"
-#include "include/booksearchwidget.h"
-#include "include/bookmetadatawindow.h"
+#include "include/widgets/statuscombobox.h"
+#include "include/widgets/ratingcombobox.h"
+#include "include/widgets/booksearchwidget.h"
+#include "include/windows/bookmetadatawindow.h"
 
 #include <QDesktopServices>
 

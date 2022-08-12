@@ -1,4 +1,4 @@
-#include "include/insertlinkdialog.h"
+#include "include/dialogs/insertlinkdialog.h"
 
 InsertLinkDialog::InsertLinkDialog(QWidget* parent) : QDialog(parent)
 {

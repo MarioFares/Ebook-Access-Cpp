@@ -1,8 +1,8 @@
 #ifndef BULKDETAILSDIALOG_H
 #define BULKDETAILSDIALOG_H
 
-#include "include/ratingcombobox.h"
-#include "include/statuscombobox.h"
+#include "include/widgets/ratingcombobox.h"
+#include "include/widgets/statuscombobox.h"
 
 #include <QDialog>
 #include <QBoxLayout>

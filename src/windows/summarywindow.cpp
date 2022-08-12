@@ -1,11 +1,11 @@
 #include "include/common.h"
 #include "include/queries.h"
-#include "include/texteditor.h"
-#include "include/summarywindow.h"
-#include "include/insertlinkdialog.h"
-#include "include/booksearchwidget.h"
-#include "include/inserttabledialog.h"
-#include "include/colorpickerwidget.h"
+#include "include/widgets/texteditor.h"
+#include "include/windows/summarywindow.h"
+#include "include/dialogs/insertlinkdialog.h"
+#include "include/widgets/booksearchwidget.h"
+#include "include/dialogs/inserttabledialog.h"
+#include "include/widgets/colorpickerwidget.h"
 
 #include "fstream"
 

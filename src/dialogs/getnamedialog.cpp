@@ -1,5 +1,5 @@
 #include "include/common.h"
-#include "include/getnamedialog.h"
+#include "include/dialogs/getnamedialog.h"
 
 #include <QPushButton>
 

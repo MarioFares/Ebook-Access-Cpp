@@ -1,4 +1,4 @@
-#include "include/colorpickerwidget.h"
+#include "include/widgets/colorpickerwidget.h"
 #include "include/common.h"
 
 #include <QPair>

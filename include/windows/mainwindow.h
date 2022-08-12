@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "include/ratingcombobox.h"
-#include "include/statuscombobox.h"
+#include "include/widgets/ratingcombobox.h"
+#include "include/widgets/statuscombobox.h"
 
 #include <QFile>
 #include <QList>

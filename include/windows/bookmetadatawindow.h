@@ -1,9 +1,9 @@
 #ifndef BOOKDETAILSWINDOW_H
 #define BOOKDETAILSWINDOW_H
 
-#include "include/statuscombobox.h"
-#include "include/ratingcombobox.h"
-#include "include/booksearchwidget.h"
+#include "include/widgets/statuscombobox.h"
+#include "include/widgets/ratingcombobox.h"
+#include "include/widgets/booksearchwidget.h"
 
 #include <QLabel>
 #include <QComboBox>

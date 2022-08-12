@@ -1,4 +1,4 @@
-#include "include/bulkdetailsdialog.h"
+#include "include/dialogs/bulkdetailsdialog.h"
 
 #include <QPushButton>
 

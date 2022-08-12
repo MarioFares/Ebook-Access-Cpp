@@ -1,4 +1,4 @@
-#include "include/texteditor.h"
+#include "include/widgets/texteditor.h"
 
 #include <QEvent>
 #include <QKeyEvent>

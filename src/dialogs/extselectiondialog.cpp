@@ -1,4 +1,4 @@
-#include "include/extselectiondialog.h"
+#include "include/dialogs/extselectiondialog.h"
 
 #include <QVector>
 #include <QLineEdit>

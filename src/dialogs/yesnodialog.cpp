@@ -1,4 +1,4 @@
-#include "include/yesnodialog.h"
+#include "include/dialogs/yesnodialog.h"
 
 YesNoDialog::YesNoDialog(QWidget* parent, QString windowTitle, QString title, QString prompt) : QDialog(parent)
 {

@@ -1,4 +1,4 @@
-#include "include/cleanbooksdialog.h"
+#include "include/dialogs/cleanbooksdialog.h"
 #include "include/queries.h"
 
 #include <QFileInfo>

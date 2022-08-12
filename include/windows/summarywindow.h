@@ -1,9 +1,9 @@
 #ifndef SUMMARYWINDOW_H
 #define SUMMARYWINDOW_H
 
-#include "include/texteditor.h"
-#include "include/findhighlighter.h"
-#include "include/booksearchwidget.h"
+#include "include/widgets/texteditor.h"
+#include "include/widgets/findhighlighter.h"
+#include "include/widgets/booksearchwidget.h"
 
 #include <QLabel>
 #include <QAction>

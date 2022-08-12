@@ -1,4 +1,4 @@
-#include "include/quotedialog.h"
+#include "include/dialogs/quotedialog.h"
 
 #include <QFile>
 #include <QRandomGenerator>

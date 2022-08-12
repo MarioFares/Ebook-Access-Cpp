@@ -1,8 +1,8 @@
 #include "include/common.h"
 #include "include/queries.h"
-#include "include/addbooksdialog.h"
-#include "include/bulkdetailsdialog.h"
-#include "include/extselectiondialog.h"
+#include "include/dialogs/addbooksdialog.h"
+#include "include/dialogs/bulkdetailsdialog.h"
+#include "include/dialogs/extselectiondialog.h"
 
 #include <QFileInfo>
 #include <QFileDialog>

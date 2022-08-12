@@ -1,4 +1,4 @@
-#include "include/addbookdialog.h"
+#include "include/dialogs/addbookdialog.h"
 #include "include/queries.h"
 #include "include/common.h"
 

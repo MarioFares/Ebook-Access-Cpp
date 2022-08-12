@@ -1,5 +1,5 @@
 #include "include/queries.h"
-#include "include/booksearchwidget.h"
+#include "include/widgets/booksearchwidget.h"
 
 #include <QUrl>
 #include <QBoxLayout>

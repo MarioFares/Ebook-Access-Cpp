@@ -1,7 +1,7 @@
 #include "include/common.h"
 #include "include/queries.h"
-#include "include/dataviewerwindow.h"
-#include "include/colorpickerwidget.h"
+#include "include/windows/dataviewerwindow.h"
+#include "include/widgets/colorpickerwidget.h"
 
 #include <QMenu>
 #include <QComboBox>

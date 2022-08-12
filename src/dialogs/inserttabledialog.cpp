@@ -1,4 +1,4 @@
-#include "include/inserttabledialog.h"
+#include "include/dialogs/inserttabledialog.h"
 
 InsertTableDialog::InsertTableDialog(QWidget* parent) : QDialog(parent)
 {

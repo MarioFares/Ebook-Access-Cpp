@@ -1,4 +1,4 @@
-#include "include/ratingcombobox.h"
+#include "include/widgets/ratingcombobox.h"
 
 RatingComboBox::RatingComboBox(QWidget* parent)
 {

@@ -1,4 +1,4 @@
-#include "include/findhighlighter.h"
+#include "include/widgets/findhighlighter.h"
 
 #include <QTextDocument>
 

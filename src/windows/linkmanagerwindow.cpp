@@ -1,8 +1,8 @@
 #include "include/common.h"
 #include "include/queries.h"
-#include "include/getnamedialog.h"
-#include "include/insertlinkdialog.h"
-#include "include/linkmanagerwindow.h"
+#include "include/dialogs/getnamedialog.h"
+#include "include/dialogs/insertlinkdialog.h"
+#include "include/windows/linkmanagerwindow.h"
 
 #include <QUrl>
 #include <QIcon>
