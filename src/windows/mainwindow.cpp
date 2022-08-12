@@ -914,7 +914,7 @@ void MainWindow::setupConnections()
 	connect(m_buttonStatus, &QToolButton::clicked, this, &MainWindow::selectStatus);
 
 	connect(m_buttonSizeUnit, &QToolButton::clicked, this, &MainWindow::toggleSizeUnit);
-	connect(m_buttonSummaries, &QToolButton::clicked, [this]
+	connect(m_buttonSummaries, &QToolButton::clicked, []
 	{ showSummary(""); });
 
 	connect(m_ebooksListWidget, &QListWidget::itemClicked, this, &MainWindow::showEbookDetails);
@@ -939,7 +939,7 @@ void MainWindow::setupConnections()
 	connect(m_textDetailsPages, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
 	connect(m_textDetailsTags, &QLineEdit::returnPressed, this, &MainWindow::updateDetails);
 
-	connect(m_actionBookDetails, &QAction::triggered, [this]
+	connect(m_actionBookDetails, &QAction::triggered, []
 	{ showBookDetailsWindow(""); });
 	connect(m_actionClearEntries, &QAction::triggered, this, &MainWindow::clearCriteria);
 	connect(m_actionAddBook, &QAction::triggered, this, &MainWindow::showAddBookDialog);
@@ -972,25 +972,25 @@ void MainWindow::setupConnections()
 	connect(m_actionMaximize, &QAction::triggered, [this]
 	{ common::toggleMaximized(this); });
 	connect(m_actionClose, &QAction::triggered, this, &MainWindow::close);
-	connect(m_actionSummaries, &QAction::triggered, [this]
+	connect(m_actionSummaries, &QAction::triggered, []
 	{ showSummary(""); });
 	connect(m_actionMinimizeTray, &QAction::triggered, [this]
 	{
 		QTimer::singleShot(0, this, SLOT(hide()));
 	});
-	connect(m_actionOpenDB, &QAction::triggered, [this]
+	connect(m_actionOpenDB, &QAction::triggered, []
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile("./database.db"));
 	});
-	connect(m_actionEbookReportsDir, &QAction::triggered, [this]
+	connect(m_actionEbookReportsDir, &QAction::triggered, []
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/ebooks/"));
 	});
-	connect(m_actionUsageReportsDir, &QAction::triggered, [this]
+	connect(m_actionUsageReportsDir, &QAction::triggered, []
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile("./reports/usage/"));
 	});
-	connect(m_actionInstallationDir, &QAction::triggered, [this]
+	connect(m_actionInstallationDir, &QAction::triggered, []
 	{
 		QDesktopServices::openUrl(QUrl::fromLocalFile("./"));
 	});
