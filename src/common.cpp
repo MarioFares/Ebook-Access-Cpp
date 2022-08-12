@@ -8,7 +8,6 @@
 #include <QCompleter>
 #include <QMessageBox>
 #include <QMainWindow>
-#include <QErrorMessage>
 #include <QAbstractItemView>
 #include <QFileSystemModel>
 
@@ -51,16 +50,6 @@ void showMsgBox(const QString& title, const QString& text, const QString& styles
 	box.setWindowIcon(QIcon(winIcon));
 	box.ensurePolished();
 	box.exec();
-}
-
-void showErrorMsg(const QString& title, const QString& message, const QString& stylesheetPath)
-{
-	QErrorMessage msg;
-	msg.showMessage(message);
-	msg.setWindowTitle(title);
-	msg.setStyleSheet(common::openSheet(stylesheetPath));
-	msg.ensurePolished();
-	msg.exec();
 }
 
 void openWindow(QMainWindow* window, const QString& stylesheetPath)
