@@ -11,6 +11,6 @@ int main(int argc, char* argv[])
 	w.setStyleSheet(common::openSheet(":/styles/style.qss"));
 	w.ensurePolished();
 	w.setVisible(true);
-	w.show();
+	w.showMaximized();
 	return a.exec();
 }
