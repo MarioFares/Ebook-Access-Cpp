@@ -5,11 +5,11 @@ PRAGMA recursive_triggers = OFF;
 CREATE TABLE IF NOT EXISTS ebooks
 (
     "id"             INTEGER PRIMARY KEY,
-    "name"         TEXT     NOT NULL,
+    "name"           TEXT     NOT NULL,
     "author"         TEXT              DEFAULT 'N/A',
     "genre"          TEXT              DEFAULT 'N/A',
-    "series"         TEXT              DEFAULT 'N/A',
     "folder"         TEXT     NOT NULL,
+    "series"         TEXT              DEFAULT 'N/A',
     "publisher"      TEXT              DEFAULT 'N/A',
     "date_published" DATE,
     "rating"         INTEGER  NOT NULL DEFAULT 0 CHECK ( rating > - 1 AND rating < 6 ),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS ebooks
 CREATE TABLE IF NOT EXISTS link_collections
 (
     "id"        INTEGER PRIMARY KEY,
-    "name"    TEXT     NOT NULL COLLATE NOCASE,
+    "name"      TEXT     NOT NULL COLLATE NOCASE,
     "timestamp" DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
     UNIQUE ("name")
 );
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS link_collections
 CREATE TABLE IF NOT EXISTS links
 (
     "id"        INTEGER PRIMARY KEY,
-    "name"    TEXT     NOT NULL COLLATE NOCASE,
+    "name"      TEXT     NOT NULL COLLATE NOCASE,
     "path"      TEXT     NOT NULL,
     "timestamp" DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime'))
 );
@@ -55,26 +55,31 @@ CREATE TABLE IF NOT EXISTS links_collections_adj
 --break
 CREATE TABLE IF NOT EXISTS searches
 (
-    "id"         INTEGER PRIMARY KEY,
-    "name"     TEXT     NOT NULL COLLATE NOCASE,
-    "folder"     TEXT     NOT NULL,
-    "author"     TEXT     NOT NULL,
-    "genre"      TEXT     NOT NULL,
-    "tags"       TEXT     NOT NULL,
-    "ext"        TEXT     NOT NULL,
-    "size_from"  INTEGER  NOT NULL,
-    "size_to"    INTEGER  NOT NULL,
-    "size_in"    TEXT     NOT NULL,
-    "pages_from" INTEGER  NOT NULL,
-    "pages_to"   INTEGER  NOT NULL,
-    "timestamp"  DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
+    "id"             INTEGER PRIMARY KEY,
+    "name"           TEXT     NOT NULL COLLATE NOCASE,
+    "folder"         TEXT     NOT NULL,
+    "author"         TEXT     NOT NULL,
+    "genre"          TEXT     NOT NULL,
+    "tags"           TEXT     NOT NULL,
+    "ext"            TEXT     NOT NULL,
+    "size_from"      INTEGER  NOT NULL,
+    "size_to"        INTEGER  NOT NULL,
+    "size_in"        TEXT     NOT NULL,
+    "pages_from"     INTEGER  NOT NULL,
+    "pages_to"       INTEGER  NOT NULL,
+    "series"         TEXT     NOT NULL,
+    "publisher"      TEXT     NOT NULL,
+    "date_published" DATE     NOT NULL,
+    "rating"         TEXT     NOT NULL,
+    "status"         TEXT     NOT NULL,
+    "timestamp"      DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
     UNIQUE ("name")
 );
 --break
 CREATE TABLE IF NOT EXISTS tags
 (
     "id"        INTEGER PRIMARY KEY,
-    "name"    TEXT     NOT NULL COLLATE NOCASE,
+    "name"      TEXT     NOT NULL COLLATE NOCASE,
     "timestamp" DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
     UNIQUE ("name")
 );
