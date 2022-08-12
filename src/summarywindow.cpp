@@ -938,21 +938,21 @@ void SummaryWindow::changeTextAlignment(int index)
 {
 	switch (index)
 	{
-	case 0:
-		m_textEditor->setAlignment(Qt::AlignLeft);
-		break;
-	case 1:
-		m_textEditor->setAlignment(Qt::AlignHCenter);
-		break;
-	case 2:
-		m_textEditor->setAlignment(Qt::AlignRight);
-		break;
-	case 3:
-		m_textEditor->setAlignment(Qt::AlignJustify);
-		break;
-	default:
-		m_textEditor->setAlignment(Qt::AlignLeft);
-		break;
+		case 0:
+			m_textEditor->setAlignment(Qt::AlignLeft);
+			break;
+		case 1:
+			m_textEditor->setAlignment(Qt::AlignHCenter);
+			break;
+		case 2:
+			m_textEditor->setAlignment(Qt::AlignRight);
+			break;
+		case 3:
+			m_textEditor->setAlignment(Qt::AlignJustify);
+			break;
+		default:
+			m_textEditor->setAlignment(Qt::AlignLeft);
+			break;
 	}
 }
 

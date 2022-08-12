@@ -18,33 +18,33 @@ void TextEditor::keyPressEvent(QKeyEvent* ev)
 {
 	switch (ev->key())
 	{
-	case Qt::Key_Tab:
-		changeListIndentation(1);
-		break;
-	case Qt::Key_Backtab:
-		changeListIndentation(-1);
-		break;
-	case Qt::Key_ParenLeft:
-		insertClosingChar('(', textCursor().selectedText());
-		break;
-	case Qt::Key_QuoteDbl:
-		insertClosingChar('"', textCursor().selectedText());
-		break;
-	case Qt::Key_BracketLeft:
-		insertClosingChar('[', textCursor().selectedText());
-		break;
-	case Qt::Key_BraceLeft:
-		insertClosingChar('{', textCursor().selectedText());
-		break;
-	case Qt::Key_Backspace:
-		handleBackspace();
-		break;
-	case Qt::Key_Return:
-		handleReturn();
-		break;
-	default:
-		QTextBrowser::keyPressEvent(ev);
-		break;
+		case Qt::Key_Tab:
+			changeListIndentation(1);
+			break;
+		case Qt::Key_Backtab:
+			changeListIndentation(-1);
+			break;
+		case Qt::Key_ParenLeft:
+			insertClosingChar('(', textCursor().selectedText());
+			break;
+		case Qt::Key_QuoteDbl:
+			insertClosingChar('"', textCursor().selectedText());
+			break;
+		case Qt::Key_BracketLeft:
+			insertClosingChar('[', textCursor().selectedText());
+			break;
+		case Qt::Key_BraceLeft:
+			insertClosingChar('{', textCursor().selectedText());
+			break;
+		case Qt::Key_Backspace:
+			handleBackspace();
+			break;
+		case Qt::Key_Return:
+			handleReturn();
+			break;
+		default:
+			QTextBrowser::keyPressEvent(ev);
+			break;
 	}
 }
 

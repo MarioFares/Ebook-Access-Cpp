@@ -295,32 +295,32 @@ void DataViewerWindow::tableSelected(int index)
 	showAllColumns();
 	switch (index)
 	{
-	case 0:
-		queries::selectEbooksTable();
-		break;
+		case 0:
+			queries::selectEbooksTable();
+			break;
 
-	case 1:
-		queries::selectLinksTable();
-		break;
+		case 1:
+			queries::selectLinksTable();
+			break;
 
-	case 2:
-		queries::selectLinkCollectionsTable();
-		break;
+		case 2:
+			queries::selectLinkCollectionsTable();
+			break;
 
-	case 3:
-		queries::selectSearchesTable();
-		break;
+		case 3:
+			queries::selectSearchesTable();
+			break;
 
-	case 4:
-		queries::selectSessionLogTable();
-		break;
+		case 4:
+			queries::selectSessionLogTable();
+			break;
 
-	case 5:
-		queries::selectTagsTable();
-		break;
-	default:
-		queries::selectEbooksTable();
-		break;
+		case 5:
+			queries::selectTagsTable();
+			break;
+		default:
+			queries::selectEbooksTable();
+			break;
 	}
 	m_tableWidget->clear();
 	m_tableWidget->setRowCount(0);
