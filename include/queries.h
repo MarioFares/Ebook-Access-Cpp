@@ -65,6 +65,16 @@ void selectAuthorsQuery();
 
 void selectGenreQuery();
 
+void selectPublisherQuery();
+
+void selectDatePublishedQuery();
+
+void selectSeriesQuery();
+
+void selectStatusQuery();
+
+void selectRatingsQuery();
+
 void selectSearchesQuery();
 
 void selectPath();
@@ -85,12 +95,13 @@ void selectPathBasedonName(QString name);
 
 void selectNameBasedOnString(QString stringToSearch = "%");
 
-void selectAllBasedonName(QString name);
+void selectAllBasedOnName(QString name);
 
 void selectSummaryBasedonName(QString name);
 
 void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize);
+							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize,
+							   QString publisher, QString published, QString series, QString rating, QString status);
 
 int selectCollectionId(QString collectionName);
 
@@ -108,7 +119,8 @@ void insertBooksQuery(QString name, QString path, QString folder, QString ext, q
 
 void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
 					   QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages,
-					   quint32 toPages);
+					   quint32 toPages, QString publisher, QString published,
+					   QString series, QString rating, QString status);
 
 void insertLinkCollection(QString collectionName);
 
@@ -118,7 +130,9 @@ void insertTags(QString tags, QString bookName);
 
 // Update Queries
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-					 QString author, quint32 pages, QString tags, QString path);
+					 QString author, quint32 pages, QString tags, QString path,
+					 QString publisher = "N/A", QString published = "N/A",
+					 QString series = "N/A", quint32 rating = 0, quint32 status = 0);
 
 void updateBookName(QString oldName, QString newName);
 

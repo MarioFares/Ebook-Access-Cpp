@@ -226,6 +226,31 @@ void selectGenreQuery()
 	query.exec("SELECT DISTINCT genre FROM ebooks");
 }
 
+void selectPublisherQuery()
+{
+	query.exec("SELECT DISTINCT publisher FROM ebooks");
+}
+
+void selectDatePublishedQuery()
+{
+	query.exec("SELECT DISTINCT date_published FROM ebooks");
+}
+
+void selectSeriesQuery()
+{
+	query.exec("SELECT DISTINCT series FROM ebooks");
+}
+
+void selectStatusQuery()
+{
+	query.exec("SELECT DISTINCT status FROM ebooks");
+}
+
+void selectRatingsQuery()
+{
+	query.exec("SELECT DISTINCT rating FROM ebooks");
+}
+
 void selectSearchesQuery()
 {
 	query.exec("SELECT name FROM searches");
@@ -294,7 +319,7 @@ QString selectTagsBasedOnName(QString name)
 	return tags.join(common::SEP);
 }
 
-void selectAllBasedonName(QString name)
+void selectAllBasedOnName(QString name)
 {
 	query.prepare("SELECT * FROM ebooks WHERE name = :name");
 	query.bindValue(":name", name);
@@ -309,12 +334,18 @@ void selectSummaryBasedonName(QString name)
 }
 
 void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize)
+							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize,
+							   QString publisher, QString published, QString series, QString rating, QString status)
 {
 	query.prepare(QString("SELECT name FROM ebooks "
 						  "WHERE folder in (" + genExtQuery("folder", folder) + ") " +
 			"AND genre in (" + genExtQuery("genre", genre) + ") " +
 			"AND author in (" + genExtQuery("author", author) + ") " +
+			"AND publisher in (" + genExtQuery("publisher", publisher) + ") " +
+			"AND date_published in (" + genExtQuery("date_published", published) + ") " +
+			"AND series in (" + genExtQuery("series", series) + ") " +
+			"AND rating in (" + genExtQuery("rating", rating) + ") " +
+			"AND status in (" + genExtQuery("status", status) + ") " +
 			"AND  ((size >= :fromSize AND  size <= :toSize) OR (size IS NULL)) "
 			"AND  ((pages >= :fromPages AND  pages <= :toPages) OR (pages IS NULL)) "
 			"AND ext in (" + genExtQuery("ext", ext) + ") " +
@@ -367,8 +398,9 @@ void insertBooksQuery(QString name, QString path, QString folder, QString ext, q
 					  quint32 pages, QString tags, QString genre, QString author, QString publisher, QString published,
 					  QString series, quint32 rating, quint32 status)
 {
-	query.prepare("INSERT INTO ebooks (name, path, folder, ext, size, pages, genre, author, publisher, date_published, series, rating, status) "
-				  "VALUES (:name,:path,:folder,:ext,:size, :pages, :genre, :author, :publisher, :published, :series, :rating, :status)");
+	query.prepare(
+			"INSERT INTO ebooks (name, path, folder, ext, size, pages, genre, author, publisher, date_published, series, rating, status) "
+			"VALUES (:name,:path,:folder,:ext,:size, :pages, :genre, :author, :publisher, :published, :series, :rating, :status)");
 	query.bindValue(":name", name);
 	query.bindValue(":path", path);
 	query.bindValue(":folder", folder);
@@ -415,7 +447,8 @@ void insertTags(QString tags, QString bookName)
 void insertSearchQuery(QString searchName, QString folder, QString author,
 					   QString genre, QString tags, QString ext,
 					   quint32 fromSize, quint32 toSize, QString sizeIn,
-					   quint32 fromPages, quint32 toPages)
+					   quint32 fromPages, quint32 toPages, QString publisher, QString published,
+					   QString series, QString rating, QString status)
 {
 	query.prepare(QString("INSERT INTO searches "
 						  "(name, "
@@ -428,7 +461,12 @@ void insertSearchQuery(QString searchName, QString folder, QString author,
 						  "size_to, "
 						  "size_in, "
 						  "pages_from, "
-						  "pages_to) "
+						  "pages_to,"
+						  "publisher,"
+						  "date_published,"
+						  "series,"
+						  "rating,"
+						  "status) "
 						  "VALUES "
 						  "(:search_name, "
 						  ":folder, "
@@ -440,7 +478,12 @@ void insertSearchQuery(QString searchName, QString folder, QString author,
 						  ":size_to, "
 						  ":size_in, "
 						  ":pages_from, "
-						  ":pages_to) "));
+						  ":pages_to,"
+						  ":publisher,"
+						  ":datePublished,"
+						  ":series,"
+						  ":rating,"
+						  ":status) "));
 
 	query.bindValue(":search_name", searchName);
 	query.bindValue(":folder", folder);
@@ -453,6 +496,11 @@ void insertSearchQuery(QString searchName, QString folder, QString author,
 	query.bindValue(":size_in", sizeIn);
 	query.bindValue(":pages_from", fromPages);
 	query.bindValue(":pages_to", toPages);
+	query.bindValue(":publisher", publisher);
+	query.bindValue(":datePublished", published);
+	query.bindValue(":series", series);
+	query.bindValue(":rating", rating);
+	query.bindValue(":status", status);
 
 	query.exec();
 }
@@ -481,7 +529,8 @@ void insertLink(int collectionId, QString linkName, QString linkPath)
 
 // Update
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-					 QString author, quint32 pages, QString tags, QString path)
+					 QString author, quint32 pages, QString tags, QString path,
+					 QString publisher, QString published, QString series, quint32 rating, quint32 status)
 {
 	query.prepare(QString("UPDATE ebooks "
 						  "SET name = :newName, "
@@ -489,7 +538,12 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
 						  "genre = :genre, "
 						  "author = :author, "
 						  "pages = :pages, "
-						  "path = :path "
+						  "path = :path, "
+						  "publisher = :publisher, "
+						  "date_published = :datePublished, "
+						  "series = :series, "
+						  "rating = :rating, "
+						  "status = :status "
 						  "WHERE name = :oldName"));
 
 	query.bindValue(":newName", newName);
@@ -498,6 +552,11 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
 	query.bindValue(":author", author);
 	query.bindValue(":pages", pages);
 	query.bindValue(":path", path);
+	query.bindValue(":publisher", publisher);
+	query.bindValue(":datePublished", published);
+	query.bindValue(":series", series);
+	query.bindValue(":rating", rating);
+	query.bindValue(":status", status);
 	query.bindValue(":oldName", oldName);
 	query.exec();
 
