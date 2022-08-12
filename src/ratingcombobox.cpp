@@ -3,10 +3,15 @@
 RatingComboBox::RatingComboBox(QWidget* parent)
 {
 	setParent(parent);
-	addItem(QString());
-	addItem(QString("\360\237\237\211"));
-	addItem(QString("\360\237\237\211\360\237\237\211"));
-	addItem(QString("\360\237\237\211\360\237\237\211\360\237\237\211"));
-	addItem(QString("\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211"));
-	addItem(QString("\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211\360\237\237\211"));
+	addItems(m_ratings);
+}
+
+QString RatingComboBox::convertToStars(quint32 index)
+{
+	return (index > 5 ? "" : m_ratings[index]);
+}
+
+QString RatingComboBox::convertToIndex(QString value)
+{
+	return QString::number(m_ratings.indexOf(value));
 }

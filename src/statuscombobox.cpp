@@ -3,8 +3,15 @@
 StatusComboBox::StatusComboBox(QWidget* parent)
 {
 	setParent(parent);
-	addItem(QString(""));
-	addItem(QString("Prospective"));
-	addItem(QString("Pending"));
-	addItem(QString("Complete"));
+	addItems(m_status);
+}
+
+QString StatusComboBox::convertToStatus(quint32 index)
+{
+	return (index > 3 ? "No Status" : m_status[index]);
+}
+
+QString StatusComboBox::convertToIndex(QString value)
+{
+	return QString::number(m_status.indexOf(value));
 }
