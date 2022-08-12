@@ -99,5 +99,11 @@
         <file>icons/hide_grid_icon.png</file>
         <file>icons/folder_icon.png</file>
         <file>icons/author_icon.png</file>
+        <file>icons/publisher.png</file>
+        <file>icons/status.png</file>
+        <file>icons/rating.png</file>
+        <file>icons/series.png</file>
+        <file>icons/calendar.png</file>
+
     </qresource>
 </RCC>
