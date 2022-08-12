@@ -289,7 +289,7 @@ void BookMetadataWindow::setupTabOrder()
 
 void BookMetadataWindow::showBookDetails(const QString& name)
 {
-	queries::selectAllBasedonName(name);
+	queries::selectAllBasedOnName(name);
 	while (queries::query.next())
 	{
 		m_textName->setText(queries::query.value("name").toString());
