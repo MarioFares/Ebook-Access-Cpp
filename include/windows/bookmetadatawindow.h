@@ -30,6 +30,10 @@ private:
 
 	void setupTabOrder();
 
+	void nextBook();
+
+	void prevBook();
+
 	QWidget* m_centralwidget;
 	BookSearchWidget* m_bookSearchWidget;
 	QSplitter* m_rightSplitter;

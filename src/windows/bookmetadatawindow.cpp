@@ -260,6 +260,9 @@ void BookMetadataWindow::setupConnections()
 {
 	connect(m_bookSearchWidget, &BookSearchWidget::itemClicked, this, &BookMetadataWindow::showBookDetails);
 	connect(m_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &BookMetadataWindow::showBookDetails);
+
+	connect(m_buttonNext, &QPushButton::clicked, this, &BookMetadataWindow::nextBook);
+	connect(m_buttonPrev, &QPushButton::clicked, this, &BookMetadataWindow::prevBook);
 }
 
 void BookMetadataWindow::setupTabOrder()
@@ -316,4 +319,14 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 	}
 	QString tags = queries::selectTagsBasedOnName(name);
 	m_textTags->setText(tags);
+}
+
+void BookMetadataWindow::nextBook()
+{
+	m_bookSearchWidget->setCurrentRow(m_bookSearchWidget->currentRow() + 1);
+}
+
+void BookMetadataWindow::prevBook()
+{
+	m_bookSearchWidget->setCurrentRow(m_bookSearchWidget->currentRow() - 1);
 }
