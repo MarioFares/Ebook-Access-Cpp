@@ -79,7 +79,7 @@ private:
 	QPushButton* m_buttonUpdate;
 	QPushButton* m_buttonPrev;
 	QPushButton* m_buttonNext;
-	QPushButton* m_buttonCancel;
+	QFrame* m_vertLineButtons;
 	QMenuBar* m_menubar;
 	QMenu* m_menuFile;
 	QMenu* m_menuEdit;

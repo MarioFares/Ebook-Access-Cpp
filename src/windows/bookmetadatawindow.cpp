@@ -171,10 +171,10 @@ void BookMetadataWindow::setupInterface()
 	m_buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
 	m_buttonNext->setFlat(true);
 
-	m_buttonCancel = new QPushButton("Cancel");
-	m_buttonCancel->setMinimumSize(QSize(70, 30));
-	m_buttonCancel->setCursor(QCursor(Qt::PointingHandCursor));
-	m_buttonCancel->setFlat(true);
+	m_vertLineButtons = new QFrame(m_frameButtons);
+	m_vertLineButtons->setFrameShape(QFrame::VLine);
+	m_vertLineButtons->setFrameShadow(QFrame::Sunken);
+	m_vertLineButtons->setStyleSheet(QString("color: grey; background-color: grey;"));
 
 	// Layouts
 	m_horLayStatus = new QHBoxLayout();
@@ -242,9 +242,9 @@ void BookMetadataWindow::setupInterface()
 
 	m_horLayButtons->addItem(m_horSpacerButtonsLeft);
 	m_horLayButtons->addWidget(m_buttonUpdate);
+	m_horLayButtons->addWidget(m_vertLineButtons);
 	m_horLayButtons->addWidget(m_buttonPrev);
 	m_horLayButtons->addWidget(m_buttonNext);
-	m_horLayButtons->addWidget(m_buttonCancel);
 	m_horLayButtons->addItem(m_horSpacerButtonsRight);
 
 	m_vertLayMain = new QVBoxLayout(m_centralwidget);
@@ -287,7 +287,6 @@ void BookMetadataWindow::setupTabOrder()
 	QWidget::setTabOrder(m_textEditComments, m_buttonUpdate);
 	QWidget::setTabOrder(m_buttonUpdate, m_buttonPrev);
 	QWidget::setTabOrder(m_buttonPrev, m_buttonNext);
-	QWidget::setTabOrder(m_buttonNext, m_buttonCancel);
 }
 
 void BookMetadataWindow::showBookDetails(const QString& name)
