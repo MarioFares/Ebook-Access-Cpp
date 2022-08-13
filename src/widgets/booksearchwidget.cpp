@@ -120,3 +120,25 @@ void BookSearchWidget::setupItemClicked(QListWidgetItem* item)
 	QString text = item->text();
 	emit itemClicked(text);
 }
+
+int BookSearchWidget::currentRow()
+{
+	return m_listWidget->currentRow();
+}
+
+void BookSearchWidget::setCurrentRow(int row)
+{
+	int lastIndex = m_listWidget->count() - 1;
+	if (row < 0)
+	{
+		m_listWidget->setCurrentRow(0);
+	}
+	else if (row > lastIndex)
+	{
+		m_listWidget->setCurrentRow(lastIndex);
+	}
+	else
+	{
+		m_listWidget->setCurrentRow(row);
+	}
+}

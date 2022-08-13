@@ -35,6 +35,10 @@ public slots:
 
 	void searchString();
 
+	int currentRow();
+
+	void setCurrentRow(int row);
+
 signals:
 
 	void itemClicked(const QString& currentText);
