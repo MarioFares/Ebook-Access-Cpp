@@ -1,3 +1,4 @@
+#include "include/common.h"
 #include "include/queries.h"
 #include "include/widgets/statuscombobox.h"
 #include "include/widgets/ratingcombobox.h"
@@ -61,6 +62,7 @@ void BookMetadataWindow::setupInterface()
 
 	m_textExt = new QLineEdit();
 	m_textExt->setMinimumSize(QSize(0, 23));
+	m_textExt->setEnabled(false);
 
 	m_labelDateAdded = new QLabel("Added");
 	m_labelDateAdded->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
@@ -92,6 +94,7 @@ void BookMetadataWindow::setupInterface()
 
 	m_textDateAdded = new QLineEdit();
 	m_textDateAdded->setMinimumSize(QSize(0, 23));
+	m_textDateAdded->setEnabled(false);
 
 	m_labelRating = new QLabel("Rating");
 	m_labelRating->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
@@ -128,6 +131,7 @@ void BookMetadataWindow::setupInterface()
 
 	m_textSize = new QLineEdit();
 	m_textSize->setMinimumSize(QSize(0, 23));
+	m_textSize->setEnabled(false);
 
 	m_labelTags = new QLabel("Tags");
 	m_labelTags->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
@@ -138,6 +142,7 @@ void BookMetadataWindow::setupInterface()
 	m_labelModified = new QLabel("Modified");
 
 	m_textDateModified = new QLineEdit();
+	m_textDateModified->setEnabled(false);
 
 	m_frameComments = new QFrame();
 	m_frameComments->setObjectName(QString::fromUtf8("frameComments"));
@@ -170,6 +175,16 @@ void BookMetadataWindow::setupInterface()
 	m_buttonNext->setMinimumSize(QSize(70, 30));
 	m_buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
 	m_buttonNext->setFlat(true);
+
+	m_buttonClear = new QPushButton("Clear");
+	m_buttonClear->setMinimumSize(QSize(70, 30));
+	m_buttonClear->setCursor(QCursor(Qt::PointingHandCursor));
+	m_buttonClear->setFlat(true);
+
+	m_buttonRestore = new QPushButton("Restore");
+	m_buttonRestore->setMinimumSize(QSize(70, 30));
+	m_buttonRestore->setCursor(QCursor(Qt::PointingHandCursor));
+	m_buttonRestore->setFlat(true);
 
 	m_vertLineButtons = new QFrame(m_frameButtons);
 	m_vertLineButtons->setFrameShape(QFrame::VLine);
@@ -241,7 +256,9 @@ void BookMetadataWindow::setupInterface()
 	m_horSpacerButtonsRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
 	m_horLayButtons->addItem(m_horSpacerButtonsLeft);
+	m_horLayButtons->addWidget(m_buttonRestore);
 	m_horLayButtons->addWidget(m_buttonUpdate);
+	m_horLayButtons->addWidget(m_buttonClear);
 	m_horLayButtons->addWidget(m_vertLineButtons);
 	m_horLayButtons->addWidget(m_buttonPrev);
 	m_horLayButtons->addWidget(m_buttonNext);
@@ -261,6 +278,9 @@ void BookMetadataWindow::setupConnections()
 	connect(m_bookSearchWidget, &BookSearchWidget::itemClicked, this, &BookMetadataWindow::showBookDetails);
 	connect(m_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &BookMetadataWindow::showBookDetails);
 
+	connect(m_buttonUpdate, &QPushButton::clicked, this, &BookMetadataWindow::updateDetails);
+	connect(m_buttonRestore, &QPushButton::clicked, this, &BookMetadataWindow::restoreDetails);
+	connect(m_buttonClear, &QPushButton::clicked, this, &BookMetadataWindow::clearDetails);
 	connect(m_buttonNext, &QPushButton::clicked, this, &BookMetadataWindow::nextBook);
 	connect(m_buttonPrev, &QPushButton::clicked, this, &BookMetadataWindow::prevBook);
 }
@@ -291,24 +311,48 @@ void BookMetadataWindow::setupTabOrder()
 
 void BookMetadataWindow::showBookDetails(const QString& name)
 {
+	if (name.isEmpty())
+	{
+		return;
+	}
 	queries::selectAllBasedOnName(name);
 	while (queries::query.next())
 	{
-		m_textName->setText(queries::query.value("name").toString());
-		m_textAuthor->setText(queries::query.value("author").toString());
-		m_textGenre->setText(queries::query.value("genre").toString());
-		m_textPages->setText(queries::query.value("pages").toString());
-		m_textPath->setText(queries::query.value("path").toString());
-		m_textSize->setText(queries::query.value("size").toString());
-		m_textExt->setText(queries::query.value("ext").toString());
-		m_textFolder->setText(queries::query.value("folder").toString());
-		m_textDateAdded->setText(queries::query.value("time_added").toString());
-		m_textDateModified->setText(queries::query.value("last_modified").toString());
-		m_textPublisher->setText(queries::query.value("publisher").toString());
-		m_textDatePublished->setText(queries::query.value("date_published").toString());
-		m_textSeries->setText(queries::query.value("series").toString());
-		m_comboBoxRating->setCurrentIndex(queries::query.value("rating").toInt());
-		m_comboBoxStatus->setCurrentIndex(queries::query.value("status").toInt());
+		QString path = queries::query.value("path").toString();
+		QString author = queries::query.value("author").toString();
+		author = (author == "N/A" ? "" : author);
+		QString genre = queries::query.value("genre").toString();
+		genre = (genre == "N/A" ? "" : genre);
+		QString ext = queries::query.value("ext").toString();
+		QString pages = queries::query.value("pages").toString();
+		double size = (queries::query.value("size").toDouble());
+		QString folder = queries::query.value("folder").toString();
+		QString publisher = queries::query.value("publisher").toString();
+		publisher = (publisher == "N/A" ? "" : publisher);
+		QString datePublished = queries::query.value("date_published").toString();
+		datePublished = (datePublished == "N/A" ? "" : datePublished);
+		QString dateAdded = queries::query.value("time_added").toString();
+		QString dateModified = queries::query.value("last_modified").toString();
+		QString series = queries::query.value("series").toString();
+		series = (series == "N/A" ? "" : series);
+		quint32 rating = queries::query.value("rating").toInt();
+		quint32 status = queries::query.value("status").toInt();
+
+		m_textName->setText(name);
+		m_textAuthor->setText(author);
+		m_textGenre->setText(genre);
+		m_textPages->setText(pages);
+		m_textPath->setText(path);
+		m_textSize->setText(QString::number(size));
+		m_textExt->setText(ext);
+		m_textFolder->setText(folder);
+		m_textDateAdded->setText(dateAdded);
+		m_textDateModified->setText(dateModified);
+		m_textPublisher->setText(publisher);
+		m_textDatePublished->setText(datePublished);
+		m_textSeries->setText(series);
+		m_comboBoxRating->setCurrentIndex(rating);
+		m_comboBoxStatus->setCurrentIndex(status);
 
 		m_textName->setCursorPosition(0);
 		m_textPath->setCursorPosition(0);
@@ -328,4 +372,63 @@ void BookMetadataWindow::nextBook()
 void BookMetadataWindow::prevBook()
 {
 	m_bookSearchWidget->setCurrentRow(m_bookSearchWidget->currentRow() - 1);
+}
+
+void BookMetadataWindow::clearDetails()
+{
+	m_textName->clear();
+	m_textAuthor->clear();
+	m_textGenre->clear();
+	m_textFolder->clear();
+	m_textPages->clear();
+	m_textSize->clear();
+	m_textTags->clear();
+	m_textPath->clear();
+	m_textExt->clear();
+	m_textDateAdded->clear();
+	m_textDateModified->clear();
+	m_textPublisher->clear();
+	m_textDatePublished->clear();
+	m_textSeries->clear();
+	m_comboBoxRating->setCurrentIndex(0);
+	m_comboBoxStatus->setCurrentIndex(0);
+	m_textEditComments->clear();
+}
+
+void BookMetadataWindow::restoreDetails()
+{
+	showBookDetails(m_bookSearchWidget->currentItemText());
+}
+
+void BookMetadataWindow::updateDetails()
+{
+	QString currentText = m_bookSearchWidget->currentItemText();
+	if (currentText.isEmpty())
+	{
+		return;
+	}
+	QString newName = m_textName->text();
+	QString author = m_textAuthor->text();
+	QString folder = m_textFolder->text();
+	QString genre = m_textGenre->text();
+	quint32 pages = m_textPages->text().toUInt();
+	QString publisher = m_textPublisher->text();
+	QString datePublished = m_textDatePublished->text();
+	QString series = m_textSeries->text();
+	quint32 rating = m_comboBoxRating->currentIndex();
+	quint32 status = m_comboBoxStatus->currentIndex();
+	QString tags = m_textTags->text().trimmed();
+
+	queries::selectPathBasedonName(currentText);
+	queries::query.next();
+	QString path = queries::query.value(0).toString();
+	if (newName != currentText)
+	{
+		common::renameFile(this, path, newName);
+	}
+	queries::updateBookQuery(currentText, newName, folder, genre, author, pages, tags, path, publisher,
+			datePublished, series, rating, status);
+
+	m_bookSearchWidget->setCurrentItemText(newName);
+	showBookDetails(newName);
 }

@@ -30,6 +30,12 @@ private:
 
 	void setupTabOrder();
 
+	void clearDetails();
+
+	void restoreDetails();
+
+	void updateDetails();
+
 	void nextBook();
 
 	void prevBook();
@@ -76,6 +82,8 @@ private:
 	QPlainTextEdit* m_textEditComments;
 	QGraphicsView* m_graphicsView;
 	QFrame* m_frameButtons;
+	QPushButton* m_buttonRestore;
+	QPushButton* m_buttonClear;
 	QPushButton* m_buttonUpdate;
 	QPushButton* m_buttonPrev;
 	QPushButton* m_buttonNext;
