@@ -30,5 +30,7 @@ void toggleFullscreen(QMainWindow* window);
 
 void toggleMaximized(QMainWindow* window);
 
+void renameFile(QWidget* parent, QString path, QString newName);
+
 }    // Namespace common
 #endif    // COMMON_H

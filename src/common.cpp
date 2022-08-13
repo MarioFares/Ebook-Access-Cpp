@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QAbstractItemView>
 #include <QFileSystemModel>
+#include "dialogs/yesnodialog.h"
 
 namespace common
 {
@@ -92,6 +93,21 @@ void toggleFullscreen(QMainWindow* window)
 void toggleMaximized(QMainWindow* window)
 {
 	window->isMaximized() ? window->showNormal() : window->showMaximized();
+}
+
+void renameFile(QWidget* parent, QString path, QString newName)
+{
+	YesNoDialog dialog(parent, "Rename File", "Rename File",
+			"Do you wish to rename the file on your hard drive as well?");
+	common::openDialog(&dialog, ":/styles/style.qss");
+	bool result = dialog.getResult();
+	if (result)
+	{
+		QFile file(path);
+		QFileInfo info(file);
+		path = info.absolutePath() + "/" + newName + "." + info.suffix();
+		file.rename(path);
+	}
 }
 
 } // Namespace common
