@@ -39,6 +39,10 @@ public slots:
 
 	void setCurrentRow(int row);
 
+	QString currentItemText();
+
+	void setCurrentItemText(QString text);
+
 signals:
 
 	void itemClicked(const QString& currentText);

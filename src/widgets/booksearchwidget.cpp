@@ -142,3 +142,14 @@ void BookSearchWidget::setCurrentRow(int row)
 		m_listWidget->setCurrentRow(row);
 	}
 }
+
+QString BookSearchWidget::currentItemText()
+{
+	QListWidgetItem* item = m_listWidget->currentItem();
+	return (item ? item->text() : "");
+}
+
+void BookSearchWidget::setCurrentItemText(QString text)
+{
+	m_listWidget->currentItem()->setText(text);
+}
