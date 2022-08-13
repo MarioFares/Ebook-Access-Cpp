@@ -1616,17 +1616,7 @@ void MainWindow::updateDetails()
 
 	if (newName != oldName)
 	{
-		YesNoDialog dialog(this, "Rename File", "Rename File",
-				"Do you wish to rename the file on your hard drive as well?");
-		common::openDialog(&dialog, ":/styles/style.qss");
-		bool result = dialog.getResult();
-		if (result)
-		{
-			QFile file(path);
-			QFileInfo info(file);
-			path = info.absolutePath() + "/" + newName + "." + info.suffix();
-			file.rename(path);
-		}
+		common::renameFile(this, path, newName);
 	}
 	queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path, publisher, datePublished,
 			series, rating, status);
