@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
-if (WIN32)
-    project(EbookAccess VERSION 1.0.0 LANGUAGES CXX)
-elseif (UNIX)
-    project(EbookAccess VERSION 1.0.0)
-endif ()
+# Project name & version
+project(EbookAccess VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CONFIGURATION_TYPES "Release;RelWithDebInfo" CACHE STRING "" FORCE)
 
@@ -18,6 +15,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+# Windows exclusive Qt path
 set(CMAKE_PREFIX_PATH C:/Qt-6.2/6.3.0/msvc2019_64/lib)
 find_package(Qt6Core REQUIRED)
 find_package(Qt6Widgets REQUIRED)
@@ -56,11 +54,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_AUTOUIC_SEARCH_PATHS} ${FORMS_DIR})
 set(APP_ICON_RESOURCE_WINDOWS "${RESOURCES_DIR}/appicon.rc")
 
 # Add the executable
-if (WIN32)
-    add_executable(EbookAccess WIN32 ${SOURCES} ${APP_ICON_RESOURCE_WINDOWS})
-elseif (UNIX)
-    add_executable(EbookAccess ${SOURCES})
-endif ()
+add_executable(EbookAccess WIN32 ${SOURCES} ${APP_ICON_RESOURCE_WINDOWS})
 
 # Add the target includes for MY_PROJECT
 target_include_directories(EbookAccess PRIVATE ${INCLUDE_DIR})
@@ -70,5 +64,5 @@ target_include_directories(EbookAccess PRIVATE ${RESOURCES_DIR})
 #===================== LINKING LIBRARIES =======================#
 target_link_libraries(EbookAccess Qt6::Core Qt6::Widgets Qt6::Sql Qt6::Gui Qt6::PrintSupport Qt6::Pdf)
 
-
+# Visual studio compiler flag
 set(CMAKE_CXX_FLAGS_RELEASE_INIT "/O2")
