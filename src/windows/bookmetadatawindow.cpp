@@ -335,6 +335,8 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 		QString dateModified = queries::query.value("last_modified").toString();
 		QString series = queries::query.value("series").toString();
 		series = (series == "N/A" ? "" : series);
+		QString comments = queries::query.value("comments").toString();
+		comments = (comments == "N/A" ? "" : comments);
 		quint32 rating = queries::query.value("rating").toInt();
 		quint32 status = queries::query.value("status").toInt();
 
@@ -351,6 +353,7 @@ void BookMetadataWindow::showBookDetails(const QString& name)
 		m_textPublisher->setText(publisher);
 		m_textDatePublished->setText(datePublished);
 		m_textSeries->setText(series);
+		m_textEditComments->setPlainText(comments);
 		m_comboBoxRating->setCurrentIndex(rating);
 		m_comboBoxStatus->setCurrentIndex(status);
 
@@ -418,6 +421,7 @@ void BookMetadataWindow::updateDetails()
 	quint32 rating = m_comboBoxRating->currentIndex();
 	quint32 status = m_comboBoxStatus->currentIndex();
 	QString tags = m_textTags->text().trimmed();
+	QString comments = m_textEditComments->toPlainText();
 
 	queries::selectPathBasedonName(currentText);
 	queries::query.next();
@@ -427,7 +431,7 @@ void BookMetadataWindow::updateDetails()
 		common::renameFile(this, path, newName);
 	}
 	queries::updateBookQuery(currentText, newName, folder, genre, author, pages, tags, path, publisher,
-			datePublished, series, rating, status);
+			datePublished, series, rating, status, comments);
 
 	m_bookSearchWidget->setCurrentItemText(newName);
 	showBookDetails(newName);

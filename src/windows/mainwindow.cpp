@@ -556,6 +556,14 @@ void MainWindow::setupInterface()
 	m_labelDetailsName = new QLabel("Name: ", m_frameDetails);
 	m_labelDetailsName->setMaximumHeight(24);
 
+	m_labelDetailsComments = new QLabel("Comments: ", m_frameDetails);
+	m_labelDetailsComments->setMaximumHeight(24);
+
+	m_textEditDetailsComments = new QPlainTextEdit(m_frameDetails);
+	QPalette p = m_textEditDetailsComments->palette();
+	p.setColor(QPalette::Text, Qt::white);
+	m_textEditDetailsComments->setPalette(p);
+
 	m_textDetailsAuthor = new QLineEdit(m_frameDetails);
 	m_textDetailsAuthor->setMaximumHeight(24);
 	m_textDetailsAuthor->setMinimumSize(QSize(0, 23));
@@ -664,6 +672,8 @@ void MainWindow::setupInterface()
 	m_gridLayDetailsFields->addWidget(m_comboBoxDetailsRating, 6, 1, 1, 1);
 	m_gridLayDetailsFields->addWidget(m_labelDetailsStatus, 6, 2, 1, 1);
 	m_gridLayDetailsFields->addWidget(m_comboBoxDetailsStatus, 6, 3, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_labelDetailsComments, 7, 0, 1, 1);
+	m_gridLayDetailsFields->addWidget(m_textEditDetailsComments, 7, 1, 3, 3);
 
 	m_frameDetailsFields->setLayout(m_gridLayDetailsFields);
 	m_scrollAreaDetailsFields->setWidget(m_frameDetailsFields);
@@ -1432,6 +1442,7 @@ void MainWindow::clearDetails()
 	m_textDetailsSeries->clear();
 	m_comboBoxDetailsRating->setCurrentIndex(0);
 	m_comboBoxDetailsStatus->setCurrentIndex(0);
+	m_textEditDetailsComments->clear();
 	m_statusBar->clearMessage();
 }
 
@@ -1560,6 +1571,8 @@ void MainWindow::showEbookDetails(QListWidgetItem* item)
 	series = (series == "N/A" ? "" : series);
 	quint32 rating = queries::query.value("rating").toInt();
 	quint32 status = queries::query.value("status").toInt();
+	QString comments = queries::query.value("comments").toString();
+	comments = (comments == "N/A" ? "" : comments);
 	QString tags = queries::selectTagsBasedOnName(fileName);
 
 	m_textDetailsName->setText(fileName);
@@ -1578,6 +1591,7 @@ void MainWindow::showEbookDetails(QListWidgetItem* item)
 	m_comboBoxDetailsRating->setCurrentIndex(rating);
 	m_comboBoxDetailsStatus->setCurrentIndex(status);
 	m_textDetailsTags->setCursorPosition(0);
+	m_textEditDetailsComments->setPlainText(comments);
 	m_statusBar->showMessage("Current selected ebook: " + fileName);
 }
 
@@ -1606,6 +1620,7 @@ void MainWindow::updateDetails()
 	QString series = m_textDetailsSeries->text();
 	quint32 rating = m_comboBoxDetailsRating->currentIndex();
 	quint32 status = m_comboBoxDetailsStatus->currentIndex();
+	QString comments = m_textEditDetailsComments->toPlainText();
 
 	QString tags = m_textDetailsTags->text().trimmed();
 	quint32 pages = m_textDetailsPages->text().toUInt();
@@ -1619,7 +1634,7 @@ void MainWindow::updateDetails()
 		common::renameFile(this, path, newName);
 	}
 	queries::updateBookQuery(oldName, newName, folder, genre, author, pages, tags, path, publisher, datePublished,
-			series, rating, status);
+			series, rating, status, comments);
 	m_ebooksListWidget->currentItem()->setText(newName);
 
 	refreshAll();

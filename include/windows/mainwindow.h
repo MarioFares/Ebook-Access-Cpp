@@ -17,6 +17,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QApplication>
+#include <QPlainTextEdit>
 #include <QListWidgetItem>
 #include <QSystemTrayIcon>
 
@@ -340,6 +341,8 @@ private:
 	QToolButton* m_buttonStatus;
 	QFrame* m_frameDetailsFields;
 	QScrollArea* m_scrollAreaDetailsFields;
+	QLabel* m_labelDetailsComments;
+	QPlainTextEdit* m_textEditDetailsComments;
 
 	// Layouts
 	QHBoxLayout* m_horLayCentral;
@@ -358,6 +361,7 @@ private:
 	QHBoxLayout* m_horLayDetailsSize;
 	QHBoxLayout* m_horLayDetailsButtons;
 	QVBoxLayout* m_vertLaySearchCriteria;
+
 
 	// Spacers
 	QSpacerItem* m_horSpacerButtonsLeft;
