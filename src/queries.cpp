@@ -530,7 +530,8 @@ void insertLink(int collectionId, QString linkName, QString linkPath)
 // Update
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
 					 QString author, quint32 pages, QString tags, QString path,
-					 QString publisher, QString published, QString series, quint32 rating, quint32 status)
+					 QString publisher, QString published, QString series, quint32 rating, quint32 status,
+					 QString comments)
 {
 	query.prepare(QString("UPDATE ebooks "
 						  "SET name = :newName, "
@@ -542,6 +543,7 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
 						  "publisher = :publisher, "
 						  "date_published = :datePublished, "
 						  "series = :series, "
+						  "comments = :comments, "
 						  "rating = :rating, "
 						  "status = :status "
 						  "WHERE name = :oldName"));
@@ -555,6 +557,7 @@ void updateBookQuery(QString oldName, QString newName, QString folder, QString g
 	query.bindValue(":publisher", publisher);
 	query.bindValue(":datePublished", published);
 	query.bindValue(":series", series);
+	query.bindValue(":comments", comments);
 	query.bindValue(":rating", rating);
 	query.bindValue(":status", status);
 	query.bindValue(":oldName", oldName);

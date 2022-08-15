@@ -132,7 +132,7 @@ void insertTags(QString tags, QString bookName);
 void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
 					 QString author, quint32 pages, QString tags, QString path,
 					 QString publisher = "N/A", QString published = "N/A",
-					 QString series = "N/A", quint32 rating = 0, quint32 status = 0);
+					 QString series = "N/A", quint32 rating = 0, quint32 status = 0, QString comments = "N/A");
 
 void updateBookName(QString oldName, QString newName);
 
