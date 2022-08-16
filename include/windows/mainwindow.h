@@ -362,7 +362,6 @@ private:
 	QHBoxLayout* m_horLayDetailsButtons;
 	QVBoxLayout* m_vertLaySearchCriteria;
 
-
 	// Spacers
 	QSpacerItem* m_horSpacerButtonsLeft;
 	QSpacerItem* m_horSpacerButtonsRight;

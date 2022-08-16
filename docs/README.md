@@ -166,7 +166,8 @@ You can sort your ebooks based on all the criteria you use to search them.
 
 The 3 most important sorting mechanisms are `Author`, `Genre`, and `Tags`.
 
-Please note the application uses the `|` character as its universal separator. Therefore, when searching tags or updating
+Please note the application uses the `|` character as its universal separator. Therefore, when searching tags or
+updating
 an ebook's tags, you must separate every tag with a `|` character.
 
 ### Updating MetaData<a name="meta"></a>
@@ -210,7 +211,8 @@ In the `Reset` menu, you are able to reset many things including and limited to:
 
 #### Shortcuts<a name="shortcuts"></a>
 
-For added workflow productivity, every action in the menus has a shortcut. Therefore, you are encouraged to look over all
+For added workflow productivity, every action in the menus has a shortcut. Therefore, you are encouraged to look over
+all
 the shortcuts, choose which ones are most useful to learn.
 
 The shortcut naming system is based on the first letter of each word of the behavior. Example: `Search Files`

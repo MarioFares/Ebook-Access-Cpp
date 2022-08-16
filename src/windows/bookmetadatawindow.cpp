@@ -195,9 +195,9 @@ void BookMetadataWindow::setupInterface()
 	m_frameBookmarks->setObjectName(QString::fromUtf8("frameBookmarks"));
 	m_frameBookmarks->setStyleSheet(QString::fromUtf8("#frameBookmarks { border: none; }"));
 
-	m_tableWidgetBookmarks = new QTableWidget(m_frameBookmarks) ;
+	m_tableWidgetBookmarks = new QTableWidget(m_frameBookmarks);
 	m_tableWidgetBookmarks->setColumnCount(2);
-	QStringList headers = {"Bookmark", "Notes/Comments"};
+	QStringList headers = { "Bookmark", "Notes/Comments" };
 	m_tableWidgetBookmarks->setHorizontalHeaderLabels(headers);
 	m_tableWidgetBookmarks->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
