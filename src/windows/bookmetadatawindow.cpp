@@ -5,6 +5,7 @@
 #include "include/widgets/booksearchwidget.h"
 #include "include/windows/bookmetadatawindow.h"
 
+#include <QHeaderView>
 #include <QDesktopServices>
 
 BookMetadataWindow::BookMetadataWindow(QWidget* parent) : QMainWindow(parent)
@@ -155,11 +156,9 @@ void BookMetadataWindow::setupInterface()
 	p.setColor(QPalette::Text, Qt::white);
 	m_textEditComments->setPalette(p);
 
-	m_graphicsView = new QGraphicsView();
-
 	m_frameButtons = new QFrame();
 	m_frameButtons->setObjectName(QString::fromUtf8("frameButtons"));
-	m_frameButtons->setStyleSheet(QString::fromUtf8("#frameButtons { border: none;\n }"));
+	m_frameButtons->setStyleSheet(QString::fromUtf8("#frameButtons { border: none; }"));
 
 	m_buttonUpdate = new QPushButton("Update");
 	m_buttonUpdate->setMinimumSize(QSize(70, 30));
@@ -190,6 +189,17 @@ void BookMetadataWindow::setupInterface()
 	m_vertLineButtons->setFrameShape(QFrame::VLine);
 	m_vertLineButtons->setFrameShadow(QFrame::Sunken);
 	m_vertLineButtons->setStyleSheet(QString("color: grey; background-color: grey;"));
+
+	m_frameBookmarks = new QFrame(m_rightSplitter);
+	m_frameBookmarks->setContentsMargins(0, 0, 0, 0);
+	m_frameBookmarks->setObjectName(QString::fromUtf8("frameBookmarks"));
+	m_frameBookmarks->setStyleSheet(QString::fromUtf8("#frameBookmarks { border: none; }"));
+
+	m_tableWidgetBookmarks = new QTableWidget(m_frameBookmarks) ;
+	m_tableWidgetBookmarks->setColumnCount(2);
+	QStringList headers = {"Bookmark", "Notes/Comments"};
+	m_tableWidgetBookmarks->setHorizontalHeaderLabels(headers);
+	m_tableWidgetBookmarks->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 	// Layouts
 	m_horLayStatus = new QHBoxLayout();
@@ -243,12 +253,16 @@ void BookMetadataWindow::setupInterface()
 	m_gridWidget = new QWidget();
 	m_gridWidget->setLayout(m_gridLayData);
 
+	m_vertLayBookmarks = new QVBoxLayout(m_frameBookmarks);
+	m_vertLayBookmarks->setContentsMargins(0, 0, 0, 0);
+	m_vertLayBookmarks->addWidget(m_tableWidgetBookmarks);
+
 	m_verticalSplitter->addWidget(m_gridWidget);
 	m_verticalSplitter->addWidget(m_frameComments);
 	m_splitter->addWidget(m_bookSearchWidget);
 	m_splitter->addWidget(m_verticalSplitter);
 	m_rightSplitter->addWidget(m_splitter);
-	m_rightSplitter->addWidget(m_graphicsView);
+	m_rightSplitter->addWidget(m_frameBookmarks);
 
 	m_horLayButtons = new QHBoxLayout(m_frameButtons);
 	m_horLayButtons->setContentsMargins(0, 10, 0, 0);

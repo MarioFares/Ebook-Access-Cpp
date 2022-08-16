@@ -10,7 +10,7 @@
 #include <QSplitter>
 #include <QMainWindow>
 #include <QPushButton>
-#include <QGraphicsView>
+#include <QTableWidget>
 #include <QPlainTextEdit>
 #include <QListWidgetItem>
 
@@ -80,7 +80,6 @@ private:
 	QFrame* m_frameComments;
 	QLabel* m_labelComments;
 	QPlainTextEdit* m_textEditComments;
-	QGraphicsView* m_graphicsView;
 	QFrame* m_frameButtons;
 	QPushButton* m_buttonRestore;
 	QPushButton* m_buttonClear;
@@ -93,6 +92,8 @@ private:
 	QMenu* m_menuEdit;
 	QStatusBar* m_statusbar;
 	QWidget* m_gridWidget;
+	QTableWidget* m_tableWidgetBookmarks;
+	QFrame* m_frameBookmarks;
 
 	// Layouts
 	QHBoxLayout* m_horLayStatus;
@@ -102,6 +103,7 @@ private:
 	QSpacerItem* m_horSpacerButtonsLeft;
 	QSpacerItem* m_horSpacerButtonsRight;
 	QVBoxLayout* m_vertLayMain;
+	QVBoxLayout* m_vertLayBookmarks;
 
 };
 
