@@ -108,6 +108,8 @@ private slots:
 
 	void hideDetailsSection();
 
+	void hideListWidget();
+
 	void showAddBookDialog();
 
 	void clearSearch();
@@ -207,6 +209,7 @@ private:
 	QAction* m_actionSortSearch;
 	QAction* m_actionAddBooks;
 	QAction* m_actionHideSearchBar;
+	QAction* m_actionHideListWidget;
 	QAction* m_actionHideDetailsSection;
 	QAction* m_actionChooseRandomBook;
 	QAction* m_actionHideRightFrame;

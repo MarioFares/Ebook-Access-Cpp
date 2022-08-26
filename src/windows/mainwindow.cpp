@@ -761,6 +761,7 @@ void MainWindow::setupActions()
 	m_actionWindowTop = new QAction("Window on Top", this);
 	m_actionMinimizeTray = new QAction("Minimize to Tray", this);
 	m_actionHideSearchBar = new QAction("Hide Search Bar", this);
+	m_actionHideListWidget = new QAction("Hide List Widget", this);
 	m_actionHideDetailsSection = new QAction("Hide Details Section", this);
 	m_actionHideRightFrame = new QAction("Hide Right Frame", this);
 	m_actionHideUtilities = new QAction("Hide Utilities Section", this);
@@ -877,6 +878,7 @@ void MainWindow::setupMenus()
 	m_menuView->addAction(m_actionMinimizeTray);
 	m_menuView->addSeparator();
 	m_menuView->addAction(m_actionHideSearchBar);
+	m_menuView->addAction(m_actionHideListWidget);
 	m_menuView->addAction(m_actionHideDetailsSection);
 	m_menuView->addAction(m_actionHideRightFrame);
 	m_menuView->addSeparator();
@@ -959,6 +961,7 @@ void MainWindow::setupConnections()
 	connect(m_actionSortSearch, &QAction::triggered, this, &MainWindow::sortSearch);
 	connect(m_actionResetEbooks, &QAction::triggered, this, &MainWindow::resetEbooks);
 	connect(m_actionHideSearchBar, &QAction::triggered, this, &MainWindow::hideSearchBar);
+	connect(m_actionHideListWidget, &QAction::triggered, this, &MainWindow::hideListWidget);
 	connect(m_actionHideDetailsSection, &QAction::triggered, this, &MainWindow::hideDetailsSection);
 	connect(m_actionHideRightFrame, &QAction::triggered, this, &MainWindow::hideRightFrame);
 	connect(m_actionHideUtilities, &QAction::triggered, this, &MainWindow::hideUtilities);
@@ -1073,6 +1076,7 @@ void MainWindow::setupShortcuts()
 	m_actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
 	m_actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
 	m_actionHideSearchBar->setShortcut(QKeySequence("Ctrl+S, Ctrl+B"));
+	m_actionHideListWidget->setShortcut(QKeySequence("Ctrl+L, Ctrl+W"));
 	m_actionHideDetailsSection->setShortcut(QKeySequence("Ctrl+D, Ctrl+S"));
 	m_actionHideRightFrame->setShortcut(QKeySequence("Ctrl+R, Ctrl+F"));
 	m_actionHideUtilities->setShortcut(QKeySequence("Ctrl+U, Ctrl+S"));
@@ -1963,6 +1967,11 @@ void MainWindow::genEbooksReport()
 void MainWindow::hideStatusBar()
 {
 	common::changeWidgetVisibility(m_statusBar, m_actionHideStatusBar);
+}
+
+void MainWindow::hideListWidget()
+{
+	common::changeWidgetVisibility(m_ebooksListWidget, m_actionHideListWidget);
 }
 
 void MainWindow::editListItem(QListWidgetItem* item)
