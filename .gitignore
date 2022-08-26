@@ -6,6 +6,7 @@
 3rdparty/
 xpdf/
 
+CMakeSettings.json
 
 *~
 *.autosave
