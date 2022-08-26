@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS links
     "id"        INTEGER PRIMARY KEY,
     "name"      TEXT     NOT NULL COLLATE NOCASE,
     "path"      TEXT     NOT NULL,
+    "comments"  TEXT     NOT NULL,
     "timestamp" DATETIME NOT NULL DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime'))
 );
 --break
@@ -138,7 +139,7 @@ FROM tags
          INNER JOIN ebooks ON eta.ebook_id = ebooks.id;
 --break
 CREATE VIEW IF NOT EXISTS links_collections_name AS
-SELECT links.name AS link, links.path AS path, lc.name AS collection
+SELECT links.name AS link, links.path AS path, links.comments AS comments, lc.name AS collection
 FROM links
          INNER JOIN links_collections_adj lca ON lca.link_id = links.id
          INNER JOIN link_collections lc ON lca.collection_id = lc.id;

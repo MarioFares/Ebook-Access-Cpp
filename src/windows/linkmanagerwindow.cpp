@@ -521,7 +521,7 @@ void LinkManagerWindow::editLinkDetails(const QString& name)
 	dialog.setDataOnOpen();
 	common::openDialog(&dialog, ":/styles/style.qss");
 
-	queries::updateLinkDetails(name, dialog.m_title, dialog.m_link);
+	queries::updateLinkDetails(name, dialog.m_title, dialog.m_link, "");
 	m_listWidgetLinks->currentItem()->setText(dialog.m_title);
 	m_statusBar->showMessage("Link \"" + name + "\" edited.");
 }
@@ -603,7 +603,7 @@ void LinkManagerWindow::addLink()
 	{
 		QString collectionName = m_listWidgetCollections->currentItem()->text();
 		int collectionId = queries::selectCollectionId(collectionName);
-		queries::insertLink(collectionId, dialog.m_title, dialog.m_link);
+		queries::insertLink(collectionId, dialog.m_title, dialog.m_link, "");
 		refreshLinks(m_listWidgetCollections->currentItem()->text(), "");
 		m_statusBar->showMessage("New link \"" + dialog.m_title + "\" added.");
 
@@ -636,11 +636,13 @@ void LinkManagerWindow::linkClicked(QListWidgetItem* item)
 {
 	queries::selectLinkRecord(item->text());
 	queries::query.next();
-	QString title = queries::query.value(0).toString();
-	QString url = queries::query.value(1).toString();
+	QString title = queries::query.value("name").toString();
+	QString url = queries::query.value("path").toString();
+	QString comments = queries::query.value("comments").toString();
 
 	m_textDetailsTitle->setText(title);
 	m_textDetailsUrl->setText(url);
+	m_plainTextDetailsComments->setPlainText(comments);
 
 	m_statusBar->showMessage(title + ": " + url);
 }
@@ -649,6 +651,7 @@ void LinkManagerWindow::clearDetails()
 {
 	m_textDetailsTitle->clear();
 	m_textDetailsUrl->clear();
+	m_plainTextDetailsComments->clear();
 }
 
 void LinkManagerWindow::restoreDetails()
@@ -665,8 +668,9 @@ void LinkManagerWindow::updateDetails()
 	QString oldTitle = m_listWidgetLinks->currentItem()->text();
 	QString newTitle = m_textDetailsTitle->text();
 	QString newUrl = m_textDetailsUrl->text();
+	QString newComments = m_plainTextDetailsComments->toPlainText();
 
-	queries::updateLinkDetails(oldTitle, newTitle, newUrl);
+	queries::updateLinkDetails(oldTitle, newTitle, newUrl, newComments);
 	m_listWidgetLinks->currentItem()->setText(newTitle);
 	m_statusBar->showMessage("Link \"" + oldTitle + "\" edited.");
 }

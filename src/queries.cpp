@@ -398,7 +398,7 @@ void selectLinksBasedOnCollection(QString collectionName, QString searchString)
 
 void selectLinkRecord(QString name)
 {
-	query.prepare(QString("SELECT name, path FROM links "
+	query.prepare(QString("SELECT name, path, comments FROM links "
 						  "WHERE name = :name "));
 	query.bindValue(":name", name);
 	query.exec();
@@ -525,12 +525,13 @@ void insertLinkCollection(QString collectionName)
 
 }
 
-void insertLink(int collectionId, QString linkName, QString linkPath)
+void insertLink(int collectionId, QString linkName, QString linkPath, QString linkComments)
 {
-	query.prepare(QString("INSERT INTO links (name, path) "
-						  "VALUES (:link_name, :link_path)"));
+	query.prepare(QString("INSERT INTO links (name, path, comments) "
+						  "VALUES (:link_name, :link_path, :link_comments)"));
 	query.bindValue(":link_name", linkName);
 	query.bindValue(":link_path", linkPath);
+	query.bindValue(":link_comments", linkComments);
 	query.exec();
 	query.prepare("INSERT INTO links_collections_adj (collection_id, link_id) "
 				  "VALUES (:collection_id, (SELECT id FROM links ORDER BY id DESC LIMIT 1));");
@@ -590,13 +591,15 @@ void updateSummary(QString name, QString summary)
 	query.exec();
 }
 
-void updateLinkDetails(QString oldName, QString newName, QString path)
+void updateLinkDetails(QString oldName, QString newName, QString path, QString comments)
 {
 	query.prepare("UPDATE links SET name = :newName, "
-				  "path = :path "
+				  "path = :path, "
+				  "comments = :comments "
 				  "WHERE name = :oldName");
 	query.bindValue(":newName", newName);
 	query.bindValue(":path", path);
+	query.bindValue(":comments", comments);
 	query.bindValue(":oldName", oldName);
 	query.exec();
 }

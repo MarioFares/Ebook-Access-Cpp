@@ -124,7 +124,7 @@ void insertSearchQuery(QString searchName, QString folder, QString author, QStri
 
 void insertLinkCollection(QString collectionName);
 
-void insertLink(int collectionId, QString linkName, QString linkPath);
+void insertLink(int collectionId, QString linkName, QString linkPath, QString linkComments);
 
 void insertTags(QString tags, QString bookName);
 
@@ -140,7 +140,7 @@ void updateBookPath(QString oldPath, QString newPath);
 
 void updateSummary(QString name, QString summary);
 
-void updateLinkDetails(QString oldName, QString newName, QString path);
+void updateLinkDetails(QString oldName, QString newName, QString path, QString comments);
 
 void updateLinkCollectionName(QString oldName, QString newName);
 
