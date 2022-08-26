@@ -1,4 +1,5 @@
-#include <include/common.h>
+#include "include/common.h"
+#include "include/dialogs/yesnodialog.h"
 
 #include <QtPdf>
 #include <QFile>
@@ -10,7 +11,6 @@
 #include <QMainWindow>
 #include <QAbstractItemView>
 #include <QFileSystemModel>
-#include "dialogs/yesnodialog.h"
 
 namespace common
 {
