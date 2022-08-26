@@ -110,7 +110,7 @@ void MainWindow::setupInterface()
 	m_gridLayCriteria = new QGridLayout();
 	m_gridLayCriteria->setHorizontalSpacing(17);
 	m_gridLayCriteria->setVerticalSpacing(30);
-	m_gridLayCriteria->setContentsMargins(20, 5, 20, 5);
+	m_gridLayCriteria->setContentsMargins(20, 15, 20, 5);
 
 	m_labelGenreCriteria = new QLabel("Genre", m_frameSearchCriteria);
 
