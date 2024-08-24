@@ -25,7 +25,7 @@ private slots:
     void insertClosingChar(const char &openChar, const QString &selectedText);
 
 private:
-    QHash<char, char> m_charPairs;
+    QHash<char, char> _charPairs;
 };
 
 #endif // TEXTEDITOR_H

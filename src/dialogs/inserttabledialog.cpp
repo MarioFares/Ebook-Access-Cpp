@@ -1,8 +1,8 @@
 #include "include/dialogs/inserttabledialog.h"
 
 InsertTableDialog::InsertTableDialog(QWidget *parent) : QDialog(parent) {
-    m_columnCount = 1;
-    m_rowCount = 1;
+    _columnCount = 1;
+    _rowCount = 1;
 
     setupInterface();
     setupConnections();
@@ -15,55 +15,55 @@ void InsertTableDialog::setupInterface() {
     setFixedSize(250, 115);
 
     // Widgets
-    m_labelRows = new QLabel("Rows: ");
-    m_labelColumns = new QLabel("Columns: ");
+    _labelRows = new QLabel("Rows: ");
+    _labelColumns = new QLabel("Columns: ");
 
-    m_spinBoxRows = new QSpinBox();
-    m_spinBoxRows->setValue(1);
-    m_spinBoxRows->setMinimum(1);
+    _spinBoxRows = new QSpinBox();
+    _spinBoxRows->setValue(1);
+    _spinBoxRows->setMinimum(1);
 
-    m_spinBoxColumns = new QSpinBox();
-    m_spinBoxColumns->setValue(1);
-    m_spinBoxColumns->setMinimum(1);
+    _spinBoxColumns = new QSpinBox();
+    _spinBoxColumns->setValue(1);
+    _spinBoxColumns->setMinimum(1);
 
-    m_buttonOk = new QPushButton("Ok");
-    m_buttonOk->setFlat(true);
-    m_buttonOk->setMinimumSize(80, 25);
-    m_buttonOk->setCursor(Qt::PointingHandCursor);
+    _buttonOk = new QPushButton("Ok");
+    _buttonOk->setFlat(true);
+    _buttonOk->setMinimumSize(80, 25);
+    _buttonOk->setCursor(Qt::PointingHandCursor);
 
-    m_buttonCancel = new QPushButton("Cancel");
-    m_buttonCancel->setFlat(true);
-    m_buttonCancel->setMinimumSize(80, 25);
-    m_buttonCancel->setCursor(Qt::PointingHandCursor);
+    _buttonCancel = new QPushButton("Cancel");
+    _buttonCancel->setFlat(true);
+    _buttonCancel->setMinimumSize(80, 25);
+    _buttonCancel->setCursor(Qt::PointingHandCursor);
 
     // Layouts
-    m_horLayButtons = new QHBoxLayout();
-    m_horLayButtons->addWidget(m_buttonOk);
-    m_horLayButtons->addWidget(m_buttonCancel);
+    _horLayButtons = new QHBoxLayout();
+    _horLayButtons->addWidget(_buttonOk);
+    _horLayButtons->addWidget(_buttonCancel);
 
-    m_gridLayMain = new QGridLayout;
-    m_gridLayMain->addWidget(m_labelRows, 0, 0, 1, 1);
-    m_gridLayMain->addWidget(m_labelColumns, 1, 0, 1, 1);
-    m_gridLayMain->addWidget(m_spinBoxRows, 0, 1, 1, 1);
-    m_gridLayMain->addWidget(m_spinBoxColumns, 1, 1, 1, 1);
-    m_gridLayMain->addLayout(m_horLayButtons, 2, 1, 1, 1);
+    _gridLayMain = new QGridLayout;
+    _gridLayMain->addWidget(_labelRows, 0, 0, 1, 1);
+    _gridLayMain->addWidget(_labelColumns, 1, 0, 1, 1);
+    _gridLayMain->addWidget(_spinBoxRows, 0, 1, 1, 1);
+    _gridLayMain->addWidget(_spinBoxColumns, 1, 1, 1, 1);
+    _gridLayMain->addLayout(_horLayButtons, 2, 1, 1, 1);
 
-    setLayout(m_gridLayMain);
+    setLayout(_gridLayMain);
 }
 
 void InsertTableDialog::setupConnections() {
-    connect(m_buttonCancel, &QPushButton::clicked, this, &InsertTableDialog::close);
-    connect(m_buttonOk, &QPushButton::clicked, this, &InsertTableDialog::getTableDims);
+    connect(_buttonCancel, &QPushButton::clicked, this, &InsertTableDialog::close);
+    connect(_buttonOk, &QPushButton::clicked, this, &InsertTableDialog::getTableDims);
 }
 
 void InsertTableDialog::setupTabOrder() {
-    QWidget::setTabOrder(m_spinBoxRows, m_spinBoxColumns);
-    QWidget::setTabOrder(m_spinBoxColumns, m_buttonOk);
-    QWidget::setTabOrder(m_buttonOk, m_buttonCancel);
+    QWidget::setTabOrder(_spinBoxRows, _spinBoxColumns);
+    QWidget::setTabOrder(_spinBoxColumns, _buttonOk);
+    QWidget::setTabOrder(_buttonOk, _buttonCancel);
 }
 
 void InsertTableDialog::getTableDims() {
-    m_rowCount = m_spinBoxRows->value();
-    m_columnCount = m_spinBoxColumns->value();
+    _rowCount = _spinBoxRows->value();
+    _columnCount = _spinBoxColumns->value();
     close();
 }

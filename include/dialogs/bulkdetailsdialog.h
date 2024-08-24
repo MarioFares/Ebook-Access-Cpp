@@ -16,14 +16,14 @@ class BulkDetailsDialog : public QDialog {
 public:
     explicit BulkDetailsDialog(QWidget *parent = nullptr);
 
-    QString m_author;
-    QString m_genre;
-    QString m_tags;
-    QString m_publisher;
-    QString m_datePublished;
-    QString m_series;
-    quint32 m_rating;
-    quint32 m_status;
+    QString _author;
+    QString _genre;
+    QString _tags;
+    QString _publisher;
+    QString _datePublished;
+    QString _series;
+    quint32 _rating;
+    quint32 _status;
 
 private slots:
     void setupInterface();
@@ -36,41 +36,41 @@ private slots:
 
 private:
     // Widgets
-    QLabel *m_labelPrompt;
-    QLabel *m_labelGenre;
-    QCheckBox *m_checkBoxGenre;
-    QLineEdit *m_textGenre;
-    QLabel *m_labelTags;
-    QCheckBox *m_checkBoxTags;
-    QLineEdit *m_textTags;
-    QLabel *m_labelAuthor;
-    QCheckBox *m_checkBoxAuthor;
-    QLineEdit *m_textAuthor;
-    QLabel *m_labelPublisher;
-    QCheckBox *m_checkBoxPublisher;
-    QLineEdit *m_textPublisher;
-    QLabel *m_labelDatePublished;
-    QCheckBox *m_checkBoxDatePublished;
-    QLineEdit *m_textDatePublished;
-    QLabel *m_labelSeries;
-    QCheckBox *m_checkBoxSeries;
-    QLineEdit *m_textSeries;
-    QLabel *m_labelStatus;
-    QCheckBox *m_checkBoxStatus;
-    StatusComboBox *m_comboBoxStatus;
-    QLabel *m_labelRating;
-    QCheckBox *m_checkBoxRating;
-    RatingComboBox *m_comboBoxRating;
-    QPushButton *m_buttonApply;
-    QPushButton *m_buttonCancel;
+    QLabel *_labelPrompt;
+    QLabel *_labelGenre;
+    QCheckBox *_checkBoxGenre;
+    QLineEdit *_textGenre;
+    QLabel *_labelTags;
+    QCheckBox *_checkBoxTags;
+    QLineEdit *_textTags;
+    QLabel *_labelAuthor;
+    QCheckBox *_checkBoxAuthor;
+    QLineEdit *_textAuthor;
+    QLabel *_labelPublisher;
+    QCheckBox *_checkBoxPublisher;
+    QLineEdit *_textPublisher;
+    QLabel *_labelDatePublished;
+    QCheckBox *_checkBoxDatePublished;
+    QLineEdit *_textDatePublished;
+    QLabel *_labelSeries;
+    QCheckBox *_checkBoxSeries;
+    QLineEdit *_textSeries;
+    QLabel *_labelStatus;
+    QCheckBox *_checkBoxStatus;
+    StatusComboBox *_comboBoxStatus;
+    QLabel *_labelRating;
+    QCheckBox *_checkBoxRating;
+    RatingComboBox *_comboBoxRating;
+    QPushButton *_buttonApply;
+    QPushButton *_buttonCancel;
 
     // Layouts
-    QHBoxLayout *m_horLayButtons;
-    QGridLayout *m_gridLay;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayButtons;
+    QGridLayout *_gridLay;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsLeft;
 };
 
 #endif // BULKDETAILSDIALOG_H

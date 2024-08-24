@@ -19,7 +19,7 @@ public:
 
     bool colorSelected() const;
 
-    QColor m_defaultColor;
+    QColor _defaultColor;
 
 private slots:
     static QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
@@ -39,25 +39,25 @@ private slots:
     void setupInterface();
 
 private:
-    int m_rows;
-    int m_columns;
-    QColor m_currentColor;
-    bool m_isColorSelected;
+    int _rows;
+    int _columns;
+    QColor _currentColor;
+    bool _isColorSelected;
 
     // Widgets
-    QPushButton *m_defaultColorButton;
-    QPushButton *m_moreColorsButton;
-    QFrame *m_mainFrame;
+    QPushButton *_defaultColorButton;
+    QPushButton *_moreColorsButton;
+    QFrame *_mainFrame;
 
     // Layouts
-    QVBoxLayout *m_vertLayMain;
-    QGridLayout *m_colorGridLayout;
-    QHBoxLayout *m_horLayDefaultButton;
-    QHBoxLayout *m_horLayMoreColors;
+    QVBoxLayout *_vertLayMain;
+    QGridLayout *_colorGridLayout;
+    QHBoxLayout *_horLayDefaultButton;
+    QHBoxLayout *_horLayMoreColors;
 
     // Spacers
-    QSpacerItem *m_horSpacerDefaultButtonRight;
-    QSpacerItem *m_horSpacerMoreColorsRight;
+    QSpacerItem *_horSpacerDefaultButtonRight;
+    QSpacerItem *_horSpacerMoreColorsRight;
 };
 
 #endif // COLORPICKERWIDGET_H

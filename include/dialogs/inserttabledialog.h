@@ -13,8 +13,8 @@ class InsertTableDialog : public QDialog {
 public:
     explicit InsertTableDialog(QWidget *parent = nullptr);
 
-    int m_columnCount;
-    int m_rowCount;
+    int _columnCount;
+    int _rowCount;
 
 private slots:
     void setupInterface();
@@ -27,16 +27,16 @@ private slots:
 
 private:
     // Widgets
-    QLabel *m_labelColumns;
-    QLabel *m_labelRows;
-    QSpinBox *m_spinBoxRows;
-    QSpinBox *m_spinBoxColumns;
-    QPushButton *m_buttonOk;
-    QPushButton *m_buttonCancel;
+    QLabel *_labelColumns;
+    QLabel *_labelRows;
+    QSpinBox *_spinBoxRows;
+    QSpinBox *_spinBoxColumns;
+    QPushButton *_buttonOk;
+    QPushButton *_buttonCancel;
 
     // Layouts
-    QHBoxLayout *m_horLayButtons;
-    QGridLayout *m_gridLayMain;
+    QHBoxLayout *_horLayButtons;
+    QGridLayout *_gridLayMain;
 };
 
 #endif // INSERTTABLEDIALOG_H

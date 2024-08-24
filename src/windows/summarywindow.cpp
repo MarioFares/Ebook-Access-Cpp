@@ -37,901 +37,901 @@ void SummaryWindow::setupInterface() {
     resize(1035, 600);
 
     // Widgets
-    m_centralWidget = new QWidget(this);
-    m_horLayMain = new QHBoxLayout(m_centralWidget);
+    _centralWidget = new QWidget(this);
+    _horLayMain = new QHBoxLayout(_centralWidget);
 
-    m_mainSplitterPane = new QSplitter(m_centralWidget);
-    m_mainSplitterPane->setStyleSheet(QString("QSplitter {border: 0px;}"));
-    m_mainSplitterPane->setLineWidth(0);
-    m_mainSplitterPane->setOrientation(Qt::Horizontal);
-    m_mainSplitterPane->setHandleWidth(0);
+    _mainSplitterPane = new QSplitter(_centralWidget);
+    _mainSplitterPane->setStyleSheet(QString("QSplitter {border: 0px;}"));
+    _mainSplitterPane->setLineWidth(0);
+    _mainSplitterPane->setOrientation(Qt::Horizontal);
+    _mainSplitterPane->setHandleWidth(0);
 
-    m_bookSearchWidget = new BookSearchWidget(this);
-    m_bookSearchWidget->setMainLayoutMargin(-1, 41, -1, -1);
-    m_bookSearchWidget->setMainLayoutSpacing(15);
-    m_mainSplitterPane->addWidget(m_bookSearchWidget);
+    _bookSearchWidget = new BookSearchWidget(this);
+    _bookSearchWidget->setMainLayoutMargin(-1, 41, -1, -1);
+    _bookSearchWidget->setMainLayoutSpacing(15);
+    _mainSplitterPane->addWidget(_bookSearchWidget);
 
-    m_frameEditor = new QFrame(m_mainSplitterPane);
-    m_frameEditor->setStyleSheet(QString("QFrame { border: 0px; }"));
+    _frameEditor = new QFrame(_mainSplitterPane);
+    _frameEditor->setStyleSheet(QString("QFrame { border: 0px; }"));
 
-    m_vertLayEditor = new QVBoxLayout(m_frameEditor);
-    m_vertLayEditor->setContentsMargins(0, -1, 0, -1);
+    _vertLayEditor = new QVBoxLayout(_frameEditor);
+    _vertLayEditor->setContentsMargins(0, -1, 0, -1);
 
-    m_labelTitle = new QLabel(m_frameEditor);
-    m_labelTitle->setMinimumSize(QSize(0, 19));
+    _labelTitle = new QLabel(_frameEditor);
+    _labelTitle->setMinimumSize(QSize(0, 19));
 
-    m_frameEditorToolBox = new QFrame(m_frameEditor);
+    _frameEditorToolBox = new QFrame(_frameEditor);
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     sizePolicy.setHorizontalStretch(0);
     sizePolicy.setVerticalStretch(0);
-    sizePolicy.setHeightForWidth(m_frameEditorToolBox->sizePolicy().hasHeightForWidth());
+    sizePolicy.setHeightForWidth(_frameEditorToolBox->sizePolicy().hasHeightForWidth());
 
-    m_frameEditorToolBox->setSizePolicy(sizePolicy);
-    m_frameEditorToolBox->setFrameShape(QFrame::StyledPanel);
-    m_frameEditorToolBox->setFrameShadow(QFrame::Raised);
+    _frameEditorToolBox->setSizePolicy(sizePolicy);
+    _frameEditorToolBox->setFrameShape(QFrame::StyledPanel);
+    _frameEditorToolBox->setFrameShadow(QFrame::Raised);
 
-    m_horLayToolBox = new QHBoxLayout(m_frameEditorToolBox);
-    m_horLayToolBox->setContentsMargins(0, 7, 0, -1);
+    _horLayToolBox = new QHBoxLayout(_frameEditorToolBox);
+    _horLayToolBox->setContentsMargins(0, 7, 0, -1);
 
-    m_fontComboBox = new QFontComboBox(m_frameEditorToolBox);
-    m_fontComboBox->setMinimumSize(QSize(0, 25));
-    m_fontComboBox->setStyleSheet(QString("QFontComboBox{ border: 1px solid grey; }"));
-    m_fontComboBox->setEditable(false);
+    _fontComboBox = new QFontComboBox(_frameEditorToolBox);
+    _fontComboBox->setMinimumSize(QSize(0, 25));
+    _fontComboBox->setStyleSheet(QString("QFontComboBox{ border: 1px solid grey; }"));
+    _fontComboBox->setEditable(false);
 
-    m_spinBoxFontSize = new QSpinBox(m_frameEditorToolBox);
-    m_spinBoxFontSize->setMinimumSize(QSize(0, 25));
-    m_spinBoxFontSize->setMaximumSize(QSize(40, 999999));
-    m_spinBoxFontSize->setMinimum(1);
-    m_spinBoxFontSize->setMaximum(70);
-    m_spinBoxFontSize->setValue(12);
+    _spinBoxFontSize = new QSpinBox(_frameEditorToolBox);
+    _spinBoxFontSize->setMinimumSize(QSize(0, 25));
+    _spinBoxFontSize->setMaximumSize(QSize(40, 999999));
+    _spinBoxFontSize->setMinimum(1);
+    _spinBoxFontSize->setMaximum(70);
+    _spinBoxFontSize->setValue(12);
 
-    m_buttonEditorFontColor = new QToolButton(m_frameEditorToolBox);
-    m_buttonEditorFontColor->setMinimumSize(QSize(30, 25));
-    m_buttonEditorFontColor->setMaximumSize(QSize(30, 16777215));
-    m_buttonEditorFontColor->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonEditorFontColor->setFocusPolicy(Qt::NoFocus);
-    m_buttonEditorFontColor->setStyleSheet(QString::fromUtf8(""));
-    m_buttonEditorFontColor->setIcon(QIcon(":/icons/font_color_icon.png"));
+    _buttonEditorFontColor = new QToolButton(_frameEditorToolBox);
+    _buttonEditorFontColor->setMinimumSize(QSize(30, 25));
+    _buttonEditorFontColor->setMaximumSize(QSize(30, 16777215));
+    _buttonEditorFontColor->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonEditorFontColor->setFocusPolicy(Qt::NoFocus);
+    _buttonEditorFontColor->setStyleSheet(QString::fromUtf8(""));
+    _buttonEditorFontColor->setIcon(QIcon(":/icons/font_color_icon.png"));
 
-    m_buttonEditorBackColor = new QToolButton(m_frameEditorToolBox);
-    m_buttonEditorBackColor->setMinimumSize(QSize(30, 25));
-    m_buttonEditorBackColor->setMaximumSize(QSize(30, 16777215));
-    m_buttonEditorBackColor->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
+    _buttonEditorBackColor = new QToolButton(_frameEditorToolBox);
+    _buttonEditorBackColor->setMinimumSize(QSize(30, 25));
+    _buttonEditorBackColor->setMaximumSize(QSize(30, 16777215));
+    _buttonEditorBackColor->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
 
-    m_lineVert1 = new QFrame(m_frameEditorToolBox);
-    m_lineVert1->setStyleSheet(QString("color: grey; background-color: grey;"));
-    m_lineVert1->setFrameShape(QFrame::VLine);
-    m_lineVert1->setFrameShadow(QFrame::Sunken);
+    _lineVert1 = new QFrame(_frameEditorToolBox);
+    _lineVert1->setStyleSheet(QString("color: grey; background-color: grey;"));
+    _lineVert1->setFrameShape(QFrame::VLine);
+    _lineVert1->setFrameShadow(QFrame::Sunken);
 
-    m_buttonBold = new QToolButton(m_frameEditorToolBox);
-    m_buttonBold->setMinimumSize(QSize(30, 25));
-    m_buttonBold->setMaximumSize(QSize(30, 16777215));
-    m_buttonBold->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonBold->setFocusPolicy(Qt::NoFocus);
-    m_buttonBold->setIcon(QIcon(":/icons/bold_icon.png"));
+    _buttonBold = new QToolButton(_frameEditorToolBox);
+    _buttonBold->setMinimumSize(QSize(30, 25));
+    _buttonBold->setMaximumSize(QSize(30, 16777215));
+    _buttonBold->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonBold->setFocusPolicy(Qt::NoFocus);
+    _buttonBold->setIcon(QIcon(":/icons/bold_icon.png"));
 
-    m_buttonItalic = new QToolButton(m_frameEditorToolBox);
-    m_buttonItalic->setMinimumSize(QSize(30, 25));
-    m_buttonItalic->setMaximumSize(QSize(30, 16777215));
-    m_buttonItalic->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonItalic->setFocusPolicy(Qt::NoFocus);
-    m_buttonItalic->setIcon(QIcon(":/icons/italic_icon.png"));
+    _buttonItalic = new QToolButton(_frameEditorToolBox);
+    _buttonItalic->setMinimumSize(QSize(30, 25));
+    _buttonItalic->setMaximumSize(QSize(30, 16777215));
+    _buttonItalic->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonItalic->setFocusPolicy(Qt::NoFocus);
+    _buttonItalic->setIcon(QIcon(":/icons/italic_icon.png"));
 
-    m_buttonUnderline = new QToolButton(m_frameEditorToolBox);
-    m_buttonUnderline->setMinimumSize(QSize(30, 25));
-    m_buttonUnderline->setMaximumSize(QSize(30, 16777215));
-    m_buttonUnderline->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonUnderline->setFocusPolicy(Qt::NoFocus);
-    m_buttonUnderline->setIcon(QIcon(":/icons/underline_icon.png"));
+    _buttonUnderline = new QToolButton(_frameEditorToolBox);
+    _buttonUnderline->setMinimumSize(QSize(30, 25));
+    _buttonUnderline->setMaximumSize(QSize(30, 16777215));
+    _buttonUnderline->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonUnderline->setFocusPolicy(Qt::NoFocus);
+    _buttonUnderline->setIcon(QIcon(":/icons/underline_icon.png"));
 
-    m_buttonThrough = new QToolButton(m_frameEditorToolBox);
-    m_buttonThrough->setMinimumSize(QSize(30, 25));
-    m_buttonThrough->setMaximumSize(QSize(30, 16777215));
-    m_buttonThrough->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonThrough->setFocusPolicy(Qt::NoFocus);
-    m_buttonThrough->setIcon(QIcon(":/icons/strikethrough_icon.png"));
+    _buttonThrough = new QToolButton(_frameEditorToolBox);
+    _buttonThrough->setMinimumSize(QSize(30, 25));
+    _buttonThrough->setMaximumSize(QSize(30, 16777215));
+    _buttonThrough->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonThrough->setFocusPolicy(Qt::NoFocus);
+    _buttonThrough->setIcon(QIcon(":/icons/strikethrough_icon.png"));
 
-    m_buttonHighlight = new QToolButton(m_frameEditorToolBox);
-    m_buttonHighlight->setMinimumSize(QSize(30, 25));
-    m_buttonHighlight->setMaximumSize(QSize(30, 16777215));
-    m_buttonHighlight->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonHighlight->setFocusPolicy(Qt::NoFocus);
-    m_buttonHighlight->setIcon(QIcon(":/icons/highlight_icon.png"));
+    _buttonHighlight = new QToolButton(_frameEditorToolBox);
+    _buttonHighlight->setMinimumSize(QSize(30, 25));
+    _buttonHighlight->setMaximumSize(QSize(30, 16777215));
+    _buttonHighlight->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonHighlight->setFocusPolicy(Qt::NoFocus);
+    _buttonHighlight->setIcon(QIcon(":/icons/highlight_icon.png"));
 
-    m_buttonCodeBlock = new QToolButton(m_frameEditorToolBox);
-    m_buttonCodeBlock->setMinimumSize(QSize(30, 25));
-    m_buttonCodeBlock->setMaximumSize(QSize(30, 16777215));
-    m_buttonCodeBlock->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonCodeBlock->setFocusPolicy(Qt::NoFocus);
-    m_buttonCodeBlock->setIcon(QIcon(":/icons/code_icon.png"));
+    _buttonCodeBlock = new QToolButton(_frameEditorToolBox);
+    _buttonCodeBlock->setMinimumSize(QSize(30, 25));
+    _buttonCodeBlock->setMaximumSize(QSize(30, 16777215));
+    _buttonCodeBlock->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonCodeBlock->setFocusPolicy(Qt::NoFocus);
+    _buttonCodeBlock->setIcon(QIcon(":/icons/code_icon.png"));
 
-    m_lineVert2 = new QFrame(m_frameEditorToolBox);
-    m_lineVert2->setStyleSheet(QString::fromUtf8("color: grey; background-color: grey;"));
-    m_lineVert2->setFrameShadow(QFrame::Plain);
-    m_lineVert2->setLineWidth(0);
-    m_lineVert2->setMidLineWidth(0);
-    m_lineVert2->setFrameShape(QFrame::VLine);
+    _lineVert2 = new QFrame(_frameEditorToolBox);
+    _lineVert2->setStyleSheet(QString::fromUtf8("color: grey; background-color: grey;"));
+    _lineVert2->setFrameShadow(QFrame::Plain);
+    _lineVert2->setLineWidth(0);
+    _lineVert2->setMidLineWidth(0);
+    _lineVert2->setFrameShape(QFrame::VLine);
 
-    m_buttonBulletedList = new QToolButton(m_frameEditorToolBox);
-    m_buttonBulletedList->setMinimumSize(QSize(30, 25));
-    m_buttonBulletedList->setMaximumSize(QSize(30, 16777215));
-    m_buttonBulletedList->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonBulletedList->setFocusPolicy(Qt::NoFocus);
-    m_buttonBulletedList->setIcon(QIcon(":/icons/bullets_icon.png"));
+    _buttonBulletedList = new QToolButton(_frameEditorToolBox);
+    _buttonBulletedList->setMinimumSize(QSize(30, 25));
+    _buttonBulletedList->setMaximumSize(QSize(30, 16777215));
+    _buttonBulletedList->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonBulletedList->setFocusPolicy(Qt::NoFocus);
+    _buttonBulletedList->setIcon(QIcon(":/icons/bullets_icon.png"));
 
-    m_buttonOrderedList = new QToolButton(m_frameEditorToolBox);
-    m_buttonOrderedList->setMinimumSize(QSize(30, 25));
-    m_buttonOrderedList->setMaximumSize(QSize(30, 16777215));
-    m_buttonOrderedList->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonOrderedList->setFocusPolicy(Qt::NoFocus);
-    m_buttonOrderedList->setIcon(QIcon(":/icons/numbers_icon.png"));
+    _buttonOrderedList = new QToolButton(_frameEditorToolBox);
+    _buttonOrderedList->setMinimumSize(QSize(30, 25));
+    _buttonOrderedList->setMaximumSize(QSize(30, 16777215));
+    _buttonOrderedList->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonOrderedList->setFocusPolicy(Qt::NoFocus);
+    _buttonOrderedList->setIcon(QIcon(":/icons/numbers_icon.png"));
 
-    m_comboBoxAlignment = new QComboBox(m_frameEditorToolBox);
+    _comboBoxAlignment = new QComboBox(_frameEditorToolBox);
     QIcon iconAlignLeft(":/icons/alignleft_icon.png");
-    m_comboBoxAlignment->addItem(iconAlignLeft, QString("Left"));
+    _comboBoxAlignment->addItem(iconAlignLeft, QString("Left"));
     QIcon iconAlignCenter(":/icons/aligncenter_icon.png");
-    m_comboBoxAlignment->addItem(iconAlignCenter, QString("Center"));
+    _comboBoxAlignment->addItem(iconAlignCenter, QString("Center"));
     QIcon iconAlignRight(":/icons/alignright_icon.png");
-    m_comboBoxAlignment->addItem(iconAlignRight, QString("Right"));
+    _comboBoxAlignment->addItem(iconAlignRight, QString("Right"));
     QIcon iconAlignJustify(":/icons/justifytext_icon.png");
-    m_comboBoxAlignment->addItem(iconAlignJustify, QString("Justify"));
-    m_comboBoxAlignment->setMinimumSize(QSize(0, 25));
-    m_comboBoxAlignment->setMaximumSize(QSize(40, 16777215));
-    m_comboBoxAlignment->setFocusPolicy(Qt::NoFocus);
-    m_comboBoxAlignment->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+    _comboBoxAlignment->addItem(iconAlignJustify, QString("Justify"));
+    _comboBoxAlignment->setMinimumSize(QSize(0, 25));
+    _comboBoxAlignment->setMaximumSize(QSize(40, 16777215));
+    _comboBoxAlignment->setFocusPolicy(Qt::NoFocus);
+    _comboBoxAlignment->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
-    m_lineVert3 = new QFrame(m_frameEditorToolBox);
-    m_lineVert3->setStyleSheet(QString("color: grey; background-color: grey;"));
-    m_lineVert3->setFrameShadow(QFrame::Sunken);
-    m_lineVert3->setLineWidth(1);
-    m_lineVert3->setFrameShape(QFrame::VLine);
+    _lineVert3 = new QFrame(_frameEditorToolBox);
+    _lineVert3->setStyleSheet(QString("color: grey; background-color: grey;"));
+    _lineVert3->setFrameShadow(QFrame::Sunken);
+    _lineVert3->setLineWidth(1);
+    _lineVert3->setFrameShape(QFrame::VLine);
 
-    m_buttonInsertTable = new QToolButton(m_frameEditorToolBox);
-    m_buttonInsertTable->setMinimumSize(QSize(30, 25));
-    m_buttonInsertTable->setMaximumSize(QSize(30, 16777215));
-    m_buttonInsertTable->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonInsertTable->setFocusPolicy(Qt::NoFocus);
-    m_buttonInsertTable->setIcon(QIcon(":/icons/table_icon.png"));
+    _buttonInsertTable = new QToolButton(_frameEditorToolBox);
+    _buttonInsertTable->setMinimumSize(QSize(30, 25));
+    _buttonInsertTable->setMaximumSize(QSize(30, 16777215));
+    _buttonInsertTable->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonInsertTable->setFocusPolicy(Qt::NoFocus);
+    _buttonInsertTable->setIcon(QIcon(":/icons/table_icon.png"));
 
-    m_buttonInsertImage = new QToolButton(m_frameEditorToolBox);
-    m_buttonInsertImage->setMinimumSize(QSize(30, 25));
-    m_buttonInsertImage->setMaximumSize(QSize(30, 25));
-    m_buttonInsertImage->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonInsertImage->setFocusPolicy(Qt::NoFocus);
-    m_buttonInsertImage->setIcon(QIcon(":/icons/image_icon.png"));
+    _buttonInsertImage = new QToolButton(_frameEditorToolBox);
+    _buttonInsertImage->setMinimumSize(QSize(30, 25));
+    _buttonInsertImage->setMaximumSize(QSize(30, 25));
+    _buttonInsertImage->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonInsertImage->setFocusPolicy(Qt::NoFocus);
+    _buttonInsertImage->setIcon(QIcon(":/icons/image_icon.png"));
 
-    m_buttonInsertLine = new QToolButton(m_frameEditorToolBox);
-    m_buttonInsertLine->setMinimumSize(QSize(30, 25));
-    m_buttonInsertLine->setMaximumSize(QSize(30, 25));
-    m_buttonInsertLine->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonInsertLine->setFocusPolicy(Qt::NoFocus);
-    m_buttonInsertLine->setIcon(QIcon(":/icons/hr_icon.png"));
+    _buttonInsertLine = new QToolButton(_frameEditorToolBox);
+    _buttonInsertLine->setMinimumSize(QSize(30, 25));
+    _buttonInsertLine->setMaximumSize(QSize(30, 25));
+    _buttonInsertLine->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonInsertLine->setFocusPolicy(Qt::NoFocus);
+    _buttonInsertLine->setIcon(QIcon(":/icons/hr_icon.png"));
 
-    m_buttonInsertLink = new QToolButton(m_frameEditorToolBox);
-    m_buttonInsertLink->setMinimumSize(QSize(30, 25));
-    m_buttonInsertLink->setMaximumSize(QSize(30, 16777215));
-    m_buttonInsertLink->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonInsertLink->setFocusPolicy(Qt::NoFocus);
-    m_buttonInsertLink->setIcon(QIcon(":/icons/link_icon.png"));
+    _buttonInsertLink = new QToolButton(_frameEditorToolBox);
+    _buttonInsertLink->setMinimumSize(QSize(30, 25));
+    _buttonInsertLink->setMaximumSize(QSize(30, 16777215));
+    _buttonInsertLink->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonInsertLink->setFocusPolicy(Qt::NoFocus);
+    _buttonInsertLink->setIcon(QIcon(":/icons/link_icon.png"));
 
-    m_horSpacerTopToolBar = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    _horSpacerTopToolBar = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-    m_horLayToolBox->addWidget(m_fontComboBox);
-    m_horLayToolBox->addWidget(m_spinBoxFontSize);
-    m_horLayToolBox->addWidget(m_buttonEditorFontColor);
-    m_horLayToolBox->addWidget(m_buttonEditorBackColor);
-    m_horLayToolBox->addWidget(m_lineVert1);
-    m_horLayToolBox->addWidget(m_buttonBold);
-    m_horLayToolBox->addWidget(m_buttonItalic);
-    m_horLayToolBox->addWidget(m_buttonUnderline);
-    m_horLayToolBox->addWidget(m_buttonThrough);
-    m_horLayToolBox->addWidget(m_buttonHighlight);
-    m_horLayToolBox->addWidget(m_buttonCodeBlock);
-    m_horLayToolBox->addWidget(m_lineVert2);
-    m_horLayToolBox->addWidget(m_buttonBulletedList);
-    m_horLayToolBox->addWidget(m_buttonOrderedList);
-    m_horLayToolBox->addWidget(m_comboBoxAlignment);
-    m_horLayToolBox->addWidget(m_lineVert3);
-    m_horLayToolBox->addWidget(m_buttonInsertTable);
-    m_horLayToolBox->addWidget(m_buttonInsertImage);
-    m_horLayToolBox->addWidget(m_buttonInsertLine);
-    m_horLayToolBox->addWidget(m_buttonInsertLink);
-    m_horLayToolBox->addItem(m_horSpacerTopToolBar);
+    _horLayToolBox->addWidget(_fontComboBox);
+    _horLayToolBox->addWidget(_spinBoxFontSize);
+    _horLayToolBox->addWidget(_buttonEditorFontColor);
+    _horLayToolBox->addWidget(_buttonEditorBackColor);
+    _horLayToolBox->addWidget(_lineVert1);
+    _horLayToolBox->addWidget(_buttonBold);
+    _horLayToolBox->addWidget(_buttonItalic);
+    _horLayToolBox->addWidget(_buttonUnderline);
+    _horLayToolBox->addWidget(_buttonThrough);
+    _horLayToolBox->addWidget(_buttonHighlight);
+    _horLayToolBox->addWidget(_buttonCodeBlock);
+    _horLayToolBox->addWidget(_lineVert2);
+    _horLayToolBox->addWidget(_buttonBulletedList);
+    _horLayToolBox->addWidget(_buttonOrderedList);
+    _horLayToolBox->addWidget(_comboBoxAlignment);
+    _horLayToolBox->addWidget(_lineVert3);
+    _horLayToolBox->addWidget(_buttonInsertTable);
+    _horLayToolBox->addWidget(_buttonInsertImage);
+    _horLayToolBox->addWidget(_buttonInsertLine);
+    _horLayToolBox->addWidget(_buttonInsertLink);
+    _horLayToolBox->addItem(_horSpacerTopToolBar);
 
-    m_textEditor = new TextEditor(m_frameEditor);
+    _textEditor = new TextEditor(_frameEditor);
     QFont fontTextEditor;
     fontTextEditor.setPointSize(12);
-    m_textEditor->setFont(fontTextEditor);
-    m_textEditor->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
-    m_textEditor->setStyleSheet(common::openSheet(":/styles/textEditorStyle.qss"));
-    m_textEditor->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    m_textEditor->setAutoFormatting(QTextEdit::AutoAll);
-    m_textEditor->setUndoRedoEnabled(true);
-    m_textEditor->setLineWrapMode(QTextEdit::WidgetWidth);
-    m_textEditor->setReadOnly(false);
-    m_textEditor->setTextInteractionFlags(
+    _textEditor->setFont(fontTextEditor);
+    _textEditor->viewport()->setProperty("cursor", QVariant(QCursor(Qt::IBeamCursor)));
+    _textEditor->setStyleSheet(common::openSheet(":/styles/textEditorStyle.qss"));
+    _textEditor->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    _textEditor->setAutoFormatting(QTextEdit::AutoAll);
+    _textEditor->setUndoRedoEnabled(true);
+    _textEditor->setLineWrapMode(QTextEdit::WidgetWidth);
+    _textEditor->setReadOnly(false);
+    _textEditor->setTextInteractionFlags(
         Qt::LinksAccessibleByMouse | Qt::TextEditable | Qt::TextEditorInteraction | Qt::TextSelectableByKeyboard |
         Qt::TextSelectableByMouse);
-    m_textEditor->setOpenExternalLinks(true);
-    m_textEditor->setOpenLinks(true);
+    _textEditor->setOpenExternalLinks(true);
+    _textEditor->setOpenLinks(true);
 
-    m_frameFind = new QFrame(m_frameEditor);
-    m_frameFind->setStyleSheet(QString::fromUtf8("QFrame { \n"
+    _frameFind = new QFrame(_frameEditor);
+    _frameFind->setStyleSheet(QString::fromUtf8("QFrame { \n"
         "	border: none;\n"
         "	padding: 0px;\n"
         "	margin: 0px;\n"
         "}"));
-    m_frameFind->setFrameShape(QFrame::StyledPanel);
-    m_frameFind->setFrameShadow(QFrame::Raised);
-    m_frameFind->setHidden(true);
-    m_horLayFind = new QHBoxLayout(m_frameFind);
-    m_horLayFind->setContentsMargins(0, 1, 0, 1);
+    _frameFind->setFrameShape(QFrame::StyledPanel);
+    _frameFind->setFrameShadow(QFrame::Raised);
+    _frameFind->setHidden(true);
+    _horLayFind = new QHBoxLayout(_frameFind);
+    _horLayFind->setContentsMargins(0, 1, 0, 1);
 
-    m_textFind = new QLineEdit(m_frameFind);
-    m_textFind->setMinimumSize(QSize(300, 25));
-    m_textFind->setMaximumSize(QSize(300, 25));
-    m_textFind->setClearButtonEnabled(true);
+    _textFind = new QLineEdit(_frameFind);
+    _textFind->setMinimumSize(QSize(300, 25));
+    _textFind->setMaximumSize(QSize(300, 25));
+    _textFind->setClearButtonEnabled(true);
 
-    m_buttonNext = new QPushButton("Next", m_frameFind);
-    m_buttonNext->setMinimumSize(QSize(25, 25));
-    m_buttonNext->setMaximumSize(QSize(16777215, 25));
-    m_buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonNext->setStyleSheet(QString("padding: 5px;"));
+    _buttonNext = new QPushButton("Next", _frameFind);
+    _buttonNext->setMinimumSize(QSize(25, 25));
+    _buttonNext->setMaximumSize(QSize(16777215, 25));
+    _buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonNext->setStyleSheet(QString("padding: 5px;"));
 
-    m_buttonPrevious = new QPushButton("Previous", m_frameFind);
-    m_buttonPrevious->setMinimumSize(QSize(25, 25));
-    m_buttonPrevious->setMaximumSize(QSize(16777215, 25));
-    m_buttonPrevious->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonPrevious->setStyleSheet(QString("padding: 5px;"));
+    _buttonPrevious = new QPushButton("Previous", _frameFind);
+    _buttonPrevious->setMinimumSize(QSize(25, 25));
+    _buttonPrevious->setMaximumSize(QSize(16777215, 25));
+    _buttonPrevious->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonPrevious->setStyleSheet(QString("padding: 5px;"));
 
-    m_buttonCloseFind = new QPushButton(m_frameFind);
-    m_buttonCloseFind->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonCloseFind->setStyleSheet(QString::fromUtf8("border: none;"));
-    m_buttonCloseFind->setIcon(QIcon(":/icons/close_icon.png"));
-    m_buttonCloseFind->setFlat(true);
+    _buttonCloseFind = new QPushButton(_frameFind);
+    _buttonCloseFind->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonCloseFind->setStyleSheet(QString::fromUtf8("border: none;"));
+    _buttonCloseFind->setIcon(QIcon(":/icons/close_icon.png"));
+    _buttonCloseFind->setFlat(true);
 
-    m_labelFindMatchNum = new QLabel(m_frameFind);
+    _labelFindMatchNum = new QLabel(_frameFind);
 
-    m_horSpacerFind = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    _horSpacerFind = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-    m_horLayFind->addWidget(m_textFind);
-    m_horLayFind->addWidget(m_buttonNext);
-    m_horLayFind->addWidget(m_buttonPrevious);
-    m_horLayFind->addWidget(m_buttonCloseFind);
-    m_horLayFind->addWidget(m_labelFindMatchNum);
-    m_horLayFind->addItem(m_horSpacerFind);
+    _horLayFind->addWidget(_textFind);
+    _horLayFind->addWidget(_buttonNext);
+    _horLayFind->addWidget(_buttonPrevious);
+    _horLayFind->addWidget(_buttonCloseFind);
+    _horLayFind->addWidget(_labelFindMatchNum);
+    _horLayFind->addItem(_horSpacerFind);
 
-    m_vertLayEditor->addWidget(m_labelTitle);
-    m_vertLayEditor->addWidget(m_frameEditorToolBox);
-    m_vertLayEditor->addWidget(m_textEditor);
-    m_vertLayEditor->addWidget(m_frameFind);
+    _vertLayEditor->addWidget(_labelTitle);
+    _vertLayEditor->addWidget(_frameEditorToolBox);
+    _vertLayEditor->addWidget(_textEditor);
+    _vertLayEditor->addWidget(_frameFind);
 
-    m_mainSplitterPane->addWidget(m_frameEditor);
-    m_horLayMain->addWidget(m_mainSplitterPane);
+    _mainSplitterPane->addWidget(_frameEditor);
+    _horLayMain->addWidget(_mainSplitterPane);
 
-    m_frameRightToolBar = new QFrame(m_centralWidget);
-    m_frameRightToolBar->setMinimumSize(QSize(32, 0));
-    m_frameRightToolBar->setStyleSheet(QString("QFrame { border: 0px; }"));
-    m_frameRightToolBar->setLineWidth(0);
-    m_vertLayToolBar = new QVBoxLayout(m_frameRightToolBar);
-    m_vertLayToolBar->setContentsMargins(1, 82, 1, -1);
+    _frameRightToolBar = new QFrame(_centralWidget);
+    _frameRightToolBar->setMinimumSize(QSize(32, 0));
+    _frameRightToolBar->setStyleSheet(QString("QFrame { border: 0px; }"));
+    _frameRightToolBar->setLineWidth(0);
+    _vertLayToolBar = new QVBoxLayout(_frameRightToolBar);
+    _vertLayToolBar->setContentsMargins(1, 82, 1, -1);
 
-    m_buttonUndo = new QToolButton(m_frameRightToolBar);
-    m_buttonUndo->setMinimumSize(QSize(30, 25));
-    m_buttonUndo->setMaximumSize(QSize(30, 16777215));
-    m_buttonUndo->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonUndo->setFocusPolicy(Qt::NoFocus);
-    m_buttonUndo->setIcon(QIcon(":/icons/undo_icon.png"));
+    _buttonUndo = new QToolButton(_frameRightToolBar);
+    _buttonUndo->setMinimumSize(QSize(30, 25));
+    _buttonUndo->setMaximumSize(QSize(30, 16777215));
+    _buttonUndo->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonUndo->setFocusPolicy(Qt::NoFocus);
+    _buttonUndo->setIcon(QIcon(":/icons/undo_icon.png"));
 
-    m_buttonRedo = new QToolButton(m_frameRightToolBar);
-    m_buttonRedo->setMinimumSize(QSize(30, 25));
-    m_buttonRedo->setMaximumSize(QSize(30, 16777215));
-    m_buttonRedo->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonRedo->setFocusPolicy(Qt::NoFocus);
-    m_buttonRedo->setIcon(QIcon(":/icons/redo.png"));
+    _buttonRedo = new QToolButton(_frameRightToolBar);
+    _buttonRedo->setMinimumSize(QSize(30, 25));
+    _buttonRedo->setMaximumSize(QSize(30, 16777215));
+    _buttonRedo->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonRedo->setFocusPolicy(Qt::NoFocus);
+    _buttonRedo->setIcon(QIcon(":/icons/redo.png"));
 
-    m_buttonClearAll = new QToolButton(m_frameRightToolBar);
-    m_buttonClearAll->setMinimumSize(QSize(30, 25));
-    m_buttonClearAll->setMaximumSize(QSize(30, 16777215));
-    m_buttonClearAll->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonClearAll->setFocusPolicy(Qt::NoFocus);
-    m_buttonClearAll->setIcon(QIcon(":/icons/cleartext_icon.png"));
+    _buttonClearAll = new QToolButton(_frameRightToolBar);
+    _buttonClearAll->setMinimumSize(QSize(30, 25));
+    _buttonClearAll->setMaximumSize(QSize(30, 16777215));
+    _buttonClearAll->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonClearAll->setFocusPolicy(Qt::NoFocus);
+    _buttonClearAll->setIcon(QIcon(":/icons/cleartext_icon.png"));
 
-    m_horLine1 = new QFrame(m_frameRightToolBar);
-    m_horLine1->setStyleSheet(QString::fromUtf8("color: grey;\n"
+    _horLine1 = new QFrame(_frameRightToolBar);
+    _horLine1->setStyleSheet(QString::fromUtf8("color: grey;\n"
         "background-color: grey;"));
-    m_horLine1->setFrameShape(QFrame::HLine);
-    m_horLine1->setFrameShadow(QFrame::Sunken);
+    _horLine1->setFrameShape(QFrame::HLine);
+    _horLine1->setFrameShadow(QFrame::Sunken);
 
-    m_buttonSuperscript = new QToolButton(m_frameRightToolBar);
-    m_buttonSuperscript->setMinimumSize(QSize(30, 25));
-    m_buttonSuperscript->setMaximumSize(QSize(30, 25));
-    m_buttonSuperscript->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonSuperscript->setFocusPolicy(Qt::NoFocus);
-    m_buttonSuperscript->setIcon(QIcon(":/icons/superscript_icon.png"));
+    _buttonSuperscript = new QToolButton(_frameRightToolBar);
+    _buttonSuperscript->setMinimumSize(QSize(30, 25));
+    _buttonSuperscript->setMaximumSize(QSize(30, 25));
+    _buttonSuperscript->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonSuperscript->setFocusPolicy(Qt::NoFocus);
+    _buttonSuperscript->setIcon(QIcon(":/icons/superscript_icon.png"));
 
-    m_buttonSubscript = new QToolButton(m_frameRightToolBar);
-    m_buttonSubscript->setMinimumSize(QSize(30, 25));
-    m_buttonSubscript->setMaximumSize(QSize(30, 25));
-    m_buttonSubscript->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonSubscript->setFocusPolicy(Qt::NoFocus);
-    m_buttonSubscript->setIcon(QIcon(":/icons/subscript_icon.png"));
+    _buttonSubscript = new QToolButton(_frameRightToolBar);
+    _buttonSubscript->setMinimumSize(QSize(30, 25));
+    _buttonSubscript->setMaximumSize(QSize(30, 25));
+    _buttonSubscript->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonSubscript->setFocusPolicy(Qt::NoFocus);
+    _buttonSubscript->setIcon(QIcon(":/icons/subscript_icon.png"));
 
-    m_horLine2 = new QFrame(m_frameRightToolBar);
-    m_horLine2->setStyleSheet(QString::fromUtf8("color: grey; background-color: grey;"));
-    m_horLine2->setFrameShape(QFrame::HLine);
-    m_horLine2->setFrameShadow(QFrame::Sunken);
+    _horLine2 = new QFrame(_frameRightToolBar);
+    _horLine2->setStyleSheet(QString::fromUtf8("color: grey; background-color: grey;"));
+    _horLine2->setFrameShape(QFrame::HLine);
+    _horLine2->setFrameShadow(QFrame::Sunken);
 
-    m_buttonIncFontSize = new QToolButton(m_frameRightToolBar);
-    m_buttonIncFontSize->setMinimumSize(QSize(30, 25));
-    m_buttonIncFontSize->setMaximumSize(QSize(30, 25));
-    m_buttonIncFontSize->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonIncFontSize->setFocusPolicy(Qt::NoFocus);
-    m_buttonIncFontSize->setIcon(QIcon(":/icons/increasefont_icon.png"));
+    _buttonIncFontSize = new QToolButton(_frameRightToolBar);
+    _buttonIncFontSize->setMinimumSize(QSize(30, 25));
+    _buttonIncFontSize->setMaximumSize(QSize(30, 25));
+    _buttonIncFontSize->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonIncFontSize->setFocusPolicy(Qt::NoFocus);
+    _buttonIncFontSize->setIcon(QIcon(":/icons/increasefont_icon.png"));
 
-    m_buttonDecFontSize = new QToolButton(m_frameRightToolBar);
-    m_buttonDecFontSize->setMinimumSize(QSize(30, 25));
-    m_buttonDecFontSize->setMaximumSize(QSize(30, 25));
-    m_buttonDecFontSize->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonDecFontSize->setFocusPolicy(Qt::NoFocus);
-    m_buttonDecFontSize->setIcon(QIcon(":/icons/decreasefont_icon.png"));
+    _buttonDecFontSize = new QToolButton(_frameRightToolBar);
+    _buttonDecFontSize->setMinimumSize(QSize(30, 25));
+    _buttonDecFontSize->setMaximumSize(QSize(30, 25));
+    _buttonDecFontSize->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonDecFontSize->setFocusPolicy(Qt::NoFocus);
+    _buttonDecFontSize->setIcon(QIcon(":/icons/decreasefont_icon.png"));
 
-    m_horLine3 = new QFrame(m_frameRightToolBar);
-    m_horLine3->setStyleSheet(QString("color: grey; background-color: grey;"));
-    m_horLine3->setFrameShape(QFrame::HLine);
-    m_horLine3->setFrameShadow(QFrame::Sunken);
+    _horLine3 = new QFrame(_frameRightToolBar);
+    _horLine3->setStyleSheet(QString("color: grey; background-color: grey;"));
+    _horLine3->setFrameShape(QFrame::HLine);
+    _horLine3->setFrameShadow(QFrame::Sunken);
 
-    m_buttonIncIndent = new QToolButton(m_frameRightToolBar);
-    m_buttonIncIndent->setMinimumSize(QSize(30, 25));
-    m_buttonIncIndent->setMaximumSize(QSize(30, 25));
-    m_buttonIncIndent->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonIncIndent->setFocusPolicy(Qt::NoFocus);
-    m_buttonIncIndent->setIcon(QIcon(":/icons/increaseindent_icon.png"));
+    _buttonIncIndent = new QToolButton(_frameRightToolBar);
+    _buttonIncIndent->setMinimumSize(QSize(30, 25));
+    _buttonIncIndent->setMaximumSize(QSize(30, 25));
+    _buttonIncIndent->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonIncIndent->setFocusPolicy(Qt::NoFocus);
+    _buttonIncIndent->setIcon(QIcon(":/icons/increaseindent_icon.png"));
 
-    m_buttonDecIndent = new QToolButton(m_frameRightToolBar);
-    m_buttonDecIndent->setMinimumSize(QSize(30, 25));
-    m_buttonDecIndent->setMaximumSize(QSize(30, 25));
-    m_buttonDecIndent->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonDecIndent->setFocusPolicy(Qt::NoFocus);
-    m_buttonDecIndent->setIcon(QIcon(":/icons/decreaseindent_icon.png"));
+    _buttonDecIndent = new QToolButton(_frameRightToolBar);
+    _buttonDecIndent->setMinimumSize(QSize(30, 25));
+    _buttonDecIndent->setMaximumSize(QSize(30, 25));
+    _buttonDecIndent->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonDecIndent->setFocusPolicy(Qt::NoFocus);
+    _buttonDecIndent->setIcon(QIcon(":/icons/decreaseindent_icon.png"));
 
-    m_horLine4 = new QFrame(m_frameRightToolBar);
-    m_horLine4->setStyleSheet(QString("color: grey; background-color: grey;"));
-    m_horLine4->setFrameShape(QFrame::HLine);
-    m_horLine4->setFrameShadow(QFrame::Sunken);
+    _horLine4 = new QFrame(_frameRightToolBar);
+    _horLine4->setStyleSheet(QString("color: grey; background-color: grey;"));
+    _horLine4->setFrameShape(QFrame::HLine);
+    _horLine4->setFrameShadow(QFrame::Sunken);
 
-    m_vertLayToolBar->addWidget(m_buttonUndo);
-    m_vertLayToolBar->addWidget(m_buttonRedo);
-    m_vertLayToolBar->addWidget(m_buttonClearAll);
-    m_vertLayToolBar->addWidget(m_horLine1);
-    m_vertLayToolBar->addWidget(m_buttonSuperscript);
-    m_vertLayToolBar->addWidget(m_buttonSubscript);
-    m_vertLayToolBar->addWidget(m_horLine2);
-    m_vertLayToolBar->addWidget(m_buttonIncFontSize);
-    m_vertLayToolBar->addWidget(m_buttonDecFontSize);
-    m_vertLayToolBar->addWidget(m_horLine3);
-    m_vertLayToolBar->addWidget(m_buttonIncIndent);
-    m_vertLayToolBar->addWidget(m_buttonDecIndent);
-    m_vertLayToolBar->addWidget(m_horLine4);
-    m_vertSpacerRightToolBar = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    m_vertLayToolBar->addItem(m_vertSpacerRightToolBar);
-    m_horLayMain->addWidget(m_frameRightToolBar);
+    _vertLayToolBar->addWidget(_buttonUndo);
+    _vertLayToolBar->addWidget(_buttonRedo);
+    _vertLayToolBar->addWidget(_buttonClearAll);
+    _vertLayToolBar->addWidget(_horLine1);
+    _vertLayToolBar->addWidget(_buttonSuperscript);
+    _vertLayToolBar->addWidget(_buttonSubscript);
+    _vertLayToolBar->addWidget(_horLine2);
+    _vertLayToolBar->addWidget(_buttonIncFontSize);
+    _vertLayToolBar->addWidget(_buttonDecFontSize);
+    _vertLayToolBar->addWidget(_horLine3);
+    _vertLayToolBar->addWidget(_buttonIncIndent);
+    _vertLayToolBar->addWidget(_buttonDecIndent);
+    _vertLayToolBar->addWidget(_horLine4);
+    _vertSpacerRightToolBar = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    _vertLayToolBar->addItem(_vertSpacerRightToolBar);
+    _horLayMain->addWidget(_frameRightToolBar);
 
     // Actions
     setupActions();
 
     // MenuBar
-    m_menuBar = new QMenuBar(this);
-    m_menuBar->setGeometry(QRect(0, 0, 1035, 21));
-    setMenuBar(m_menuBar);
+    _menuBar = new QMenuBar(this);
+    _menuBar->setGeometry(QRect(0, 0, 1035, 21));
+    setMenuBar(_menuBar);
 
     // StatusBar
-    m_statusBar = new QStatusBar(this);
-    setStatusBar(m_statusBar);
+    _statusBar = new QStatusBar(this);
+    setStatusBar(_statusBar);
 
     // Menus
     setupMenus();
 
     // Central Widget
-    setCentralWidget(m_centralWidget);
+    setCentralWidget(_centralWidget);
 }
 
 void SummaryWindow::setupActions() {
     // File Menu
-    m_actionSaveSummary = new QAction("Save Summary", this);
-    m_actionSaveSummary->setIcon(QIcon(":/icons/save_icon.png"));
-    m_actionPrintToPDF = new QAction("Print to PDF", this);
-    m_actionPrintToPDF->setIcon(QIcon(":/icons/pdf_icon.png"));
-    m_actionExportHtml = new QAction("Export to HTML", this);
-    m_actionExportHtml->setIcon(QIcon(":/icons/html_icon.png"));
-    m_actionClose = new QAction("Close", this);
+    _actionSaveSummary = new QAction("Save Summary", this);
+    _actionSaveSummary->setIcon(QIcon(":/icons/save_icon.png"));
+    _actionPrintToPDF = new QAction("Print to PDF", this);
+    _actionPrintToPDF->setIcon(QIcon(":/icons/pdf_icon.png"));
+    _actionExportHtml = new QAction("Export to HTML", this);
+    _actionExportHtml->setIcon(QIcon(":/icons/html_icon.png"));
+    _actionClose = new QAction("Close", this);
 
     // Edit Menu
-    m_actionUndo = new QAction("Undo", this);
-    m_actionUndo->setIcon(QIcon(":/icons/undo_icon.png"));
-    m_actionRedo = new QAction("Redo", this);
-    m_actionRedo->setIcon(QIcon(":/icons/redo.png"));
-    m_actionCut = new QAction("Cut", this);
-    m_actionCut->setIcon(QIcon(":/icons/cut_icon.png"));
-    m_actionCopy = new QAction("Copy", this);
-    m_actionCopy->setIcon(QIcon(":/icons/copy_icon.png"));
-    m_actionCopyFormatting = new QAction("Copy Formatting", this);
-    m_actionPaste = new QAction("Paste", this);
-    m_actionPaste->setIcon(QIcon(":/icons/paste_icon.png"));
-    m_actionPasteMatchFormat = new QAction("Paste and Match Format", this);
-    m_actionSelectAll = new QAction("Select All", this);
-    m_actionClearAll = new QAction("Clear All", this);
-    m_actionClearAll->setIcon(QIcon(":/icons/cleartext_icon.png"));
-    m_actionSelectCurrentLine = new QAction("Select Current Line", this);
-    m_actionDuplicateCurrentLine = new QAction("Duplicate Current Line", this);
-    m_actionDeleteCurrentLine = new QAction("Delete Current Line", this);
-    m_actionFind = new QAction("Find", this);
+    _actionUndo = new QAction("Undo", this);
+    _actionUndo->setIcon(QIcon(":/icons/undo_icon.png"));
+    _actionRedo = new QAction("Redo", this);
+    _actionRedo->setIcon(QIcon(":/icons/redo.png"));
+    _actionCut = new QAction("Cut", this);
+    _actionCut->setIcon(QIcon(":/icons/cut_icon.png"));
+    _actionCopy = new QAction("Copy", this);
+    _actionCopy->setIcon(QIcon(":/icons/copy_icon.png"));
+    _actionCopyFormatting = new QAction("Copy Formatting", this);
+    _actionPaste = new QAction("Paste", this);
+    _actionPaste->setIcon(QIcon(":/icons/paste_icon.png"));
+    _actionPasteMatchFormat = new QAction("Paste and Match Format", this);
+    _actionSelectAll = new QAction("Select All", this);
+    _actionClearAll = new QAction("Clear All", this);
+    _actionClearAll->setIcon(QIcon(":/icons/cleartext_icon.png"));
+    _actionSelectCurrentLine = new QAction("Select Current Line", this);
+    _actionDuplicateCurrentLine = new QAction("Duplicate Current Line", this);
+    _actionDeleteCurrentLine = new QAction("Delete Current Line", this);
+    _actionFind = new QAction("Find", this);
 
     // View Menu
-    m_actionFullscreen = new QAction("Fullscreen", this);
-    m_actionFullscreen->setIcon(QIcon(":/icons/fullscreen_icon.png"));
-    m_actionMaximize = new QAction("Maximize", this);
-    m_actionMinimize = new QAction("Minimize", this);
-    m_actionMinimize->setIcon(QIcon(":/icons/minimize_icon.png"));
-    m_actionZoomIn = new QAction("Zoom In", this);
-    m_actionZoomIn->setIcon(QIcon(":/icons/zoom_in_icon.png"));
-    m_actionZoomOut = new QAction("Zoom Out", this);
-    m_actionZoomOut->setIcon(QIcon(":/icons/zoom_out_icon.png"));
-    m_actionHideSearchBar = new QAction("Hide Search Bar", this);
-    m_actionHideListWidget = new QAction("Hide List Widget", this);
-    m_actionHideLeftPane = new QAction("Hide Left Pane", this);
-    m_actionHideTopToolbar = new QAction("Hide Top Toolbar", this);
-    m_actionHideRightToolbar = new QAction("Hide Right Toolbar", this);
-    m_actionHideRightPane = new QAction("Hide Right Pane", this);
+    _actionFullscreen = new QAction("Fullscreen", this);
+    _actionFullscreen->setIcon(QIcon(":/icons/fullscreen_icon.png"));
+    _actionMaximize = new QAction("Maximize", this);
+    _actionMinimize = new QAction("Minimize", this);
+    _actionMinimize->setIcon(QIcon(":/icons/minimize_icon.png"));
+    _actionZoomIn = new QAction("Zoom In", this);
+    _actionZoomIn->setIcon(QIcon(":/icons/zoo_in_icon.png"));
+    _actionZoomOut = new QAction("Zoom Out", this);
+    _actionZoomOut->setIcon(QIcon(":/icons/zoo_out_icon.png"));
+    _actionHideSearchBar = new QAction("Hide Search Bar", this);
+    _actionHideListWidget = new QAction("Hide List Widget", this);
+    _actionHideLeftPane = new QAction("Hide Left Pane", this);
+    _actionHideTopToolbar = new QAction("Hide Top Toolbar", this);
+    _actionHideRightToolbar = new QAction("Hide Right Toolbar", this);
+    _actionHideRightPane = new QAction("Hide Right Pane", this);
 
     // Insert Menu
-    m_actionInsertLine = new QAction("Line", this);
-    m_actionInsertLine->setIcon(QIcon(":/icons/hr_icon.png"));
-    m_actionInsertLink = new QAction("Link", this);
-    m_actionInsertLink->setIcon(QIcon(":/icons/link_icon.png"));
-    m_actionInsertImage = new QAction("Image", this);
-    m_actionInsertImage->setIcon(QIcon(":/icons/image_icon.png"));
-    m_actionInsertTable = new QAction("Table", this);
-    m_actionInsertTable->setIcon(QIcon(":/icons/table_icon.png"));
-    m_actionTableRow = new QAction("Table Row", this);
-    m_actionTableColumn = new QAction("Table Column", this);
-    m_actionDateNormal = new QAction("Normal Date", this);
-    m_actionDateShort = new QAction("Short Date", this);
+    _actionInsertLine = new QAction("Line", this);
+    _actionInsertLine->setIcon(QIcon(":/icons/hr_icon.png"));
+    _actionInsertLink = new QAction("Link", this);
+    _actionInsertLink->setIcon(QIcon(":/icons/link_icon.png"));
+    _actionInsertImage = new QAction("Image", this);
+    _actionInsertImage->setIcon(QIcon(":/icons/image_icon.png"));
+    _actionInsertTable = new QAction("Table", this);
+    _actionInsertTable->setIcon(QIcon(":/icons/table_icon.png"));
+    _actionTableRow = new QAction("Table Row", this);
+    _actionTableColumn = new QAction("Table Column", this);
+    _actionDateNormal = new QAction("Normal Date", this);
+    _actionDateShort = new QAction("Short Date", this);
 
     // Format Menu
-    m_actionBold = new QAction("Bold", this);
-    m_actionBold->setIcon(QIcon(":/icons/bold_icon.png"));
-    m_actionItalic = new QAction("Italic", this);
-    m_actionItalic->setIcon(QIcon(":/icons/italic_icon.png"));
-    m_actionUnderline = new QAction("Underline", this);
-    m_actionUnderline->setIcon(QIcon(":/icons/underline_icon.png"));
-    m_actionThrough = new QAction("Through", this);
-    m_actionThrough->setIcon(QIcon(":/icons/strikethrough_icon.png"));
-    m_actionHighlight = new QAction("Highlight", this);
-    m_actionHighlight->setIcon(QIcon(":/icons/highlight_icon.png"));
-    m_actionCodeBlock = new QAction("Code", this);
-    m_actionCodeBlock->setIcon(QIcon(":/icons/code_icon.png"));
-    m_actionBulletedList = new QAction("Bulleted List", this);
-    m_actionBulletedList->setIcon(QIcon(":/icons/bullets_icon.png"));
-    m_actionOrderedList = new QAction("Ordered List", this);
-    m_actionOrderedList->setIcon(QIcon(":/icons/numbers_icon.png"));
-    m_actionIncFontSize = new QAction("+ Font Size", this);
-    m_actionIncFontSize->setIcon(QIcon(":/icons/increasefont_icon.png"));
-    m_actionDecFontSize = new QAction("- Font Size", this);
-    m_actionDecFontSize->setIcon(QIcon(":/icons/decreasefont_icon.png"));
-    m_actionIncIndent = new QAction("+ Indent", this);
-    m_actionIncIndent->setIcon(QIcon(":/icons/increaseindent_icon.png"));
-    m_actionDecIndent = new QAction("- Indent", this);
-    m_actionDecIndent->setIcon(QIcon(":/icons/decreaseindent_icon.png"));
-    m_actionSuperscript = new QAction("Superscript", this);
-    m_actionSuperscript->setIcon(QIcon(":/icons/superscript_icon.png"));
-    m_actionSubscript = new QAction("Subscript", this);
-    m_actionSubscript->setIcon(QIcon(":/icons/subscript_icon.png"));
-    m_actionResetFormat = new QAction("Reset Format", this);
-    m_actionResetFormat->setIcon(QIcon(":/icons/restore_icon.png"));
-    m_actionSentenceCase = new QAction("Sentence Case", this);
-    m_actionSentenceCase->setIcon(QIcon(":/icons/sentencecase_icon.png"));
-    m_actionUpperCase = new QAction("Uppercase", this);
-    m_actionUpperCase->setIcon(QIcon(":/icons/uppercase_icon.png"));
-    m_actionLowerCase = new QAction("Lowercase", this);
-    m_actionLowerCase->setIcon(QIcon(":/icons/lowercase_icon.png"));
-    m_actionCapitalCase = new QAction("Capitalcase", this);
+    _actionBold = new QAction("Bold", this);
+    _actionBold->setIcon(QIcon(":/icons/bold_icon.png"));
+    _actionItalic = new QAction("Italic", this);
+    _actionItalic->setIcon(QIcon(":/icons/italic_icon.png"));
+    _actionUnderline = new QAction("Underline", this);
+    _actionUnderline->setIcon(QIcon(":/icons/underline_icon.png"));
+    _actionThrough = new QAction("Through", this);
+    _actionThrough->setIcon(QIcon(":/icons/strikethrough_icon.png"));
+    _actionHighlight = new QAction("Highlight", this);
+    _actionHighlight->setIcon(QIcon(":/icons/highlight_icon.png"));
+    _actionCodeBlock = new QAction("Code", this);
+    _actionCodeBlock->setIcon(QIcon(":/icons/code_icon.png"));
+    _actionBulletedList = new QAction("Bulleted List", this);
+    _actionBulletedList->setIcon(QIcon(":/icons/bullets_icon.png"));
+    _actionOrderedList = new QAction("Ordered List", this);
+    _actionOrderedList->setIcon(QIcon(":/icons/numbers_icon.png"));
+    _actionIncFontSize = new QAction("+ Font Size", this);
+    _actionIncFontSize->setIcon(QIcon(":/icons/increasefont_icon.png"));
+    _actionDecFontSize = new QAction("- Font Size", this);
+    _actionDecFontSize->setIcon(QIcon(":/icons/decreasefont_icon.png"));
+    _actionIncIndent = new QAction("+ Indent", this);
+    _actionIncIndent->setIcon(QIcon(":/icons/increaseindent_icon.png"));
+    _actionDecIndent = new QAction("- Indent", this);
+    _actionDecIndent->setIcon(QIcon(":/icons/decreaseindent_icon.png"));
+    _actionSuperscript = new QAction("Superscript", this);
+    _actionSuperscript->setIcon(QIcon(":/icons/superscript_icon.png"));
+    _actionSubscript = new QAction("Subscript", this);
+    _actionSubscript->setIcon(QIcon(":/icons/subscript_icon.png"));
+    _actionResetFormat = new QAction("Reset Format", this);
+    _actionResetFormat->setIcon(QIcon(":/icons/restore_icon.png"));
+    _actionSentenceCase = new QAction("Sentence Case", this);
+    _actionSentenceCase->setIcon(QIcon(":/icons/sentencecase_icon.png"));
+    _actionUpperCase = new QAction("Uppercase", this);
+    _actionUpperCase->setIcon(QIcon(":/icons/uppercase_icon.png"));
+    _actionLowerCase = new QAction("Lowercase", this);
+    _actionLowerCase->setIcon(QIcon(":/icons/lowercase_icon.png"));
+    _actionCapitalCase = new QAction("Capitalcase", this);
 
     // Search Menu
-    m_actionSearchText = new QAction("Search Text", this);
-    m_actionSearchText->setIcon(QIcon(":/icons/searchbar_icon.png"));
-    m_actionClearSearch = new QAction("Clear Search", this);
-    m_actionClearSearch->setIcon(QIcon(":/icons/clear_icon.png"));
+    _actionSearchText = new QAction("Search Text", this);
+    _actionSearchText->setIcon(QIcon(":/icons/searchbar_icon.png"));
+    _actionClearSearch = new QAction("Clear Search", this);
+    _actionClearSearch->setIcon(QIcon(":/icons/clear_icon.png"));
 }
 
 void SummaryWindow::setupMenus() {
-    m_menuFile = m_menuBar->addMenu(tr("&File"));
-    m_menuEdit = m_menuBar->addMenu(tr("&Edit"));
-    m_menuView = m_menuBar->addMenu(tr("&View"));
-    m_menuInsert = m_menuBar->addMenu(tr("&Insert"));
-    m_menuFormat = m_menuBar->addMenu(tr("&Format"));
-    m_menuSearch = m_menuBar->addMenu(tr("&Search"));
+    _menuFile = _menuBar->addMenu(tr("&File"));
+    _menuEdit = _menuBar->addMenu(tr("&Edit"));
+    _menuView = _menuBar->addMenu(tr("&View"));
+    _menuInsert = _menuBar->addMenu(tr("&Insert"));
+    _menuFormat = _menuBar->addMenu(tr("&Format"));
+    _menuSearch = _menuBar->addMenu(tr("&Search"));
 
-    m_menuDateTime = new QMenu(tr("Date"), m_menuInsert);
-    m_menuChangeCase = new QMenu(tr("Change Case"), m_menuFormat);
+    _menuDateTime = new QMenu(tr("Date"), _menuInsert);
+    _menuChangeCase = new QMenu(tr("Change Case"), _menuFormat);
 
     // Add Actions to Menus
-    m_menuBar->addAction(m_menuFile->menuAction());
-    m_menuBar->addAction(m_menuEdit->menuAction());
-    m_menuBar->addAction(m_menuView->menuAction());
-    m_menuBar->addAction(m_menuInsert->menuAction());
-    m_menuBar->addAction(m_menuFormat->menuAction());
-    m_menuBar->addAction(m_menuSearch->menuAction());
-    m_menuFile->addAction(m_actionSaveSummary);
-    m_menuFile->addAction(m_actionPrintToPDF);
-    m_menuFile->addAction(m_actionExportHtml);
-    m_menuFile->addSeparator();
-    m_menuFile->addAction(m_actionClose);
-    m_menuEdit->addAction(m_actionUndo);
-    m_menuEdit->addAction(m_actionRedo);
-    m_menuEdit->addSeparator();
-    m_menuEdit->addAction(m_actionCut);
-    m_menuEdit->addAction(m_actionCopy);
-    m_menuEdit->addAction(m_actionCopyFormatting);
-    m_menuEdit->addSeparator();
-    m_menuEdit->addAction(m_actionPaste);
-    m_menuEdit->addAction(m_actionPasteMatchFormat);
-    m_menuEdit->addSeparator();
-    m_menuEdit->addAction(m_actionSelectAll);
-    m_menuEdit->addAction(m_actionClearAll);
-    m_menuEdit->addSeparator();
-    m_menuEdit->addAction(m_actionSelectCurrentLine);
-    m_menuEdit->addAction(m_actionDuplicateCurrentLine);
-    m_menuEdit->addAction(m_actionDeleteCurrentLine);
-    m_menuEdit->addSeparator();
-    m_menuEdit->addAction(m_actionFind);
-    m_menuView->addAction(m_actionFullscreen);
-    m_menuView->addAction(m_actionMaximize);
-    m_menuView->addAction(m_actionMinimize);
-    m_menuView->addSeparator();
-    m_menuView->addAction(m_actionZoomIn);
-    m_menuView->addAction(m_actionZoomOut);
-    m_menuView->addSeparator();
-    m_menuView->addAction(m_actionHideSearchBar);
-    m_menuView->addAction(m_actionHideLeftPane);
-    m_menuView->addSeparator();
-    m_menuView->addAction(m_actionHideTopToolbar);
-    m_menuView->addAction(m_actionHideRightToolbar);
-    m_menuView->addAction(m_actionHideRightPane);
-    m_menuInsert->addAction(m_actionInsertLine);
-    m_menuInsert->addAction(m_actionInsertLink);
-    m_menuInsert->addAction(m_actionInsertImage);
-    m_menuInsert->addAction(m_actionInsertTable);
-    m_menuInsert->addSeparator();
-    m_menuInsert->addAction(m_actionTableRow);
-    m_menuInsert->addAction(m_actionTableColumn);
-    m_menuInsert->addSeparator();
-    m_menuInsert->addAction(m_menuDateTime->menuAction());
-    m_menuDateTime->addAction(m_actionDateShort);
-    m_menuDateTime->addAction(m_actionDateNormal);
-    m_menuFormat->addAction(m_actionBold);
-    m_menuFormat->addAction(m_actionItalic);
-    m_menuFormat->addAction(m_actionUnderline);
-    m_menuFormat->addAction(m_actionThrough);
-    m_menuFormat->addAction(m_actionHighlight);
-    m_menuFormat->addAction(m_actionCodeBlock);
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_actionBulletedList);
-    m_menuFormat->addAction(m_actionOrderedList);
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_actionIncFontSize);
-    m_menuFormat->addAction(m_actionDecFontSize);
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_actionIncIndent);
-    m_menuFormat->addAction(m_actionDecIndent);
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_actionSuperscript);
-    m_menuFormat->addAction(m_actionSubscript);
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_menuChangeCase->menuAction());
-    m_menuFormat->addSeparator();
-    m_menuFormat->addAction(m_actionResetFormat);
-    m_menuChangeCase->addAction(m_actionSentenceCase);
-    m_menuChangeCase->addAction(m_actionUpperCase);
-    m_menuChangeCase->addAction(m_actionLowerCase);
-    m_menuChangeCase->addAction(m_actionCapitalCase);
-    m_menuSearch->addAction(m_actionSearchText);
-    m_menuSearch->addAction(m_actionClearSearch);
+    _menuBar->addAction(_menuFile->menuAction());
+    _menuBar->addAction(_menuEdit->menuAction());
+    _menuBar->addAction(_menuView->menuAction());
+    _menuBar->addAction(_menuInsert->menuAction());
+    _menuBar->addAction(_menuFormat->menuAction());
+    _menuBar->addAction(_menuSearch->menuAction());
+    _menuFile->addAction(_actionSaveSummary);
+    _menuFile->addAction(_actionPrintToPDF);
+    _menuFile->addAction(_actionExportHtml);
+    _menuFile->addSeparator();
+    _menuFile->addAction(_actionClose);
+    _menuEdit->addAction(_actionUndo);
+    _menuEdit->addAction(_actionRedo);
+    _menuEdit->addSeparator();
+    _menuEdit->addAction(_actionCut);
+    _menuEdit->addAction(_actionCopy);
+    _menuEdit->addAction(_actionCopyFormatting);
+    _menuEdit->addSeparator();
+    _menuEdit->addAction(_actionPaste);
+    _menuEdit->addAction(_actionPasteMatchFormat);
+    _menuEdit->addSeparator();
+    _menuEdit->addAction(_actionSelectAll);
+    _menuEdit->addAction(_actionClearAll);
+    _menuEdit->addSeparator();
+    _menuEdit->addAction(_actionSelectCurrentLine);
+    _menuEdit->addAction(_actionDuplicateCurrentLine);
+    _menuEdit->addAction(_actionDeleteCurrentLine);
+    _menuEdit->addSeparator();
+    _menuEdit->addAction(_actionFind);
+    _menuView->addAction(_actionFullscreen);
+    _menuView->addAction(_actionMaximize);
+    _menuView->addAction(_actionMinimize);
+    _menuView->addSeparator();
+    _menuView->addAction(_actionZoomIn);
+    _menuView->addAction(_actionZoomOut);
+    _menuView->addSeparator();
+    _menuView->addAction(_actionHideSearchBar);
+    _menuView->addAction(_actionHideLeftPane);
+    _menuView->addSeparator();
+    _menuView->addAction(_actionHideTopToolbar);
+    _menuView->addAction(_actionHideRightToolbar);
+    _menuView->addAction(_actionHideRightPane);
+    _menuInsert->addAction(_actionInsertLine);
+    _menuInsert->addAction(_actionInsertLink);
+    _menuInsert->addAction(_actionInsertImage);
+    _menuInsert->addAction(_actionInsertTable);
+    _menuInsert->addSeparator();
+    _menuInsert->addAction(_actionTableRow);
+    _menuInsert->addAction(_actionTableColumn);
+    _menuInsert->addSeparator();
+    _menuInsert->addAction(_menuDateTime->menuAction());
+    _menuDateTime->addAction(_actionDateShort);
+    _menuDateTime->addAction(_actionDateNormal);
+    _menuFormat->addAction(_actionBold);
+    _menuFormat->addAction(_actionItalic);
+    _menuFormat->addAction(_actionUnderline);
+    _menuFormat->addAction(_actionThrough);
+    _menuFormat->addAction(_actionHighlight);
+    _menuFormat->addAction(_actionCodeBlock);
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_actionBulletedList);
+    _menuFormat->addAction(_actionOrderedList);
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_actionIncFontSize);
+    _menuFormat->addAction(_actionDecFontSize);
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_actionIncIndent);
+    _menuFormat->addAction(_actionDecIndent);
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_actionSuperscript);
+    _menuFormat->addAction(_actionSubscript);
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_menuChangeCase->menuAction());
+    _menuFormat->addSeparator();
+    _menuFormat->addAction(_actionResetFormat);
+    _menuChangeCase->addAction(_actionSentenceCase);
+    _menuChangeCase->addAction(_actionUpperCase);
+    _menuChangeCase->addAction(_actionLowerCase);
+    _menuChangeCase->addAction(_actionCapitalCase);
+    _menuSearch->addAction(_actionSearchText);
+    _menuSearch->addAction(_actionClearSearch);
 }
 
 void SummaryWindow::setupConnections() {
-    connect(m_buttonBold, &QPushButton::clicked, this, &SummaryWindow::toggleBold);
-    connect(m_buttonItalic, &QPushButton::clicked, this, &SummaryWindow::toggleItalic);
-    connect(m_buttonUnderline, &QPushButton::clicked, this, &SummaryWindow::toggleUnderline);
-    connect(m_buttonThrough, &QPushButton::clicked, this, &SummaryWindow::toggleStrikethrough);
-    connect(m_buttonBulletedList, &QPushButton::clicked, this, &SummaryWindow::toggleBulletedList);
-    connect(m_buttonUndo, &QPushButton::clicked, m_textEditor, &TextEditor::undo);
-    connect(m_buttonRedo, &QPushButton::clicked, m_textEditor, &TextEditor::redo);
-    connect(m_buttonClearAll, &QPushButton::clicked, m_textEditor, &TextEditor::clear);
-    connect(m_buttonOrderedList, &QPushButton::clicked, this, &SummaryWindow::toggleOrderedList);
-    connect(m_buttonSubscript, &QPushButton::clicked, this, &SummaryWindow::setSubscript);
-    connect(m_buttonSuperscript, &QPushButton::clicked, this, &SummaryWindow::setSuperscript);
-    connect(m_buttonCodeBlock, &QPushButton::clicked, this, &SummaryWindow::insertCodeBlock);
-    connect(m_buttonHighlight, &QPushButton::clicked, this, &SummaryWindow::toggleHighlight);
-    connect(m_buttonEditorFontColor, &QPushButton::clicked, this, &SummaryWindow::setFontColor);
-    connect(m_buttonInsertLine, &QPushButton::clicked, this, &SummaryWindow::insertLine);
-    connect(m_buttonInsertImage, &QPushButton::clicked, this, &SummaryWindow::insertImage);
-    connect(m_buttonInsertTable, &QPushButton::clicked, this, &SummaryWindow::insertTable);
-    connect(m_buttonInsertLink, &QPushButton::clicked, this, &SummaryWindow::insertLink);
-    connect(m_buttonEditorBackColor, &QPushButton::clicked, this, &SummaryWindow::setBackColor);
-    connect(m_buttonNext, &QPushButton::clicked, this, &SummaryWindow::findNext);
-    connect(m_buttonPrevious, &QPushButton::clicked, this, &SummaryWindow::findPrevious);
-    connect(m_buttonIncFontSize, &QPushButton::clicked, this, &SummaryWindow::increaseFontSize);
-    connect(m_buttonDecFontSize, &QPushButton::clicked, this, &SummaryWindow::decreaseFontSize);
-    connect(m_buttonIncIndent, &QPushButton::clicked, this, &SummaryWindow::increaseIndent);
-    connect(m_buttonDecIndent, &QPushButton::clicked, this, &SummaryWindow::decreaseIndent);
-    connect(m_buttonCloseFind, &QPushButton::clicked, [this] {
+    connect(_buttonBold, &QPushButton::clicked, this, &SummaryWindow::toggleBold);
+    connect(_buttonItalic, &QPushButton::clicked, this, &SummaryWindow::toggleItalic);
+    connect(_buttonUnderline, &QPushButton::clicked, this, &SummaryWindow::toggleUnderline);
+    connect(_buttonThrough, &QPushButton::clicked, this, &SummaryWindow::toggleStrikethrough);
+    connect(_buttonBulletedList, &QPushButton::clicked, this, &SummaryWindow::toggleBulletedList);
+    connect(_buttonUndo, &QPushButton::clicked, _textEditor, &TextEditor::undo);
+    connect(_buttonRedo, &QPushButton::clicked, _textEditor, &TextEditor::redo);
+    connect(_buttonClearAll, &QPushButton::clicked, _textEditor, &TextEditor::clear);
+    connect(_buttonOrderedList, &QPushButton::clicked, this, &SummaryWindow::toggleOrderedList);
+    connect(_buttonSubscript, &QPushButton::clicked, this, &SummaryWindow::setSubscript);
+    connect(_buttonSuperscript, &QPushButton::clicked, this, &SummaryWindow::setSuperscript);
+    connect(_buttonCodeBlock, &QPushButton::clicked, this, &SummaryWindow::insertCodeBlock);
+    connect(_buttonHighlight, &QPushButton::clicked, this, &SummaryWindow::toggleHighlight);
+    connect(_buttonEditorFontColor, &QPushButton::clicked, this, &SummaryWindow::setFontColor);
+    connect(_buttonInsertLine, &QPushButton::clicked, this, &SummaryWindow::insertLine);
+    connect(_buttonInsertImage, &QPushButton::clicked, this, &SummaryWindow::insertImage);
+    connect(_buttonInsertTable, &QPushButton::clicked, this, &SummaryWindow::insertTable);
+    connect(_buttonInsertLink, &QPushButton::clicked, this, &SummaryWindow::insertLink);
+    connect(_buttonEditorBackColor, &QPushButton::clicked, this, &SummaryWindow::setBackColor);
+    connect(_buttonNext, &QPushButton::clicked, this, &SummaryWindow::findNext);
+    connect(_buttonPrevious, &QPushButton::clicked, this, &SummaryWindow::findPrevious);
+    connect(_buttonIncFontSize, &QPushButton::clicked, this, &SummaryWindow::increaseFontSize);
+    connect(_buttonDecFontSize, &QPushButton::clicked, this, &SummaryWindow::decreaseFontSize);
+    connect(_buttonIncIndent, &QPushButton::clicked, this, &SummaryWindow::increaseIndent);
+    connect(_buttonDecIndent, &QPushButton::clicked, this, &SummaryWindow::decreaseIndent);
+    connect(_buttonCloseFind, &QPushButton::clicked, [this] {
         toggleFindWidget(false);
     });
-    connect(m_fontComboBox, &QFontComboBox::currentTextChanged, [this] {
-        setTextFontFamily(m_fontComboBox->currentText(), true);
+    connect(_fontComboBox, &QFontComboBox::currentTextChanged, [this] {
+        setTextFontFamily(_fontComboBox->currentText(), true);
     });
-    connect(m_spinBoxFontSize, &QSpinBox::valueChanged, [this] {
-        setTextFontSize(m_spinBoxFontSize->value(), true);
+    connect(_spinBoxFontSize, &QSpinBox::valueChanged, [this] {
+        setTextFontSize(_spinBoxFontSize->value(), true);
     });
 
-    connect(m_textFind, &QLineEdit::textChanged, this, &SummaryWindow::findText);
-    connect(m_comboBoxAlignment, &QComboBox::currentIndexChanged, this, &SummaryWindow::changeTextAlignment);
-    connect(m_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &SummaryWindow::selectEbookSummary);
-    connect(m_bookSearchWidget, &BookSearchWidget::itemClicked, this, &SummaryWindow::selectEbookSummary);
-    connect(m_textEditor, &TextEditor::currentCharFormatChanged, this, &SummaryWindow::textFormatChanged);
-    connect(m_textEditor, &TextEditor::selectionChanged, this, &SummaryWindow::textFormatChanged);
+    connect(_textFind, &QLineEdit::textChanged, this, &SummaryWindow::findText);
+    connect(_comboBoxAlignment, &QComboBox::currentIndexChanged, this, &SummaryWindow::changeTextAlignment);
+    connect(_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &SummaryWindow::selectEbookSummary);
+    connect(_bookSearchWidget, &BookSearchWidget::itemClicked, this, &SummaryWindow::selectEbookSummary);
+    connect(_textEditor, &TextEditor::currentCharFormatChanged, this, &SummaryWindow::textFormatChanged);
+    connect(_textEditor, &TextEditor::selectionChanged, this, &SummaryWindow::textFormatChanged);
 
-    connect(m_actionClose, &QAction::triggered, this, &SummaryWindow::close);
-    connect(m_actionMaximize, &QAction::triggered, [this] { common::toggleMaximized(this); });
-    connect(m_actionFullscreen, &QAction::triggered, [this] { common::toggleFullscreen(this); });
-    connect(m_actionMinimize, &QAction::triggered, this, &SummaryWindow::showMinimized);
-    connect(m_actionHideSearchBar, &QAction::triggered, this, &SummaryWindow::hideSearchBar);
-    connect(m_actionHideLeftPane, &QAction::triggered, this, &SummaryWindow::hideLeftPane);
-    connect(m_actionHideTopToolbar, &QAction::triggered, this, &SummaryWindow::hideTopToolbar);
-    connect(m_actionHideRightToolbar, &QAction::triggered, this, &SummaryWindow::hideRightToolbar);
-    connect(m_actionHideRightPane, &QAction::triggered, this, &SummaryWindow::hideRightPane);
-    connect(m_actionResetFormat, &QAction::triggered, this, &SummaryWindow::resetFormat);
-    connect(m_actionPaste, &QAction::triggered, m_textEditor, &TextEditor::paste);
-    connect(m_actionSearchText, &QAction::triggered, this, &SummaryWindow::searchText);
-    connect(m_actionClearSearch, &QAction::triggered, this, &SummaryWindow::clearSearch);
-    connect(m_actionPrintToPDF, &QAction::triggered, this, &SummaryWindow::printSummaryToPdf);
-    connect(m_actionCopyFormatting, &QAction::triggered, this, &SummaryWindow::copyFormatting);
-    connect(m_actionPasteMatchFormat, &QAction::triggered, this, &SummaryWindow::pasteMatchFormat);
-    connect(m_actionSaveSummary, &QAction::triggered, this, &SummaryWindow::saveSummary);
-    connect(m_actionExportHtml, &QAction::triggered, this, &SummaryWindow::exportSummaryToHtml);
-    connect(m_actionSentenceCase, &QAction::triggered, this, &SummaryWindow::sentenceCase);
-    connect(m_actionUpperCase, &QAction::triggered, this, &SummaryWindow::upperCase);
-    connect(m_actionLowerCase, &QAction::triggered, this, &SummaryWindow::lowerCase);
-    connect(m_actionCapitalCase, &QAction::triggered, this, &SummaryWindow::capitalCase);
-    connect(m_actionSelectCurrentLine, &QAction::triggered, this, &SummaryWindow::selectCurrentLine);
-    connect(m_actionDuplicateCurrentLine, &QAction::triggered, this, &SummaryWindow::duplicateCurrentLine);
-    connect(m_actionDeleteCurrentLine, &QAction::triggered, this, &SummaryWindow::deleteCurrentLine);
-    connect(m_actionZoomIn, &QAction::triggered, this, &SummaryWindow::zoomIn);
-    connect(m_actionZoomOut, &QAction::triggered, this, &SummaryWindow::zoomOut);
-    connect(m_actionDateNormal, &QAction::triggered, this, &SummaryWindow::insertNormalDate);
-    connect(m_actionDateShort, &QAction::triggered, this, &SummaryWindow::insertShortDate);
-    connect(m_actionTableRow, &QAction::triggered, this, &SummaryWindow::addTableRow);
-    connect(m_actionTableColumn, &QAction::triggered, this, &SummaryWindow::addTableColumn);
-    connect(m_actionFind, &QAction::triggered, [this] {
-        toggleFindWidget(!m_frameFind->isVisible());
+    connect(_actionClose, &QAction::triggered, this, &SummaryWindow::close);
+    connect(_actionMaximize, &QAction::triggered, [this] { common::toggleMaximized(this); });
+    connect(_actionFullscreen, &QAction::triggered, [this] { common::toggleFullscreen(this); });
+    connect(_actionMinimize, &QAction::triggered, this, &SummaryWindow::showMinimized);
+    connect(_actionHideSearchBar, &QAction::triggered, this, &SummaryWindow::hideSearchBar);
+    connect(_actionHideLeftPane, &QAction::triggered, this, &SummaryWindow::hideLeftPane);
+    connect(_actionHideTopToolbar, &QAction::triggered, this, &SummaryWindow::hideTopToolbar);
+    connect(_actionHideRightToolbar, &QAction::triggered, this, &SummaryWindow::hideRightToolbar);
+    connect(_actionHideRightPane, &QAction::triggered, this, &SummaryWindow::hideRightPane);
+    connect(_actionResetFormat, &QAction::triggered, this, &SummaryWindow::resetFormat);
+    connect(_actionPaste, &QAction::triggered, _textEditor, &TextEditor::paste);
+    connect(_actionSearchText, &QAction::triggered, this, &SummaryWindow::searchText);
+    connect(_actionClearSearch, &QAction::triggered, this, &SummaryWindow::clearSearch);
+    connect(_actionPrintToPDF, &QAction::triggered, this, &SummaryWindow::printSummaryToPdf);
+    connect(_actionCopyFormatting, &QAction::triggered, this, &SummaryWindow::copyFormatting);
+    connect(_actionPasteMatchFormat, &QAction::triggered, this, &SummaryWindow::pasteMatchFormat);
+    connect(_actionSaveSummary, &QAction::triggered, this, &SummaryWindow::saveSummary);
+    connect(_actionExportHtml, &QAction::triggered, this, &SummaryWindow::exportSummaryToHtml);
+    connect(_actionSentenceCase, &QAction::triggered, this, &SummaryWindow::sentenceCase);
+    connect(_actionUpperCase, &QAction::triggered, this, &SummaryWindow::upperCase);
+    connect(_actionLowerCase, &QAction::triggered, this, &SummaryWindow::lowerCase);
+    connect(_actionCapitalCase, &QAction::triggered, this, &SummaryWindow::capitalCase);
+    connect(_actionSelectCurrentLine, &QAction::triggered, this, &SummaryWindow::selectCurrentLine);
+    connect(_actionDuplicateCurrentLine, &QAction::triggered, this, &SummaryWindow::duplicateCurrentLine);
+    connect(_actionDeleteCurrentLine, &QAction::triggered, this, &SummaryWindow::deleteCurrentLine);
+    connect(_actionZoomIn, &QAction::triggered, this, &SummaryWindow::zoomIn);
+    connect(_actionZoomOut, &QAction::triggered, this, &SummaryWindow::zoomOut);
+    connect(_actionDateNormal, &QAction::triggered, this, &SummaryWindow::insertNormalDate);
+    connect(_actionDateShort, &QAction::triggered, this, &SummaryWindow::insertShortDate);
+    connect(_actionTableRow, &QAction::triggered, this, &SummaryWindow::addTableRow);
+    connect(_actionTableColumn, &QAction::triggered, this, &SummaryWindow::addTableColumn);
+    connect(_actionFind, &QAction::triggered, [this] {
+        toggleFindWidget(!_frameFind->isVisible());
     });
-    connect(m_actionBold, &QAction::triggered, this, &SummaryWindow::toggleBold);
-    connect(m_actionItalic, &QAction::triggered, this, &SummaryWindow::toggleItalic);
-    connect(m_actionUnderline, &QAction::triggered, this, &SummaryWindow::toggleUnderline);
-    connect(m_actionThrough, &QAction::triggered, this, &SummaryWindow::toggleStrikethrough);
-    connect(m_actionBulletedList, &QAction::triggered, this, &SummaryWindow::toggleBulletedList);
-    connect(m_actionOrderedList, &QAction::triggered, this, &SummaryWindow::toggleOrderedList);
-    connect(m_actionSubscript, &QAction::triggered, this, &SummaryWindow::setSubscript);
-    connect(m_actionSuperscript, &QAction::triggered, this, &SummaryWindow::setSuperscript);
-    connect(m_actionCodeBlock, &QAction::triggered, this, &SummaryWindow::insertCodeBlock);
-    connect(m_actionHighlight, &QAction::triggered, this, &SummaryWindow::toggleHighlight);
-    connect(m_actionIncFontSize, &QAction::triggered, this, &SummaryWindow::increaseFontSize);
-    connect(m_actionDecFontSize, &QAction::triggered, this, &SummaryWindow::decreaseFontSize);
-    connect(m_actionIncIndent, &QAction::triggered, this, &SummaryWindow::increaseIndent);
-    connect(m_actionDecIndent, &QAction::triggered, this, &SummaryWindow::decreaseIndent);
-    connect(m_actionUndo, &QAction::triggered, m_textEditor, &TextEditor::undo);
-    connect(m_actionRedo, &QAction::triggered, m_textEditor, &TextEditor::redo);
-    connect(m_actionClearAll, &QAction::triggered, m_textEditor, &TextEditor::clear);
-    connect(m_actionCut, &QAction::triggered, m_textEditor, &TextEditor::cut);
-    connect(m_actionCopy, &QAction::triggered, m_textEditor, &TextEditor::copy);
-    connect(m_actionSelectAll, &QAction::triggered, m_textEditor, &TextEditor::selectAll);
-    connect(m_actionInsertLine, &QAction::triggered, this, &SummaryWindow::insertLine);
-    connect(m_actionInsertLink, &QAction::triggered, this, &SummaryWindow::insertLink);
-    connect(m_actionInsertImage, &QAction::triggered, this, &SummaryWindow::insertImage);
-    connect(m_actionInsertTable, &QAction::triggered, this, &SummaryWindow::insertTable);
+    connect(_actionBold, &QAction::triggered, this, &SummaryWindow::toggleBold);
+    connect(_actionItalic, &QAction::triggered, this, &SummaryWindow::toggleItalic);
+    connect(_actionUnderline, &QAction::triggered, this, &SummaryWindow::toggleUnderline);
+    connect(_actionThrough, &QAction::triggered, this, &SummaryWindow::toggleStrikethrough);
+    connect(_actionBulletedList, &QAction::triggered, this, &SummaryWindow::toggleBulletedList);
+    connect(_actionOrderedList, &QAction::triggered, this, &SummaryWindow::toggleOrderedList);
+    connect(_actionSubscript, &QAction::triggered, this, &SummaryWindow::setSubscript);
+    connect(_actionSuperscript, &QAction::triggered, this, &SummaryWindow::setSuperscript);
+    connect(_actionCodeBlock, &QAction::triggered, this, &SummaryWindow::insertCodeBlock);
+    connect(_actionHighlight, &QAction::triggered, this, &SummaryWindow::toggleHighlight);
+    connect(_actionIncFontSize, &QAction::triggered, this, &SummaryWindow::increaseFontSize);
+    connect(_actionDecFontSize, &QAction::triggered, this, &SummaryWindow::decreaseFontSize);
+    connect(_actionIncIndent, &QAction::triggered, this, &SummaryWindow::increaseIndent);
+    connect(_actionDecIndent, &QAction::triggered, this, &SummaryWindow::decreaseIndent);
+    connect(_actionUndo, &QAction::triggered, _textEditor, &TextEditor::undo);
+    connect(_actionRedo, &QAction::triggered, _textEditor, &TextEditor::redo);
+    connect(_actionClearAll, &QAction::triggered, _textEditor, &TextEditor::clear);
+    connect(_actionCut, &QAction::triggered, _textEditor, &TextEditor::cut);
+    connect(_actionCopy, &QAction::triggered, _textEditor, &TextEditor::copy);
+    connect(_actionSelectAll, &QAction::triggered, _textEditor, &TextEditor::selectAll);
+    connect(_actionInsertLine, &QAction::triggered, this, &SummaryWindow::insertLine);
+    connect(_actionInsertLink, &QAction::triggered, this, &SummaryWindow::insertLink);
+    connect(_actionInsertImage, &QAction::triggered, this, &SummaryWindow::insertImage);
+    connect(_actionInsertTable, &QAction::triggered, this, &SummaryWindow::insertTable);
 }
 
 void SummaryWindow::setupTabOrder() {
-    QWidget::setTabOrder(m_bookSearchWidget, m_textEditor);
-    QWidget::setTabOrder(m_textEditor, m_fontComboBox);
-    QWidget::setTabOrder(m_fontComboBox, m_spinBoxFontSize);
-    QWidget::setTabOrder(m_spinBoxFontSize, m_buttonEditorFontColor);
-    QWidget::setTabOrder(m_buttonEditorFontColor, m_buttonEditorBackColor);
-    QWidget::setTabOrder(m_buttonEditorBackColor, m_buttonBold);
-    QWidget::setTabOrder(m_buttonBold, m_buttonItalic);
-    QWidget::setTabOrder(m_buttonItalic, m_buttonUnderline);
-    QWidget::setTabOrder(m_buttonUnderline, m_buttonThrough);
-    QWidget::setTabOrder(m_buttonThrough, m_buttonHighlight);
-    QWidget::setTabOrder(m_buttonHighlight, m_buttonCodeBlock);
-    QWidget::setTabOrder(m_buttonCodeBlock, m_buttonBulletedList);
-    QWidget::setTabOrder(m_buttonBulletedList, m_buttonOrderedList);
-    QWidget::setTabOrder(m_buttonOrderedList, m_comboBoxAlignment);
-    QWidget::setTabOrder(m_comboBoxAlignment, m_buttonInsertTable);
-    QWidget::setTabOrder(m_buttonInsertTable, m_buttonInsertImage);
-    QWidget::setTabOrder(m_buttonInsertImage, m_buttonInsertLine);
-    QWidget::setTabOrder(m_buttonInsertLine, m_buttonInsertLink);
-    QWidget::setTabOrder(m_buttonInsertLink, m_buttonUndo);
-    QWidget::setTabOrder(m_buttonUndo, m_buttonRedo);
-    QWidget::setTabOrder(m_buttonRedo, m_buttonClearAll);
-    QWidget::setTabOrder(m_buttonClearAll, m_buttonSuperscript);
-    QWidget::setTabOrder(m_buttonSuperscript, m_buttonSubscript);
-    QWidget::setTabOrder(m_buttonSubscript, m_buttonIncFontSize);
-    QWidget::setTabOrder(m_buttonIncFontSize, m_buttonDecFontSize);
-    QWidget::setTabOrder(m_buttonDecFontSize, m_buttonIncIndent);
-    QWidget::setTabOrder(m_buttonIncIndent, m_buttonDecIndent);
+    QWidget::setTabOrder(_bookSearchWidget, _textEditor);
+    QWidget::setTabOrder(_textEditor, _fontComboBox);
+    QWidget::setTabOrder(_fontComboBox, _spinBoxFontSize);
+    QWidget::setTabOrder(_spinBoxFontSize, _buttonEditorFontColor);
+    QWidget::setTabOrder(_buttonEditorFontColor, _buttonEditorBackColor);
+    QWidget::setTabOrder(_buttonEditorBackColor, _buttonBold);
+    QWidget::setTabOrder(_buttonBold, _buttonItalic);
+    QWidget::setTabOrder(_buttonItalic, _buttonUnderline);
+    QWidget::setTabOrder(_buttonUnderline, _buttonThrough);
+    QWidget::setTabOrder(_buttonThrough, _buttonHighlight);
+    QWidget::setTabOrder(_buttonHighlight, _buttonCodeBlock);
+    QWidget::setTabOrder(_buttonCodeBlock, _buttonBulletedList);
+    QWidget::setTabOrder(_buttonBulletedList, _buttonOrderedList);
+    QWidget::setTabOrder(_buttonOrderedList, _comboBoxAlignment);
+    QWidget::setTabOrder(_comboBoxAlignment, _buttonInsertTable);
+    QWidget::setTabOrder(_buttonInsertTable, _buttonInsertImage);
+    QWidget::setTabOrder(_buttonInsertImage, _buttonInsertLine);
+    QWidget::setTabOrder(_buttonInsertLine, _buttonInsertLink);
+    QWidget::setTabOrder(_buttonInsertLink, _buttonUndo);
+    QWidget::setTabOrder(_buttonUndo, _buttonRedo);
+    QWidget::setTabOrder(_buttonRedo, _buttonClearAll);
+    QWidget::setTabOrder(_buttonClearAll, _buttonSuperscript);
+    QWidget::setTabOrder(_buttonSuperscript, _buttonSubscript);
+    QWidget::setTabOrder(_buttonSubscript, _buttonIncFontSize);
+    QWidget::setTabOrder(_buttonIncFontSize, _buttonDecFontSize);
+    QWidget::setTabOrder(_buttonDecFontSize, _buttonIncIndent);
+    QWidget::setTabOrder(_buttonIncIndent, _buttonDecIndent);
 }
 
 void SummaryWindow::setupShortcuts() {
     // File Menu
-    m_actionClose->setShortcut(QKeySequence("Ctrl+Q"));
+    _actionClose->setShortcut(QKeySequence("Ctrl+Q"));
 
     // Edit Menu
-    m_actionUndo->setShortcut(QKeySequence("Ctrl+Z"));
-    m_actionRedo->setShortcut(QKeySequence("Ctrl+Y"));
-    m_actionCut->setShortcut(QKeySequence("Ctrl+C"));
-    m_actionCopy->setShortcut(QKeySequence("Ctrl+X"));
-    m_actionCopyFormatting->setShortcut(QKeySequence("Ctrl+Shift+C"));
-    m_actionPaste->setShortcut(QKeySequence("Ctrl+V"));
-    m_actionPasteMatchFormat->setShortcut(QKeySequence("Ctrl+Shift+V"));
-    m_actionSelectAll->setShortcut(QKeySequence("Ctrl+A"));
-    m_actionClearAll->setShortcut(QKeySequence("Ctrl+Shift+Del"));
-    m_actionDeleteCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+D"));
-    m_actionDuplicateCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+L"));
-    m_actionFind->setShortcut(QKeySequence("Ctrl+Shift+F"));
+    _actionUndo->setShortcut(QKeySequence("Ctrl+Z"));
+    _actionRedo->setShortcut(QKeySequence("Ctrl+Y"));
+    _actionCut->setShortcut(QKeySequence("Ctrl+C"));
+    _actionCopy->setShortcut(QKeySequence("Ctrl+X"));
+    _actionCopyFormatting->setShortcut(QKeySequence("Ctrl+Shift+C"));
+    _actionPaste->setShortcut(QKeySequence("Ctrl+V"));
+    _actionPasteMatchFormat->setShortcut(QKeySequence("Ctrl+Shift+V"));
+    _actionSelectAll->setShortcut(QKeySequence("Ctrl+A"));
+    _actionClearAll->setShortcut(QKeySequence("Ctrl+Shift+Del"));
+    _actionDeleteCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+D"));
+    _actionDuplicateCurrentLine->setShortcut(QKeySequence("Ctrl+D, Ctrl+L"));
+    _actionFind->setShortcut(QKeySequence("Ctrl+Shift+F"));
 
     // View Menu
-    m_actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
-    m_actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
-    m_actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
-    m_actionZoomIn->setShortcut(QKeySequence("Ctrl+="));
-    m_actionZoomOut->setShortcut(QKeySequence("Ctrl+-"));
-    m_actionHideSearchBar->setShortcut(QKeySequence("Ctrl+H, Ctrl+S"));
-    m_actionHideLeftPane->setShortcut(QKeySequence("Ctrl+L, Ctrl+P"));
-    m_actionHideTopToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+T"));
-    m_actionHideRightToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+R"));
-    m_actionHideRightPane->setShortcut(QKeySequence("Ctrl+R, Ctrl+P"));
+    _actionFullscreen->setShortcut(QKeySequence("Ctrl+F, Ctrl+S"));
+    _actionMaximize->setShortcut(QKeySequence("Ctrl+M, Ctrl+X"));
+    _actionMinimize->setShortcut(QKeySequence("Ctrl+M, Ctrl+N"));
+    _actionZoomIn->setShortcut(QKeySequence("Ctrl+="));
+    _actionZoomOut->setShortcut(QKeySequence("Ctrl+-"));
+    _actionHideSearchBar->setShortcut(QKeySequence("Ctrl+H, Ctrl+S"));
+    _actionHideLeftPane->setShortcut(QKeySequence("Ctrl+L, Ctrl+P"));
+    _actionHideTopToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+T"));
+    _actionHideRightToolbar->setShortcut(QKeySequence("Ctrl+H, Ctrl+R"));
+    _actionHideRightPane->setShortcut(QKeySequence("Ctrl+R, Ctrl+P"));
 
     // Insert Menu
-    m_actionTableRow->setShortcut(QKeySequence("Ctrl+R, Ctrl+R"));
-    m_actionTableColumn->setShortcut(QKeySequence("Ctrl+C, Ctrl+C"));
+    _actionTableRow->setShortcut(QKeySequence("Ctrl+R, Ctrl+R"));
+    _actionTableColumn->setShortcut(QKeySequence("Ctrl+C, Ctrl+C"));
 
     // Format Menu
-    m_actionBold->setShortcut(QKeySequence("Ctrl+B"));
-    m_actionItalic->setShortcut(QKeySequence("Ctrl+I"));
-    m_actionUnderline->setShortcut(QKeySequence("Ctrl+U"));
-    m_actionThrough->setShortcut(QKeySequence("Ctrl+T"));
-    m_actionHighlight->setShortcut(QKeySequence("Ctrl+Shift+H"));
-    m_actionCodeBlock->setShortcut(QKeySequence("Ctrl+Shift+L"));
-    m_actionBulletedList->setShortcut(QKeySequence("Ctrl+Shift+B"));
-    m_actionOrderedList->setShortcut(QKeySequence("Ctrl+Shift+O"));
-    m_actionIncFontSize->setShortcut(QKeySequence("Ctrl+Shift+="));
-    m_actionDecFontSize->setShortcut(QKeySequence("Ctrl+Shift+-"));
-    m_actionIncIndent->setShortcut(QKeySequence("Ctrl+Shift+["));
-    m_actionDecIndent->setShortcut(QKeySequence("Ctrl+Shift+]"));
-    m_actionSuperscript->setShortcut(QKeySequence("Ctrl+Shift+Up"));
-    m_actionSubscript->setShortcut(QKeySequence("Ctrl+Shift+Down"));
-    m_actionResetFormat->setShortcut(QKeySequence("Ctrl+Space"));
+    _actionBold->setShortcut(QKeySequence("Ctrl+B"));
+    _actionItalic->setShortcut(QKeySequence("Ctrl+I"));
+    _actionUnderline->setShortcut(QKeySequence("Ctrl+U"));
+    _actionThrough->setShortcut(QKeySequence("Ctrl+T"));
+    _actionHighlight->setShortcut(QKeySequence("Ctrl+Shift+H"));
+    _actionCodeBlock->setShortcut(QKeySequence("Ctrl+Shift+L"));
+    _actionBulletedList->setShortcut(QKeySequence("Ctrl+Shift+B"));
+    _actionOrderedList->setShortcut(QKeySequence("Ctrl+Shift+O"));
+    _actionIncFontSize->setShortcut(QKeySequence("Ctrl+Shift+="));
+    _actionDecFontSize->setShortcut(QKeySequence("Ctrl+Shift+-"));
+    _actionIncIndent->setShortcut(QKeySequence("Ctrl+Shift+["));
+    _actionDecIndent->setShortcut(QKeySequence("Ctrl+Shift+]"));
+    _actionSuperscript->setShortcut(QKeySequence("Ctrl+Shift+Up"));
+    _actionSubscript->setShortcut(QKeySequence("Ctrl+Shift+Down"));
+    _actionResetFormat->setShortcut(QKeySequence("Ctrl+Space"));
 
     // Search Menu
-    m_actionSearchText->setShortcut(QKeySequence("Ctrl+S, Ctrl+T"));
-    m_actionClearSearch->setShortcut(QKeySequence("Ctrl+C, Ctrl+S"));
+    _actionSearchText->setShortcut(QKeySequence("Ctrl+S, Ctrl+T"));
+    _actionClearSearch->setShortcut(QKeySequence("Ctrl+C, Ctrl+S"));
 }
 
 void SummaryWindow::closeEvent(QCloseEvent *event) {
-    if (!m_labelTitle->text().isEmpty()) {
-        queries::updateSummary(m_labelTitle->text(), m_textEditor->toHtml());
+    if (!_labelTitle->text().isEmpty()) {
+        queries::updateSummary(_labelTitle->text(), _textEditor->toHtml());
     }
     event->accept();
 }
 
 void SummaryWindow::selectEbookSummary(const QString &name) {
     if (!name.isEmpty()) {
-        openEbookSummary(m_bookSearchWidget->findItem(name));
+        openEbookSummary(_bookSearchWidget->findItem(name));
     }
 }
 
 void SummaryWindow::toggleBold() {
-    QFont currentFont = m_textEditor->currentFont();
+    QFont currentFont = _textEditor->currentFont();
     currentFont.setBold(!currentFont.bold());
-    m_textEditor->setCurrentFont(currentFont);
+    _textEditor->setCurrentFont(currentFont);
     textFormatChanged();
 }
 
 void SummaryWindow::toggleItalic() {
-    QFont currentFont = m_textEditor->currentFont();
+    QFont currentFont = _textEditor->currentFont();
     currentFont.setItalic(!currentFont.italic());
-    m_textEditor->setCurrentFont(currentFont);
+    _textEditor->setCurrentFont(currentFont);
     textFormatChanged();
 }
 
 void SummaryWindow::toggleUnderline() {
-    QFont currentFont = m_textEditor->currentFont();
+    QFont currentFont = _textEditor->currentFont();
     currentFont.setUnderline(!currentFont.underline());
-    m_textEditor->setCurrentFont(currentFont);
+    _textEditor->setCurrentFont(currentFont);
     textFormatChanged();
 }
 
 void SummaryWindow::toggleStrikethrough() {
-    QFont currentFont = m_textEditor->currentFont();
+    QFont currentFont = _textEditor->currentFont();
     currentFont.setStrikeOut(!currentFont.strikeOut());
-    m_textEditor->setCurrentFont(currentFont);
+    _textEditor->setCurrentFont(currentFont);
     textFormatChanged();
 }
 
 void SummaryWindow::setTextFontFamily(const QString &arg1, bool change) {
     if (change) {
-        m_textEditor->setCurrentFont(arg1);
+        _textEditor->setCurrentFont(arg1);
     } else {
-        m_fontComboBox->blockSignals(true);
-        m_fontComboBox->setCurrentFont(arg1);
-        m_fontComboBox->blockSignals(false);
+        _fontComboBox->blockSignals(true);
+        _fontComboBox->setCurrentFont(arg1);
+        _fontComboBox->blockSignals(false);
     }
 }
 
 void SummaryWindow::setTextFontSize(int arg1, bool change) {
     if (change) {
-        QFont currentFont = m_textEditor->currentFont();
+        QFont currentFont = _textEditor->currentFont();
         currentFont.setPointSize(arg1);
-        m_textEditor->setCurrentFont(currentFont);
+        _textEditor->setCurrentFont(currentFont);
     } else {
-        m_spinBoxFontSize->blockSignals(true);
-        m_spinBoxFontSize->setValue(arg1);
-        m_spinBoxFontSize->blockSignals(false);
+        _spinBoxFontSize->blockSignals(true);
+        _spinBoxFontSize->setValue(arg1);
+        _spinBoxFontSize->blockSignals(false);
     }
 }
 
 void SummaryWindow::toggleBulletedList() {
-    m_textEditor->createList(QTextListFormat::ListDisc);
+    _textEditor->createList(QTextListFormat::ListDisc);
     textFormatChanged();
 }
 
 void SummaryWindow::toggleOrderedList() {
-    m_textEditor->createList(QTextListFormat::ListDecimal);
+    _textEditor->createList(QTextListFormat::ListDecimal);
     textFormatChanged();
 }
 
 void SummaryWindow::changeTextAlignment(int index) {
     switch (index) {
         case 0:
-            m_textEditor->setAlignment(Qt::AlignLeft);
+            _textEditor->setAlignment(Qt::AlignLeft);
             break;
         case 1:
-            m_textEditor->setAlignment(Qt::AlignHCenter);
+            _textEditor->setAlignment(Qt::AlignHCenter);
             break;
         case 2:
-            m_textEditor->setAlignment(Qt::AlignRight);
+            _textEditor->setAlignment(Qt::AlignRight);
             break;
         case 3:
-            m_textEditor->setAlignment(Qt::AlignJustify);
+            _textEditor->setAlignment(Qt::AlignJustify);
             break;
         default:
-            m_textEditor->setAlignment(Qt::AlignLeft);
+            _textEditor->setAlignment(Qt::AlignLeft);
             break;
     }
 }
 
 void SummaryWindow::setSubscript() {
-    QTextCharFormat currentFormat = m_textEditor->currentCharFormat();
+    QTextCharFormat currentFormat = _textEditor->currentCharFormat();
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignSubScript);
-    m_textEditor->setCurrentCharFormat(currentFormat);
+    _textEditor->setCurrentCharFormat(currentFormat);
 }
 
 void SummaryWindow::setSuperscript() {
-    QTextCharFormat currentFormat = m_textEditor->currentCharFormat();
+    QTextCharFormat currentFormat = _textEditor->currentCharFormat();
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
-    m_textEditor->setCurrentCharFormat(currentFormat);
+    _textEditor->setCurrentCharFormat(currentFormat);
 }
 
 void SummaryWindow::insertCodeBlock() {
@@ -943,43 +943,43 @@ void SummaryWindow::insertCodeBlock() {
     frameFormat.setMargin(0);
     frameFormat.setPadding(4);
 
-    int fontSize = m_textEditor->currentFont().pointSize();
+    int fontSize = _textEditor->currentFont().pointSize();
     QFont font = QFont("Consolas");
     font.setPointSize(fontSize);
 
-    m_textEditor->textCursor().insertFrame(frameFormat);
-    m_textEditor->setCurrentFont(font);
+    _textEditor->textCursor().insertFrame(frameFormat);
+    _textEditor->setCurrentFont(font);
 }
 
 void SummaryWindow::textFormatChanged() {
-    setTextFontFamily(m_textEditor->currentFont().family(), false);
-    setTextFontSize(m_textEditor->currentFont().pointSize(), false);
-    m_buttonEditorFontColor->setStyleSheet("background-color: " + m_textEditor->textColor().name());
+    setTextFontFamily(_textEditor->currentFont().family(), false);
+    setTextFontSize(_textEditor->currentFont().pointSize(), false);
+    _buttonEditorFontColor->setStyleSheet("background-color: " + _textEditor->textColor().name());
 
-    m_buttonBold->setStyleSheet(
-        "background-color: " + QString(m_textEditor->currentFont().bold() ? "#1C3387" : "#2D2D30"));
-    m_buttonItalic->setStyleSheet(
-        "background-color: " + QString(m_textEditor->currentFont().italic() ? "#1C3387" : "#2D2D30"));
-    m_buttonUnderline->setStyleSheet(
-        "background-color: " + QString(m_textEditor->currentFont().underline() ? "#1C3387" : "#2D2D30"));
-    m_buttonThrough->setStyleSheet(
-        "background-color: " + QString(m_textEditor->currentFont().strikeOut() ? "#1C3387" : "#2D2D30"));
-    m_buttonHighlight->setStyleSheet("background-color: " +
-                                     QString(m_textEditor->currentCharFormat().background() == Qt::yellow
+    _buttonBold->setStyleSheet(
+        "background-color: " + QString(_textEditor->currentFont().bold() ? "#1C3387" : "#2D2D30"));
+    _buttonItalic->setStyleSheet(
+        "background-color: " + QString(_textEditor->currentFont().italic() ? "#1C3387" : "#2D2D30"));
+    _buttonUnderline->setStyleSheet(
+        "background-color: " + QString(_textEditor->currentFont().underline() ? "#1C3387" : "#2D2D30"));
+    _buttonThrough->setStyleSheet(
+        "background-color: " + QString(_textEditor->currentFont().strikeOut() ? "#1C3387" : "#2D2D30"));
+    _buttonHighlight->setStyleSheet("background-color: " +
+                                     QString(_textEditor->currentCharFormat().background() == Qt::yellow
                                                  ? "#1C3387"
                                                  : "#2D2D30"));
 }
 
 void SummaryWindow::toggleHighlight() {
-    QTextCharFormat currentFormat = m_textEditor->currentCharFormat();
+    QTextCharFormat currentFormat = _textEditor->currentCharFormat();
     currentFormat.setBackground(currentFormat.background() == Qt::yellow ? Qt::white : Qt::yellow);
-    m_textEditor->setCurrentCharFormat(currentFormat);
+    _textEditor->setCurrentCharFormat(currentFormat);
     textFormatChanged();
 }
 
 void SummaryWindow::setFontColor() {
-    QPoint bottom = m_buttonEditorFontColor->rect().bottomLeft();
-    QPoint globalPos = m_buttonEditorFontColor->mapToGlobal(bottom);
+    QPoint bottom = _buttonEditorFontColor->rect().bottomLeft();
+    QPoint globalPos = _buttonEditorFontColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
     ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::black);
@@ -991,58 +991,58 @@ void SummaryWindow::setFontColor() {
     }
 
     QString colorSheet = "background-color: " + widget->getCurrentColor().name();
-    m_buttonEditorFontColor->setStyleSheet(colorSheet);
-    m_buttonEditorFontColor->update();
+    _buttonEditorFontColor->setStyleSheet(colorSheet);
+    _buttonEditorFontColor->update();
 
-    m_textEditor->setTextColor(widget->getCurrentColor());
+    _textEditor->setTextColor(widget->getCurrentColor());
 }
 
 void SummaryWindow::hideSearchBar() {
-    m_bookSearchWidget->setHideSearchBar(!m_bookSearchWidget->searchBarHidden());
-    m_actionHideSearchBar->setText(!m_bookSearchWidget->searchBarHidden() ? "Show Search Bar" : "Hide Search Bar");
+    _bookSearchWidget->setHideSearchBar(!_bookSearchWidget->searchBarHidden());
+    _actionHideSearchBar->setText(!_bookSearchWidget->searchBarHidden() ? "Show Search Bar" : "Hide Search Bar");
 }
 
 void SummaryWindow::hideLeftPane() {
-    m_bookSearchWidget->setHideWidget(!m_bookSearchWidget->widgetHidden());
-    m_mainSplitterPane->refresh();
-    m_actionHideLeftPane->setText(m_bookSearchWidget->widgetHidden() ? "Show Left Pane" : "Hide Left Pane");
+    _bookSearchWidget->setHideWidget(!_bookSearchWidget->widgetHidden());
+    _mainSplitterPane->refresh();
+    _actionHideLeftPane->setText(_bookSearchWidget->widgetHidden() ? "Show Left Pane" : "Hide Left Pane");
 }
 
 void SummaryWindow::hideTopToolbar() {
-    common::changeWidgetVisibility(m_frameEditorToolBox, m_actionHideTopToolbar);
+    common::changeWidgetVisibility(_frameEditorToolBox, _actionHideTopToolbar);
 }
 
 void SummaryWindow::hideRightToolbar() {
-    common::changeWidgetVisibility(m_frameRightToolBar, m_actionHideRightToolbar);
+    common::changeWidgetVisibility(_frameRightToolBar, _actionHideRightToolbar);
 }
 
 void SummaryWindow::hideRightPane() {
-    m_frameEditor->setHidden(!m_frameEditor->isHidden());
-    m_mainSplitterPane->refresh();
+    _frameEditor->setHidden(!_frameEditor->isHidden());
+    _mainSplitterPane->refresh();
     hideRightToolbar();
-    m_actionHideRightPane->setText(m_frameEditor->isHidden() ? "Show Right Pane" : "Hide Right Pane");
+    _actionHideRightPane->setText(_frameEditor->isHidden() ? "Show Right Pane" : "Hide Right Pane");
 }
 
 void SummaryWindow::insertLine() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     cursor.insertHtml(QString("<hr><br>"));
     cursor.movePosition(QTextCursor::Up, QTextCursor::MoveAnchor, 1);
-    m_textEditor->setTextCursor(cursor);
+    _textEditor->setTextCursor(cursor);
 }
 
 void SummaryWindow::resetFormat() {
-    QFont currentFont = m_textEditor->currentFont();
+    QFont currentFont = _textEditor->currentFont();
     currentFont.setBold(false);
     currentFont.setItalic(false);
     currentFont.setStrikeOut(false);
     currentFont.setUnderline(false);
 
-    QTextCharFormat currentFormat = m_textEditor->currentCharFormat();
-    currentFormat.setBackground(m_textEditor->palette().base().color());
+    QTextCharFormat currentFormat = _textEditor->currentCharFormat();
+    currentFormat.setBackground(_textEditor->palette().base().color());
     currentFormat.setVerticalAlignment(QTextCharFormat::AlignNormal);
 
-    m_textEditor->setCurrentCharFormat(currentFormat);
-    m_textEditor->setCurrentFont(currentFont);
+    _textEditor->setCurrentCharFormat(currentFormat);
+    _textEditor->setCurrentFont(currentFont);
 
     textFormatChanged();
 }
@@ -1055,9 +1055,9 @@ void SummaryWindow::insertImage() {
     QUrl Uri(QString("%1").arg(file));
     QImage image = QImageReader(file).read();
 
-    QTextDocument *textDocument = m_textEditor->document();
+    QTextDocument *textDocument = _textEditor->document();
     textDocument->addResource(QTextDocument::ImageResource, Uri, QVariant(image));
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     QTextImageFormat imageFormat;
     imageFormat.setWidth(image.width());
     imageFormat.setHeight(image.height());
@@ -1066,29 +1066,29 @@ void SummaryWindow::insertImage() {
 }
 
 void SummaryWindow::searchText() {
-    if (!m_labelTitle->text().isEmpty()) {
-        queries::updateSummary(m_labelTitle->text(), m_textEditor->toHtml());
+    if (!_labelTitle->text().isEmpty()) {
+        queries::updateSummary(_labelTitle->text(), _textEditor->toHtml());
     }
-    m_bookSearchWidget->searchString();
+    _bookSearchWidget->searchString();
 }
 
 void SummaryWindow::clearSearch() {
-    m_bookSearchWidget->clearSearchText();
-    m_bookSearchWidget->clearListWidget();
+    _bookSearchWidget->clearSearchText();
+    _bookSearchWidget->clearListWidget();
 }
 
 void SummaryWindow::openEbookSummary(const QString &name) {
-    if (!m_labelTitle->text().isEmpty()) {
-        queries::updateSummary(m_labelTitle->text(), m_textEditor->toHtml());
+    if (!_labelTitle->text().isEmpty()) {
+        queries::updateSummary(_labelTitle->text(), _textEditor->toHtml());
     }
 
-    m_textEditor->clear();
-    m_labelTitle->setText(name);
+    _textEditor->clear();
+    _labelTitle->setText(name);
     queries::selectSummaryBasedonName(name);
     queries::query.next();
     QString summary = queries::query.value(0).toString();
     if (summary != "N/A") {
-        m_textEditor->insertHtml(summary);
+        _textEditor->insertHtml(summary);
     }
 }
 
@@ -1099,7 +1099,7 @@ void SummaryWindow::printSummaryToPdf() {
     printer.setPrintRange(QPrinter::CurrentPage);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(filePath);
-    m_textEditor->print(&printer);
+    _textEditor->print(&printer);
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
@@ -1107,14 +1107,14 @@ void SummaryWindow::insertTable() {
     InsertTableDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 
-    if (dialog.m_rowCount != 0 && dialog.m_columnCount != 0) {
+    if (dialog._rowCount != 0 && dialog._columnCount != 0) {
         QTextTableFormat tableFormat;
         tableFormat.setBorder(1);
         tableFormat.setCellSpacing(5);
         tableFormat.setCellPadding(1);
         tableFormat.setBorderCollapse(true);
         tableFormat.setBorderStyle(QTextTableFormat::BorderStyle_Solid);
-        m_textEditor->textCursor().insertTable(dialog.m_rowCount, dialog.m_columnCount, tableFormat);
+        _textEditor->textCursor().insertTable(dialog._rowCount, dialog._columnCount, tableFormat);
     }
 }
 
@@ -1122,44 +1122,44 @@ void SummaryWindow::insertLink() {
     InsertLinkDialog dialog(this);
     common::openDialog(&dialog, ":/styles/style.qss");
 
-    if (!dialog.m_title.isEmpty() && !dialog.m_link.isEmpty()) {
+    if (!dialog._title.isEmpty() && !dialog._link.isEmpty()) {
         QTextCharFormat charFormat;
         charFormat.setFontUnderline(true);
         charFormat.setForeground(QColor("blue"));
         charFormat.setAnchor(true);
-        charFormat.setAnchorHref(dialog.m_link);
-        charFormat.setToolTip(dialog.m_link);
-        m_textEditor->textCursor().insertText(dialog.m_title, charFormat);
+        charFormat.setAnchorHref(dialog._link);
+        charFormat.setToolTip(dialog._link);
+        _textEditor->textCursor().insertText(dialog._title, charFormat);
     }
 }
 
 void SummaryWindow::copyFormatting() {
-    m_currentCopiedFormat = m_textEditor->currentCharFormat();
-    m_currentCopiedFont = m_textEditor->currentFont();
+    _currentCopiedFormat = _textEditor->currentCharFormat();
+    _currentCopiedFont = _textEditor->currentFont();
 }
 
 void SummaryWindow::pasteMatchFormat() {
-    m_textEditor->setCurrentCharFormat(m_currentCopiedFormat);
-    m_textEditor->setCurrentFont(m_currentCopiedFont);
+    _textEditor->setCurrentCharFormat(_currentCopiedFormat);
+    _textEditor->setCurrentFont(_currentCopiedFont);
 }
 
 void SummaryWindow::saveSummary() {
-    if (!m_labelTitle->text().isEmpty()) {
-        queries::updateSummary(m_labelTitle->text(), m_textEditor->toHtml());
+    if (!_labelTitle->text().isEmpty()) {
+        queries::updateSummary(_labelTitle->text(), _textEditor->toHtml());
     }
 }
 
 void SummaryWindow::exportSummaryToHtml() {
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"), "/", tr("*.html"));
     std::ofstream htmlFile(filePath.toStdString());
-    htmlFile << m_textEditor->toHtml().toStdString();
+    htmlFile << _textEditor->toHtml().toStdString();
     htmlFile.close();
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
 void SummaryWindow::setBackColor() {
-    QPoint bottom = m_buttonEditorBackColor->rect().bottomLeft();
-    QPoint globalPos = m_buttonEditorBackColor->mapToGlobal(bottom);
+    QPoint bottom = _buttonEditorBackColor->rect().bottomLeft();
+    QPoint globalPos = _buttonEditorBackColor->mapToGlobal(bottom);
     globalPos.setY(globalPos.y() + 2);
 
     ColorPickerWidget *widget = new ColorPickerWidget(this, Qt::white);
@@ -1172,7 +1172,7 @@ void SummaryWindow::setBackColor() {
 
     QString styleSheet = "background-color: " + widget->getCurrentColor().name();
 
-    QTextFrame *currentFrame = m_textEditor->textCursor().currentFrame();
+    QTextFrame *currentFrame = _textEditor->textCursor().currentFrame();
     QTextFrameFormat currentFormat = currentFrame->frameFormat();
     // Apply only to code box in case cursor in code box
     if (currentFormat.border() == 1) {
@@ -1182,19 +1182,19 @@ void SummaryWindow::setBackColor() {
     }
 
     // Apply to editor background
-    m_textEditor->setStyleSheet(styleSheet);
-    m_buttonEditorBackColor->setStyleSheet(styleSheet);
+    _textEditor->setStyleSheet(styleSheet);
+    _buttonEditorBackColor->setStyleSheet(styleSheet);
     if (widget->getCurrentColor() != Qt::white) {
-        m_buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
+        _buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_white.png"));
     } else {
-        m_buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
+        _buttonEditorBackColor->setIcon(QIcon(":/icons/background_fill_black.png"));
     }
 
-    m_buttonEditorBackColor->update();
+    _buttonEditorBackColor->update();
 }
 
 void SummaryWindow::sentenceCase() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     if (cursor.selectedText().isEmpty()) {
         return;
     }
@@ -1211,7 +1211,7 @@ void SummaryWindow::sentenceCase() {
 }
 
 void SummaryWindow::upperCase() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     if (cursor.selectedText().isEmpty()) {
         return;
     }
@@ -1227,7 +1227,7 @@ void SummaryWindow::upperCase() {
 }
 
 void SummaryWindow::lowerCase() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     if (cursor.selectedText().isEmpty()) {
         return;
     }
@@ -1243,7 +1243,7 @@ void SummaryWindow::lowerCase() {
 }
 
 void SummaryWindow::capitalCase() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     if (cursor.selectedText().isEmpty()) {
         return;
     }
@@ -1262,14 +1262,14 @@ void SummaryWindow::capitalCase() {
 }
 
 void SummaryWindow::selectCurrentLine() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
-    m_textEditor->setTextCursor(cursor);
+    _textEditor->setTextCursor(cursor);
 }
 
 void SummaryWindow::duplicateCurrentLine() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     QString currentLine = cursor.selectedText();
@@ -1279,7 +1279,7 @@ void SummaryWindow::duplicateCurrentLine() {
 }
 
 void SummaryWindow::deleteCurrentLine() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     cursor.movePosition(QTextCursor::StartOfLine);
     cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
@@ -1287,11 +1287,11 @@ void SummaryWindow::deleteCurrentLine() {
 }
 
 void SummaryWindow::zoomIn() {
-    m_textEditor->zoomIn(5);
+    _textEditor->zoomIn(5);
 }
 
 void SummaryWindow::zoomOut() {
-    m_textEditor->zoomOut(5);
+    _textEditor->zoomOut(5);
 }
 
 void SummaryWindow::insertNormalDate() {
@@ -1303,7 +1303,7 @@ void SummaryWindow::insertNormalDate() {
     quint32 yearNum = currDate.year();
     QString monthName = cal.monthName(locale, currDate.month(), yearNum);
     QString dateStr = dayName + ", " + monthName + " " + QString::number(dayNum) + ", " + QString::number(yearNum);
-    m_textEditor->textCursor().insertText(dateStr);
+    _textEditor->textCursor().insertText(dateStr);
 }
 
 void SummaryWindow::insertShortDate() {
@@ -1312,11 +1312,11 @@ void SummaryWindow::insertShortDate() {
     QString month = QString::number(currDate.month());
     QString year = QString::number(currDate.year());
     QString dateStr = day + "/" + month + "/" + year;
-    m_textEditor->textCursor().insertText(dateStr);
+    _textEditor->textCursor().insertText(dateStr);
 }
 
 void SummaryWindow::addTableRow() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     QTextTable *currTable = cursor.currentTable();
     if (currTable != nullptr) {
         currTable->insertRows(currTable->cellAt(cursor).row(), 1);
@@ -1324,7 +1324,7 @@ void SummaryWindow::addTableRow() {
 }
 
 void SummaryWindow::addTableColumn() {
-    QTextCursor cursor = m_textEditor->textCursor();
+    QTextCursor cursor = _textEditor->textCursor();
     QTextTable *currTable = cursor.currentTable();
     if (currTable != nullptr) {
         currTable->insertColumns(currTable->cellAt(cursor).column(), 1);
@@ -1333,83 +1333,83 @@ void SummaryWindow::addTableColumn() {
 
 // Find functionality specific
 void SummaryWindow::toggleFindWidget(bool visible) {
-    m_frameFind->setVisible(visible);
+    _frameFind->setVisible(visible);
     highlightText();
 
     if (visible) {
-        m_textFind->setFocus();
+        _textFind->setFocus();
     }
 }
 
 void SummaryWindow::highlightText() {
-    if (m_frameFind->isVisible()) {
-        m_textHighlighter.setWordPattern(m_textFind->text());
+    if (_frameFind->isVisible()) {
+        _textHighlighter.setWordPattern(_textFind->text());
     } else {
-        m_textHighlighter.setWordPattern("");
+        _textHighlighter.setWordPattern("");
     }
 
-    if (sender() == m_textEditor) {
-        m_textEditor->blockSignals(true);
-        m_textHighlighter.customRehighlight();
-        m_textEditor->blockSignals(false);
+    if (sender() == _textEditor) {
+        _textEditor->blockSignals(true);
+        _textHighlighter.customRehighlight();
+        _textEditor->blockSignals(false);
     } else {
-        m_textHighlighter.customRehighlight();
+        _textHighlighter.customRehighlight();
     }
 }
 
 void SummaryWindow::textEditRefreshHighlighter(int cursorIndex) {
     if (cursorIndex >= 0) {
-        QTextCursor currentCursor = m_textEditor->textCursor();
+        QTextCursor currentCursor = _textEditor->textCursor();
         currentCursor.setPosition(cursorIndex);
-        m_textEditor->setTextCursor(currentCursor);
-        m_textEditor->ensureCursorVisible();
+        _textEditor->setTextCursor(currentCursor);
+        _textEditor->ensureCursorVisible();
     }
 }
 
 void SummaryWindow::findText(const QString &arg1) {
     highlightText();
     if (arg1.isEmpty()) {
-        m_labelFindMatchNum->setText("");
+        _labelFindMatchNum->setText("");
         return;
     }
-    QString labelText = QString("Found %1 m_matches").arg(QString::number(m_textHighlighter.matchNumber()));
-    m_labelFindMatchNum->setText(labelText);
+    QString labelText = QString("Found %1 _matches").arg(QString::number(_textHighlighter.matchNumber()));
+    _labelFindMatchNum->setText(labelText);
     QFont customFont;
     customFont.setItalic(true);
     customFont.setPointSize(12);
     customFont.setFamily("Segoe UI");
-    m_labelFindMatchNum->setFont(customFont);
-    m_labelFindMatchNum->setStyleSheet("color: grey");
+    _labelFindMatchNum->setFont(customFont);
+    _labelFindMatchNum->setStyleSheet("color: grey");
 }
 
 void SummaryWindow::findNext() {
-    int cursorIndex = m_textHighlighter.setNextMatchStateActive();
-    if (m_textHighlighter.matchIndex() == m_textHighlighter.matchNumber() - 1) {
-        m_textHighlighter.setMatchIndex(-1);
+    int cursorIndex = _textHighlighter.setNextMatchStateActive();
+    if (_textHighlighter.matchIndex() == _textHighlighter.matchNumber() - 1) {
+        _textHighlighter.setMatchIndex(-1);
     }
     textEditRefreshHighlighter(cursorIndex);
 }
 
 void SummaryWindow::findPrevious() {
-    int cursorIndex = m_textHighlighter.setPrevMatchStateActive();
-    if (m_textHighlighter.matchIndex() == 0) {
-        m_textHighlighter.setMatchIndex(m_textHighlighter.matchNumber() - 1);
+    int cursorIndex = _textHighlighter.setPrevMatchStateActive();
+    if (_textHighlighter.matchIndex() == 0) {
+        _textHighlighter.setMatchIndex(_textHighlighter.matchNumber() - 1);
     }
     textEditRefreshHighlighter(cursorIndex);
 }
 
 void SummaryWindow::increaseFontSize() {
-    m_spinBoxFontSize->setValue(m_spinBoxFontSize->value() + 1);
+    _spinBoxFontSize->setValue(_spinBoxFontSize->value() + 1);
 }
 
 void SummaryWindow::decreaseFontSize() {
-    m_spinBoxFontSize->setValue(m_spinBoxFontSize->value() - 1);
+    _spinBoxFontSize->setValue(_spinBoxFontSize->value() - 1);
 }
 
 void SummaryWindow::increaseIndent() {
-    m_textEditor->changeListIndentation(1);
+    _textEditor->changeListIndentation(1);
 }
 
 void SummaryWindow::decreaseIndent() {
-    m_textEditor->changeListIndentation(-1);
+    _textEditor->changeListIndentation(-1);
 }

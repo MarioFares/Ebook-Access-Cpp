@@ -7,10 +7,10 @@
 #include <QTextBrowser>
 
 TextEditor::TextEditor(QWidget *parent) : QTextBrowser(parent) {
-    m_charPairs['('] = ')';
-    m_charPairs['"'] = '"';
-    m_charPairs['['] = ']';
-    m_charPairs['{'] = '}';
+    _charPairs['('] = ')';
+    _charPairs['"'] = '"';
+    _charPairs['['] = ']';
+    _charPairs['{'] = '}';
 }
 
 void TextEditor::keyPressEvent(QKeyEvent *ev) {
@@ -47,7 +47,7 @@ void TextEditor::keyPressEvent(QKeyEvent *ev) {
 
 void TextEditor::insertClosingChar(const char &openChar, const QString &selectedText) {
     QTextCursor cursor = textCursor();
-    QString newText = openChar + selectedText + m_charPairs[openChar];
+    QString newText = openChar + selectedText + _charPairs[openChar];
     cursor.removeSelectedText();
     cursor.insertText(newText);
     if (selectedText == "") {

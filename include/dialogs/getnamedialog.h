@@ -12,9 +12,9 @@ class GetNameDialog : public QDialog {
 public:
     explicit GetNameDialog(QWidget *parent = nullptr,
                            QString title = "Input Name",
-                           QString prompt = "Please input a m_name");
+                           QString prompt = "Please input a _name");
 
-    QString m_name;
+    QString _name;
 
     void setDataOnOpen();
 
@@ -28,26 +28,26 @@ private slots:
     void setName();
 
 private:
-    QString m_title;
-    QString m_prompt;
+    QString _title;
+    QString _prompt;
 
     // Widgets
-    QLabel *m_labelTitle;
-    QLabel *m_labelPrompt;
-    QLineEdit *m_textName;
-    QPushButton *m_buttonOk;
-    QPushButton *m_buttonCancel;
+    QLabel *_labelTitle;
+    QLabel *_labelPrompt;
+    QLineEdit *_textName;
+    QPushButton *_buttonOk;
+    QPushButton *_buttonCancel;
 
     // Layouts
-    QHBoxLayout *m_horLayTitle;
-    QHBoxLayout *m_horLayButtons;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayTitle;
+    QHBoxLayout *_horLayButtons;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerTitleLeft;
-    QSpacerItem *m_horSpacerTitleRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
+    QSpacerItem *_horSpacerTitleLeft;
+    QSpacerItem *_horSpacerTitleRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
 };
 
 #endif // GETNAMEDIALOG_H

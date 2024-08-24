@@ -56,9 +56,9 @@ private slots:
     void setupItemClicked(QListWidgetItem *item);
 
 private:
-    QLineEdit *m_textSearchBar;
-    QListWidget *m_listWidget;
-    QVBoxLayout *m_vertLayMain;
+    QLineEdit *_textSearchBar;
+    QListWidget *_listWidget;
+    QVBoxLayout *_vertLayMain;
 };
 
 #endif // BOOKSEARCHWIDGET_H

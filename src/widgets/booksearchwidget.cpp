@@ -12,30 +12,30 @@ BookSearchWidget::BookSearchWidget(QWidget *parent) : QWidget(parent) {
 }
 
 void BookSearchWidget::setupInterface() {
-    m_textSearchBar = new QLineEdit(this);
-    m_textSearchBar->setClearButtonEnabled(true);
-    m_textSearchBar->setMinimumHeight(25);
+    _textSearchBar = new QLineEdit(this);
+    _textSearchBar->setClearButtonEnabled(true);
+    _textSearchBar->setMinimumHeight(25);
 
-    m_listWidget = new QListWidget(this);
-    m_listWidget->setSortingEnabled(true);
+    _listWidget = new QListWidget(this);
+    _listWidget->setSortingEnabled(true);
 
-    m_vertLayMain = new QVBoxLayout(this);
-    m_vertLayMain->addWidget(m_textSearchBar);
-    m_vertLayMain->addWidget(m_listWidget);
+    _vertLayMain = new QVBoxLayout(this);
+    _vertLayMain->addWidget(_textSearchBar);
+    _vertLayMain->addWidget(_listWidget);
 
-    setLayout(m_vertLayMain);
+    setLayout(_vertLayMain);
 }
 
 void BookSearchWidget::setupConnections() {
     // Outward
-    connect(m_listWidget, &QListWidget::itemClicked, this, &BookSearchWidget::setupItemClicked);
-    connect(m_listWidget, &QListWidget::currentTextChanged, this, &BookSearchWidget::selectionChanged);
+    connect(_listWidget, &QListWidget::itemClicked, this, &BookSearchWidget::setupItemClicked);
+    connect(_listWidget, &QListWidget::currentTextChanged, this, &BookSearchWidget::selectionChanged);
 
-    connect(m_listWidget, &QListWidget::itemActivated, this, &BookSearchWidget::openEbook);
-    connect(m_listWidget, &QListWidget::itemDoubleClicked, this, &BookSearchWidget::openEbook);
+    connect(_listWidget, &QListWidget::itemActivated, this, &BookSearchWidget::openEbook);
+    connect(_listWidget, &QListWidget::itemDoubleClicked, this, &BookSearchWidget::openEbook);
 
-    connect(m_textSearchBar, &QLineEdit::textChanged, this, &BookSearchWidget::searchString);
-    connect(m_textSearchBar, &QLineEdit::returnPressed, this, &BookSearchWidget::searchString);
+    connect(_textSearchBar, &QLineEdit::textChanged, this, &BookSearchWidget::searchString);
+    connect(_textSearchBar, &QLineEdit::returnPressed, this, &BookSearchWidget::searchString);
 }
 
 void BookSearchWidget::openEbook(QListWidgetItem *item) {
@@ -47,44 +47,44 @@ void BookSearchWidget::openEbook(QListWidgetItem *item) {
 }
 
 void BookSearchWidget::searchString() {
-    m_listWidget->clear();
-    QString stringToSearch = m_textSearchBar->text();
+    _listWidget->clear();
+    QString stringToSearch = _textSearchBar->text();
     queries::selectNameBasedOnString(stringToSearch);
     quint32 count = 0;
     while (queries::query.next()) {
-        QListWidgetItem *item = new QListWidgetItem(m_listWidget);
+        QListWidgetItem *item = new QListWidgetItem(_listWidget);
         item->setText(queries::query.value(0).toString());
         item->setFlags(item->flags() | Qt::ItemIsEditable);
-        m_listWidget->addItem(item);
+        _listWidget->addItem(item);
         count++;
     }
 }
 
 void BookSearchWidget::setMainLayoutMargin(int left, int top, int right, int bottom) {
-    m_vertLayMain->setContentsMargins(left, top, right, bottom);
+    _vertLayMain->setContentsMargins(left, top, right, bottom);
 }
 
 void BookSearchWidget::setMainLayoutSpacing(int spacing) {
-    m_vertLayMain->setSpacing(spacing);
+    _vertLayMain->setSpacing(spacing);
 }
 
 void BookSearchWidget::clearSearchText() {
-    m_textSearchBar->clear();
+    _textSearchBar->clear();
 }
 
 void BookSearchWidget::clearListWidget() {
-    m_listWidget->clear();
+    _listWidget->clear();
 }
 
 QString BookSearchWidget::findItem(const QString &name) {
-    QList listItems = m_listWidget->findItems(name, Qt::MatchExactly);
+    QList listItems = _listWidget->findItems(name, Qt::MatchExactly);
     QListWidgetItem *item = listItems[0];
-    m_listWidget->setCurrentItem(item);
+    _listWidget->setCurrentItem(item);
     return item->text();
 }
 
 void BookSearchWidget::setHideSearchBar(bool hide) {
-    m_textSearchBar->setHidden(hide);
+    _textSearchBar->setHidden(hide);
 }
 
 void BookSearchWidget::setHideWidget(bool hide) {
@@ -92,7 +92,7 @@ void BookSearchWidget::setHideWidget(bool hide) {
 }
 
 bool BookSearchWidget::searchBarHidden() {
-    bool hidden = m_textSearchBar->isHidden();
+    bool hidden = _textSearchBar->isHidden();
     return hidden;
 }
 
@@ -106,25 +106,25 @@ void BookSearchWidget::setupItemClicked(QListWidgetItem *item) {
 }
 
 int BookSearchWidget::currentRow() {
-    return m_listWidget->currentRow();
+    return _listWidget->currentRow();
 }
 
 void BookSearchWidget::setCurrentRow(int row) {
-    int lastIndex = m_listWidget->count() - 1;
+    int lastIndex = _listWidget->count() - 1;
     if (row < 0) {
-        m_listWidget->setCurrentRow(0);
+        _listWidget->setCurrentRow(0);
     } else if (row > lastIndex) {
-        m_listWidget->setCurrentRow(lastIndex);
+        _listWidget->setCurrentRow(lastIndex);
     } else {
-        m_listWidget->setCurrentRow(row);
+        _listWidget->setCurrentRow(row);
     }
 }
 
 QString BookSearchWidget::currentItemText() {
-    QListWidgetItem *item = m_listWidget->currentItem();
+    QListWidgetItem *item = _listWidget->currentItem();
     return (item ? item->text() : "");
 }
 
 void BookSearchWidget::setCurrentItemText(QString text) {
-    m_listWidget->currentItem()->setText(text);
+    _listWidget->currentItem()->setText(text);
 }

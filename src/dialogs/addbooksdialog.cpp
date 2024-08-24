@@ -22,90 +22,90 @@ void AddBooksDialog::setupInterface() {
     setFixedSize(405, 300);
 
     // Widgets
-    m_buttonAdd = new QPushButton("Add");
-    m_buttonAdd->setCursor(Qt::PointingHandCursor);
-    m_buttonAdd->setFlat(true);
-    m_buttonAdd->setMinimumSize(80, 25);
+    _buttonAdd = new QPushButton("Add");
+    _buttonAdd->setCursor(Qt::PointingHandCursor);
+    _buttonAdd->setFlat(true);
+    _buttonAdd->setMinimumSize(80, 25);
 
-    m_buttonClose = new QPushButton("Close");
-    m_buttonClose->setCursor(Qt::PointingHandCursor);
-    m_buttonClose->setFlat(true);
-    m_buttonClose->setMinimumSize(80, 25);
+    _buttonClose = new QPushButton("Close");
+    _buttonClose->setCursor(Qt::PointingHandCursor);
+    _buttonClose->setFlat(true);
+    _buttonClose->setMinimumSize(80, 25);
 
-    m_buttonBrowseFolders = new QPushButton("...");
-    m_buttonBrowseFolders->setCursor(Qt::PointingHandCursor);
-    m_buttonBrowseFolders->setFlat(true);
-    m_buttonBrowseFolders->setMinimumSize(50, 20);
+    _buttonBrowseFolders = new QPushButton("...");
+    _buttonBrowseFolders->setCursor(Qt::PointingHandCursor);
+    _buttonBrowseFolders->setFlat(true);
+    _buttonBrowseFolders->setMinimumSize(50, 20);
 
-    m_checkBoxRecursive = new QCheckBox("Recursive");
-    m_checkBoxRecursive->setCheckable(true);
-    m_checkBoxRecursive->setChecked(false);
+    _checkBoxRecursive = new QCheckBox("Recursive");
+    _checkBoxRecursive->setCheckable(true);
+    _checkBoxRecursive->setChecked(false);
 
-    m_textFolderPath = new QLineEdit();
-    m_textFolderPath->setCompleter(common::dirCompleter(this));
-    m_textFolderPath->setClearButtonEnabled(true);
+    _textFolderPath = new QLineEdit();
+    _textFolderPath->setCompleter(common::dirCompleter(this));
+    _textFolderPath->setClearButtonEnabled(true);
 
-    m_labelAddBooks = new QLabel("Add Books");
-    m_labelFolder = new QLabel("Folder: ");
+    _labelAddBooks = new QLabel("Add Books");
+    _labelFolder = new QLabel("Folder: ");
 
-    m_progressBar = new QProgressBar();
-    m_progressBar->setValue(0);
-    m_progressBar->setMinimumSize(381, 23);
+    _progressBar = new QProgressBar();
+    _progressBar->setValue(0);
+    _progressBar->setMinimumSize(381, 23);
 
     // Layouts
-    m_horLayTitle = new QHBoxLayout();
-    m_horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleLeft);
-    m_horLayTitle->addWidget(m_labelAddBooks);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleRight);
+    _horLayTitle = new QHBoxLayout();
+    _horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayTitle->addSpacerItem(_horSpacerTitleLeft);
+    _horLayTitle->addWidget(_labelAddBooks);
+    _horLayTitle->addSpacerItem(_horSpacerTitleRight);
 
-    m_horLayFolder = new QHBoxLayout();
-    m_horLayFolder->addWidget(m_labelFolder);
-    m_horLayFolder->addWidget(m_textFolderPath);
-    m_horLayFolder->addWidget(m_buttonBrowseFolders);
+    _horLayFolder = new QHBoxLayout();
+    _horLayFolder->addWidget(_labelFolder);
+    _horLayFolder->addWidget(_textFolderPath);
+    _horLayFolder->addWidget(_buttonBrowseFolders);
 
-    m_horLayCheckBox = new QHBoxLayout();
-    m_horSpacerCheckBoxRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayCheckBox->addWidget(m_checkBoxRecursive);
-    m_horLayCheckBox->addSpacerItem(m_horSpacerCheckBoxRight);
+    _horLayCheckBox = new QHBoxLayout();
+    _horSpacerCheckBoxRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayCheckBox->addWidget(_checkBoxRecursive);
+    _horLayCheckBox->addSpacerItem(_horSpacerCheckBoxRight);
 
-    m_horLayProgressBar = new QHBoxLayout();
-    m_horSpacerProgressBarLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerProgressBarRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayProgressBar->addSpacerItem(m_horSpacerProgressBarLeft);
-    m_horLayProgressBar->addWidget(m_progressBar);
-    m_horLayProgressBar->addSpacerItem(m_horSpacerProgressBarRight);
+    _horLayProgressBar = new QHBoxLayout();
+    _horSpacerProgressBarLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerProgressBarRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayProgressBar->addSpacerItem(_horSpacerProgressBarLeft);
+    _horLayProgressBar->addWidget(_progressBar);
+    _horLayProgressBar->addSpacerItem(_horSpacerProgressBarRight);
 
-    m_horLayButtons = new QHBoxLayout();
-    m_horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerButtonsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsLeft);
-    m_horLayButtons->addWidget(m_buttonAdd);
-    m_horLayButtons->addWidget(m_buttonClose);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsRight);
+    _horLayButtons = new QHBoxLayout();
+    _horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerButtonsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsLeft);
+    _horLayButtons->addWidget(_buttonAdd);
+    _horLayButtons->addWidget(_buttonClose);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsRight);
 
-    m_vertLayMain = new QVBoxLayout();
-    m_vertLayMain->addLayout(m_horLayTitle);
-    m_vertLayMain->addLayout(m_horLayFolder);
-    m_vertLayMain->addLayout(m_horLayCheckBox);
-    m_vertLayMain->addLayout(m_horLayProgressBar);
-    m_vertLayMain->addLayout(m_horLayButtons);
+    _vertLayMain = new QVBoxLayout();
+    _vertLayMain->addLayout(_horLayTitle);
+    _vertLayMain->addLayout(_horLayFolder);
+    _vertLayMain->addLayout(_horLayCheckBox);
+    _vertLayMain->addLayout(_horLayProgressBar);
+    _vertLayMain->addLayout(_horLayButtons);
 
-    setLayout(m_vertLayMain);
+    setLayout(_vertLayMain);
 }
 
 void AddBooksDialog::setupConnections() {
-    connect(m_buttonClose, &QPushButton::clicked, this, &AddBooksDialog::close);
-    connect(m_buttonBrowseFolders, &QPushButton::clicked, this, &AddBooksDialog::browseDirs);
-    connect(m_buttonAdd, &QPushButton::clicked, this, &AddBooksDialog::addDir);
+    connect(_buttonClose, &QPushButton::clicked, this, &AddBooksDialog::close);
+    connect(_buttonBrowseFolders, &QPushButton::clicked, this, &AddBooksDialog::browseDirs);
+    connect(_buttonAdd, &QPushButton::clicked, this, &AddBooksDialog::addDir);
 }
 
 void AddBooksDialog::setupTabOrder() {
-    QWidget::setTabOrder(m_textFolderPath, m_buttonBrowseFolders);
-    QWidget::setTabOrder(m_buttonBrowseFolders, m_checkBoxRecursive);
-    QWidget::setTabOrder(m_checkBoxRecursive, m_buttonAdd);
-    QWidget::setTabOrder(m_buttonAdd, m_buttonClose);
+    QWidget::setTabOrder(_textFolderPath, _buttonBrowseFolders);
+    QWidget::setTabOrder(_buttonBrowseFolders, _checkBoxRecursive);
+    QWidget::setTabOrder(_checkBoxRecursive, _buttonAdd);
+    QWidget::setTabOrder(_buttonAdd, _buttonClose);
 }
 
 void AddBooksDialog::browseDirs() {
@@ -113,14 +113,14 @@ void AddBooksDialog::browseDirs() {
                                                     "/",
                                                     QFileDialog::ShowDirsOnly |
                                                     QFileDialog::DontResolveSymlinks);
-    m_textFolderPath->setText(dir);
+    _textFolderPath->setText(dir);
 }
 
 void AddBooksDialog::addDir() {
-    QString dirPath = m_textFolderPath->text();
+    QString dirPath = _textFolderPath->text();
     QFileInfo dir(dirPath);
     if (dir.exists() && dir.isDir()) {
-        setupEntries(dirPath, m_checkBoxRecursive->isChecked());
+        setupEntries(dirPath, _checkBoxRecursive->isChecked());
     } else {
         common::showMsgBox("Path Error!", "Directory path not valid!", ":/styles/style.qss", QMessageBox::Warning,
                            ":/icons/books_icon.png");
@@ -146,14 +146,14 @@ void AddBooksDialog::setupEntries(const QString &dir, bool recursive) {
     BulkDetailsDialog dialog;
     common::openDialog(&dialog, ":/styles/style.qss");
 
-    QString tags = dialog.m_tags;
-    QString genres = dialog.m_genre.isEmpty() ? "N/A" : dialog.m_genre;
-    QString authors = dialog.m_author.isEmpty() ? "N/A" : dialog.m_author;
-    QString publisher = dialog.m_publisher.isEmpty() ? "N/A" : dialog.m_publisher;
-    QString datePublished = dialog.m_datePublished.isEmpty() ? "N/A" : dialog.m_datePublished;
-    QString series = dialog.m_series.isEmpty() ? "N/A" : dialog.m_series;
-    quint32 rating = dialog.m_rating;
-    quint32 status = dialog.m_status;
+    QString tags = dialog._tags;
+    QString genres = dialog._genre.isEmpty() ? "N/A" : dialog._genre;
+    QString authors = dialog._author.isEmpty() ? "N/A" : dialog._author;
+    QString publisher = dialog._publisher.isEmpty() ? "N/A" : dialog._publisher;
+    QString datePublished = dialog._datePublished.isEmpty() ? "N/A" : dialog._datePublished;
+    QString series = dialog._series.isEmpty() ? "N/A" : dialog._series;
+    quint32 rating = dialog._rating;
+    quint32 status = dialog._status;
 
     // Let the user select desired extensions
     ExtSelectionDialog *extDialog = new ExtSelectionDialog(this, extVector, "Extensions", "Select Extensions");
@@ -174,7 +174,7 @@ void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVecto
     for (const QFileInfo &entry: entriesVector) {
         QString ext = "." + entry.suffix().toLower();
         quint32 progress = (counter / count) * 100;
-        m_progressBar->setValue(progress);
+        _progressBar->setValue(progress);
         counter++;
         if (selectedExts.contains(ext)) {
             insertBook(entry, tags, genres, authors, publisher, datePublished, series, rating, status);
@@ -182,7 +182,7 @@ void AddBooksDialog::iterateInsertEntries(const QVector<QFileInfo> &entriesVecto
     }
 
     queries::db.commit();
-    m_progressBar->setValue(100);
+    _progressBar->setValue(100);
 }
 
 void AddBooksDialog::insertBook(const QFileInfo &entry, const QString &tags, const QString &genre,

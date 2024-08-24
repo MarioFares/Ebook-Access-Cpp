@@ -3,14 +3,14 @@
 #include <QPushButton>
 
 BulkDetailsDialog::BulkDetailsDialog(QWidget *parent) : QDialog(parent) {
-    m_author = "";
-    m_genre = "";
-    m_tags = "";
-    m_publisher = "";
-    m_datePublished = "";
-    m_series = "";
-    m_rating = 0;
-    m_status = 0;
+    _author = "";
+    _genre = "";
+    _tags = "";
+    _publisher = "";
+    _datePublished = "";
+    _series = "";
+    _rating = 0;
+    _status = 0;
     setupInterface();
     setupConnections();
     setupTabOrder();
@@ -22,189 +22,189 @@ void BulkDetailsDialog::setupInterface() {
     setFixedSize(494, 320);
 
     // Widgets
-    m_labelPrompt = new QLabel("If you wish all ebooks in the selected folder to"
+    _labelPrompt = new QLabel("If you wish all ebooks in the selected folder to"
         " share the below data, check the boxes and input"
         " your specification:");
-    m_labelPrompt->setWordWrap(true);
+    _labelPrompt->setWordWrap(true);
 
-    m_checkBoxGenre = new QCheckBox("");
-    m_checkBoxGenre->setChecked(false);
+    _checkBoxGenre = new QCheckBox("");
+    _checkBoxGenre->setChecked(false);
 
-    m_checkBoxAuthor = new QCheckBox("");
-    m_checkBoxAuthor->setChecked(false);
+    _checkBoxAuthor = new QCheckBox("");
+    _checkBoxAuthor->setChecked(false);
 
-    m_checkBoxTags = new QCheckBox("");
-    m_checkBoxTags->setChecked(false);
+    _checkBoxTags = new QCheckBox("");
+    _checkBoxTags->setChecked(false);
 
-    m_checkBoxPublisher = new QCheckBox("");
-    m_checkBoxPublisher->setChecked(false);
+    _checkBoxPublisher = new QCheckBox("");
+    _checkBoxPublisher->setChecked(false);
 
-    m_checkBoxDatePublished = new QCheckBox("");
-    m_checkBoxDatePublished->setChecked(false);
+    _checkBoxDatePublished = new QCheckBox("");
+    _checkBoxDatePublished->setChecked(false);
 
-    m_checkBoxSeries = new QCheckBox("");
-    m_checkBoxSeries->setChecked(false);
+    _checkBoxSeries = new QCheckBox("");
+    _checkBoxSeries->setChecked(false);
 
-    m_checkBoxRating = new QCheckBox("");
-    m_checkBoxRating->setChecked(false);
+    _checkBoxRating = new QCheckBox("");
+    _checkBoxRating->setChecked(false);
 
-    m_checkBoxStatus = new QCheckBox("");
-    m_checkBoxStatus->setChecked(false);
+    _checkBoxStatus = new QCheckBox("");
+    _checkBoxStatus->setChecked(false);
 
-    m_labelGenre = new QLabel("Genre: ");
-    m_labelAuthor = new QLabel("Author: ");
-    m_labelTags = new QLabel("Tags: ");
-    m_labelPublisher = new QLabel("Publisher: ");
-    m_labelDatePublished = new QLabel("Published: ");
-    m_labelSeries = new QLabel("Series: ");
-    m_labelStatus = new QLabel("Status: ");
-    m_labelRating = new QLabel("Rating: ");
+    _labelGenre = new QLabel("Genre: ");
+    _labelAuthor = new QLabel("Author: ");
+    _labelTags = new QLabel("Tags: ");
+    _labelPublisher = new QLabel("Publisher: ");
+    _labelDatePublished = new QLabel("Published: ");
+    _labelSeries = new QLabel("Series: ");
+    _labelStatus = new QLabel("Status: ");
+    _labelRating = new QLabel("Rating: ");
 
-    m_textGenre = new QLineEdit();
-    m_textGenre->setEnabled(false);
-    m_textGenre->setClearButtonEnabled(true);
+    _textGenre = new QLineEdit();
+    _textGenre->setEnabled(false);
+    _textGenre->setClearButtonEnabled(true);
 
-    m_textAuthor = new QLineEdit();
-    m_textAuthor->setEnabled(false);
-    m_textAuthor->setClearButtonEnabled(true);
+    _textAuthor = new QLineEdit();
+    _textAuthor->setEnabled(false);
+    _textAuthor->setClearButtonEnabled(true);
 
-    m_textTags = new QLineEdit();
-    m_textTags->setEnabled(false);
-    m_textTags->setClearButtonEnabled(true);
+    _textTags = new QLineEdit();
+    _textTags->setEnabled(false);
+    _textTags->setClearButtonEnabled(true);
 
-    m_textPublisher = new QLineEdit();
-    m_textPublisher->setEnabled(false);
-    m_textPublisher->setClearButtonEnabled(true);
+    _textPublisher = new QLineEdit();
+    _textPublisher->setEnabled(false);
+    _textPublisher->setClearButtonEnabled(true);
 
-    m_textDatePublished = new QLineEdit();
-    m_textDatePublished->setEnabled(false);
-    m_textDatePublished->setClearButtonEnabled(true);
+    _textDatePublished = new QLineEdit();
+    _textDatePublished->setEnabled(false);
+    _textDatePublished->setClearButtonEnabled(true);
 
-    m_textSeries = new QLineEdit();
-    m_textSeries->setEnabled(false);
-    m_textSeries->setClearButtonEnabled(true);
+    _textSeries = new QLineEdit();
+    _textSeries->setEnabled(false);
+    _textSeries->setClearButtonEnabled(true);
 
-    m_comboBoxStatus = new StatusComboBox();
-    m_comboBoxStatus->setEnabled(false);
+    _comboBoxStatus = new StatusComboBox();
+    _comboBoxStatus->setEnabled(false);
 
-    m_comboBoxRating = new RatingComboBox();
-    m_comboBoxRating->setEnabled(false);
+    _comboBoxRating = new RatingComboBox();
+    _comboBoxRating->setEnabled(false);
 
-    m_buttonApply = new QPushButton("Apply");
-    m_buttonApply->setCursor(Qt::PointingHandCursor);
-    m_buttonApply->setFlat(true);
-    m_buttonApply->setMinimumSize(80, 25);
+    _buttonApply = new QPushButton("Apply");
+    _buttonApply->setCursor(Qt::PointingHandCursor);
+    _buttonApply->setFlat(true);
+    _buttonApply->setMinimumSize(80, 25);
 
-    m_buttonCancel = new QPushButton("Cancel");
-    m_buttonCancel->setCursor(Qt::PointingHandCursor);
-    m_buttonCancel->setFlat(true);
-    m_buttonCancel->setMinimumSize(80, 25);
+    _buttonCancel = new QPushButton("Cancel");
+    _buttonCancel->setCursor(Qt::PointingHandCursor);
+    _buttonCancel->setFlat(true);
+    _buttonCancel->setMinimumSize(80, 25);
 
     // Layouts
-    m_horLayButtons = new QHBoxLayout();
-    m_horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsLeft);
-    m_horLayButtons->addWidget(m_buttonApply);
-    m_horLayButtons->addWidget(m_buttonCancel);
+    _horLayButtons = new QHBoxLayout();
+    _horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsLeft);
+    _horLayButtons->addWidget(_buttonApply);
+    _horLayButtons->addWidget(_buttonCancel);
 
-    m_gridLay = new QGridLayout();
-    m_gridLay->addWidget(m_checkBoxAuthor, 0, 0, 1, 1);
-    m_gridLay->addWidget(m_labelAuthor, 0, 1, 1, 1);
-    m_gridLay->addWidget(m_textAuthor, 0, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxGenre, 1, 0, 1, 1);
-    m_gridLay->addWidget(m_labelGenre, 1, 1, 1, 1);
-    m_gridLay->addWidget(m_textGenre, 1, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxTags, 2, 0, 1, 1);
-    m_gridLay->addWidget(m_labelTags, 2, 1, 1, 1);
-    m_gridLay->addWidget(m_textTags, 2, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxPublisher, 3, 0, 1, 1);
-    m_gridLay->addWidget(m_labelPublisher, 3, 1, 1, 1);
-    m_gridLay->addWidget(m_textPublisher, 3, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxDatePublished, 4, 0, 1, 1);
-    m_gridLay->addWidget(m_labelDatePublished, 4, 1, 1, 1);
-    m_gridLay->addWidget(m_textDatePublished, 4, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxSeries, 5, 0, 1, 1);
-    m_gridLay->addWidget(m_labelSeries, 5, 1, 1, 1);
-    m_gridLay->addWidget(m_textSeries, 5, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxRating, 6, 0, 1, 1);
-    m_gridLay->addWidget(m_labelRating, 6, 1, 1, 1);
-    m_gridLay->addWidget(m_comboBoxRating, 6, 2, 1, 1);
-    m_gridLay->addWidget(m_checkBoxStatus, 7, 0, 1, 1);
-    m_gridLay->addWidget(m_labelStatus, 7, 1, 1, 1);
-    m_gridLay->addWidget(m_comboBoxStatus, 7, 2, 1, 1);
+    _gridLay = new QGridLayout();
+    _gridLay->addWidget(_checkBoxAuthor, 0, 0, 1, 1);
+    _gridLay->addWidget(_labelAuthor, 0, 1, 1, 1);
+    _gridLay->addWidget(_textAuthor, 0, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxGenre, 1, 0, 1, 1);
+    _gridLay->addWidget(_labelGenre, 1, 1, 1, 1);
+    _gridLay->addWidget(_textGenre, 1, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxTags, 2, 0, 1, 1);
+    _gridLay->addWidget(_labelTags, 2, 1, 1, 1);
+    _gridLay->addWidget(_textTags, 2, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxPublisher, 3, 0, 1, 1);
+    _gridLay->addWidget(_labelPublisher, 3, 1, 1, 1);
+    _gridLay->addWidget(_textPublisher, 3, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxDatePublished, 4, 0, 1, 1);
+    _gridLay->addWidget(_labelDatePublished, 4, 1, 1, 1);
+    _gridLay->addWidget(_textDatePublished, 4, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxSeries, 5, 0, 1, 1);
+    _gridLay->addWidget(_labelSeries, 5, 1, 1, 1);
+    _gridLay->addWidget(_textSeries, 5, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxRating, 6, 0, 1, 1);
+    _gridLay->addWidget(_labelRating, 6, 1, 1, 1);
+    _gridLay->addWidget(_comboBoxRating, 6, 2, 1, 1);
+    _gridLay->addWidget(_checkBoxStatus, 7, 0, 1, 1);
+    _gridLay->addWidget(_labelStatus, 7, 1, 1, 1);
+    _gridLay->addWidget(_comboBoxStatus, 7, 2, 1, 1);
 
-    m_vertLayMain = new QVBoxLayout();
-    m_vertLayMain->addWidget(m_labelPrompt);
-    m_vertLayMain->addLayout(m_gridLay);
-    m_vertLayMain->addLayout(m_horLayButtons);
+    _vertLayMain = new QVBoxLayout();
+    _vertLayMain->addWidget(_labelPrompt);
+    _vertLayMain->addLayout(_gridLay);
+    _vertLayMain->addLayout(_horLayButtons);
 
-    setLayout(m_vertLayMain);
+    setLayout(_vertLayMain);
 }
 
 void BulkDetailsDialog::setupConnections() {
-    connect(m_buttonCancel, &QPushButton::clicked, this, &BulkDetailsDialog::close);
-    connect(m_buttonApply, &QPushButton::clicked, this, &BulkDetailsDialog::applyFields);
-    connect(m_checkBoxAuthor, &QCheckBox::stateChanged, m_textAuthor, &QLineEdit::setEnabled);
-    connect(m_checkBoxGenre, &QCheckBox::stateChanged, m_textGenre, &QLineEdit::setEnabled);
-    connect(m_checkBoxTags, &QCheckBox::stateChanged, m_textTags, &QLineEdit::setEnabled);
-    connect(m_checkBoxPublisher, &QCheckBox::stateChanged, m_textPublisher, &QLineEdit::setEnabled);
-    connect(m_checkBoxDatePublished, &QCheckBox::stateChanged, m_textDatePublished, &QLineEdit::setEnabled);
-    connect(m_checkBoxSeries, &QCheckBox::stateChanged, m_textSeries, &QLineEdit::setEnabled);
-    connect(m_checkBoxRating, &QCheckBox::stateChanged, m_comboBoxRating, &QLineEdit::setEnabled);
-    connect(m_checkBoxStatus, &QCheckBox::stateChanged, m_comboBoxStatus, &QLineEdit::setEnabled);
+    connect(_buttonCancel, &QPushButton::clicked, this, &BulkDetailsDialog::close);
+    connect(_buttonApply, &QPushButton::clicked, this, &BulkDetailsDialog::applyFields);
+    connect(_checkBoxAuthor, &QCheckBox::stateChanged, _textAuthor, &QLineEdit::setEnabled);
+    connect(_checkBoxGenre, &QCheckBox::stateChanged, _textGenre, &QLineEdit::setEnabled);
+    connect(_checkBoxTags, &QCheckBox::stateChanged, _textTags, &QLineEdit::setEnabled);
+    connect(_checkBoxPublisher, &QCheckBox::stateChanged, _textPublisher, &QLineEdit::setEnabled);
+    connect(_checkBoxDatePublished, &QCheckBox::stateChanged, _textDatePublished, &QLineEdit::setEnabled);
+    connect(_checkBoxSeries, &QCheckBox::stateChanged, _textSeries, &QLineEdit::setEnabled);
+    connect(_checkBoxRating, &QCheckBox::stateChanged, _comboBoxRating, &QLineEdit::setEnabled);
+    connect(_checkBoxStatus, &QCheckBox::stateChanged, _comboBoxStatus, &QLineEdit::setEnabled);
 }
 
 void BulkDetailsDialog::setupTabOrder() {
-    QWidget::setTabOrder(m_checkBoxAuthor, m_textAuthor);
-    QWidget::setTabOrder(m_textAuthor, m_checkBoxGenre);
-    QWidget::setTabOrder(m_checkBoxGenre, m_textGenre);
-    QWidget::setTabOrder(m_textGenre, m_checkBoxTags);
-    QWidget::setTabOrder(m_checkBoxTags, m_textTags);
-    QWidget::setTabOrder(m_textTags, m_checkBoxPublisher);
-    QWidget::setTabOrder(m_checkBoxPublisher, m_textPublisher);
-    QWidget::setTabOrder(m_textPublisher, m_checkBoxDatePublished);
-    QWidget::setTabOrder(m_checkBoxDatePublished, m_textDatePublished);
-    QWidget::setTabOrder(m_textDatePublished, m_checkBoxSeries);
-    QWidget::setTabOrder(m_checkBoxSeries, m_textSeries);
-    QWidget::setTabOrder(m_textSeries, m_checkBoxRating);
-    QWidget::setTabOrder(m_checkBoxRating, m_comboBoxRating);
-    QWidget::setTabOrder(m_comboBoxRating, m_checkBoxStatus);
-    QWidget::setTabOrder(m_checkBoxStatus, m_comboBoxStatus);
-    QWidget::setTabOrder(m_comboBoxStatus, m_buttonApply);
-    QWidget::setTabOrder(m_buttonApply, m_buttonCancel);
+    QWidget::setTabOrder(_checkBoxAuthor, _textAuthor);
+    QWidget::setTabOrder(_textAuthor, _checkBoxGenre);
+    QWidget::setTabOrder(_checkBoxGenre, _textGenre);
+    QWidget::setTabOrder(_textGenre, _checkBoxTags);
+    QWidget::setTabOrder(_checkBoxTags, _textTags);
+    QWidget::setTabOrder(_textTags, _checkBoxPublisher);
+    QWidget::setTabOrder(_checkBoxPublisher, _textPublisher);
+    QWidget::setTabOrder(_textPublisher, _checkBoxDatePublished);
+    QWidget::setTabOrder(_checkBoxDatePublished, _textDatePublished);
+    QWidget::setTabOrder(_textDatePublished, _checkBoxSeries);
+    QWidget::setTabOrder(_checkBoxSeries, _textSeries);
+    QWidget::setTabOrder(_textSeries, _checkBoxRating);
+    QWidget::setTabOrder(_checkBoxRating, _comboBoxRating);
+    QWidget::setTabOrder(_comboBoxRating, _checkBoxStatus);
+    QWidget::setTabOrder(_checkBoxStatus, _comboBoxStatus);
+    QWidget::setTabOrder(_comboBoxStatus, _buttonApply);
+    QWidget::setTabOrder(_buttonApply, _buttonCancel);
 }
 
 void BulkDetailsDialog::applyFields() {
-    if (m_textAuthor->isEnabled()) {
-        m_author = m_textAuthor->text();
+    if (_textAuthor->isEnabled()) {
+        _author = _textAuthor->text();
     }
 
-    if (m_textGenre->isEnabled()) {
-        m_genre = m_textGenre->text();
+    if (_textGenre->isEnabled()) {
+        _genre = _textGenre->text();
     }
 
-    if (m_textTags->isEnabled()) {
-        m_tags = m_textTags->text();
+    if (_textTags->isEnabled()) {
+        _tags = _textTags->text();
     }
 
-    if (m_textPublisher->isEnabled()) {
-        m_publisher = m_textPublisher->text();
+    if (_textPublisher->isEnabled()) {
+        _publisher = _textPublisher->text();
     }
 
-    if (m_textDatePublished->isEnabled()) {
-        m_datePublished = m_textDatePublished->text();
+    if (_textDatePublished->isEnabled()) {
+        _datePublished = _textDatePublished->text();
     }
 
-    if (m_textSeries->isEnabled()) {
-        m_series = m_textSeries->text();
+    if (_textSeries->isEnabled()) {
+        _series = _textSeries->text();
     }
 
-    if (m_comboBoxRating->isEnabled()) {
-        m_rating = m_comboBoxRating->currentIndex();
+    if (_comboBoxRating->isEnabled()) {
+        _rating = _comboBoxRating->currentIndex();
     }
 
-    if (m_comboBoxStatus->isEnabled()) {
-        m_status = m_comboBoxStatus->currentIndex();
+    if (_comboBoxStatus->isEnabled()) {
+        _status = _comboBoxStatus->currentIndex();
     }
 
     close();

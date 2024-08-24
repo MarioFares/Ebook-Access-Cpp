@@ -2,13 +2,13 @@
 
 StatusComboBox::StatusComboBox(QWidget *parent) {
     setParent(parent);
-    addItems(m_status);
+    addItems(_status);
 }
 
 QString StatusComboBox::convertToStatus(quint32 index) {
-    return (index > 3 ? "No Status" : m_status[index]);
+    return (index > 3 ? "No Status" : _status[index]);
 }
 
 QString StatusComboBox::convertToIndex(QString value) {
-    return QString::number(m_status.indexOf(value));
+    return QString::number(_status.indexOf(value));
 }

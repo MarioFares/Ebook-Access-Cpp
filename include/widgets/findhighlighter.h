@@ -36,14 +36,14 @@ private:
         QTextCharFormat format;
     };
 
-    QString m_findString;
-    HighlightingRule m_defaultHighlightingRule;
-    HighlightingRule m_activeHighlightingRule;
-    QRegularExpressionMatchIterator m_matches;
-    QList<QRegularExpressionMatch> m_matchList;
-    qint32 m_currentMatchIndex;
-    qint32 m_activeMatchIndex;
-    QTextBlock m_activeBlock;
+    QString _findString;
+    HighlightingRule _defaultHighlightingRule;
+    HighlightingRule _activeHighlightingRule;
+    QRegularExpressionMatchIterator _matches;
+    QList<QRegularExpressionMatch> _matchList;
+    qint32 _currentMatchIndex;
+    qint32 _activeMatchIndex;
+    QTextBlock _activeBlock;
 };
 
 #endif // FINDHIGHLIGHTER_H

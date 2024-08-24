@@ -8,7 +8,7 @@ class StatusComboBox : public QComboBox {
     Q_OBJECT
 
 private:
-    static const inline QStringList m_status = {
+    static const inline QStringList _status = {
         "No Status",
         "Prospective",
         "Pending",

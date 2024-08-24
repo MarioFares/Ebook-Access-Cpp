@@ -25,26 +25,26 @@ private slots:
     void setResult();
 
 private:
-    QString m_windowTitle;
-    QString m_title;
-    QString m_prompt;
-    bool m_result;
+    QString _windowTitle;
+    QString _title;
+    QString _prompt;
+    bool _result;
 
     // Widgets
-    QLabel *m_labelTitle;
-    QLabel *m_labelPrompt;
-    QPushButton *m_buttonYes;
-    QPushButton *m_buttonNo;
+    QLabel *_labelTitle;
+    QLabel *_labelPrompt;
+    QPushButton *_buttonYes;
+    QPushButton *_buttonNo;
 
     // Layouts
-    QHBoxLayout *m_horLayTitle;
-    QHBoxLayout *m_horLayButtons;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayTitle;
+    QHBoxLayout *_horLayButtons;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerTitleLeft;
-    QSpacerItem *m_horSpacerTitleRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerTitleLeft;
+    QSpacerItem *_horSpacerTitleRight;
+    QSpacerItem *_horSpacerButtonsLeft;
 };
 
 #endif // YESNODIALOG_H

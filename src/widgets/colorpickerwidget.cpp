@@ -10,9 +10,9 @@
 #include <QColorDialog>
 
 ColorPickerWidget::ColorPickerWidget(QWidget *parent, QColor defaultColor) : QDialog(parent) {
-    m_defaultColor = defaultColor;
-    m_currentColor = defaultColor;
-    m_isColorSelected = false;
+    _defaultColor = defaultColor;
+    _currentColor = defaultColor;
+    _isColorSelected = false;
 
     setupInterface();
     setupConnections();
@@ -20,58 +20,58 @@ ColorPickerWidget::ColorPickerWidget(QWidget *parent, QColor defaultColor) : QDi
 
 void ColorPickerWidget::setupInterface() {
     // Window
-    m_rows = 5;
-    m_columns = 10;
-    m_colorGridLayout = new QGridLayout();
+    _rows = 5;
+    _columns = 10;
+    _colorGridLayout = new QGridLayout();
     setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::Popup);
     setFixedSize(224, 171);
 
     // Widgets
-    m_defaultColorButton = new QPushButton("Default Color", this);
-    m_moreColorsButton = new QPushButton("More Colors...", this);
-    m_vertLayMain = new QVBoxLayout(this);
+    _defaultColorButton = new QPushButton("Default Color", this);
+    _moreColorsButton = new QPushButton("More Colors...", this);
+    _vertLayMain = new QVBoxLayout(this);
 
-    m_horLayDefaultButton = new QHBoxLayout();
-    m_horSpacerDefaultButtonRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayDefaultButton->addWidget(m_defaultColorButton);
-    m_horLayDefaultButton->addSpacerItem(m_horSpacerDefaultButtonRight);
+    _horLayDefaultButton = new QHBoxLayout();
+    _horSpacerDefaultButtonRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayDefaultButton->addWidget(_defaultColorButton);
+    _horLayDefaultButton->addSpacerItem(_horSpacerDefaultButtonRight);
 
-    m_horLayMoreColors = new QHBoxLayout();
-    m_horSpacerMoreColorsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayMoreColors->addWidget(m_moreColorsButton);
-    m_horLayMoreColors->addSpacerItem(m_horSpacerMoreColorsRight);
+    _horLayMoreColors = new QHBoxLayout();
+    _horSpacerMoreColorsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayMoreColors->addWidget(_moreColorsButton);
+    _horLayMoreColors->addSpacerItem(_horSpacerMoreColorsRight);
 
-    m_vertLayMain->addLayout(m_horLayDefaultButton);
-    m_vertLayMain->addLayout(m_colorGridLayout);
-    m_vertLayMain->addLayout(m_horLayMoreColors);
+    _vertLayMain->addLayout(_horLayDefaultButton);
+    _vertLayMain->addLayout(_colorGridLayout);
+    _vertLayMain->addLayout(_horLayMoreColors);
 
-    m_mainFrame = new QFrame(this);
-    m_mainFrame->setLayout(m_vertLayMain);
+    _mainFrame = new QFrame(this);
+    _mainFrame->setLayout(_vertLayMain);
 
     GradientList colorGradients = initialialzeColorGradients();
-    m_columns = colorGradients.size();
+    _columns = colorGradients.size();
     createColorsButtons();
     setButtonColors(colorGradients);
 
-    m_moreColorsButton->setCursor(Qt::PointingHandCursor);
-    m_moreColorsButton->setObjectName("m_moreColorsButton");
-    m_moreColorsButton->setFlat(true);
-    m_moreColorsButton->setIcon(QIcon(":/icons/more_colors_icon.png"));
+    _moreColorsButton->setCursor(Qt::PointingHandCursor);
+    _moreColorsButton->setObjectName("_moreColorsButton");
+    _moreColorsButton->setFlat(true);
+    _moreColorsButton->setIcon(QIcon(":/icons/more_colors_icon.png"));
 
-    m_defaultColorButton->setCursor(Qt::PointingHandCursor);
-    m_defaultColorButton->setObjectName("m_defaultColorButton");
-    m_defaultColorButton->setFlat(true);
+    _defaultColorButton->setCursor(Qt::PointingHandCursor);
+    _defaultColorButton->setObjectName("_defaultColorButton");
+    _defaultColorButton->setFlat(true);
     QPixmap pixmap(13, 13);
-    pixmap.fill(m_defaultColor);
-    m_defaultColorButton->setIcon(QIcon(pixmap));
-    m_defaultColorButton->setIconSize(QSize(16, 16));
+    pixmap.fill(_defaultColor);
+    _defaultColorButton->setIcon(QIcon(pixmap));
+    _defaultColorButton->setIconSize(QSize(16, 16));
 }
 
 void ColorPickerWidget::setupConnections() {
-    connect(m_defaultColorButton, &QPushButton::clicked, [this] {
-        setCurrentColor(m_defaultColor);
+    connect(_defaultColorButton, &QPushButton::clicked, [this] {
+        setCurrentColor(_defaultColor);
     });
-    connect(m_moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
+    connect(_moreColorsButton, SIGNAL(clicked()), this, SLOT(openColorDialog()));
 }
 
 QColor ColorPickerWidget::interpolateColor(QColor colorStart, QColor colorEnd, float percent) {
@@ -101,11 +101,11 @@ GradientList ColorPickerWidget::initialialzeColorGradients() {
 }
 
 void ColorPickerWidget::createColorsButtons() {
-    for (int row = 0; row < m_rows; ++row) {
-        for (int column = 0; column < m_columns; ++column) {
+    for (int row = 0; row < _rows; ++row) {
+        for (int column = 0; column < _columns; ++column) {
             QPushButton *colorButton = new QPushButton("");
             colorButton->setCursor(Qt::PointingHandCursor);
-            m_colorGridLayout->addWidget(colorButton, row, column);
+            _colorGridLayout->addWidget(colorButton, row, column);
             connect(colorButton, &QPushButton::clicked, this,
                     [this, colorButton]() {
                         setCurrentColor(colorButton->palette().button().color());
@@ -121,9 +121,9 @@ void ColorPickerWidget::setButtonColors(GradientList gradientList) {
         float percent = 0.0F;
         colorStart = gradientList.at(column).first;
         colorEnd = gradientList.at(column).second;
-        for (int row = 0; row < m_rows; ++row) {
+        for (int row = 0; row < _rows; ++row) {
             QPushButton *colorButton = qobject_cast<QPushButton *>(
-                m_colorGridLayout->itemAtPosition(row, column)->widget());
+                _colorGridLayout->itemAtPosition(row, column)->widget());
             colorButton->setFixedSize(QSize(15, 15));
             colorButton->setCursor(Qt::PointingHandCursor);
             QColor interpolatedColor = interpolateColor(colorStart, colorEnd, percent);
@@ -132,19 +132,19 @@ void ColorPickerWidget::setButtonColors(GradientList gradientList) {
                 "border : none;"
                 "}").arg(interpolatedColor.red()).arg(interpolatedColor.green()).arg(
                 interpolatedColor.blue()));
-            percent += 1.0F / (m_rows - 1);
+            percent += 1.0F / (_rows - 1);
         }
     }
 }
 
 void ColorPickerWidget::setCurrentColor(QColor color) {
     close();
-    m_currentColor = color;
-    m_isColorSelected = true;
+    _currentColor = color;
+    _isColorSelected = true;
 }
 
 QColor ColorPickerWidget::getCurrentColor() {
-    return m_currentColor;
+    return _currentColor;
 }
 
 void ColorPickerWidget::openColorDialog() {
@@ -155,5 +155,5 @@ void ColorPickerWidget::openColorDialog() {
 }
 
 bool ColorPickerWidget::colorSelected() const {
-    return m_isColorSelected;
+    return _isColorSelected;
 }

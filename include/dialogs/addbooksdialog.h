@@ -39,31 +39,31 @@ private slots:
 
 private:
     // Widgets
-    QPushButton *m_buttonAdd;
-    QCheckBox *m_checkBoxRecursive;
-    QLineEdit *m_textFolderPath;
-    QLabel *m_labelAddBooks;
-    QPushButton *m_buttonClose;
-    QPushButton *m_buttonBrowseFolders;
-    QProgressBar *m_progressBar;
-    QLabel *m_labelFolder;
+    QPushButton *_buttonAdd;
+    QCheckBox *_checkBoxRecursive;
+    QLineEdit *_textFolderPath;
+    QLabel *_labelAddBooks;
+    QPushButton *_buttonClose;
+    QPushButton *_buttonBrowseFolders;
+    QProgressBar *_progressBar;
+    QLabel *_labelFolder;
 
     // Layouts
-    QHBoxLayout *m_horLayTitle;
-    QHBoxLayout *m_horLayFolder;
-    QHBoxLayout *m_horLayCheckBox;
-    QHBoxLayout *m_horLayProgressBar;
-    QHBoxLayout *m_horLayButtons;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayTitle;
+    QHBoxLayout *_horLayFolder;
+    QHBoxLayout *_horLayCheckBox;
+    QHBoxLayout *_horLayProgressBar;
+    QHBoxLayout *_horLayButtons;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerTitleLeft;
-    QSpacerItem *m_horSpacerTitleRight;
-    QSpacerItem *m_horSpacerCheckBoxRight;
-    QSpacerItem *m_horSpacerProgressBarLeft;
-    QSpacerItem *m_horSpacerProgressBarRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
+    QSpacerItem *_horSpacerTitleLeft;
+    QSpacerItem *_horSpacerTitleRight;
+    QSpacerItem *_horSpacerCheckBoxRight;
+    QSpacerItem *_horSpacerProgressBarLeft;
+    QSpacerItem *_horSpacerProgressBarRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
 };
 
 #endif // ADDBOOKSDIALOG_H

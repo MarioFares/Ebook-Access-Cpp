@@ -4,8 +4,8 @@
 #include <QPushButton>
 
 GetNameDialog::GetNameDialog(QWidget *parent, QString title, QString prompt) : QDialog(parent) {
-    m_title = title;
-    m_prompt = prompt;
+    _title = title;
+    _prompt = prompt;
 
     setupInterface();
     setupConnections();
@@ -14,66 +14,66 @@ GetNameDialog::GetNameDialog(QWidget *parent, QString title, QString prompt) : Q
 
 void GetNameDialog::setupInterface() {
     // Window
-    setWindowTitle(m_title);
+    setWindowTitle(_title);
     setFixedSize(400, 150);
 
     // Widgets
-    m_labelTitle = new QLabel(m_title);
-    m_labelPrompt = new QLabel(m_prompt);
-    m_labelPrompt->setWordWrap(true);
+    _labelTitle = new QLabel(_title);
+    _labelPrompt = new QLabel(_prompt);
+    _labelPrompt->setWordWrap(true);
 
-    m_textName = new QLineEdit();
-    m_textName->setClearButtonEnabled(true);
+    _textName = new QLineEdit();
+    _textName->setClearButtonEnabled(true);
 
-    m_buttonOk = new QPushButton("Ok");
-    m_buttonOk->setMinimumSize(80, 25);
-    m_buttonOk->setFlat(true);
-    m_buttonOk->setCursor(Qt::PointingHandCursor);
+    _buttonOk = new QPushButton("Ok");
+    _buttonOk->setMinimumSize(80, 25);
+    _buttonOk->setFlat(true);
+    _buttonOk->setCursor(Qt::PointingHandCursor);
 
-    m_buttonCancel = new QPushButton("Cancel");
-    m_buttonCancel->setMinimumSize(80, 25);
-    m_buttonCancel->setFlat(true);
-    m_buttonCancel->setCursor(Qt::PointingHandCursor);
+    _buttonCancel = new QPushButton("Cancel");
+    _buttonCancel->setMinimumSize(80, 25);
+    _buttonCancel->setFlat(true);
+    _buttonCancel->setCursor(Qt::PointingHandCursor);
 
     // Layout
-    m_horLayTitle = new QHBoxLayout();
-    m_horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleLeft);
-    m_horLayTitle->addWidget(m_labelTitle);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleRight);
+    _horLayTitle = new QHBoxLayout();
+    _horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayTitle->addSpacerItem(_horSpacerTitleLeft);
+    _horLayTitle->addWidget(_labelTitle);
+    _horLayTitle->addSpacerItem(_horSpacerTitleRight);
 
-    m_horLayButtons = new QHBoxLayout();
-    m_horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerButtonsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsLeft);
-    m_horLayButtons->addWidget(m_buttonOk);
-    m_horLayButtons->addWidget(m_buttonCancel);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsRight);
+    _horLayButtons = new QHBoxLayout();
+    _horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerButtonsRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsLeft);
+    _horLayButtons->addWidget(_buttonOk);
+    _horLayButtons->addWidget(_buttonCancel);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsRight);
 
-    m_vertLayMain = new QVBoxLayout();
-    m_vertLayMain->addLayout(m_horLayTitle);
-    m_vertLayMain->addWidget(m_labelPrompt);
-    m_vertLayMain->addWidget(m_textName);
-    m_vertLayMain->addLayout(m_horLayButtons);
-    m_vertLayMain->setSpacing(10);
+    _vertLayMain = new QVBoxLayout();
+    _vertLayMain->addLayout(_horLayTitle);
+    _vertLayMain->addWidget(_labelPrompt);
+    _vertLayMain->addWidget(_textName);
+    _vertLayMain->addLayout(_horLayButtons);
+    _vertLayMain->setSpacing(10);
 
-    setLayout(m_vertLayMain);
+    setLayout(_vertLayMain);
 }
 
 void GetNameDialog::setupConnections() {
-    connect(m_buttonCancel, &QPushButton::clicked, this, &GetNameDialog::close);
-    connect(m_buttonOk, &QPushButton::clicked, this, &GetNameDialog::setName);
+    connect(_buttonCancel, &QPushButton::clicked, this, &GetNameDialog::close);
+    connect(_buttonOk, &QPushButton::clicked, this, &GetNameDialog::setName);
 }
 
 void GetNameDialog::setupTabOrder() {
-    QWidget::setTabOrder(m_textName, m_buttonOk);
-    QWidget::setTabOrder(m_buttonOk, m_buttonCancel);
+    QWidget::setTabOrder(_textName, _buttonOk);
+    QWidget::setTabOrder(_buttonOk, _buttonCancel);
 }
 
 void GetNameDialog::setName() {
-    m_name = m_textName->text();
-    if (m_name.isEmpty()) {
+    _name = _textName->text();
+    if (_name.isEmpty()) {
         common::showMsgBox("Name Error!", "Name cannot be empty.", ":/styles/style.qss", QMessageBox::Warning,
                            ":/icons/books_icon.png");
     } else {
@@ -82,5 +82,5 @@ void GetNameDialog::setName() {
 }
 
 void GetNameDialog::setDataOnOpen() {
-    m_textName->setText(m_name);
+    _textName->setText(_name);
 }

@@ -13,8 +13,8 @@ class InsertLinkDialog : public QDialog {
 public:
     explicit InsertLinkDialog(QWidget *parent = nullptr);
 
-    QString m_title;
-    QString m_link;
+    QString _title;
+    QString _link;
 
     void setDataOnOpen();
 
@@ -29,19 +29,19 @@ private slots:
 
 private:
     // Widgets
-    QLabel *m_labelLink;
-    QLabel *m_labelTitle;
-    QLineEdit *m_textLink;
-    QLineEdit *m_textTitle;
-    QPushButton *m_buttonOk;
-    QPushButton *m_buttonCancel;
+    QLabel *_labelLink;
+    QLabel *_labelTitle;
+    QLineEdit *_textLink;
+    QLineEdit *_textTitle;
+    QPushButton *_buttonOk;
+    QPushButton *_buttonCancel;
 
     // Layouts
-    QHBoxLayout *m_horLayButtons;
-    QGridLayout *m_gridLay;
+    QHBoxLayout *_horLayButtons;
+    QGridLayout *_gridLay;
 
     // Spacers
-    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsLeft;
 };
 
 #endif // INSERTLINKDIALOG_H

@@ -3,77 +3,77 @@
 #include <QTextDocument>
 
 FindHighlighter::FindHighlighter(QTextDocument *parent) : QSyntaxHighlighter(parent) {
-    m_defaultHighlightingRule.format.setBackground(Qt::yellow);
-    m_activeHighlightingRule.format.setBackground(QColor(255, 165, 0));
+    _defaultHighlightingRule.format.setBackground(Qt::yellow);
+    _activeHighlightingRule.format.setBackground(QColor(255, 165, 0));
 }
 
 void FindHighlighter::setWordPattern(const QString &pattern) {
-    if (pattern != m_findString) {
-        m_findString = pattern;
-        m_defaultHighlightingRule.pattern = QRegularExpression(pattern,
+    if (pattern != _findString) {
+        _findString = pattern;
+        _defaultHighlightingRule.pattern = QRegularExpression(pattern,
                                                                QRegularExpression::PatternOption::CaseInsensitiveOption);
-        m_activeMatchIndex = 0;
+        _activeMatchIndex = 0;
     }
 }
 
 void FindHighlighter::highlightBlock(const QString &text) {
-    if (m_findString.isEmpty()) {
+    if (_findString.isEmpty()) {
         setFormat(0, document()->toPlainText().length(), QTextCharFormat());
-        m_activeMatchIndex = 0;
+        _activeMatchIndex = 0;
     } else {
-        m_matches = m_defaultHighlightingRule.pattern.globalMatch(text);
-        while (m_matches.hasNext()) {
-            QRegularExpressionMatch match = m_matches.next();
+        _matches = _defaultHighlightingRule.pattern.globalMatch(text);
+        while (_matches.hasNext()) {
+            QRegularExpressionMatch match = _matches.next();
             if (match.hasPartialMatch() || match.hasMatch()) {
                 int startOffset = match.capturedStart();
                 int endOffset = match.capturedEnd();
-                QTextCharFormat format = m_defaultHighlightingRule.format;
-                if (m_activeMatchIndex == m_currentMatchIndex) {
-                    format = m_activeHighlightingRule.format;
-                    m_activeBlock = currentBlock();
+                QTextCharFormat format = _defaultHighlightingRule.format;
+                if (_activeMatchIndex == _currentMatchIndex) {
+                    format = _activeHighlightingRule.format;
+                    _activeBlock = currentBlock();
                 }
                 setFormat(startOffset, endOffset - startOffset, format);
-                m_matchList.push_back(match);
-                ++m_currentMatchIndex;
+                _matchList.push_back(match);
+                ++_currentMatchIndex;
             }
         }
     }
 }
 
 void FindHighlighter::customRehighlight() {
-    m_matchList.clear();
-    m_currentMatchIndex = 0;
+    _matchList.clear();
+    _currentMatchIndex = 0;
     rehighlight();
 }
 
 int FindHighlighter::setNextMatchStateActive() {
     int startIndex = -1;
-    if (m_activeMatchIndex + 1 < m_matchList.size()) {
-        ++m_activeMatchIndex;
+    if (_activeMatchIndex + 1 < _matchList.size()) {
+        ++_activeMatchIndex;
         customRehighlight();
-        startIndex = m_matchList[m_activeMatchIndex].capturedEnd() + m_activeBlock.position();
+        startIndex = _matchList[_activeMatchIndex].capturedEnd() + _activeBlock.position();
     }
     return startIndex;
 }
 
 int FindHighlighter::setPrevMatchStateActive() {
     int startIndex = -1;
-    if (m_activeMatchIndex - 1 >= 0) {
-        --m_activeMatchIndex;
+    if (_activeMatchIndex - 1 >= 0) {
+        --_activeMatchIndex;
         customRehighlight();
-        startIndex = m_matchList[m_activeMatchIndex].capturedEnd() + m_activeBlock.position();
+        startIndex = _matchList[_activeMatchIndex].capturedEnd() + _activeBlock.position();
     }
     return startIndex;
 }
 
 qint32 FindHighlighter::matchNumber() {
-    return m_matchList.size();
+    return _matchList.size();
 }
 
 qint32 FindHighlighter::matchIndex() {
-    return m_activeMatchIndex;
+    return _activeMatchIndex;
 }
 
 void FindHighlighter::setMatchIndex(qint32 matchIndex) {
-    m_activeMatchIndex = matchIndex;
+    _activeMatchIndex = matchIndex;
 }

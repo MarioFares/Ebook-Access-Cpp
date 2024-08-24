@@ -1,10 +1,10 @@
 #include "include/dialogs/yesnodialog.h"
 
 YesNoDialog::YesNoDialog(QWidget *parent, QString windowTitle, QString title, QString prompt) : QDialog(parent) {
-    m_windowTitle = windowTitle;
-    m_title = title;
-    m_prompt = prompt;
-    m_result = false;
+    _windowTitle = windowTitle;
+    _title = title;
+    _prompt = prompt;
+    _result = false;
 
     setupInterface();
     setupConnections();
@@ -13,59 +13,59 @@ YesNoDialog::YesNoDialog(QWidget *parent, QString windowTitle, QString title, QS
 
 void YesNoDialog::setupInterface() {
     // Window
-    setWindowTitle(m_windowTitle);
+    setWindowTitle(_windowTitle);
     setFixedSize(390, 125);
 
     // Widgets
-    m_labelTitle = new QLabel(m_title);
-    m_labelPrompt = new QLabel(m_prompt);
+    _labelTitle = new QLabel(_title);
+    _labelPrompt = new QLabel(_prompt);
 
-    m_buttonYes = new QPushButton("Yes");
-    m_buttonYes->setFlat(true);
-    m_buttonYes->setCursor(Qt::PointingHandCursor);
-    m_buttonYes->setMinimumSize(80, 25);
+    _buttonYes = new QPushButton("Yes");
+    _buttonYes->setFlat(true);
+    _buttonYes->setCursor(Qt::PointingHandCursor);
+    _buttonYes->setMinimumSize(80, 25);
 
-    m_buttonNo = new QPushButton("No");
-    m_buttonNo->setFlat(true);
-    m_buttonNo->setCursor(Qt::PointingHandCursor);
-    m_buttonNo->setMinimumSize(80, 25);
+    _buttonNo = new QPushButton("No");
+    _buttonNo->setFlat(true);
+    _buttonNo->setCursor(Qt::PointingHandCursor);
+    _buttonNo->setMinimumSize(80, 25);
 
     // Layouts
-    m_horLayTitle = new QHBoxLayout();
-    m_horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleLeft);
-    m_horLayTitle->addWidget(m_labelTitle);
-    m_horLayTitle->addSpacerItem(m_horSpacerTitleRight);
+    _horLayTitle = new QHBoxLayout();
+    _horSpacerTitleLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horSpacerTitleRight = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayTitle->addSpacerItem(_horSpacerTitleLeft);
+    _horLayTitle->addWidget(_labelTitle);
+    _horLayTitle->addSpacerItem(_horSpacerTitleRight);
 
-    m_horLayButtons = new QHBoxLayout();
-    m_horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_horLayButtons->addSpacerItem(m_horSpacerButtonsLeft);
-    m_horLayButtons->addWidget(m_buttonYes);
-    m_horLayButtons->addWidget(m_buttonNo);
+    _horLayButtons = new QHBoxLayout();
+    _horSpacerButtonsLeft = new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _horLayButtons->addSpacerItem(_horSpacerButtonsLeft);
+    _horLayButtons->addWidget(_buttonYes);
+    _horLayButtons->addWidget(_buttonNo);
 
-    m_vertLayMain = new QVBoxLayout();
-    m_vertLayMain->addLayout(m_horLayTitle);
-    m_vertLayMain->addWidget(m_labelPrompt);
-    m_vertLayMain->addLayout(m_horLayButtons);
+    _vertLayMain = new QVBoxLayout();
+    _vertLayMain->addLayout(_horLayTitle);
+    _vertLayMain->addWidget(_labelPrompt);
+    _vertLayMain->addLayout(_horLayButtons);
 
-    setLayout(m_vertLayMain);
+    setLayout(_vertLayMain);
 }
 
 void YesNoDialog::setupConnections() {
-    connect(m_buttonYes, &QPushButton::clicked, this, &YesNoDialog::setResult);
-    connect(m_buttonNo, &QPushButton::clicked, this, &YesNoDialog::setResult);
+    connect(_buttonYes, &QPushButton::clicked, this, &YesNoDialog::setResult);
+    connect(_buttonNo, &QPushButton::clicked, this, &YesNoDialog::setResult);
 }
 
 void YesNoDialog::setupTabOrder() {
-    QWidget::setTabOrder(m_buttonYes, m_buttonNo);
+    QWidget::setTabOrder(_buttonYes, _buttonNo);
 }
 
 void YesNoDialog::setResult() {
-    m_result = sender() == m_buttonYes;
+    _result = sender() == _buttonYes;
     close();
 }
 
 bool YesNoDialog::getResult() const {
-    return m_result;
+    return _result;
 }

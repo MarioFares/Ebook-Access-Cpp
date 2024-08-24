@@ -22,301 +22,301 @@ void BookMetadataWindow::setupInterface() {
     setWindowTitle("Metadata");
 
     // Widgets
-    m_centralwidget = new QWidget(this);
+    _centralwidget = new QWidget(this);
 
-    m_rightSplitter = new QSplitter(m_centralwidget);
-    m_rightSplitter->setOrientation(Qt::Horizontal);
-    m_rightSplitter->setHandleWidth(0);
+    _rightSplitter = new QSplitter(_centralwidget);
+    _rightSplitter->setOrientation(Qt::Horizontal);
+    _rightSplitter->setHandleWidth(0);
 
-    m_splitter = new QSplitter(m_rightSplitter);
-    m_splitter->setOrientation(Qt::Horizontal);
-    m_splitter->setHandleWidth(0);
+    _splitter = new QSplitter(_rightSplitter);
+    _splitter->setOrientation(Qt::Horizontal);
+    _splitter->setHandleWidth(0);
 
-    m_bookSearchWidget = new BookSearchWidget(this);
-    m_bookSearchWidget->setMainLayoutMargin(0, 0, 0, 0);
+    _bookSearchWidget = new BookSearchWidget(this);
+    _bookSearchWidget->setMainLayoutMargin(0, 0, 0, 0);
 
-    m_verticalSplitter = new QSplitter(m_splitter);
-    m_verticalSplitter->setObjectName(QString::fromUtf8("verticalSplitter"));
-    m_verticalSplitter->setStyleSheet(QString::fromUtf8("#verticalSplitter { border: none; } "));
-    m_verticalSplitter->setOrientation(Qt::Vertical);
-    m_verticalSplitter->setHandleWidth(0);
+    _verticalSplitter = new QSplitter(_splitter);
+    _verticalSplitter->setObjectName(QString::fromUtf8("verticalSplitter"));
+    _verticalSplitter->setStyleSheet(QString::fromUtf8("#verticalSplitter { border: none; } "));
+    _verticalSplitter->setOrientation(Qt::Vertical);
+    _verticalSplitter->setHandleWidth(0);
 
-    m_labelName = new QLabel("Name");
-    m_labelName->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelName = new QLabel("Name");
+    _labelName->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textGenre = new QLineEdit();
-    m_textGenre->setMinimumSize(QSize(0, 23));
+    _textGenre = new QLineEdit();
+    _textGenre->setMinimumSize(QSize(0, 23));
 
-    m_labelDatePublished = new QLabel("Published");
-    m_labelDatePublished->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelDatePublished = new QLabel("Published");
+    _labelDatePublished->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textPublisher = new QLineEdit();
-    m_textPublisher->setMinimumSize(QSize(0, 23));
+    _textPublisher = new QLineEdit();
+    _textPublisher->setMinimumSize(QSize(0, 23));
 
-    m_textDatePublished = new QLineEdit();
-    m_textDatePublished->setMinimumSize(QSize(0, 23));
+    _textDatePublished = new QLineEdit();
+    _textDatePublished->setMinimumSize(QSize(0, 23));
 
-    m_labelPath = new QLabel("Path");
-    m_labelPath->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelPath = new QLabel("Path");
+    _labelPath->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textExt = new QLineEdit();
-    m_textExt->setMinimumSize(QSize(0, 23));
-    m_textExt->setEnabled(false);
+    _textExt = new QLineEdit();
+    _textExt->setMinimumSize(QSize(0, 23));
+    _textExt->setEnabled(false);
 
-    m_labelDateAdded = new QLabel("Added");
-    m_labelDateAdded->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelDateAdded = new QLabel("Added");
+    _labelDateAdded->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textAuthor = new QLineEdit();
-    m_textAuthor->setMinimumSize(QSize(0, 23));
+    _textAuthor = new QLineEdit();
+    _textAuthor->setMinimumSize(QSize(0, 23));
 
-    m_comboBoxRating = new RatingComboBox();
-    m_comboBoxRating->setMinimumSize(QSize(170, 23));
-    m_comboBoxRating->setMaximumSize(QSize(170, 23));
+    _comboBoxRating = new RatingComboBox();
+    _comboBoxRating->setMinimumSize(QSize(170, 23));
+    _comboBoxRating->setMaximumSize(QSize(170, 23));
 
-    m_labelExt = new QLabel("Extension");
-    m_labelExt->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelExt = new QLabel("Extension");
+    _labelExt->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_labelFolder = new QLabel("Folder");
-    m_labelFolder->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelFolder = new QLabel("Folder");
+    _labelFolder->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textFolder = new QLineEdit();
-    m_textFolder->setMinimumSize(QSize(0, 23));
+    _textFolder = new QLineEdit();
+    _textFolder->setMinimumSize(QSize(0, 23));
 
-    m_labelPages = new QLabel("Pages");
-    m_labelPages->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelPages = new QLabel("Pages");
+    _labelPages->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textSeries = new QLineEdit();
-    m_textSeries->setMinimumSize(QSize(0, 23));
+    _textSeries = new QLineEdit();
+    _textSeries->setMinimumSize(QSize(0, 23));
 
-    m_labelSeries = new QLabel("Series");
-    m_labelSeries->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelSeries = new QLabel("Series");
+    _labelSeries->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textDateAdded = new QLineEdit();
-    m_textDateAdded->setMinimumSize(QSize(0, 23));
-    m_textDateAdded->setEnabled(false);
+    _textDateAdded = new QLineEdit();
+    _textDateAdded->setMinimumSize(QSize(0, 23));
+    _textDateAdded->setEnabled(false);
 
-    m_labelRating = new QLabel("Rating");
-    m_labelRating->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelRating = new QLabel("Rating");
+    _labelRating->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textPages = new QLineEdit();
-    m_textPages->setMinimumSize(QSize(0, 23));
+    _textPages = new QLineEdit();
+    _textPages->setMinimumSize(QSize(0, 23));
 
-    m_labelSize = new QLabel("Size");
-    m_labelSize->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelSize = new QLabel("Size");
+    _labelSize->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_labelAuthor = new QLabel("Author");
-    m_labelAuthor->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelAuthor = new QLabel("Author");
+    _labelAuthor->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_labelGenre = new QLabel("Genre");
-    m_labelGenre->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelGenre = new QLabel("Genre");
+    _labelGenre->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_labelPublisher = new QLabel("Publisher");
-    m_labelPublisher->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelPublisher = new QLabel("Publisher");
+    _labelPublisher->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textName = new QLineEdit();
-    m_textName->setMinimumSize(QSize(0, 23));
+    _textName = new QLineEdit();
+    _textName->setMinimumSize(QSize(0, 23));
 
-    m_labelStatus = new QLabel("Status");
-    m_labelStatus->setMinimumSize(QSize(70, 0));
-    m_labelStatus->setMaximumSize(QSize(70, 180));
-    m_labelStatus->setAlignment(Qt::AlignCenter);
+    _labelStatus = new QLabel("Status");
+    _labelStatus->setMinimumSize(QSize(70, 0));
+    _labelStatus->setMaximumSize(QSize(70, 180));
+    _labelStatus->setAlignment(Qt::AlignCenter);
 
-    m_comboBoxStatus = new StatusComboBox();
-    m_comboBoxStatus->setMinimumSize(QSize(170, 23));
-    m_comboBoxStatus->setMaximumSize(QSize(170, 180));
+    _comboBoxStatus = new StatusComboBox();
+    _comboBoxStatus->setMinimumSize(QSize(170, 23));
+    _comboBoxStatus->setMaximumSize(QSize(170, 180));
 
-    m_textPath = new QLineEdit();
-    m_textPath->setMinimumSize(QSize(0, 23));
+    _textPath = new QLineEdit();
+    _textPath->setMinimumSize(QSize(0, 23));
 
-    m_textSize = new QLineEdit();
-    m_textSize->setMinimumSize(QSize(0, 23));
-    m_textSize->setEnabled(false);
+    _textSize = new QLineEdit();
+    _textSize->setMinimumSize(QSize(0, 23));
+    _textSize->setEnabled(false);
 
-    m_labelTags = new QLabel("Tags");
-    m_labelTags->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+    _labelTags = new QLabel("Tags");
+    _labelTags->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 
-    m_textTags = new QLineEdit();
-    m_textTags->setMinimumSize(QSize(0, 23));
+    _textTags = new QLineEdit();
+    _textTags->setMinimumSize(QSize(0, 23));
 
-    m_labelModified = new QLabel("Modified");
+    _labelModified = new QLabel("Modified");
 
-    m_textDateModified = new QLineEdit();
-    m_textDateModified->setEnabled(false);
+    _textDateModified = new QLineEdit();
+    _textDateModified->setEnabled(false);
 
-    m_frameComments = new QFrame();
-    m_frameComments->setObjectName(QString::fromUtf8("frameComments"));
-    m_frameComments->setStyleSheet(QString::fromUtf8("#frameComments{ border:none;}"));
+    _frameComments = new QFrame();
+    _frameComments->setObjectName(QString::fromUtf8("frameComments"));
+    _frameComments->setStyleSheet(QString::fromUtf8("#frameComments{ border:none;}"));
 
-    m_labelComments = new QLabel("Notes/Comments");
+    _labelComments = new QLabel("Notes/Comments");
 
-    m_textEditComments = new QPlainTextEdit();
-    QPalette p = m_textEditComments->palette();
+    _textEditComments = new QPlainTextEdit();
+    QPalette p = _textEditComments->palette();
     p.setColor(QPalette::Text, Qt::white);
-    m_textEditComments->setPalette(p);
+    _textEditComments->setPalette(p);
 
-    m_frameButtons = new QFrame();
-    m_frameButtons->setObjectName(QString::fromUtf8("frameButtons"));
-    m_frameButtons->setStyleSheet(QString::fromUtf8("#frameButtons { border: none; }"));
+    _frameButtons = new QFrame();
+    _frameButtons->setObjectName(QString::fromUtf8("frameButtons"));
+    _frameButtons->setStyleSheet(QString::fromUtf8("#frameButtons { border: none; }"));
 
-    m_buttonUpdate = new QPushButton("Update");
-    m_buttonUpdate->setMinimumSize(QSize(70, 30));
-    m_buttonUpdate->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonUpdate->setFlat(true);
+    _buttonUpdate = new QPushButton("Update");
+    _buttonUpdate->setMinimumSize(QSize(70, 30));
+    _buttonUpdate->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonUpdate->setFlat(true);
 
-    m_buttonPrev = new QPushButton("Previous");
-    m_buttonPrev->setMinimumSize(QSize(70, 30));
-    m_buttonPrev->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonPrev->setFlat(true);
+    _buttonPrev = new QPushButton("Previous");
+    _buttonPrev->setMinimumSize(QSize(70, 30));
+    _buttonPrev->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonPrev->setFlat(true);
 
-    m_buttonNext = new QPushButton("Next");
-    m_buttonNext->setMinimumSize(QSize(70, 30));
-    m_buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonNext->setFlat(true);
+    _buttonNext = new QPushButton("Next");
+    _buttonNext->setMinimumSize(QSize(70, 30));
+    _buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonNext->setFlat(true);
 
-    m_buttonClear = new QPushButton("Clear");
-    m_buttonClear->setMinimumSize(QSize(70, 30));
-    m_buttonClear->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonClear->setFlat(true);
+    _buttonClear = new QPushButton("Clear");
+    _buttonClear->setMinimumSize(QSize(70, 30));
+    _buttonClear->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonClear->setFlat(true);
 
-    m_buttonRestore = new QPushButton("Restore");
-    m_buttonRestore->setMinimumSize(QSize(70, 30));
-    m_buttonRestore->setCursor(QCursor(Qt::PointingHandCursor));
-    m_buttonRestore->setFlat(true);
+    _buttonRestore = new QPushButton("Restore");
+    _buttonRestore->setMinimumSize(QSize(70, 30));
+    _buttonRestore->setCursor(QCursor(Qt::PointingHandCursor));
+    _buttonRestore->setFlat(true);
 
-    m_vertLineButtons = new QFrame(m_frameButtons);
-    m_vertLineButtons->setFrameShape(QFrame::VLine);
-    m_vertLineButtons->setFrameShadow(QFrame::Sunken);
-    m_vertLineButtons->setStyleSheet(QString("color: grey; background-color: grey;"));
+    _vertLineButtons = new QFrame(_frameButtons);
+    _vertLineButtons->setFrameShape(QFrame::VLine);
+    _vertLineButtons->setFrameShadow(QFrame::Sunken);
+    _vertLineButtons->setStyleSheet(QString("color: grey; background-color: grey;"));
 
-    m_frameBookmarks = new QFrame(m_rightSplitter);
-    m_frameBookmarks->setContentsMargins(0, 0, 0, 0);
-    m_frameBookmarks->setObjectName(QString::fromUtf8("frameBookmarks"));
-    m_frameBookmarks->setStyleSheet(QString::fromUtf8("#frameBookmarks { border: none; }"));
+    _frameBookmarks = new QFrame(_rightSplitter);
+    _frameBookmarks->setContentsMargins(0, 0, 0, 0);
+    _frameBookmarks->setObjectName(QString::fromUtf8("frameBookmarks"));
+    _frameBookmarks->setStyleSheet(QString::fromUtf8("#frameBookmarks { border: none; }"));
 
-    m_tableWidgetBookmarks = new QTableWidget(m_frameBookmarks);
-    m_tableWidgetBookmarks->setColumnCount(2);
+    _tableWidgetBookmarks = new QTableWidget(_frameBookmarks);
+    _tableWidgetBookmarks->setColumnCount(2);
     QStringList headers = {"Bookmark", "Notes/Comments"};
-    m_tableWidgetBookmarks->setHorizontalHeaderLabels(headers);
-    m_tableWidgetBookmarks->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    _tableWidgetBookmarks->setHorizontalHeaderLabels(headers);
+    _tableWidgetBookmarks->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Layouts
-    m_horLayStatus = new QHBoxLayout();
-    m_horLayStatus->addWidget(m_labelStatus);
-    m_horLayStatus->addWidget(m_comboBoxStatus);
+    _horLayStatus = new QHBoxLayout();
+    _horLayStatus->addWidget(_labelStatus);
+    _horLayStatus->addWidget(_comboBoxStatus);
 
-    m_gridLayData = new QGridLayout();
-    m_gridLayData->setHorizontalSpacing(0);
-    m_gridLayData->setVerticalSpacing(10);
-    m_gridLayData->setContentsMargins(10, 0, 10, 20);
+    _gridLayData = new QGridLayout();
+    _gridLayData->setHorizontalSpacing(0);
+    _gridLayData->setVerticalSpacing(10);
+    _gridLayData->setContentsMargins(10, 0, 10, 20);
 
-    m_gridLayData->addWidget(m_labelName, 0, 0, 1, 1);
-    m_gridLayData->addWidget(m_textName, 0, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelAuthor, 1, 0, 1, 1);
-    m_gridLayData->addWidget(m_textAuthor, 1, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelGenre, 2, 0, 1, 1);
-    m_gridLayData->addWidget(m_textGenre, 2, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelFolder, 3, 0, 1, 1);
-    m_gridLayData->addWidget(m_textFolder, 3, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelPages, 4, 0, 1, 1);
-    m_gridLayData->addWidget(m_textPages, 4, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelSize, 5, 0, 1, 1);
-    m_gridLayData->addWidget(m_textSize, 5, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelTags, 6, 0, 1, 1);
-    m_gridLayData->addWidget(m_textTags, 6, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelPath, 7, 0, 1, 1);
-    m_gridLayData->addWidget(m_textPath, 7, 1, 1, 4);
-    m_gridLayData->addWidget(m_textExt, 8, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelExt, 8, 0, 1, 1);
-    m_gridLayData->addWidget(m_labelDateAdded, 9, 0, 1, 1);
-    m_gridLayData->addWidget(m_textDateAdded, 9, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelModified, 10, 0, 1, 1);
-    m_gridLayData->addWidget(m_labelPublisher, 11, 0, 1, 1);
-    m_gridLayData->addWidget(m_textPublisher, 11, 1, 1, 4);
-    m_gridLayData->addWidget(m_textDateModified, 10, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelDatePublished, 12, 0, 1, 1);
-    m_gridLayData->addWidget(m_textDatePublished, 12, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelSeries, 13, 0, 1, 1);
-    m_gridLayData->addWidget(m_textSeries, 13, 1, 1, 4);
-    m_gridLayData->addWidget(m_labelRating, 14, 0, 1, 1);
-    m_gridLayData->addWidget(m_comboBoxRating, 14, 1, 1, 1);
-    m_gridLayData->addLayout(m_horLayStatus, 14, 2, 1, 1);
+    _gridLayData->addWidget(_labelName, 0, 0, 1, 1);
+    _gridLayData->addWidget(_textName, 0, 1, 1, 4);
+    _gridLayData->addWidget(_labelAuthor, 1, 0, 1, 1);
+    _gridLayData->addWidget(_textAuthor, 1, 1, 1, 4);
+    _gridLayData->addWidget(_labelGenre, 2, 0, 1, 1);
+    _gridLayData->addWidget(_textGenre, 2, 1, 1, 4);
+    _gridLayData->addWidget(_labelFolder, 3, 0, 1, 1);
+    _gridLayData->addWidget(_textFolder, 3, 1, 1, 4);
+    _gridLayData->addWidget(_labelPages, 4, 0, 1, 1);
+    _gridLayData->addWidget(_textPages, 4, 1, 1, 4);
+    _gridLayData->addWidget(_labelSize, 5, 0, 1, 1);
+    _gridLayData->addWidget(_textSize, 5, 1, 1, 4);
+    _gridLayData->addWidget(_labelTags, 6, 0, 1, 1);
+    _gridLayData->addWidget(_textTags, 6, 1, 1, 4);
+    _gridLayData->addWidget(_labelPath, 7, 0, 1, 1);
+    _gridLayData->addWidget(_textPath, 7, 1, 1, 4);
+    _gridLayData->addWidget(_textExt, 8, 1, 1, 4);
+    _gridLayData->addWidget(_labelExt, 8, 0, 1, 1);
+    _gridLayData->addWidget(_labelDateAdded, 9, 0, 1, 1);
+    _gridLayData->addWidget(_textDateAdded, 9, 1, 1, 4);
+    _gridLayData->addWidget(_labelModified, 10, 0, 1, 1);
+    _gridLayData->addWidget(_labelPublisher, 11, 0, 1, 1);
+    _gridLayData->addWidget(_textPublisher, 11, 1, 1, 4);
+    _gridLayData->addWidget(_textDateModified, 10, 1, 1, 4);
+    _gridLayData->addWidget(_labelDatePublished, 12, 0, 1, 1);
+    _gridLayData->addWidget(_textDatePublished, 12, 1, 1, 4);
+    _gridLayData->addWidget(_labelSeries, 13, 0, 1, 1);
+    _gridLayData->addWidget(_textSeries, 13, 1, 1, 4);
+    _gridLayData->addWidget(_labelRating, 14, 0, 1, 1);
+    _gridLayData->addWidget(_comboBoxRating, 14, 1, 1, 1);
+    _gridLayData->addLayout(_horLayStatus, 14, 2, 1, 1);
 
-    m_vertLayComments = new QVBoxLayout(m_frameComments);
-    m_vertLayComments->setSpacing(2);
-    m_vertLayComments->setContentsMargins(10, 0, 10, 0);
+    _vertLayComments = new QVBoxLayout(_frameComments);
+    _vertLayComments->setSpacing(2);
+    _vertLayComments->setContentsMargins(10, 0, 10, 0);
 
-    m_vertLayComments->addWidget(m_labelComments);
-    m_vertLayComments->addWidget(m_textEditComments);
+    _vertLayComments->addWidget(_labelComments);
+    _vertLayComments->addWidget(_textEditComments);
 
-    m_gridWidget = new QWidget();
-    m_gridWidget->setLayout(m_gridLayData);
+    _gridWidget = new QWidget();
+    _gridWidget->setLayout(_gridLayData);
 
-    m_vertLayBookmarks = new QVBoxLayout(m_frameBookmarks);
-    m_vertLayBookmarks->setContentsMargins(0, 0, 0, 0);
-    m_vertLayBookmarks->addWidget(m_tableWidgetBookmarks);
+    _vertLayBookmarks = new QVBoxLayout(_frameBookmarks);
+    _vertLayBookmarks->setContentsMargins(0, 0, 0, 0);
+    _vertLayBookmarks->addWidget(_tableWidgetBookmarks);
 
-    m_verticalSplitter->addWidget(m_gridWidget);
-    m_verticalSplitter->addWidget(m_frameComments);
-    m_splitter->addWidget(m_bookSearchWidget);
-    m_splitter->addWidget(m_verticalSplitter);
-    m_rightSplitter->addWidget(m_splitter);
-    m_rightSplitter->addWidget(m_frameBookmarks);
+    _verticalSplitter->addWidget(_gridWidget);
+    _verticalSplitter->addWidget(_frameComments);
+    _splitter->addWidget(_bookSearchWidget);
+    _splitter->addWidget(_verticalSplitter);
+    _rightSplitter->addWidget(_splitter);
+    _rightSplitter->addWidget(_frameBookmarks);
 
-    m_horLayButtons = new QHBoxLayout(m_frameButtons);
-    m_horLayButtons->setContentsMargins(0, 10, 0, 0);
-    m_horSpacerButtonsLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    m_horSpacerButtonsRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    _horLayButtons = new QHBoxLayout(_frameButtons);
+    _horLayButtons->setContentsMargins(0, 10, 0, 0);
+    _horSpacerButtonsLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    _horSpacerButtonsRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-    m_horLayButtons->addItem(m_horSpacerButtonsLeft);
-    m_horLayButtons->addWidget(m_buttonRestore);
-    m_horLayButtons->addWidget(m_buttonUpdate);
-    m_horLayButtons->addWidget(m_buttonClear);
-    m_horLayButtons->addWidget(m_vertLineButtons);
-    m_horLayButtons->addWidget(m_buttonPrev);
-    m_horLayButtons->addWidget(m_buttonNext);
-    m_horLayButtons->addItem(m_horSpacerButtonsRight);
+    _horLayButtons->addItem(_horSpacerButtonsLeft);
+    _horLayButtons->addWidget(_buttonRestore);
+    _horLayButtons->addWidget(_buttonUpdate);
+    _horLayButtons->addWidget(_buttonClear);
+    _horLayButtons->addWidget(_vertLineButtons);
+    _horLayButtons->addWidget(_buttonPrev);
+    _horLayButtons->addWidget(_buttonNext);
+    _horLayButtons->addItem(_horSpacerButtonsRight);
 
-    m_vertLayMain = new QVBoxLayout(m_centralwidget);
+    _vertLayMain = new QVBoxLayout(_centralwidget);
 
-    m_vertLayMain->addWidget(m_rightSplitter);
-    m_vertLayMain->addWidget(m_frameButtons);
+    _vertLayMain->addWidget(_rightSplitter);
+    _vertLayMain->addWidget(_frameButtons);
 
     // Central Widget
-    setCentralWidget(m_centralwidget);
+    setCentralWidget(_centralwidget);
 }
 
 void BookMetadataWindow::setupConnections() {
-    connect(m_bookSearchWidget, &BookSearchWidget::itemClicked, this, &BookMetadataWindow::showBookDetails);
-    connect(m_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &BookMetadataWindow::showBookDetails);
+    connect(_bookSearchWidget, &BookSearchWidget::itemClicked, this, &BookMetadataWindow::showBookDetails);
+    connect(_bookSearchWidget, &BookSearchWidget::selectionChanged, this, &BookMetadataWindow::showBookDetails);
 
-    connect(m_buttonUpdate, &QPushButton::clicked, this, &BookMetadataWindow::updateDetails);
-    connect(m_buttonRestore, &QPushButton::clicked, this, &BookMetadataWindow::restoreDetails);
-    connect(m_buttonClear, &QPushButton::clicked, this, &BookMetadataWindow::clearDetails);
-    connect(m_buttonNext, &QPushButton::clicked, this, &BookMetadataWindow::nextBook);
-    connect(m_buttonPrev, &QPushButton::clicked, this, &BookMetadataWindow::prevBook);
+    connect(_buttonUpdate, &QPushButton::clicked, this, &BookMetadataWindow::updateDetails);
+    connect(_buttonRestore, &QPushButton::clicked, this, &BookMetadataWindow::restoreDetails);
+    connect(_buttonClear, &QPushButton::clicked, this, &BookMetadataWindow::clearDetails);
+    connect(_buttonNext, &QPushButton::clicked, this, &BookMetadataWindow::nextBook);
+    connect(_buttonPrev, &QPushButton::clicked, this, &BookMetadataWindow::prevBook);
 }
 
 void BookMetadataWindow::setupTabOrder() {
-    QWidget::setTabOrder(m_bookSearchWidget, m_textName);
-    QWidget::setTabOrder(m_textName, m_textAuthor);
-    QWidget::setTabOrder(m_textAuthor, m_textGenre);
-    QWidget::setTabOrder(m_textGenre, m_textFolder);
-    QWidget::setTabOrder(m_textFolder, m_textPages);
-    QWidget::setTabOrder(m_textPages, m_textSize);
-    QWidget::setTabOrder(m_textSize, m_textTags);
-    QWidget::setTabOrder(m_textTags, m_textPath);
-    QWidget::setTabOrder(m_textPath, m_textExt);
-    QWidget::setTabOrder(m_textExt, m_textDateAdded);
-    QWidget::setTabOrder(m_textDateAdded, m_textDateModified);
-    QWidget::setTabOrder(m_textDateModified, m_textPublisher);
-    QWidget::setTabOrder(m_textPublisher, m_textDatePublished);
-    QWidget::setTabOrder(m_textDatePublished, m_textSeries);
-    QWidget::setTabOrder(m_textSeries, m_comboBoxRating);
-    QWidget::setTabOrder(m_comboBoxRating, m_comboBoxStatus);
-    QWidget::setTabOrder(m_comboBoxStatus, m_textEditComments);
-    QWidget::setTabOrder(m_textEditComments, m_buttonUpdate);
-    QWidget::setTabOrder(m_buttonUpdate, m_buttonPrev);
-    QWidget::setTabOrder(m_buttonPrev, m_buttonNext);
+    QWidget::setTabOrder(_bookSearchWidget, _textName);
+    QWidget::setTabOrder(_textName, _textAuthor);
+    QWidget::setTabOrder(_textAuthor, _textGenre);
+    QWidget::setTabOrder(_textGenre, _textFolder);
+    QWidget::setTabOrder(_textFolder, _textPages);
+    QWidget::setTabOrder(_textPages, _textSize);
+    QWidget::setTabOrder(_textSize, _textTags);
+    QWidget::setTabOrder(_textTags, _textPath);
+    QWidget::setTabOrder(_textPath, _textExt);
+    QWidget::setTabOrder(_textExt, _textDateAdded);
+    QWidget::setTabOrder(_textDateAdded, _textDateModified);
+    QWidget::setTabOrder(_textDateModified, _textPublisher);
+    QWidget::setTabOrder(_textPublisher, _textDatePublished);
+    QWidget::setTabOrder(_textDatePublished, _textSeries);
+    QWidget::setTabOrder(_textSeries, _comboBoxRating);
+    QWidget::setTabOrder(_comboBoxRating, _comboBoxStatus);
+    QWidget::setTabOrder(_comboBoxStatus, _textEditComments);
+    QWidget::setTabOrder(_textEditComments, _buttonUpdate);
+    QWidget::setTabOrder(_buttonUpdate, _buttonPrev);
+    QWidget::setTabOrder(_buttonPrev, _buttonNext);
 }
 
 void BookMetadataWindow::showBookDetails(const QString &name) {
@@ -347,82 +347,82 @@ void BookMetadataWindow::showBookDetails(const QString &name) {
         quint32 rating = queries::query.value("rating").toInt();
         quint32 status = queries::query.value("status").toInt();
 
-        m_textName->setText(name);
-        m_textAuthor->setText(author);
-        m_textGenre->setText(genre);
-        m_textPages->setText(pages);
-        m_textPath->setText(path);
-        m_textSize->setText(QString::number(size));
-        m_textExt->setText(ext);
-        m_textFolder->setText(folder);
-        m_textDateAdded->setText(dateAdded);
-        m_textDateModified->setText(dateModified);
-        m_textPublisher->setText(publisher);
-        m_textDatePublished->setText(datePublished);
-        m_textSeries->setText(series);
-        m_textEditComments->setPlainText(comments);
-        m_comboBoxRating->setCurrentIndex(rating);
-        m_comboBoxStatus->setCurrentIndex(status);
+        _textName->setText(name);
+        _textAuthor->setText(author);
+        _textGenre->setText(genre);
+        _textPages->setText(pages);
+        _textPath->setText(path);
+        _textSize->setText(QString::number(size));
+        _textExt->setText(ext);
+        _textFolder->setText(folder);
+        _textDateAdded->setText(dateAdded);
+        _textDateModified->setText(dateModified);
+        _textPublisher->setText(publisher);
+        _textDatePublished->setText(datePublished);
+        _textSeries->setText(series);
+        _textEditComments->setPlainText(comments);
+        _comboBoxRating->setCurrentIndex(rating);
+        _comboBoxStatus->setCurrentIndex(status);
 
-        m_textName->setCursorPosition(0);
-        m_textPath->setCursorPosition(0);
-        m_textFolder->setCursorPosition(0);
+        _textName->setCursorPosition(0);
+        _textPath->setCursorPosition(0);
+        _textFolder->setCursorPosition(0);
 
         setWindowTitle("MetaData - " + queries::query.value("name").toString());
     }
     QString tags = queries::selectTagsBasedOnName(name);
-    m_textTags->setText(tags);
+    _textTags->setText(tags);
 }
 
 void BookMetadataWindow::nextBook() {
-    m_bookSearchWidget->setCurrentRow(m_bookSearchWidget->currentRow() + 1);
+    _bookSearchWidget->setCurrentRow(_bookSearchWidget->currentRow() + 1);
 }
 
 void BookMetadataWindow::prevBook() {
-    m_bookSearchWidget->setCurrentRow(m_bookSearchWidget->currentRow() - 1);
+    _bookSearchWidget->setCurrentRow(_bookSearchWidget->currentRow() - 1);
 }
 
 void BookMetadataWindow::clearDetails() {
-    m_textName->clear();
-    m_textAuthor->clear();
-    m_textGenre->clear();
-    m_textFolder->clear();
-    m_textPages->clear();
-    m_textSize->clear();
-    m_textTags->clear();
-    m_textPath->clear();
-    m_textExt->clear();
-    m_textDateAdded->clear();
-    m_textDateModified->clear();
-    m_textPublisher->clear();
-    m_textDatePublished->clear();
-    m_textSeries->clear();
-    m_comboBoxRating->setCurrentIndex(0);
-    m_comboBoxStatus->setCurrentIndex(0);
-    m_textEditComments->clear();
+    _textName->clear();
+    _textAuthor->clear();
+    _textGenre->clear();
+    _textFolder->clear();
+    _textPages->clear();
+    _textSize->clear();
+    _textTags->clear();
+    _textPath->clear();
+    _textExt->clear();
+    _textDateAdded->clear();
+    _textDateModified->clear();
+    _textPublisher->clear();
+    _textDatePublished->clear();
+    _textSeries->clear();
+    _comboBoxRating->setCurrentIndex(0);
+    _comboBoxStatus->setCurrentIndex(0);
+    _textEditComments->clear();
 }
 
 void BookMetadataWindow::restoreDetails() {
-    showBookDetails(m_bookSearchWidget->currentItemText());
+    showBookDetails(_bookSearchWidget->currentItemText());
 }
 
 void BookMetadataWindow::updateDetails() {
-    QString currentText = m_bookSearchWidget->currentItemText();
+    QString currentText = _bookSearchWidget->currentItemText();
     if (currentText.isEmpty()) {
         return;
     }
-    QString newName = m_textName->text();
-    QString author = m_textAuthor->text();
-    QString folder = m_textFolder->text();
-    QString genre = m_textGenre->text();
-    quint32 pages = m_textPages->text().toUInt();
-    QString publisher = m_textPublisher->text();
-    QString datePublished = m_textDatePublished->text();
-    QString series = m_textSeries->text();
-    quint32 rating = m_comboBoxRating->currentIndex();
-    quint32 status = m_comboBoxStatus->currentIndex();
-    QString tags = m_textTags->text().trimmed();
-    QString comments = m_textEditComments->toPlainText();
+    QString newName = _textName->text();
+    QString author = _textAuthor->text();
+    QString folder = _textFolder->text();
+    QString genre = _textGenre->text();
+    quint32 pages = _textPages->text().toUInt();
+    QString publisher = _textPublisher->text();
+    QString datePublished = _textDatePublished->text();
+    QString series = _textSeries->text();
+    quint32 rating = _comboBoxRating->currentIndex();
+    quint32 status = _comboBoxStatus->currentIndex();
+    QString tags = _textTags->text().trimmed();
+    QString comments = _textEditComments->toPlainText();
 
     queries::selectPathBasedonName(currentText);
     queries::query.next();
@@ -433,6 +433,6 @@ void BookMetadataWindow::updateDetails() {
     queries::updateBookQuery(currentText, newName, folder, genre, author, pages, tags, path, publisher,
                              datePublished, series, rating, status, comments);
 
-    m_bookSearchWidget->setCurrentItemText(newName);
+    _bookSearchWidget->setCurrentItemText(newName);
     showBookDetails(newName);
 }

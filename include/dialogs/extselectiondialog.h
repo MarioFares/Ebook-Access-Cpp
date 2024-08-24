@@ -32,32 +32,32 @@ private slots:
     void setItemsCheckState(Qt::CheckState state);
 
 private:
-    QVector<QString> m_outputVector;
-    QVector<QString> m_inputVector;
+    QVector<QString> _outputVector;
+    QVector<QString> _inputVector;
 
     void setExtVector();
 
-    QString m_title;
-    QString m_label;
+    QString _title;
+    QString _label;
 
     // Widgets
-    QLabel *m_labelTitle;
-    QLineEdit *m_textSearch;
-    QListWidget *m_listWidget;
-    QPushButton *m_buttonSelectAll;
-    QPushButton *m_buttonDeselectAll;
-    QPushButton *m_buttonContinue;
+    QLabel *_labelTitle;
+    QLineEdit *_textSearch;
+    QListWidget *_listWidget;
+    QPushButton *_buttonSelectAll;
+    QPushButton *_buttonDeselectAll;
+    QPushButton *_buttonContinue;
 
     // Layouts
-    QHBoxLayout *m_horLayTitle;
-    QHBoxLayout *m_horLayButtons;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayTitle;
+    QHBoxLayout *_horLayButtons;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerTitleLeft;
-    QSpacerItem *m_horSpacerTitleRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
+    QSpacerItem *_horSpacerTitleLeft;
+    QSpacerItem *_horSpacerTitleRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
 };
 
 #endif // EXTSELECTIONDIALOG_H

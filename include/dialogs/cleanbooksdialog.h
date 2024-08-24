@@ -24,20 +24,20 @@ private slots:
 
 private:
     // Widgets
-    QLabel *m_labelTitle;
-    QPushButton *m_buttonBegin;
-    QListWidget *m_listWidget;
+    QLabel *_labelTitle;
+    QPushButton *_buttonBegin;
+    QListWidget *_listWidget;
 
     // Layouts
-    QHBoxLayout *m_horLayTitle;
-    QHBoxLayout *m_horLayButton;
-    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *_horLayTitle;
+    QHBoxLayout *_horLayButton;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerTitleLeft;
-    QSpacerItem *m_horSpacerTitleRight;
-    QSpacerItem *m_horSpacerButtonLeft;
-    QSpacerItem *m_horSpacerButtonRight;
+    QSpacerItem *_horSpacerTitleLeft;
+    QSpacerItem *_horSpacerTitleRight;
+    QSpacerItem *_horSpacerButtonLeft;
+    QSpacerItem *_horSpacerButtonRight;
 };
 
 #endif // CLEANEBOOKSDIALOG_H

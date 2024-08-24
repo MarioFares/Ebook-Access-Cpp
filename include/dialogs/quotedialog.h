@@ -24,24 +24,24 @@ private slots:
     void prevQuote();
 
 private:
-    QStringList m_quotesList;
-    quint32 m_currIndex;
+    QStringList _quotesList;
+    quint32 _currIndex;
 
     // Widgets
-    QLabel *m_labelQuote;
-    QPushButton *m_buttonPrevious;
-    QPushButton *m_buttonNext;
+    QLabel *_labelQuote;
+    QPushButton *_buttonPrevious;
+    QPushButton *_buttonNext;
 
     // Layouts
-    QHBoxLayout *m_horLayQuote;
-    QHBoxLayout *m_horLayButtons;
+    QHBoxLayout *_horLayQuote;
+    QHBoxLayout *_horLayButtons;
 
     // Spacers
-    QSpacerItem *m_horSpacerQuoteLeft;
-    QSpacerItem *m_horSpacerQuoteRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
-    QVBoxLayout *m_vertLayMain;
+    QSpacerItem *_horSpacerQuoteLeft;
+    QSpacerItem *_horSpacerQuoteRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
+    QVBoxLayout *_vertLayMain;
 };
 
 #endif // QUOTEDIALOG_H

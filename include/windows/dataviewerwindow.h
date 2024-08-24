@@ -50,34 +50,34 @@ private slots:
     void setBackColor();
 
 private:
-    QHeaderView::ResizeMode m_columnsResizeMode;
-    QHash<int, QString> m_hiddenColumns;
+    QHeaderView::ResizeMode _columnsResizeMode;
+    QHash<int, QString> _hiddenColumns;
 
     // Widgets
-    QWidget *m_centralWidget;
-    QFrame *m_frameSearch;
-    QComboBox *m_comboBoxTables;
-    QToolButton *m_buttonRefresh;
-    QToolButton *m_buttonToggleColors;
-    QToolButton *m_buttonToggleGrid;
-    QToolButton *m_buttonToggleFitColumns;
-    QToolButton *m_buttonFontColor;
-    QToolButton *m_buttonBackColor;
-    QToolButton *m_buttonGridStyle;
-    QTableWidget *m_tableWidget;
-    QMenuBar *m_menubar;
-    QStatusBar *m_statusbar;
+    QWidget *_centralWidget;
+    QFrame *_frameSearch;
+    QComboBox *_comboBoxTables;
+    QToolButton *_buttonRefresh;
+    QToolButton *_buttonToggleColors;
+    QToolButton *_buttonToggleGrid;
+    QToolButton *_buttonToggleFitColumns;
+    QToolButton *_buttonFontColor;
+    QToolButton *_buttonBackColor;
+    QToolButton *_buttonGridStyle;
+    QTableWidget *_tableWidget;
+    QMenuBar *_menubar;
+    QStatusBar *_statusbar;
 
     // Layouts
-    QVBoxLayout *m_vertLayMain;
-    QHBoxLayout *m_horLayComboBox;
-    QHBoxLayout *m_horLayButtons;
+    QVBoxLayout *_vertLayMain;
+    QHBoxLayout *_horLayComboBox;
+    QHBoxLayout *_horLayButtons;
 
     // Spacers
-    QSpacerItem *m_horSpacerComboBoxLeft;
-    QSpacerItem *m_horSpacerComboBoxRight;
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
+    QSpacerItem *_horSpacerComboBoxLeft;
+    QSpacerItem *_horSpacerComboBoxRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
 };
 
 #endif // DATAVIEWERWINDOW_H

@@ -9,7 +9,7 @@ class RatingComboBox : public QComboBox {
     Q_OBJECT
 
 private:
-    static inline const QStringList m_ratings = {
+    static inline const QStringList _ratings = {
         "Unrated",
         "\360\237\237\211",
         "\360\237\237\211\360\237\237\211",

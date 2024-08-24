@@ -32,50 +32,50 @@ private slots:
 
 private:
     // Widgets
-    QLabel *m_labelTitle;
-    QFrame *m_frame;
-    QLineEdit *m_textSize;
-    QLineEdit *m_textTags;
-    QLineEdit *m_textExtension;
-    QLineEdit *m_textFolder;
-    QLineEdit *m_textGenre;
-    QLabel *m_labelAuthor;
-    QLabel *m_labelPages;
-    QLineEdit *m_textPath;
-    QLineEdit *m_textName;
-    QLabel *m_labelPath;
-    QLabel *m_labelSize;
-    QLabel *m_labelTags;
-    QLabel *m_labelGenre;
-    QLineEdit *m_textPages;
-    QPushButton *m_buttonBrowse;
-    QLabel *m_labelFolder;
-    QLineEdit *m_textAuthor;
-    QLabel *m_labelName;
-    QLabel *m_labelExtension;
-    QPushButton *m_buttonAdd;
-    QPushButton *m_buttonClear;
-    QPushButton *m_buttonCancel;
-    QLabel *m_labelPublisher;
-    QLineEdit *m_textPublisher;
-    QLabel *m_labelDatePublished;
-    QLineEdit *m_textDatePublished;
-    QLabel *m_labelSeries;
-    QLineEdit *m_textSeries;
-    QLabel *m_labelRating;
-    RatingComboBox *m_comboBoxRating;
-    QLabel *m_labelStatus;
-    StatusComboBox *m_comboBoxStatus;
+    QLabel *_labelTitle;
+    QFrame *_frame;
+    QLineEdit *_textSize;
+    QLineEdit *_textTags;
+    QLineEdit *_textExtension;
+    QLineEdit *_textFolder;
+    QLineEdit *_textGenre;
+    QLabel *_labelAuthor;
+    QLabel *_labelPages;
+    QLineEdit *_textPath;
+    QLineEdit *_textName;
+    QLabel *_labelPath;
+    QLabel *_labelSize;
+    QLabel *_labelTags;
+    QLabel *_labelGenre;
+    QLineEdit *_textPages;
+    QPushButton *_buttonBrowse;
+    QLabel *_labelFolder;
+    QLineEdit *_textAuthor;
+    QLabel *_labelName;
+    QLabel *_labelExtension;
+    QPushButton *_buttonAdd;
+    QPushButton *_buttonClear;
+    QPushButton *_buttonCancel;
+    QLabel *_labelPublisher;
+    QLineEdit *_textPublisher;
+    QLabel *_labelDatePublished;
+    QLineEdit *_textDatePublished;
+    QLabel *_labelSeries;
+    QLineEdit *_textSeries;
+    QLabel *_labelRating;
+    RatingComboBox *_comboBoxRating;
+    QLabel *_labelStatus;
+    StatusComboBox *_comboBoxStatus;
 
     // Layouts
-    QGridLayout *m_gridLay;
-    QHBoxLayout *m_horLayButtons;
-    QHBoxLayout *m_horLayStatus;
-    QVBoxLayout *m_vertLayMain;
+    QGridLayout *_gridLay;
+    QHBoxLayout *_horLayButtons;
+    QHBoxLayout *_horLayStatus;
+    QVBoxLayout *_vertLayMain;
 
     // Spacers
-    QSpacerItem *m_horSpacerButtonsLeft;
-    QSpacerItem *m_horSpacerButtonsRight;
+    QSpacerItem *_horSpacerButtonsLeft;
+    QSpacerItem *_horSpacerButtonsRight;
 };
 
 #endif // ADDBOOKDIALOG_H
