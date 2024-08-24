@@ -6,63 +6,59 @@
 #include <QBoxLayout>
 #include <QListWidget>
 
-class BookSearchWidget : public QWidget
-{
-Q_OBJECT
+class BookSearchWidget : public QWidget {
+    Q_OBJECT
 
 public:
-	explicit BookSearchWidget(QWidget* parent = nullptr);
+    explicit BookSearchWidget(QWidget *parent = nullptr);
 
 public slots:
+    void setMainLayoutMargin(int left, int top, int right, int bottom);
 
-	void setMainLayoutMargin(int left, int top, int right, int bottom);
+    void setMainLayoutSpacing(int spacing);
 
-	void setMainLayoutSpacing(int spacing);
+    void clearSearchText();
 
-	void clearSearchText();
+    void clearListWidget();
 
-	void clearListWidget();
+    void setHideSearchBar(bool hide);
 
-	void setHideSearchBar(bool hide);
+    bool searchBarHidden();
 
-	bool searchBarHidden();
+    bool widgetHidden();
 
-	bool widgetHidden();
+    void setHideWidget(bool hide);
 
-	void setHideWidget(bool hide);
+    QString findItem(const QString &name);
 
-	QString findItem(const QString& name);
+    void searchString();
 
-	void searchString();
+    int currentRow();
 
-	int currentRow();
+    void setCurrentRow(int row);
 
-	void setCurrentRow(int row);
+    QString currentItemText();
 
-	QString currentItemText();
-
-	void setCurrentItemText(QString text);
+    void setCurrentItemText(QString text);
 
 signals:
+    void itemClicked(const QString &currentText);
 
-	void itemClicked(const QString& currentText);
-
-	void selectionChanged(const QString& currentText);
+    void selectionChanged(const QString &currentText);
 
 private slots:
+    void setupInterface();
 
-	void setupInterface();
+    void setupConnections();
 
-	void setupConnections();
+    static void openEbook(QListWidgetItem *item);
 
-	static void openEbook(QListWidgetItem* item);
-
-	void setupItemClicked(QListWidgetItem* item);
+    void setupItemClicked(QListWidgetItem *item);
 
 private:
-	QLineEdit* m_textSearchBar;
-	QListWidget* m_listWidget;
-	QVBoxLayout* m_vertLayMain;
+    QLineEdit *m_textSearchBar;
+    QListWidget *m_listWidget;
+    QVBoxLayout *m_vertLayMain;
 };
 
 #endif // BOOKSEARCHWIDGET_H

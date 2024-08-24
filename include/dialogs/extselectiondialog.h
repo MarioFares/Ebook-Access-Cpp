@@ -7,59 +7,57 @@
 #include <QBoxLayout>
 #include <QLabel>
 
-class ExtSelectionDialog : public QDialog
-{
-Q_OBJECT
+class ExtSelectionDialog : public QDialog {
+    Q_OBJECT
 
 public:
-	explicit ExtSelectionDialog(QWidget* parent = nullptr, QVector<QString> extVector = {},
-								QString title = "Preferences", QString label = "Select Preferences");
+    explicit ExtSelectionDialog(QWidget *parent = nullptr, QVector<QString> extVector = {},
+                                QString title = "Preferences", QString label = "Select Preferences");
 
-	QVector<QString> getExtVector();
+    QVector<QString> getExtVector();
 
 private slots:
+    void setupInterface();
 
-	void setupInterface();
+    void setupConnections();
 
-	void setupConnections();
+    void setupTabOrder();
 
-	void setupTabOrder();
+    void fillListWidget(QVector<QString> extVector);
 
-	void fillListWidget(QVector<QString> extVector);
+    static void setItemState(QListWidgetItem *item);
 
-	static void setItemState(QListWidgetItem* item);
+    void searchText(const QString &arg1);
 
-	void searchText(const QString& arg1);
-
-	void setItemsCheckState(Qt::CheckState state);
+    void setItemsCheckState(Qt::CheckState state);
 
 private:
-	QVector<QString> m_outputVector;
-	QVector<QString> m_inputVector;
+    QVector<QString> m_outputVector;
+    QVector<QString> m_inputVector;
 
-	void setExtVector();
+    void setExtVector();
 
-	QString m_title;
-	QString m_label;
+    QString m_title;
+    QString m_label;
 
-	// Widgets
-	QLabel* m_labelTitle;
-	QLineEdit* m_textSearch;
-	QListWidget* m_listWidget;
-	QPushButton* m_buttonSelectAll;
-	QPushButton* m_buttonDeselectAll;
-	QPushButton* m_buttonContinue;
+    // Widgets
+    QLabel *m_labelTitle;
+    QLineEdit *m_textSearch;
+    QListWidget *m_listWidget;
+    QPushButton *m_buttonSelectAll;
+    QPushButton *m_buttonDeselectAll;
+    QPushButton *m_buttonContinue;
 
-	// Layouts
-	QHBoxLayout* m_horLayTitle;
-	QHBoxLayout* m_horLayButtons;
-	QVBoxLayout* m_vertLayMain;
+    // Layouts
+    QHBoxLayout *m_horLayTitle;
+    QHBoxLayout *m_horLayButtons;
+    QVBoxLayout *m_vertLayMain;
 
-	// Spacers
-	QSpacerItem* m_horSpacerTitleLeft;
-	QSpacerItem* m_horSpacerTitleRight;
-	QSpacerItem* m_horSpacerButtonsLeft;
-	QSpacerItem* m_horSpacerButtonsRight;
+    // Spacers
+    QSpacerItem *m_horSpacerTitleLeft;
+    QSpacerItem *m_horSpacerTitleRight;
+    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *m_horSpacerButtonsRight;
 };
 
 #endif // EXTSELECTIONDIALOG_H

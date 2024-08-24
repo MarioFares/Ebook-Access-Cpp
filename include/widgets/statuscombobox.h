@@ -4,24 +4,23 @@
 #include <QWidget>
 #include <QComboBox>
 
-class StatusComboBox : public QComboBox
-{
-Q_OBJECT
+class StatusComboBox : public QComboBox {
+    Q_OBJECT
 
 private:
-	static const inline QStringList m_status = {
-			"No Status",
-			"Prospective",
-			"Pending",
-			"Complete",
-	};
+    static const inline QStringList m_status = {
+        "No Status",
+        "Prospective",
+        "Pending",
+        "Complete",
+    };
 
 public:
-	explicit StatusComboBox(QWidget* parent = nullptr);
+    explicit StatusComboBox(QWidget *parent = nullptr);
 
-	static QString convertToStatus(quint32 index);
+    static QString convertToStatus(quint32 index);
 
-	static QString convertToIndex(QString value);
+    static QString convertToIndex(QString value);
 };
 
 #endif //STATUSCOMBOBOX_H

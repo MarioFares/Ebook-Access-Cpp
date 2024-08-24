@@ -9,150 +9,149 @@
  * All sizes must be of type quint64 = unsigned long long
  */
 
-namespace queries
-{
+namespace queries {
+    extern QSqlDatabase db;
 
-extern QSqlDatabase db;
+    extern QSqlQuery query;
 
-extern QSqlQuery query;
+    void setupDatabase();
 
-void setupDatabase();
+    void connectToDatabase();
 
-void connectToDatabase();
+    QString genExtQuery(QString entity, QString text);
 
-QString genExtQuery(QString entity, QString text);
+    QString genTagQuery(QString tags);
 
-QString genTagQuery(QString tags);
+    QString cleanTags(QString tags);
 
-QString cleanTags(QString tags);
+    // Setup Tables Queries
+    void setupDb();
 
-// Setup Tables Queries
-void setupDb();
+    void logSessionStart();
 
-void logSessionStart();
+    void logSessionEnd();
 
-void logSessionEnd();
+    // Reset Tables Queries
+    void resetSettingsTableQuery();
 
-// Reset Tables Queries
-void resetSettingsTableQuery();
+    void resetEbooksTableQuery();
 
-void resetEbooksTableQuery();
+    void resetSummaries();
 
-void resetSummaries();
+    void resetTags();
 
-void resetTags();
+    void resetSearchesTable();
 
-void resetSearchesTable();
+    void resetLinksTable();
 
-void resetLinksTable();
+    void resetCollectionsTable();
 
-void resetCollectionsTable();
+    // Select Queries
+    void selectEbooksTable();
 
-// Select Queries
-void selectEbooksTable();
+    void selectLinksTable();
 
-void selectLinksTable();
+    void selectLinkCollectionsTable();
 
-void selectLinkCollectionsTable();
+    void selectSearchesTable();
 
-void selectSearchesTable();
+    void selectSessionLogTable();
 
-void selectSessionLogTable();
+    void selectTagsTable();
 
-void selectTagsTable();
+    void selectFoldersQuery();
 
-void selectFoldersQuery();
+    void selectAuthorsQuery();
 
-void selectAuthorsQuery();
+    void selectGenreQuery();
 
-void selectGenreQuery();
+    void selectPublisherQuery();
 
-void selectPublisherQuery();
+    void selectDatePublishedQuery();
 
-void selectDatePublishedQuery();
+    void selectSeriesQuery();
 
-void selectSeriesQuery();
+    void selectStatusQuery();
 
-void selectStatusQuery();
+    void selectRatingsQuery();
 
-void selectRatingsQuery();
+    void selectSearchesQuery();
 
-void selectSearchesQuery();
+    void selectPath();
 
-void selectPath();
+    void selectExt();
 
-void selectExt();
+    void selectTags();
 
-void selectTags();
+    QString selectTagsBasedOnName(QString name);
 
-QString selectTagsBasedOnName(QString name);
+    void selectSearchCriteriaQuery(QString searchName);
 
-void selectSearchCriteriaQuery(QString searchName);
+    void selectCountEbooks();
 
-void selectCountEbooks();
+    void selectNameBasedOnRowid(quint32 rowid);
 
-void selectNameBasedOnRowid(quint32 rowid);
+    void selectPathBasedonName(QString name);
 
-void selectPathBasedonName(QString name);
+    void selectNameBasedOnString(QString stringToSearch = "%");
 
-void selectNameBasedOnString(QString stringToSearch = "%");
+    void selectAllBasedOnName(QString name);
 
-void selectAllBasedOnName(QString name);
+    void selectSummaryBasedonName(QString name);
 
-void selectSummaryBasedonName(QString name);
+    void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
+                                   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize,
+                                   QString publisher, QString published, QString series, QString rating,
+                                   QString status);
 
-void selectNameBasedOnCriteria(QString folder, QString genre, QString author, QString tags, QString ext,
-							   quint32 fromPages, quint32 toPages, quint64 fromSize, quint64 toSize,
-							   QString publisher, QString published, QString series, QString rating, QString status);
+    int selectCollectionId(QString collectionName);
 
-int selectCollectionId(QString collectionName);
+    void selectCollections(QString searchString = "%");
 
-void selectCollections(QString searchString = "%");
+    void selectLinksBasedOnCollection(QString collectionName, QString searchString);
 
-void selectLinksBasedOnCollection(QString collectionName, QString searchString);
+    void selectLinkRecord(QString name);
 
-void selectLinkRecord(QString name);
+    // Insert Queries
+    void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
+                          quint32 pages = 0, QString tags = "N/A", QString genre = "N/A", QString author = "N/A",
+                          QString publisher = "N/A", QString published = "N/A",
+                          QString series = "N/A", quint32 rating = 0, quint32 status = 0);
 
-// Insert Queries
-void insertBooksQuery(QString name, QString path, QString folder, QString ext, quint64 size,
-					  quint32 pages = 0, QString tags = "N/A", QString genre = "N/A", QString author = "N/A",
-					  QString publisher = "N/A", QString published = "N/A",
-					  QString series = "N/A", quint32 rating = 0, quint32 status = 0);
+    void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
+                           QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages,
+                           quint32 toPages, QString publisher, QString published,
+                           QString series, QString rating, QString status);
 
-void insertSearchQuery(QString searchName, QString folder, QString author, QString genre, QString tags,
-					   QString ext, quint32 fromSize, quint32 toSize, QString sizeIn, quint32 fromPages,
-					   quint32 toPages, QString publisher, QString published,
-					   QString series, QString rating, QString status);
+    void insertLinkCollection(QString collectionName);
 
-void insertLinkCollection(QString collectionName);
+    void insertLink(int collectionId, QString linkName, QString linkPath, QString linkComments);
 
-void insertLink(int collectionId, QString linkName, QString linkPath, QString linkComments);
+    void insertTags(QString tags, QString bookName);
 
-void insertTags(QString tags, QString bookName);
+    // Update Queries
+    void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
+                         QString author, quint32 pages, QString tags, QString path,
+                         QString publisher = "N/A", QString published = "N/A",
+                         QString series = "N/A", quint32 rating = 0, quint32 status = 0, QString comments = "N/A");
 
-// Update Queries
-void updateBookQuery(QString oldName, QString newName, QString folder, QString genre,
-					 QString author, quint32 pages, QString tags, QString path,
-					 QString publisher = "N/A", QString published = "N/A",
-					 QString series = "N/A", quint32 rating = 0, quint32 status = 0, QString comments = "N/A");
+    void updateBookName(QString oldName, QString newName);
 
-void updateBookName(QString oldName, QString newName);
+    void updateBookPath(QString oldPath, QString newPath);
 
-void updateBookPath(QString oldPath, QString newPath);
+    void updateSummary(QString name, QString summary);
 
-void updateSummary(QString name, QString summary);
+    void updateLinkDetails(QString oldName, QString newName, QString path, QString comments);
 
-void updateLinkDetails(QString oldName, QString newName, QString path, QString comments);
+    void updateLinkCollectionName(QString oldName, QString newName);
 
-void updateLinkCollectionName(QString oldName, QString newName);
+    //Delete Queries
+    void deleteBook(QString fileName);
 
-//Delete Queries
-void deleteBook(QString fileName);
+    void deleteLink(QString linkName);
 
-void deleteLink(QString linkName);
+    void deleteCollection(QString collectionName);
 
-void deleteCollection(QString collectionName);
-
-void deleteSearch(QString searchName);
+    void deleteSearch(QString searchName);
 } // Namespace queries
 #endif // QUERIES_H

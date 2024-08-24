@@ -7,59 +7,57 @@
 
 class QGridLayout;
 
-typedef QList<QPair<QColor, QColor>> GradientList;
+typedef QList<QPair<QColor, QColor> > GradientList;
 
-class ColorPickerWidget : public QDialog
-{
-Q_OBJECT
+class ColorPickerWidget : public QDialog {
+    Q_OBJECT
 
 public:
-	explicit ColorPickerWidget(QWidget* parent = nullptr, QColor defaultColor = Qt::black);
+    explicit ColorPickerWidget(QWidget *parent = nullptr, QColor defaultColor = Qt::black);
 
-	QColor getCurrentColor();
+    QColor getCurrentColor();
 
-	bool colorSelected() const;
+    bool colorSelected() const;
 
-	QColor m_defaultColor;
+    QColor m_defaultColor;
 
 private slots:
+    static QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
 
-	static QColor interpolateColor(QColor colorStart, QColor colorEnd, float percent);
+    static GradientList initialialzeColorGradients();
 
-	static GradientList initialialzeColorGradients();
+    void createColorsButtons();
 
-	void createColorsButtons();
+    void setButtonColors(GradientList gradientList);
 
-	void setButtonColors(GradientList gradientList);
+    void setCurrentColor(QColor color);
 
-	void setCurrentColor(QColor color);
+    void openColorDialog();
 
-	void openColorDialog();
+    void setupConnections();
 
-	void setupConnections();
-
-	void setupInterface();
+    void setupInterface();
 
 private:
-	int m_rows;
-	int m_columns;
-	QColor m_currentColor;
-	bool m_isColorSelected;
+    int m_rows;
+    int m_columns;
+    QColor m_currentColor;
+    bool m_isColorSelected;
 
-	// Widgets
-	QPushButton* m_defaultColorButton;
-	QPushButton* m_moreColorsButton;
-	QFrame* m_mainFrame;
+    // Widgets
+    QPushButton *m_defaultColorButton;
+    QPushButton *m_moreColorsButton;
+    QFrame *m_mainFrame;
 
-	// Layouts
-	QVBoxLayout* m_vertLayMain;
-	QGridLayout* m_colorGridLayout;
-	QHBoxLayout* m_horLayDefaultButton;
-	QHBoxLayout* m_horLayMoreColors;
+    // Layouts
+    QVBoxLayout *m_vertLayMain;
+    QGridLayout *m_colorGridLayout;
+    QHBoxLayout *m_horLayDefaultButton;
+    QHBoxLayout *m_horLayMoreColors;
 
-	// Spacers
-	QSpacerItem* m_horSpacerDefaultButtonRight;
-	QSpacerItem* m_horSpacerMoreColorsRight;
+    // Spacers
+    QSpacerItem *m_horSpacerDefaultButtonRight;
+    QSpacerItem *m_horSpacerMoreColorsRight;
 };
 
 #endif // COLORPICKERWIDGET_H

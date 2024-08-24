@@ -6,50 +6,48 @@
 #include <QLineEdit>
 #include <QBoxLayout>
 
-class GetNameDialog : public QDialog
-{
-Q_OBJECT
+class GetNameDialog : public QDialog {
+    Q_OBJECT
 
 public:
-	explicit GetNameDialog(QWidget* parent = nullptr,
-						   QString title = "Input Name",
-						   QString prompt = "Please input a m_name");
+    explicit GetNameDialog(QWidget *parent = nullptr,
+                           QString title = "Input Name",
+                           QString prompt = "Please input a m_name");
 
-	QString m_name;
+    QString m_name;
 
-	void setDataOnOpen();
+    void setDataOnOpen();
 
 private slots:
+    void setupInterface();
 
-	void setupInterface();
+    void setupConnections();
 
-	void setupConnections();
+    void setupTabOrder();
 
-	void setupTabOrder();
-
-	void setName();
+    void setName();
 
 private:
-	QString m_title;
-	QString m_prompt;
+    QString m_title;
+    QString m_prompt;
 
-	// Widgets
-	QLabel* m_labelTitle;
-	QLabel* m_labelPrompt;
-	QLineEdit* m_textName;
-	QPushButton* m_buttonOk;
-	QPushButton* m_buttonCancel;
+    // Widgets
+    QLabel *m_labelTitle;
+    QLabel *m_labelPrompt;
+    QLineEdit *m_textName;
+    QPushButton *m_buttonOk;
+    QPushButton *m_buttonCancel;
 
-	// Layouts
-	QHBoxLayout* m_horLayTitle;
-	QHBoxLayout* m_horLayButtons;
-	QVBoxLayout* m_vertLayMain;
+    // Layouts
+    QHBoxLayout *m_horLayTitle;
+    QHBoxLayout *m_horLayButtons;
+    QVBoxLayout *m_vertLayMain;
 
-	// Spacers
-	QSpacerItem* m_horSpacerTitleLeft;
-	QSpacerItem* m_horSpacerTitleRight;
-	QSpacerItem* m_horSpacerButtonsLeft;
-	QSpacerItem* m_horSpacerButtonsRight;
+    // Spacers
+    QSpacerItem *m_horSpacerTitleLeft;
+    QSpacerItem *m_horSpacerTitleRight;
+    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *m_horSpacerButtonsRight;
 };
 
 #endif // GETNAMEDIALOG_H

@@ -5,29 +5,27 @@
 #include <QWidget>
 #include <QTextBrowser>
 
-class TextEditor : public QTextBrowser
-{
-Q_OBJECT
+class TextEditor : public QTextBrowser {
+    Q_OBJECT
 
 public:
-	explicit TextEditor(QWidget* parent = nullptr);
+    explicit TextEditor(QWidget *parent = nullptr);
 
-	void createList(QTextListFormat::Style listStyle);
+    void createList(QTextListFormat::Style listStyle);
 
-	int changeListIndentation(const int& increment);
+    int changeListIndentation(const int &increment);
 
 private slots:
+    void keyPressEvent(QKeyEvent *ev) override;
 
-	void keyPressEvent(QKeyEvent* ev) override;
+    void handleReturn();
 
-	void handleReturn();
+    void handleBackspace();
 
-	void handleBackspace();
-
-	void insertClosingChar(const char& openChar, const QString& selectedText);
+    void insertClosingChar(const char &openChar, const QString &selectedText);
 
 private:
-	QHash<char, char> m_charPairs;
+    QHash<char, char> m_charPairs;
 };
 
 #endif // TEXTEDITOR_H

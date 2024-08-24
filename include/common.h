@@ -7,30 +7,28 @@
 #include <QMessageBox>
 #include <QMainWindow>
 
-namespace common
-{
-extern QString SEP;
+namespace common {
+    extern QString SEP;
 
-void openDialog(QDialog* dialog, const QString& stylesheetPath);
+    void openDialog(QDialog *dialog, const QString &stylesheetPath);
 
-void showMsgBox(const QString& title, const QString& text, const QString& stylesheetPath,
-				const QMessageBox::Icon& msgIcon, const QString& winIcon);
+    void showMsgBox(const QString &title, const QString &text, const QString &stylesheetPath,
+                    const QMessageBox::Icon &msgIcon, const QString &winIcon);
 
-void openWindow(QMainWindow* window, const QString& stylesheetPath);
+    void openWindow(QMainWindow *window, const QString &stylesheetPath);
 
-quint32 getPageCount(const QString& path);
+    quint32 getPageCount(const QString &path);
 
-QString openSheet(const QString& sheetUrl);
+    QString openSheet(const QString &sheetUrl);
 
-QCompleter* dirCompleter(QWidget* parent);
+    QCompleter *dirCompleter(QWidget *parent);
 
-void changeWidgetVisibility(QWidget* widget, QAction* action);
+    void changeWidgetVisibility(QWidget *widget, QAction *action);
 
-void toggleFullscreen(QMainWindow* window);
+    void toggleFullscreen(QMainWindow *window);
 
-void toggleMaximized(QMainWindow* window);
+    void toggleMaximized(QMainWindow *window);
 
-void renameFile(QWidget* parent, QString path, QString newName);
-
-}    // Namespace common
+    void renameFile(QWidget *parent, QString path, QString newName);
+} // Namespace common
 #endif    // COMMON_H

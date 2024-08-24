@@ -8,78 +8,76 @@
 #include <QToolButton>
 #include <QTableWidget>
 
-class DataViewerWindow : public QMainWindow
-{
-Q_OBJECT
+class DataViewerWindow : public QMainWindow {
+    Q_OBJECT
 
 public:
-	explicit DataViewerWindow(QWidget* parent = nullptr);
+    explicit DataViewerWindow(QWidget *parent = nullptr);
 
 private slots:
+    void setupInterface();
 
-	void setupInterface();
+    void setupConnections();
 
-	void setupConnections();
+    void setupTabOrder();
 
-	void setupTabOrder();
+    void closeEvent(QCloseEvent *event) override;
 
-	void closeEvent(QCloseEvent* event) override;
+    void populateTable();
 
-	void populateTable();
+    void tableSelected(int index);
 
-	void tableSelected(int index);
+    void toggleColors();
 
-	void toggleColors();
+    void toggleGrid();
 
-	void toggleGrid();
+    void toggleFitColumns();
 
-	void toggleFitColumns();
+    void showCellText();
 
-	void showCellText();
+    void showTableContextMenu(const QPoint &pos);
 
-	void showTableContextMenu(const QPoint& pos);
+    void hideColumn(int index);
 
-	void hideColumn(int index);
+    void showColumn(int index);
 
-	void showColumn(int index);
+    void showAllColumns();
 
-	void showAllColumns();
+    void setupGridMenu();
 
-	void setupGridMenu();
+    void setFontColor();
 
-	void setFontColor();
-
-	void setBackColor();
+    void setBackColor();
 
 private:
-	QHeaderView::ResizeMode m_columnsResizeMode;
-	QHash<int, QString> m_hiddenColumns;
+    QHeaderView::ResizeMode m_columnsResizeMode;
+    QHash<int, QString> m_hiddenColumns;
 
-	// Widgets
-	QWidget* m_centralWidget;
-	QFrame* m_frameSearch;
-	QComboBox* m_comboBoxTables;
-	QToolButton* m_buttonRefresh;
-	QToolButton* m_buttonToggleColors;
-	QToolButton* m_buttonToggleGrid;
-	QToolButton* m_buttonToggleFitColumns;
-	QToolButton* m_buttonFontColor;
-	QToolButton* m_buttonBackColor;
-	QToolButton* m_buttonGridStyle;
-	QTableWidget* m_tableWidget;
-	QMenuBar* m_menubar;
-	QStatusBar* m_statusbar;
+    // Widgets
+    QWidget *m_centralWidget;
+    QFrame *m_frameSearch;
+    QComboBox *m_comboBoxTables;
+    QToolButton *m_buttonRefresh;
+    QToolButton *m_buttonToggleColors;
+    QToolButton *m_buttonToggleGrid;
+    QToolButton *m_buttonToggleFitColumns;
+    QToolButton *m_buttonFontColor;
+    QToolButton *m_buttonBackColor;
+    QToolButton *m_buttonGridStyle;
+    QTableWidget *m_tableWidget;
+    QMenuBar *m_menubar;
+    QStatusBar *m_statusbar;
 
-	// Layouts
-	QVBoxLayout* m_vertLayMain;
-	QHBoxLayout* m_horLayComboBox;
-	QHBoxLayout* m_horLayButtons;
+    // Layouts
+    QVBoxLayout *m_vertLayMain;
+    QHBoxLayout *m_horLayComboBox;
+    QHBoxLayout *m_horLayButtons;
 
-	// Spacers
-	QSpacerItem* m_horSpacerComboBoxLeft;
-	QSpacerItem* m_horSpacerComboBoxRight;
-	QSpacerItem* m_horSpacerButtonsLeft;
-	QSpacerItem* m_horSpacerButtonsRight;
+    // Spacers
+    QSpacerItem *m_horSpacerComboBoxLeft;
+    QSpacerItem *m_horSpacerComboBoxRight;
+    QSpacerItem *m_horSpacerButtonsLeft;
+    QSpacerItem *m_horSpacerButtonsRight;
 };
 
 #endif // DATAVIEWERWINDOW_H
