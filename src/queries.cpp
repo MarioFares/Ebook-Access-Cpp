@@ -10,9 +10,15 @@
 
 namespace queries
 {
-QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "SQLITE");
+QSqlDatabase db;
 
-QSqlQuery query(db);
+QSqlQuery query;
+
+void setupDatabase()
+{
+	db = QSqlDatabase::addDatabase("QSQLITE", "SQLITE");
+	query = QSqlQuery(db);
+}
 
 void connectToDatabase()
 {

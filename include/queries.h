@@ -16,6 +16,8 @@ extern QSqlDatabase db;
 
 extern QSqlQuery query;
 
+void setupDatabase();
+
 void connectToDatabase();
 
 QString genExtQuery(QString entity, QString text);
